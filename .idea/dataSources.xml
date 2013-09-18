@@ -3,7 +3,7 @@
   <component name="DataSourceManagerImpl" format="xml" hash="1899031015">
     <data-source source="LOCAL" name="Rails en: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="429cb127-5756-4bd5-afd5-194a1c77e64b">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql:en_dev</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfc6dfcbdfcedf9bdf9adf93df9a</user-password>
       <libraries>
@@ -17,7 +17,7 @@
     </data-source>
     <data-source source="LOCAL" name="Rails en: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="84348b67-1ecb-4e94-847e-37834dcb7a7d">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql:en_dev</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfc6dfcbdfcedf9bdf9adf93df9a</user-password>
       <libraries>
@@ -31,7 +31,7 @@
     </data-source>
     <data-source source="LOCAL" name="Rails en: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="4df12e58-fdeb-4a10-865d-de14e79b7c8d">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql:en_dev</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfc6dfcbdfcedf9bdf9adf93df9a</user-password>
       <libraries>
