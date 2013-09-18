@@ -21,6 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'foreman'
 ruby '1.9.3'
 
 # To use ActiveModel has_secure_password
