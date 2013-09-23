@@ -1,6 +1,6 @@
 <h1>Listing posts</h1>
 
-<table>
+<table cellpadding=20>
   <tr>
     <th>Title</th>
     <th>Text</th>
@@ -12,6 +12,7 @@
         <td><%= post.text %></td>
         <td><%= link_to "del", post_path(post), method: :delete, data: {confirm: 'Are you shure?'} %></td>
         <td><%= post.comments.count %></td>
+        <td><%= post.created_at.to_date %> <%= post.created_at.hour %>:<%= post.created_at.min %></td>
       </tr>
   <% end %>
 </table>

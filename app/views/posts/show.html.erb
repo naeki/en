@@ -3,6 +3,7 @@
 <p>
   <%= @post.text %>
 </p>
+<%= @post.created_at.to_date %> <%= @post.created_at.hour %>:<%= @post.created_at.min %>
 <br><br><hr>
 <h2>Comments</h2>
 <%= render @post.comments %>
