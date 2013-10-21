@@ -4,6 +4,9 @@
   <tr>
     <th>Title</th>
     <th>Text</th>
+    <th>Delete</th>
+    <th>Comments</th>
+    <th>Created at</th>
   </tr>
 
   <% @posts.each do |post| %>
@@ -18,3 +21,5 @@
 </table>
 
 <%= link_to "new post", new_post_path %>
+<%= link_to "users", users_path %>
+<%= link_to "Register", new_user_path %>

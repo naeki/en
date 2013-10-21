@@ -20,6 +20,7 @@ En::Application.routes.draw do
 
   resources :users do
   end
+  match "/signup", to: "users#new", via: 'get'
 
   # Sample resource route with options:
   #   resources :products do

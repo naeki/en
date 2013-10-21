@@ -24,8 +24,12 @@ gem 'jquery-rails'
 gem 'foreman'
 ruby '1.9.3'
 
+
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'cancan'
+gem 'bootstrap-sass', '2.3.2.0'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
