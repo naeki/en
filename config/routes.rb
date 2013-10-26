@@ -18,9 +18,13 @@ En::Application.routes.draw do
     resources :comments
   end
 
-  resources :users do
-  end
-  match "/signup", to: "users#new", via: 'get'
+  resources :users
+
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match "/signup",  to: "users#new",        via: 'get'
+  match "/signin",  to: "sessions#new",     via: 'get'
+  match "/signout", to: "sessions#destroy", via: 'delete'
 
   # Sample resource route with options:
   #   resources :products do
