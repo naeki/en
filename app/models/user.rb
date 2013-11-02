@@ -1,14 +1,42 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password        :string(255)
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#
+
 class User < ActiveRecord::Base
   has_many :posts
+  has_secure_password
 
   before_save {self.email = email.downcase}
-  has_secure_password
+  before_create :create_remember_token
 
   validates_presence_of :email, :password
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :email
 
   attr_accessible :password, :password_confirmation, :email
+
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+  def User.encrypt(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  private
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end
+
+
   #attr_accessor :new_password, :new_password_confirmation
 
   #validates_confirmation_of :new_password, :if=>:password_changed?

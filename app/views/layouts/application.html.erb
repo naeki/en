@@ -7,11 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+    <div>
+      <% if signed_in? %>
+        <%= link_to current_user.email, current_user %>
+      <% else %>
+        <%= link_to "sign in", signin_path %>
+      <% end %>
+    </div>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
 
-<%= yield %>
-<%= debug(params) if Rails.env.development? %>
+    <%= yield %>
+    <%= debug(params) if Rails.env.development? %>
 </body>
 </html>
