@@ -1,0 +1,12 @@
+<li>
+  <%= link_to post.title, post_path(post) %>
+  <span class="content"><%= post.text %></span>
+  <% if post.tags.any? %>
+      <%= render post.tags %><br>
+  <% end %>
+  <span class="comments"><%= post.comments.count %></span> -
+  <span class="dt">Posted <%= post.created_at.to_date %> <%= post.created_at.hour %>:<%= post.created_at.min %></span>
+  <% if current_user.admin? || current_user?(@user) %>
+       - <%= link_to "del", post, method: :delete, data: {confirm: 'Are you shure?'} %>
+  <% end %>
+</li>
