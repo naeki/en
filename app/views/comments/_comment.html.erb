@@ -1,15 +1,17 @@
 <p>
   <strong>Commenter:</strong>
-  <%= comment.commenter %>
+  <%= link_to get_comment_user(comment.user_id).email, user_path(comment.user_id) %>
 </p>
 
 <p>
   <strong>Comment:</strong>
   <%= comment.body %>
 </p>
+<% if current_user?(@post.user) || current_user.admin? || is_my_comment?(comment) %>
 <p>
   <%= link_to 'Destroy comment', [comment.post, comment],
     method: :delete,
     data: {confirm: "shure?"}
   %>
 </p>
+<% end %>

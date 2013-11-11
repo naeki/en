@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: postgres
+  database: endb
   username: postgres
   password: lad1090
   encoding: UTF8

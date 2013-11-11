@@ -3,12 +3,22 @@
 <p>
   <%= @post.text %>
 </p>
+<br>
+<% if @post.tags.any? %>
+  <%= render @post.tags %><br>
+<% end %>
+
+<%= link_to @post.user.email, @post.user %><br>
 <%= @post.created_at.to_date %> <%= @post.created_at.hour %>:<%= @post.created_at.min %>
 <br><br><hr>
 <h2>Comments</h2>
 <%= render @post.comments %>
 
-<%= render "comments/form" %>
+<% if signed_in? %>
+  <%= render "comments/form", post: @post %>
+<% end %>
 
-<%= link_to "Edit post", edit_post_path(@post) %><br>
+<% if current_user.admin? || current_user?(@post.user) %>
+    <%= link_to "Edit post", edit_post_path(@post) %><br>
+<% end %>
 <%= link_to "All posts", posts_path %>

@@ -4,9 +4,20 @@
       <h1>
         <%= gravatar_for @user %>
         <%= @user.email %>
+        <% if current_user?(@user) %>
+            <%= link_to "edit", edit_user_path %>
+        <% end %>
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.posts.any? %>
+      <h3>Posts (<%= @user.posts.count %>)</h3>
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+    <% end %>
+  </div>
 </div>
 <%= link_to "< Users", users_path %>
 <%= link_to "Home", posts_path %>

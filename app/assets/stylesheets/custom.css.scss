@@ -22,9 +22,12 @@ $grayMediumLight: #eaeaea;
 
 
 body{
+  background: #eee;
   margin: 30px 100px 30px 30px;
 }
-
+hr{
+  box-shadow: 0 0 6px #cecece;
+}
 
 /* sidebar */
 
@@ -85,4 +88,61 @@ input {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+}
+
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+    position: relative;
+  }
+  li .admin{
+    font-size: 30px;
+    position: absolute;
+    color: darkorange;
+  }
+}
+
+
+
+/* microposts */
+
+.posts {
+  list-style: none;
+  margin: 10px 0 0 0;
+
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+}
+.content {
+  display: block;
+}
+.dt {
+  color: $grayLight;
+}
+.post-tag{
+  background: #c5dae8;
+  padding: 0 3px;
+  margin-right: 5px;
+}
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
 }

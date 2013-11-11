@@ -1,8 +1,8 @@
 <h1>Listing users</h1>
 
-<% @users.each do |user| %>
-      <div><%= link_to user.email, user_path(user) %></div>
-<% end %>
+<ul class="users">
+    <%= render @users %>
+</ul>
 
 <%= link_to "Register", signup_path %>
 <%= link_to "Sign in", signin_path %>

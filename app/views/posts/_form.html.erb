@@ -10,13 +10,24 @@
           </ul>
         </div>
       <% end %>
-    <br>
     <%= f.text_field :title %>
     </p>
 
     <p>
-      <%= f.label :text %><br>
+      <%= f.label :text %>
       <%= f.text_area :text %>
+    </p>
+    <p>
+      <%= label_tag(:new_tag) %>
+      <%= text_field_tag(:new_tag, nil, size: 20) %>
+      <% if @post.tags.any? %>
+        <div class="post-tags">
+           <% @post.tags.each do |tag| %>
+              <span class="post-tag"><%= tag.name %></span>
+           <% end %>
+        </div>
+      <% end %>
+      <%= hidden_field_tag(:tags) %>
     </p>
 
     <p>
