@@ -24,6 +24,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v3.2.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="annotate (v2.5.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v3.0.2, ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="backbone-on-rails (v1.1.0.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt-ruby (v3.0.1, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootstrap-sass (v2.3.2.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.0.4, ruby-1.9.3-p448) [gem]" level="application" />
@@ -33,6 +34,9 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.6.3, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v0.9.0, ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="eco (v1.0.0, ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="eco-source (v1.1.0.rc.1, ruby-1.9.3-p448) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ejs (v1.1.1, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v1.4.0, ruby-1.9.3-p448) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="foreman (v0.63.0, ruby-1.9.3-p448) [gem]" level="application" />

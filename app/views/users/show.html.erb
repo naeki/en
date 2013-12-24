@@ -1,18 +1,18 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.email %>
-        <% if current_user?(@user) %>
-            <%= link_to "edit", edit_user_path %>
-        <% end %>
-      </h1>
+      <%= render partial: 'userpane', locals: {user: @user} %>
     </section>
+    <ul>
+      <li>
+        <%= link_to "Own posts", posts_user_path(@user) %>
+      </li>
+    </ul>
   </aside>
   <div class="span8">
-    <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.count %>)</h3>
+    <%= render 'follow_form' if signed_in? %>
+    <% if @posts.any? %>
+      <h3>Posts (<%= @posts.count %>)</h3>
       <ol class="posts">
         <%= render @posts %>
       </ol>

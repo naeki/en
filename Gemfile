@@ -31,6 +31,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 gem 'bootstrap-sass', '2.3.2.0'
 
+gem 'backbone-on-rails'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

@@ -1,31 +1,6 @@
 <h1>Listing posts</h1>
 
-<table cellpadding=20>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th>Comments</th>
-    <th>Author</th>
-    <th>Created at</th>
-    <th>Delete</th>
-  </tr>
-
-  <% @posts.each do |post| %>
-      <tr>
-        <td><%= link_to post.title, post_path(post) %></td>
-        <td>
-          <%= post.text %><br>
-          <% if post.tags.any? %>
-              <%= render post.tags %>
-          <% end %>
-        </td>
-        <td><%= post.comments.count %></td>
-        <td><%= post.user.email %></td>
-        <td><%= post.created_at.to_date %> <%= post.created_at.hour %>:<%= post.created_at.min %></td>
-        <td><%= link_to "del", post_path(post), method: :delete, data: {confirm: 'Are you shure?'} %></td>
-      </tr>
-  <% end %>
-</table>
+<%= render @posts %>
 
 <%= link_to "new post", new_post_path %>
 <%= link_to "users", users_path %>

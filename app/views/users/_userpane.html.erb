@@ -1,0 +1,10 @@
+<h1>
+  <%= gravatar_for user %>
+  <%= user.email %>
+  <% if current_user?(user) %>
+      <%= link_to "edit", edit_user_path(user) %>
+  <% end %>
+</h1>
+<div class="user-stats">
+  <%= render "shared/stats" %>
+</div>

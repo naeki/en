@@ -4,6 +4,7 @@
   <% if post.tags.any? %>
       <%= render post.tags %><br>
   <% end %>
+  <span class="author"><%= link_to post.user.email, post.user %></span> -
   <span class="comments"><%= post.comments.count %></span> -
   <span class="dt">Posted <%= post.created_at.to_date %> <%= post.created_at.hour %>:<%= post.created_at.min %></span>
   <% if current_user.admin? || current_user?(@user) %>

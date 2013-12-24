@@ -17,14 +17,19 @@ En::Application.routes.draw do
   resources :posts do
     resources :comments
   end
+  #
+  resources :sessions,      only: [:new, :create, :destroy]
+  #resources :relationships, only: [:create, :destroy]
+  resources :users do
+    member do
+      get :following, :followers, :posts, :feed
+    end
+  end
 
-  resources :users
 
-  resources :sessions, only: [:new, :create, :destroy]
-
-  match "/signup",  to: "users#new",        via: 'get'
-  match "/signin",  to: "sessions#new",     via: 'get'
-  match "/signout", to: "sessions#destroy", via: 'delete'
+  #match "/digest",  to: "static_pages#digest", via: 'get'
+  #
+  #match "/:id",     to: "users#show", via: 'get'
 
   # Sample resource route with options:
   #   resources :products do
@@ -61,7 +66,14 @@ En::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root to: 'home#index'
+  root to: "home#index"
+  #match "/*path", to: "home#index"
+
+  match "/signup",  to: "users#new",        via: 'get'
+  match "/signin",  to: "sessions#new",     via: 'get'
+  match "/signout", to: "sessions#destroy", via: 'delete'
+
+  match "/digest",  to: "home#index"
 
   # See how all your routes lay out with "rake routes"
 
