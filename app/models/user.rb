@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :email
 
   def feed
-    Post.from_users_followed_by(self)
+    @posts = Post.from_users_followed_by(self)
   end
 
   def following?(other_user)

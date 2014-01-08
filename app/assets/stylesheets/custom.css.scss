@@ -1,8 +1,31 @@
-@import "bootstrap";
+//@import "bootstrap";
+body, li, ul, input, form{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+body{
+  background: #eee;
+  font-family: Arial;
+}
+hr{
+  box-shadow: 0 0 6px #cecece;
+}
+
+
+.h1{
+  font-size: 28px;
+  text-transform: capitalize;
+}
+
 
 /* mixins, variables, etc. */
 
-$grayMediumLight: #eaeaea;
+$grayMediumLight : #eaeaea;
+$grayLighter     : #dddddd;
+$grayLight       : #aaaaaa;
+$blue            : rgb(7, 95, 226);
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -21,15 +44,56 @@ $grayMediumLight: #eaeaea;
 }
 
 
-body{
-  background: #eee;
-  margin: 30px 100px 30px 30px;
-}
-hr{
-  box-shadow: 0 0 6px #cecece;
-}
 
 /* sidebar */
+
+.sidebar {
+  background: #333;
+  color: #fff;
+  padding: 20px;
+  @include box_sizing;
+  width: 200px;
+  float: left;
+  height: 100%;
+  position: fixed;
+  .new-post{
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #20e7ff;
+  }
+}
+
+.sidebar-menu {
+  background: #111;
+  padding: 10px 20px;
+  li {
+    margin: 10px 0;
+    .select-option {
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+.omnibar{
+  background: #ddd;
+  padding: 10px;
+  @include box_sizing;
+  width: 150px;
+  height: 100%;
+  position: fixed;
+  right:0px;
+  top:0px;
+}
+
+
+
+
 
 aside {
   section {
@@ -58,6 +122,109 @@ aside {
   float: left;
   margin-right: 10px;
 }
+
+
+
+/* context */
+.context{
+  margin-left: 200px;
+}
+
+/* division -> header */
+.division-header{
+  background: #fafafa;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 10px #ccc;
+}
+
+.division-output{
+  padding: 20px;
+}
+
+/* page of post -> header */
+.page-header{
+  padding: 10px 20px;
+  .edit-post{
+    font-size: 12px;
+    color: #555;
+    text-decoration: underline;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: super;
+    cursor: pointer;
+  }
+}
+.page-body{
+  padding: 20px;
+}
+.post-page-view{
+  padding-right: 150px;
+}
+
+
+/* post-form page */
+.edit-text{
+  height: 500px;
+}
+.edit-tags{
+  .tags{margin-bottom: 10px;}
+  .tag{
+    cursor: pointer;
+    &:hover{text-decoration: line-through;}
+  }
+}
+
+
+
+
+
+/* posts */
+.post-small{
+  margin: 7px 0;
+
+  .post-title{
+    cursor: pointer;
+    &:hover{text-decoration: underline;}
+  }
+}
+
+.post-comments{
+  font-size: 10px;
+  background: #333;
+  display: inline-block;
+  padding: 3px;
+  color: #eee;
+  line-height: 7px;
+  border-radius: 10px;
+  vertical-align: top;
+  position: relative;
+  &:after{
+    content:"";
+    position: absolute;
+    border-right: 7px solid #333;
+    border-bottom: 4px solid rgba(0, 0, 0, 0);
+    height: 0px;
+    width: 0px;
+    display: block;
+    bottom: -2px;
+    right: 2px;
+  }
+}
+
+.post-author{
+  cursor: pointer;
+  color: #aaa;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+
+
+
+
+
+
+
 
 
 /* forms */
@@ -131,9 +298,10 @@ input {
 .dt {
   color: $grayLight;
 }
-.post-tag{
+.tag{
   background: #c5dae8;
-  padding: 0 3px;
+  padding: 1px 7px;
+  display: inline-block;
   margin-right: 5px;
 }
 .gravatar {

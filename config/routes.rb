@@ -15,6 +15,14 @@ En::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
 
   resources :posts do
+    collection do
+      get :digest
+      get :all
+      get :feed
+    end
+    member do
+      put :add_tags
+    end
     resources :comments
   end
   #
@@ -26,10 +34,6 @@ En::Application.routes.draw do
     end
   end
 
-
-  #match "/digest",  to: "static_pages#digest", via: 'get'
-  #
-  #match "/:id",     to: "users#show", via: 'get'
 
   # Sample resource route with options:
   #   resources :products do
@@ -74,6 +78,10 @@ En::Application.routes.draw do
   match "/signout", to: "sessions#destroy", via: 'delete'
 
   match "/digest",  to: "home#index"
+  match "/feed",  to: "home#index"
+  match "/all",  to: "home#index"
+  match "/new",  to: "home#index"
+  match "/:id",  to: "home#index"
 
   # See how all your routes lay out with "rake routes"
 
