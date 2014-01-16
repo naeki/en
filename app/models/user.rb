@@ -48,6 +48,14 @@ class User < ActiveRecord::Base
   end
 
 
+  def self._build(user)
+    result = user.as_json
+    result["followers_count"] = user.followers.count
+    result["following_count"]  = user.followed_users.count
+    result
+  end
+
+
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

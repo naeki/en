@@ -3,14 +3,18 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(params[:comment].merge(:user_id => current_user.id))
-    redirect_to @post
+    @comment = @post.comments.create(params[:data].merge(:user_id => current_user.id))
+    respond_to do |format|
+      format.json { render json: Comment._build(@comment), location: root_path }
+    end
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
-    redirect_to post_path(@post)
+    respond_to do |format|
+      format.json { render json: Post._build(@post), location: root_path }
+    end
   end
 end

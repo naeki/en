@@ -27,4 +27,20 @@ class Post < ActiveRecord::Base
   def add_tag(tag)
     self.tags<<(tag) unless self.tags.exists?(tag)
   end
+
+  def remove_tag(tag)
+    self.tags.delete(tag)
+  end
+
+  def self._build(post)
+    result = post.as_json
+    result["user_email"] = post.user.email
+    result["comments"] = post.comments.count
+    result["tags"] = post.tags
+    result
+  end
+
+  def self.build_posts(posts)
+    @posts = posts.map{|post| Post._build(post)}
+  end
 end

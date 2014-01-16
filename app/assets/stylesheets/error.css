@@ -9,7 +9,16 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require ./custom
 */
 
 
+
+body{
+    background-color: #ddd;
+}
+h1{
+    font-family: Arial;
+    font-size: 74px;
+    margin:200px 100px;
+    color: #bbb;
+}

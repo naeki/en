@@ -9,6 +9,7 @@ body{
   background: #eee;
   font-family: Arial;
 }
+h4{margin-bottom: 10px; color: #999; font-weight: normal; display: inline-block;}
 hr{
   box-shadow: 0 0 6px #cecece;
 }
@@ -16,8 +17,10 @@ hr{
 
 .h1{
   font-size: 28px;
-  text-transform: capitalize;
+  display: inline-block;
+  &:first-letter{text-transform: capitalize;}
 }
+
 
 
 /* mixins, variables, etc. */
@@ -61,10 +64,17 @@ $blue            : rgb(7, 95, 226);
     display: inline-block;
     margin-top: 20px;
     cursor: pointer;
-    color: #20e7ff;
-  }
+    color: #20e7ff;}
 }
 
+.user-box{
+  margin-bottom: 20px;
+  .user-link{
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}
 .sidebar-menu {
   background: #111;
   padding: 10px 20px;
@@ -72,9 +82,7 @@ $blue            : rgb(7, 95, 226);
     margin: 10px 0;
     .select-option {
       cursor: pointer;
-      &:hover {
-        text-decoration: underline;
-      }
+      &:hover {text-decoration: underline;}
     }
   }
 }
@@ -95,26 +103,23 @@ $blue            : rgb(7, 95, 226);
 
 
 
-aside {
-  section {
+aside{
+  section{
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
-    &:first-child {
+    &:first-child{
       border: 0;
-      padding-top: 0;
-    }
-    span {
+      padding-top: 0;}
+    span{
       display: block;
       margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
+      line-height: 1;}
+    h1{
       font-size: 1.4em;
       text-align: left;
       letter-spacing: -1px;
       margin-bottom: 3px;
-      margin-top: 0px;
-    }
+      margin-top: 0px;}
   }
 }
 
@@ -136,30 +141,118 @@ aside {
   padding: 10px 20px;
   box-shadow: 0px 0px 10px #ccc;
 }
-
-.division-output{
+.division-body{
   padding: 20px;
 }
 
 /* page of post -> header */
-.page-header{
-  padding: 10px 20px;
-  .edit-post{
-    font-size: 12px;
-    color: #555;
-    text-decoration: underline;
-    margin-left: 5px;
-    display: inline-block;
-    vertical-align: super;
-    cursor: pointer;
-  }
-}
-.page-body{
-  padding: 20px;
-}
 .post-page-view{
   padding-right: 150px;
 }
+
+.page-header{
+  padding: 10px 20px;
+  .history-back{
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    width: 11px;
+    height: 15px;
+    border-right: 2px solid #bbb;
+    border-top: 2px solid #bbb;
+    cursor: pointer;
+    color: #bbb;
+    margin-right: 5px;
+    &:hover{
+      border-color: #000;
+      color: #000;}
+    &::before{
+      display: block;
+      position: absolute;
+      content: "◄";
+      font-size: 12px;
+      top: -9px;
+      left: -6px;
+    }
+  }
+  .h1-link{             // for posts and users
+    font-size: 12px;
+    color: #555;
+    text-decoration: underline;
+    margin-left: 9px;
+    display: inline-block;
+    vertical-align: super;
+    cursor: pointer;}
+
+  .tags{display: inline-block;}
+}
+
+.page-menu{
+  margin: 20px 0 0px;
+  li{
+    display: inline-block;
+    position: relative;
+    margin-right: 15px;
+    font-size: 17px;
+    text-decoration: underline;
+    cursor: pointer;
+    i{
+      background: #fffca8;
+      box-shadow: 0px 0px 3px #aaa;
+      right:0px;
+      top:0px;
+      font-style: normal;
+      position: relative;
+      top:-5px;
+      margin-left: 5px;
+      vertical-align: bottom;
+      font-size: 10px;
+      display: inline-block;
+      border-radius: 2px;
+      line-height: 7px;
+      padding: 3px 3px;
+    }
+  }
+}
+
+.page-body{
+  padding: 20px;
+}
+
+
+.page-comments{
+  margin: 20px;
+  .comments{
+    .comment{
+      background: #fff;
+      margin-bottom: 10px;
+      padding: 5px 9px;
+      position: relative;
+      .comment-delete{
+        position: absolute;
+        right: 7px;
+        top: 6px;
+        font-style: normal;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;}
+      .comment-author{
+        font-size: 12px;
+        color: #999;
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;}
+      .comment-date{
+        font-size: 11px;
+        color: #999;}
+      .comment-message{
+        font-size: 14px;
+        font-style: italic;
+        margin-top: 5px;}
+    }
+  }
+}
+
 
 
 /* post-form page */
@@ -217,6 +310,8 @@ aside {
   font-size: 12px;
   text-decoration: underline;
 }
+
+
 
 
 

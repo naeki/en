@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy, :edit, :update]
+  before_filter :signed_in_user
   before_filter :correct_user,   only: [:edit, :update]
 
   def new
@@ -17,9 +17,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = build_post(Post.find(params[:id]))
+    @model    = Post.find(params[:id])
+    @post     = Post._build(@model)
+    @comments = build_comments(@model.comments)
+
     respond_to do |format|
-      format.json { render json: @post, location: root_path }
+      format.json { render json: {post: @post, comments: @comments}, location: root_path }
     end
   end
 
@@ -48,7 +51,21 @@ class PostsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: build_post(@post), location: root_path }
+      format.json { render json: Post._build(@post), location: root_path }
+    end
+  end
+
+  def remove_tag
+    @post = Post.find(params[:id])
+    @tag = Tag.find(params[:data])
+    @post.remove_tag(@tag)
+
+    respond_to do |format|
+      format.json { render json: Post._build(@post), location: root_path }
+    end
+
+    if (!@tag.posts[0])
+      @tag.destroy
     end
   end
 
@@ -66,7 +83,7 @@ class PostsController < ApplicationController
   def digest
     sql = "SELECT * FROM posts ORDER BY random() LIMIT 2"
     #results = ActiveRecord::Base.connection.execute(sql)
-    @posts = build_posts(Post.find_by_sql(sql))
+    @posts = Post.build_posts(Post.find_by_sql(sql))
 
     respond_to do |format|
       if @posts
@@ -76,14 +93,14 @@ class PostsController < ApplicationController
   end
 
   def all
-    @posts = build_posts(Post.all)
+    @posts = Post.build_posts(Post.all)
     respond_to do |format|
       format.json { render json: @posts, location: root_path }
     end
   end
 
   def feed
-    @posts = build_posts(current_user.feed)
+    @posts = Post.build_posts(current_user.feed)
     respond_to do |format|
       format.json { render json: @posts, location: root_path }
     end
@@ -91,16 +108,10 @@ class PostsController < ApplicationController
 
 
   private
-    def build_posts(posts)
-      @posts = posts.map{|post| build_post(post)}
+    def build_comments(comments)
+      @posts = comments.map{|comment| Comment._build(comment)}
     end
-    def build_post(post)
-      result = post.as_json
-      result["user_email"] = post.user.email
-      result["comments"] = post.comments.count
-      result["tags"] = post.tags
-      result
-    end
+
 
     def post_params
       params.require(:post).permit(:title, :text)

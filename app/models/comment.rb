@@ -14,4 +14,10 @@ class Comment < ActiveRecord::Base
   belongs_to :post
 
   validates_presence_of :user_id, :body
+
+  def self._build(comment)
+    result = comment.as_json
+    result["user_email"] = User.find(comment.user_id).email
+    result
+  end
 end

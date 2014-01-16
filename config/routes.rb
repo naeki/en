@@ -16,24 +16,30 @@ En::Application.routes.draw do
 
   resources :posts do
     collection do
-      get :digest
-      get :all
-      get :feed
+      get :digest, :all, :feed
     end
     member do
-      put :add_tags
+      put :add_tags, :remove_tag
     end
     resources :comments
   end
-  #
-  resources :sessions,      only: [:new, :create, :destroy]
-  #resources :relationships, only: [:create, :destroy]
-  resources :users do
-    member do
-      get :following, :followers, :posts, :feed
+
+  resources :sessions, only: [:new, :create, :destroy] do
+    collection do
+      get :get_current_user
     end
   end
 
+  resources :relationships, only: [:create, :destroy]
+
+  get '/users/all'                     => 'users#index'
+  get '/users/:id(.:format)'           => 'users#show'
+  get '/users/:id/feed(.:format)'      => 'users#feed'
+  get '/users/:id/posts(.:format)'     => 'users#posts'
+  get '/users/:id/followers(.:format)' => 'users#followers'
+  get '/users/:id/following(.:format)' => 'users#following'
+
+  post '/register'                     => 'users#create'
 
   # Sample resource route with options:
   #   resources :products do
@@ -70,18 +76,30 @@ En::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root to: "home#index"
   #match "/*path", to: "home#index"
 
-  match "/signup",  to: "users#new",        via: 'get'
-  match "/signin",  to: "sessions#new",     via: 'get'
-  match "/signout", to: "sessions#destroy", via: 'delete'
+  match "/signup",        to: "users#new",        via: 'get'
+  match "/signin",        to: "sessions#new",     via: 'get'
+  match "/signout",       to: "sessions#destroy", via: 'delete'
 
-  match "/digest",  to: "home#index"
-  match "/feed",  to: "home#index"
-  match "/all",  to: "home#index"
-  match "/new",  to: "home#index"
-  match "/:id",  to: "home#index"
+  match "/digest",        to: "home#enter"
+  match "/feed",          to: "home#enter"
+  match "/all",           to: "home#enter"
+  match "/users",         to: "home#enter"
+  match "/new",           to: "home#enter"
+  match "/edit",          to: "home#enter"
+  match "/:id",           to: "home#post", constraints: {id: /\d*/}
+
+  match "/:id/followers", to: "home#user"
+  match "/:id/following", to: "home#user"
+  match "/:id/posts",     to: "home#user"
+  match "/:id",           to: "home#user", constraints: {id: /user\d*/}
+
+  match "/:id/:page",     to: "home#nf"
+  match "/:id",           to: "home#nf"
+  match "/nf",            to: "home#nf"
+
+  root to: "home#index"
 
   # See how all your routes lay out with "rake routes"
 

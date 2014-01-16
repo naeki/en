@@ -8,10 +8,15 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_back_or user
+      redirect_to root_path
     else
-      flash.now[:error] = "The email or password is wrong!"
-      render "new"
+      redirect_to signin_path, :flash => {:error => "The email or password is wrong!"}
+    end
+  end
+
+  def get_current_user
+    respond_to do |format|
+      format.json { render json: current_user, location: root_path }
     end
   end
 

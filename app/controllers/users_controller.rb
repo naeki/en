@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user,   only: [:edit, :update, :destroy, :following, :followers]
 
+  layout 'simple'
+
   def new
     @user = User.new
   end
@@ -11,10 +13,9 @@ class UsersController < ApplicationController
 
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to the Greatest App Engigest!"
-      redirect_to @user
+      redirect_to '/user' + @user.id.to_s
     else
-      render "new"
+      render 'new'
     end
   end
 
@@ -24,60 +25,68 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if (@user == current_user)
-      @posts = @user.feed
-    else
-      @posts = @user.posts
+    @posts = @user.posts
+
+    respond_to do |format|
+      format.json { render json: {user: User._build(@user), posts: Post.build_posts(@posts)}, location: root_path }
     end
   end
 
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts
-    render "shared/posts"
-  end
-
-  def feed
-    @user = User.find(params[:id])
-    @posts = @user.feed
-    render "shared/posts"
+    respond_to do |format|
+      format.json { render json: Post.build_posts(@posts), location: root_path }
+    end
   end
 
   def index
     @users = User.all
+    respond_to do |format|
+      format.json { render json: @users, location: root_path }
+    end
   end
 
   def edit
   end
 
   def update
-    if @user.update_attributes(params[:user])
-      redirect_to @user
+    @user = current_user   #Even if someone will try to edit someone's profile, he will edit his own current_user's profile
+
+    if @user && @user.authenticate(params[:data][:old])
+      @result = @user.update_attributes(params[:data][:user])
     else
-      render 'edit'
+      @result = {error: 1}
+    end
+
+    #if @user.update_attributes(params[:user])
+
+    respond_to do |format|
+      format.json { render json: @result, location: root_path }
     end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:success] = "User deleted"
 
     redirect_to users_url
   end
 
   def following
-    @title = "Following"
     @user = User.find(params[:id])
     @users = @user.followed_users
-    render 'show_follow'
+    respond_to do |format|
+      format.json { render json: @users, location: root_path }
+    end
   end
 
   def followers
-    @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers
-    render 'show_follow'
+    respond_to do |format|
+      format.json { render json: @users, location: root_path }
+    end
   end
 
   private

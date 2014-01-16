@@ -17,8 +17,10 @@ module SessionsHelper
 
   def signed_in_user
     unless signed_in?
-      store_location
-      redirect_to signin_url, notice: "Please sign in"
+      #store_location
+      respond_to do |format|
+        format.json { render json: {error: 2}, location: root_path }
+      end
     end
   end
 
