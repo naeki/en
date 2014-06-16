@@ -12,24 +12,33 @@
 #
 
 class User < ActiveRecord::Base
+  has_one  :photo, dependent: :destroy
   has_many :posts
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id",
                                    class_name:  "Relationship",
                                    dependent:   :destroy
+
   has_many :followers, through: :reverse_relationships
+
+  has_many :digest_settings, foreign_key: "user_id", class_name:  "DigestSettings", dependent: :destroy
+  has_many :digest_tags, through: :digest_settings, source: :tag
+
+  has_many :likes    , foreign_key: "user_id", dependent: :destroy
+  has_many :bookmarks, foreign_key: "user_id", dependent: :destroy
+  has_many :views    , foreign_key: "user_id", dependent: :destroy
 
   has_secure_password
 
   before_save {self.email = email.downcase}
   before_create :create_remember_token
 
-  validates_presence_of :email, :password
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_presence_of   :email, :password
+  validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :email
 
-  attr_accessible :password, :password_confirmation, :email
+  attr_accessible :password, :password_confirmation, :email, :name
 
   def feed
     @posts = Post.from_users_followed_by(self)
@@ -47,15 +56,108 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
 
+  #Like
+  def like!(post)
+    likes.create!(post_id: post.id)
+  end
+  def unlike!(like)
+    like.destroy
+  end
+
+  #View
+  def view!(post)
+    @view_ex = self.views.find_by_post_id(post.id)
+
+    if (@view_ex)
+      @view = View.find(self.views.find_by_post_id(post.id))
+      @view.update_attributes(datetime: Time.now.to_i.to_s)
+    else
+      views.create!(post_id: post.id, datetime: Time.now.to_i.to_s)
+    end
+  end
+
+  #Bookmarks
+  def add_bookmark!(post)
+    bookmarks.create!(post_id: post.id)
+  end
+  def remove_bookmark!(bookmark)
+    bookmark.destroy
+  end
+
+
+  # Own posts
+  def own_posts(options)
+    options = {"deleted" => false}.merge(options)
+    query = ''
+    options.each {|key, value| query += " AND #{key}=#{value}" }
+
+    sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query
+    @posts = Post.find_by_sql(sql)
+  end
+
+  def self._build_users(users)
+    @users = users.map{|user| User._build(user)}
+  end
 
   def self._build(user)
     result = user.as_json
     result["followers_count"] = user.followers.count
-    result["following_count"]  = user.followed_users.count
+    result["following_count"] = user.followed_users.count
+    result["likes_count"]     = user.likes.count
+    result["posts_count"]     = user.posts.count
+    result["name"]            = user.name.empty? ? user.email : user.name        #TEMPORARY!!!!
+    result.delete("admin")
+    result.delete("digest")
+    result.delete("email")
+    result.delete("password_digest")
+    result.delete("remember_token")
+    result.delete("tank")
     result
   end
 
 
+  def set_photo(file)
+    if (self[:photo_id])
+      Photo.saveUserPhoto(file, self.photo_id)
+    else
+      name = Digest::MD5.hexdigest(Time.now.to_i.to_s + file.original_filename)
+      if (Photo.saveUserPhoto(file, name.to_s))
+        self.update_attribute(:photo_id, name)
+      end
+    end
+  end
+
+  def delete_photo
+    if (self[:photo_id])
+      self.update_attribute(:photo_id, nil)   #Delete the file
+    end
+  end
+
+
+  def add_digest_settings(tag_id)
+    digest_settings.create!(tag_id: tag_id)
+  end
+
+  def remove_digest_settings(tag_id)
+    digest_settings.find_by_tag_id(tag_id).destroy
+  end
+
+  def get_digest_settings
+    digest_tags
+  end
+
+
+
+  def self.run_digest_generation
+    User.all.each do |user|
+      user.generate_digest
+    end
+  end
+
+  def generate_digest
+    sql = "SELECT * FROM posts ORDER BY random() LIMIT 2"  # Может лучше получать все из базы а уж потом вынимать рандом и 10 штук
+    self.update_attribute(:digest, Post.find_by_sql(sql).map{|m| m.id}.join(','))
+  end
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -69,6 +171,7 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
+
 
 
   #attr_accessor :new_password, :new_password_confirmation

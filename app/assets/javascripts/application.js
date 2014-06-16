@@ -17,7 +17,6 @@
 
 //= require_tree ./app
 
-
 $(function(){
     App.loader.preload().done(function(){
         App.main = new App.Views.Main();

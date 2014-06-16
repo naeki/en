@@ -7,6 +7,8 @@ gem 'rails', '3.2.0'
 
 gem 'pg'
 gem 'annotate'
+#gem 'carrierwave'
+gem 'mini_magick'
 
 
 # Gems used only for assets and not required
@@ -32,6 +34,8 @@ gem 'cancan'
 gem 'bootstrap-sass', '2.3.2.0'
 
 gem 'backbone-on-rails'
+
+gem 'whenever', :require => false
 
 
 # To use Jbuilder templates for JSON

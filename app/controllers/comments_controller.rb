@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :correct_user,   only: [:destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -17,4 +18,10 @@ class CommentsController < ApplicationController
       format.json { render json: Post._build(@post), location: root_path }
     end
   end
+
+  private
+    def correct_user
+      @user = User.find(Comment.find(params[:id]).user_id)
+      redirect_to(root_url) unless current_user?(@user) || current_user.admin?
+    end
 end

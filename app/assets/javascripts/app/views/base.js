@@ -1,6 +1,6 @@
 App.Views.BASE = Backbone.View.extend({
     initialize : function(options){
-        this.options = options || {};
+        this.options = options || {};      // Тут в опции вроде надо при создании вьюшки просто пихать, а модель будет просто модель, а сейчас она в опциях
 
         if (this.options.collection)
             this.collection = this.options.collection;

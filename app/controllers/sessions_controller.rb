@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def get_current_user
     respond_to do |format|
-      format.json { render json: current_user, location: root_path }
+      format.json { render json: _build_current_user, location: root_path }
     end
   end
 

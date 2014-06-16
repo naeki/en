@@ -16,7 +16,15 @@ En::Application.routes.draw do
 
   resources :posts do
     collection do
-      get :digest, :all, :feed
+      get    :digest, :feed, :bookmarks
+      get    :tags      , to: 'posts#get_tags'
+      get    :comments  , to: 'posts#get_comments'
+      get    :likes     , to: 'posts#get_likes'
+      post   :picture   , to: 'posts#upload_picture'
+      delete :picture   , to: 'posts#delete_picture'
+
+      get    '/all/new' , to: 'posts#all_new'
+      get    '/all/pop' , to: 'posts#all_pop'
     end
     member do
       put :add_tags, :remove_tag
@@ -31,15 +39,42 @@ En::Application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [] do
+    collection do
+      post   :create
+      delete :destroy
+    end
+  end
+  resources :bookmarks, only: [] do
+    collection do
+      post   :create
+      delete :destroy
+    end
+  end
 
-  get '/users/all'                     => 'users#index'
-  get '/users/:id(.:format)'           => 'users#show'
-  get '/users/:id/feed(.:format)'      => 'users#feed'
-  get '/users/:id/posts(.:format)'     => 'users#posts'
-  get '/users/:id/followers(.:format)' => 'users#followers'
-  get '/users/:id/following(.:format)' => 'users#following'
+  resources :digest_settings, only: [] do
+    collection do
+      post   :add_tag
+      delete :remove_tag
+      get    :get_tags           #Вроде неплохо и как щас получать настройки вместе с юзером
+    end
+  end
 
-  post '/register'                     => 'users#create'
+
+  get '/users/all'          => 'users#index'
+  get '/users/find'         => 'users#show'
+  get '/users/posts'        => 'users#posts'
+  get '/users/likes'        => 'users#likes'
+  get '/users/followers'    => 'users#followers'
+  get '/users/following'    => 'users#following'
+
+
+  post '/register'          => 'users#create'
+  post '/users/photo'       => 'users#upload_photo'
+
+  put '/users'              => 'users#update'
+
+  delete '/users/photo'     => 'users#delete_photo'
 
   # Sample resource route with options:
   #   resources :products do
@@ -78,26 +113,32 @@ En::Application.routes.draw do
   # just remember to delete public/index.html.
   #match "/*path", to: "home#index"
 
-  match "/signup",        to: "users#new",        via: 'get'
-  match "/signin",        to: "sessions#new",     via: 'get'
-  match "/signout",       to: "sessions#destroy", via: 'delete'
+  match "/signup",        to: "users#new",          via: 'get'
+  match "/signin",        to: "sessions#new",       via: 'get'
+  match "/signout",       to: "sessions#destroy",   via: 'delete'
 
   match "/digest",        to: "home#enter"
   match "/feed",          to: "home#enter"
   match "/all",           to: "home#enter"
+  match "/all/popular",   to: "home#enter"
+  match "/bookmarks",     to: "home#enter"
   match "/users",         to: "home#enter"
   match "/new",           to: "home#enter"
   match "/edit",          to: "home#enter"
-  match "/:id",           to: "home#post", constraints: {id: /\d*/}
+  match "/:id",           to: "home#post", constraints: {id: /\d\d*/}
+  match "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /\d\d*/}
 
-  match "/:id/followers", to: "home#user"
-  match "/:id/following", to: "home#user"
-  match "/:id/posts",     to: "home#user"
+  match "/:id/followers", to: "home#user", constraints: {id: /user\d*/}
+  match "/:id/following", to: "home#user", constraints: {id: /user\d*/}
+  match "/:id/likes",     to: "home#user", constraints: {id: /user\d*/}
+  match "/:id/posts",     to: "home#user", constraints: {id: /user\d*/}
+  match "/:id/deleted",   to: "home#user", constraints: {id: /user\d*/}
   match "/:id",           to: "home#user", constraints: {id: /user\d*/}
+  match "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /user\d*/}
 
-  match "/:id/:page",     to: "home#nf"
-  match "/:id",           to: "home#nf"
-  match "/nf",            to: "home#nf"
+  #match "/:id/:page",     to: "home#nf"
+  #match "/:id",           to: "home#nf"
+  #match "/nf",            to: "home#nf"
 
   root to: "home#index"
 

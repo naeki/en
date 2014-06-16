@@ -41,6 +41,26 @@ module SessionsHelper
     @current_user ||= User.find_by_remember_token(remember_token)
   end
 
+  def _build_current_user
+    fs    = current_user.followers.map{|m| m.id}       # Для того, чтобы знать, кто подписан на меня
+    fg    = current_user.followed_users.map{|m| m.id}  # Для того, чтобы знать, на кого я подписан, чтобы показывать в кнопке правильноое слово и не подгружать каждый раз каждому пользователю фолловеров только для того, чтобы в кнопке написать фол или унфол
+    likes = current_user.likes.map{|m| m.post_id}      # Для того, чтобы знать, что я лайкнул
+    bmks  = current_user.bookmarks.map{|m| m.post_id}  # Для того, чтобы знать, что я добавил в закладки
+
+    obj = current_user.as_json
+
+    obj["name"]            = current_user.name.empty? ? current_user.email : current_user.name        #TEMPORARY!!!!
+    obj["posts_count"]     = current_user.posts.count
+    obj["likes_count"]     = current_user.likes.count
+    obj["followers"]       = fs
+    obj["following"]       = fg
+    obj["likes"]           = likes
+    obj["bookmarks"]       = bmks
+    obj["digest_settings"] = current_user.digest_tags
+
+    obj
+  end
+
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)

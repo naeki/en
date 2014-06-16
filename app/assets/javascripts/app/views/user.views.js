@@ -1,19 +1,27 @@
 App.Views.User = App.Views.BASE.extend({
     className : "user-small",
-    _markup : "<span class='user-email'></span>",
-    events : {
-        "click .user-email" : function(e){
-            App.router.navigate("user" + $(e.target).parent().data("id"), {trigger: true, replace: false});
-        }
-    },
+    _markup : "<img class='user-photo-big user-link'>\
+        <span class='link user-name user-link'></span>\
+        <div class='user-stat'>\
+            <span class='user-stat-posts user-stat'></span>\
+            <span class='user-stat-likes user-stat'></span>\
+        </div>",
+    events : {},
     init : function(){
         this.render();
         this.listenTo(this.model, "change", this.render);
     },
     render : function(){
-        this.$el.html(this._markup).data("id", this.model.get("id")).appendTo(this.options.renderTo);
+        this.$el.html($(this._markup).data("user-id", this.model.get("id"))).appendTo(this.options.renderTo);
 
-        this.$(".user-email").html(this.model.get("email"));
+        this.$(".user-photo-big").attr({
+            src : this.model.getNormalPhoto(),
+            alt : this.model.get("name")
+        }).data("user-id", this.model.id);
+
+        this.$(".user-name").html(this.model.get("name"));
+        this.$(".user-stat-posts").html(this.model.get("posts_count"));
+        this.$(".user-stat-likes").html(this.model.get("likes_count"));
     }
 });
 
@@ -46,3 +54,6 @@ App.Views.UserList = App.Views.BASE.extend({
             });
     }
 });
+
+
+
