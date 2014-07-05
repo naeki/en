@@ -6,24 +6,27 @@ development:
   encoding: UTF8
   pool: 5
   timeout: 5000
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   adapter: postgresql
-  database: postgres
+  database: endb
   username: postgres
   password: lad1090
   encoding: UTF8
   pool: 5
   timeout: 5000
+  host: localhost
 
 production:
   adapter: postgresql
-  database: postgres
+  database: endb
   username: postgres
   password: lad1090
   encoding: UTF8
   pool: 5
   timeout: 5000
+  host: localhost

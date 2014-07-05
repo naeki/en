@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(params[:data])
+    @post = current_user.posts.build(post_params)
 
     if @post.save
       respond_to do |format|
@@ -39,8 +39,8 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
 
-    if (@post.update_attributes(params[:data]))
-        if (params[:data][:access] == '1')
+    if (@post.update_attributes(post_params))
+        if (post_params[:access] == '1')
           @post.publish
         end
 
@@ -159,10 +159,27 @@ class PostsController < ApplicationController
 
   def all_new
     @posts = Post.build_posts_lite(Post.all_public)
+
     respond_to do |format|
       format.json { render json: @posts, location: root_path }
     end
   end
+
+
+  def find
+    search = Post.search do
+      fulltext params[:string]
+      with :deleted, false
+      with :access, 1
+    end
+
+    @posts = Post.build_posts_lite(search.results)
+
+    respond_to do |format|
+      format.json { render json: @posts, location: root_path }
+    end
+  end
+
 
   def all_pop
     @posts = Post.build_posts_lite(Post.all_public_pop)
@@ -188,7 +205,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:title, :text)
+      params.require(:data).permit(:title, :text, :access, :deleted)
     end
 
     def correct_user

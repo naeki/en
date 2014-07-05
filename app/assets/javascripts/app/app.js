@@ -96,15 +96,15 @@ App.Router = Backbone.Router.extend({
     _edit      : function(){App.main.editProfile()},
 
     _all       : function(){
-        this._use({dvsn : App.Views.All, type: "new"})
+        this._use({folder : App.Views.All, type: "new"})
     },
     _popular   : function(){
-        this._use({dvsn : App.Views.All, type: "pop"})
+        this._use({folder : App.Views.All, type: "pop"})
     },
-    _digest    : function(){this._use({dvsn : App.Views.Digest})},
-    _feed      : function(){this._use({dvsn : App.Views.Feed})},
-    _bookmarks : function(){this._use({dvsn : App.Views.Bookmarks})},
-    _users     : function(){this._use({dvsn : App.Views.Users})},
+    _digest    : function(){this._use({folder : App.Views.Digest})},
+    _feed      : function(){this._use({folder : App.Views.Feed})},
+    _bookmarks : function(){this._use({folder : App.Views.Bookmarks})},
+    _users     : function(){this._use({folder : App.Views.Users})},
 
     _use : function(options){
         App.main.open(options);

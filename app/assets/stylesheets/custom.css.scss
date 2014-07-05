@@ -57,6 +57,8 @@ select{
   letter-spacing: -0.8px;
   display: inline-block;
   -webkit-transition: opacity 0.2s;
+  vertical-align: -8px;
+  margin-right: 10px;
 }
 .h2{
   font: 200 47px "_roboto";
@@ -74,7 +76,8 @@ select{
   position: relative;
   z-index: 2;
   margin-top: 35px;
-  max-width: 60%;
+  max-width: 70%;
+  line-height: 53px;
 }
 
 
@@ -152,7 +155,7 @@ $blue            : rgb(7, 95, 226);
 }
 .context .user-link{
   color: #777;
-  font-family: Tahoma;
+  font-family: Tahoma, Arial;
   &:hover{
     text-decoration: underline;
   }
@@ -169,6 +172,8 @@ $blue            : rgb(7, 95, 226);
     left: 50%;
     top:50%;
     background: red;
+    padding: 10px;
+    border-radius: 4px;
   }
 }
 .main.clear{
@@ -289,7 +294,7 @@ $blue            : rgb(7, 95, 226);
 
 
 .omnibar{
-  padding: 0 30px 0 0;
+  padding: 30px 30px 0 0;
   width: 200px;
   height: 100%;
   position: absolute;
@@ -443,11 +448,11 @@ $blue            : rgb(7, 95, 226);
   margin-left: 320px;
 }
 
-/* division -> header */
-.division-header{
+/* folder -> header */
+.folder-header{
   padding: 25px 0px 10px;
 }
-.division-body{
+.folder-body{
   margin: 50px 0 0;
 }
 
@@ -459,6 +464,7 @@ $blue            : rgb(7, 95, 226);
     line-height: 33px;
     font-size: 17px;
     @include box_sizing;
+    padding-top: 30px;
   }
   .page-viewer > div{
     line-height: normal;
@@ -485,10 +491,10 @@ $blue            : rgb(7, 95, 226);
   }
   .post-page-photo{
     width: 100%;
-    position: absolute;
+    position: fixed;
     display: block;
     top:0px;
-    left:0px;
+    left:100px;
     -webkit-transform: translateY(-200px);
   }
   .return{
@@ -500,7 +506,7 @@ $blue            : rgb(7, 95, 226);
 
 /* post-form page */
 .edit-title{
-  width: 60%;
+  width: 70%;
 }
 .edit-text{
   width: 100%;
@@ -573,7 +579,6 @@ $blue            : rgb(7, 95, 226);
     color: #304197;
     opacity: 0.6;
     text-decoration: underline;
-    margin-left: 9px;
     display: inline-block;
     vertical-align: super;
     cursor: pointer;}
@@ -583,7 +588,7 @@ $blue            : rgb(7, 95, 226);
   }
   .user-controls{
     display: inline-block;
-    vertical-align: top;
+    vertical-align: 10px;
   }
   .tags{display: inline-block;}
 }
@@ -631,6 +636,24 @@ $blue            : rgb(7, 95, 226);
   }
 }
 
+.post-small.lock .post-stat::after,
+.page-post.lock .post-stats::after{
+  content: "";
+  display: block;
+  width: 14px;
+  height: 17px;
+  left: -50px;
+  bottom: 0px;
+  opacity: 0.3;
+  background: url(/images/lock.gif);
+  position: absolute;
+}
+
+.page-post.lock .post-stats::after{
+  left : -19px;
+  top: 40px;
+}
+
 
 .page-menu{
   margin: 40px 0 0px;
@@ -672,8 +695,9 @@ $blue            : rgb(7, 95, 226);
 
 
 .page-body{
-  margin: 20px 0 50px;
+  margin: 0px 0 50px;
   position: relative;
+  background: #fff;
 }
 
 .page-mark{
@@ -922,6 +946,7 @@ $blue            : rgb(7, 95, 226);
   margin-top: 12px;
 }
 
+
 .post-small-header{
   position: relative;
   height: 31px;
@@ -955,6 +980,8 @@ $blue            : rgb(7, 95, 226);
     }
   }
 }
+
+
 .post-small-photo-block{
   background: url(/images/p0_s.gif);
   &.empty{
@@ -967,9 +994,9 @@ $blue            : rgb(7, 95, 226);
   .post-title{
     cursor: pointer;
     display: inline-block;
-    margin: 18px 0 10px;
+    margin: 22px 0 14px;
     font: 400 28px "_roboto_slab";
-    line-height: 33px;
+    line-height: 29px;
     letter-spacing: -0.8px;
     &:hover{text-decoration: underline}
   }
@@ -985,6 +1012,7 @@ $blue            : rgb(7, 95, 226);
     font-weight: bold;
   }
 }
+
 
 
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="1899031015">
-    <data-source source="LOCAL" name="Rails en: development" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="429cb127-5756-4bd5-afd5-194a1c77e64b">
+    <data-source source="LOCAL" name="Rails en: development" uuid="429cb127-5756-4bd5-afd5-194a1c77e64b">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:en_dev</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/endb</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfc6dfcbdfcedf9bdf9adf93df9a</user-password>
       <libraries>
@@ -15,9 +16,10 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails en: test" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="84348b67-1ecb-4e94-847e-37834dcb7a7d">
+    <data-source source="LOCAL" name="Rails en: test" uuid="84348b67-1ecb-4e94-847e-37834dcb7a7d">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:en_dev</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/endb</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfc6dfcbdfcedf9bdf9adf93df9a</user-password>
       <libraries>
@@ -29,9 +31,10 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="Rails en: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="4df12e58-fdeb-4a10-865d-de14e79b7c8d">
+    <data-source source="LOCAL" name="Rails en: production" uuid="4df12e58-fdeb-4a10-865d-de14e79b7c8d">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:en_dev</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/endb</jdbc-url>
       <user-name>postgres</user-name>
       <user-password>dfc6dfcbdfcedf9bdf9adf93df9a</user-password>
       <libraries>

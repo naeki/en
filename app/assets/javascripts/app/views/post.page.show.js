@@ -60,7 +60,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.openText();
         this.view();
 
-        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view", this.renderHeader);
+        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view change:access", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
         this.listenTo(this.model, "change:deleted", this.view);
         this.listenTo(this.model.tags, "add remove reset", this.renderTags);
@@ -79,6 +79,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
     },
     renderHeader : function(){
         this.$header.children(".h1").html(this.model.get("title"));
+        this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
         this.$picture.attr({
             src : this.model.getBigPhoto(),
@@ -87,7 +88,9 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         this.$likes.html(this.model.get("likes"));
         this.$comments.html(this.model.get("comments"));
-        this.$lastview.html("Last viewed: " + Post.getDateString(this.model.get("last_view")));
+
+        if (this.model.get("last_view"))
+            this.$lastview.html("Last viewed: " + Post.getDateString(this.model.get("last_view")));
 
         this.renderActions();
     },
@@ -121,8 +124,11 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$(".page-number").html("1");
         this.$(".help-title").html(this.model.get("title"));
 
-        if (this.model.get("permissions")&Post.OWNER || this.model.isNew())
+        if (this.model.get("permissions")&Post.OWNER)
             $("<span class='post-action settings link'>Настройки</span>").insertAfter(this.$tags);
+
+        // Show/hide user box
+        this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
 
         this.renderTags();
     },
@@ -240,11 +246,12 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$header   = this.$(".page-header");
         this.$picture  = this.$(".post-page-photo");
         this.$viewer   = this.$(".page-viewer");
-        this.$options  = this.$(".post-options");
         this.$tags     = this.$(".tags");
+        this.$stats    = this.$(".post-stats");
         this.$likes    = this.$(".post-stat-likes");
         this.$comments = this.$(".post-stat-comments");
         this.$lastview = this.$(".post-stat-view");
+        this.$actions  = this.$(".post-actions");
         this.$controls = this.$(".edit-controls");
 
         //this.openSettings();
@@ -253,7 +260,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         //this.on("model", this.setModel, this);
         this.listenTo(this.model, "change:tags", this.renderTags);
-        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view", this.renderHeader);
+        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view change:access", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
 
         $(window).on("resize", this.pasteParts.bind(this));
@@ -264,6 +271,8 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     },
     renderHeader : function(){
         this.$header.children(".h1").addClass("edit-title").attr("contenteditable", true).html(this.model.get("title"));
+        this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
+
         setTimeout(function(){
             this.$header.height(this.$header[0].offsetHeight);
         }.bind(this), 100);
@@ -275,7 +284,15 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.$likes.html(this.model.get("likes") || 0);
         this.$comments.html(this.model.get("comments") || 0);
-        this.$lastview.html("Last viewed: " + Post.getDateString(this.model.get("last_view")));
+
+        if (this.model.isNew()) {
+            this.$actions.remove();
+            this.$stats.remove();
+            return;
+        }
+
+        if (this.model.get("last_view"))
+            this.$lastview.html("Last viewed: " + Post.getDateString(this.model.get("last_view")));
 
         this.renderActions();
     },
@@ -293,7 +310,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         }).save();
     },
     openText : function(){
-        this.$viewer[0].innerHTML = "<div class='edit-controls'></div><textarea class='edit-text'></textarea>";
+        this.$viewer[0].innerHTML = "<textarea class='edit-text'></textarea>";
         this.$text = this.$(".edit-text").val(this.model.get("text").replace(/<br>/g, "\n") || "");
 
         this.model.loading.done(this.pasteParts.bind(this));

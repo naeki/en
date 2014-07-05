@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   has_many :bookmarks, foreign_key: "user_id", dependent: :destroy
   has_many :views    , foreign_key: "user_id", dependent: :destroy
 
+  has_many :recommendations, -> { where deleted: false, access: 1}, through: :likes, source: :post
+
   has_secure_password
 
   before_save {self.email = email.downcase}
@@ -38,7 +40,7 @@ class User < ActiveRecord::Base
   validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :email
 
-  attr_accessible :password, :password_confirmation, :email, :name
+  # attr_accessible :password, :password_confirmation, :email, :name
 
   def feed
     @posts = Post.from_users_followed_by(self)
@@ -89,6 +91,14 @@ class User < ActiveRecord::Base
   def own_posts(options)
     options = {"deleted" => false}.merge(options)
     query = ''
+    options.each {|key, value| query += " AND #{key}=#{value}" }
+
+    sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query
+    @posts = Post.find_by_sql(sql)
+  end
+
+  def own_public_posts(options)
+    query = 'deleted=false'
     options.each {|key, value| query += " AND #{key}=#{value}" }
 
     sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query

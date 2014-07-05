@@ -29,10 +29,10 @@ App.Views.Main = Backbone.View.extend({
 
         if (options.post) {
             dfd = this.openPost(options);
-            this.$el.addClass("clear loading"); // Грубо, но правда
+            this.$el.addClass("clear loading"); // Грубо, но правда (видимо надо определять, надо ли подгружать.. ну и вообще наверное не здесь делать, а во вьюшке поста)
         }
         if (options.user) this.openUser(options);
-        if (options.dvsn) this.openDivision(options);
+        if (options.folder) this.openFolder(options);
 
 
         dfd.done(function(){
@@ -54,14 +54,13 @@ App.Views.Main = Backbone.View.extend({
     openUser : function(options){
         this.current_view = User.builder({id : parseInt(options.user)}).open({page: options.page});
     },
-    openDivision : function(options){
+    openFolder : function(options){
         var view;
 
-        if (view = this.divView = options.dvsn.view) {
-            view.options.subType = options.type;
-            view.initCollection();
+        if (view = options.folder.view) {
+            view.setState(options.type);
         }
-        else view = this.divView = new options.dvsn({subType: options.type});
+        else view = new options.folder({subType: options.type});
 
         this.$context.html(view.$el);
     },

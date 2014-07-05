@@ -22,9 +22,19 @@ class Post < ActiveRecord::Base
   default_scope -> {order("published_at DESC")}
   validates_presence_of :title, :text, :user_id
 
+
+  searchable do
+    text    :title, :boost => 5
+    text    :text
+    boolean :deleted
+    integer :access
+  end
+
+
+
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-    where("(user_id IN (#{followed_user_ids})) AND deleted=false",
+    where("(user_id IN (#{followed_user_ids})) AND deleted=false AND access=1",
           user_id: user)
   end
 
@@ -49,7 +59,7 @@ class Post < ActiveRecord::Base
   def self._build(post)
     result = post.as_json
 
-    if (post.deleted)
+    if (post.deleted || post.access == 0)
       result.delete("text")
     else
       result["tags"] = post.tags
@@ -80,7 +90,7 @@ class Post < ActiveRecord::Base
 
     result.delete("text")
 
-    if (!post.deleted)
+    if (!post.deleted || post.access == 1)
       result["short_text"] = post.text.split(" ").slice(0, 50).join(" ") + "..." #Считать слова а не буквы  slice(0, 300)
       result["tags"] = post.tags
     else
@@ -117,6 +127,10 @@ class Post < ActiveRecord::Base
         self.update_attribute(:photo_id, name)
       end
     end
+  end
+
+  def update_likes
+    self.update_attributes({likes_count: self.likes.count})
   end
 
   def delete_photo

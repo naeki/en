@@ -35,7 +35,8 @@ App.Views.Post_small = App.Views.BASE.extend({
     },
     render : function(){
         this.$el.html(this._markup).data("post", this.model.get("id")).appendTo(this.options.renderTo);
-        if (this.model.get("deleted")) this.$el.addClass("deleted");
+        this.$el[this.model.get("deleted") ? "addClass" : "removeClass"]("deleted");
+        this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
         this.picture = this.$(".post-small-photo");
 
@@ -46,7 +47,7 @@ App.Views.Post_small = App.Views.BASE.extend({
 
         if (this.model.getPhoto()){
             this.picture.show().attr({
-                src : this.model.getPhoto(),
+                src : this.model.getSmallPhoto(),
                 alt : this.model.get("title")
             });
             this.picture.on('load', function(){
@@ -61,7 +62,7 @@ App.Views.Post_small = App.Views.BASE.extend({
         this.$(".post-stat").html(this.model.get("likes"));
         this.$(".post-title").html(this.model.get("title"));
         this.$(".post-text").html(this.model.get("short_text"));
-        this.$(".post-publish-date").html(Post.getShortDate(this.model.get("published_at")));
+        this.$(".post-publish-date").html(Post.getShortDate(this.model.get("published_at") || this.model.get("created_at")));
         this.$(".post-comments").html(this.model.get("comments"));
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.get("user_id"));
     },

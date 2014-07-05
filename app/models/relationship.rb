@@ -3,5 +3,5 @@ class Relationship < ActiveRecord::Base
   belongs_to :followed, class_name: "User"
 
   validates_presence_of :follower_id, :followed_id
-  attr_accessible :followed_id
+  # attr_accessible :followed_id
 end

@@ -27,10 +27,10 @@ window.Post = App.Models.Post = Backbone.Model.extend({
                 });
             };
 
-        this.loading = new $.Deferred().resolve();
+        this.loading = new $.Deferred();
 
         if (this.isNew())
-            return view_form.call(this);
+            return this.loading.resolve(view_form.call(this));
         else{
             this.loading = this.fetch().then(function(){
                 return $.Deferred().resolve(this.get("permissions")&Post.OWNER ? view_form.call(this) : view_page.call(this));
@@ -178,7 +178,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         return Post.getShortDate(ts) + " | " + Post.getOTime(date.getHours()) + ":" + Post.getOTime(date.getMinutes());
     },
     getShortDate : function(ts){
-        var date = new Date(ts * 1000);
+        var date = typeof(ts) == "string" ? new Date(ts) : new Date(ts * 1000);
         return date.getDate() + " " + Lang.months[date.getMonth()] + " " + date.getFullYear();
     },
     getOTime : function(num){
@@ -227,11 +227,13 @@ window.Post = App.Models.Post = Backbone.Model.extend({
                 model.set(result);
             });
     },
+    // Delete (deleted=true)
     del : function(model){
         return App.loader.sync("/posts/" + model.get("id"), {type : "DELETE"}).done(function(result){
             Post.builder(result);
         });
     },
+    // return from deleted
     ret : function(model){
         return App.loader.sync("/posts/" + model.get("id"), {type : "DELETE"}).done(function(result){
             Post.builder(result);
@@ -246,23 +248,30 @@ window.Post = App.Models.Post = Backbone.Model.extend({
 
 
 
-App.Collections.Posts = Backbone.Collection.extend({
+window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     model : Post,
     initialize : function(models, options){
         options && (this.parent = options.parent);
     },
+    find : function(str){
+        if (!str.length) return this.fetch();
+
+        PostsCollection.fetch("find", {data: {string: str}}).done(function(result){
+            this.reset(result.map(Post.builder));
+        }.bind(this));
+    },
     fetch : function(){
         var url = this.parent.type;
 
-        if (this.parent.options.subType) url += "/" + this.parent.options.subType;
+        if (this.parent.subType) url += "/" + this.parent.subType;
 
-        return App.Collections.Posts.fetch(url).done(function(result){
+        return PostsCollection.fetch(url).done(function(result){
             this.reset(result.map(Post.builder));
         }.bind(this));
     }
 }, {
-    fetch : function(url){
-        return App.loader.sync("/posts/" + url);
+    fetch : function(url, options){
+        return App.loader.sync("/posts/" + url, options);
     }
 });
 

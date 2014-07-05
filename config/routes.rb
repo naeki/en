@@ -20,6 +20,7 @@ En::Application.routes.draw do
       get    :tags      , to: 'posts#get_tags'
       get    :comments  , to: 'posts#get_comments'
       get    :likes     , to: 'posts#get_likes'
+      get    :find      , to: 'posts#find'
       post   :picture   , to: 'posts#upload_picture'
       delete :picture   , to: 'posts#delete_picture'
 
@@ -113,28 +114,28 @@ En::Application.routes.draw do
   # just remember to delete public/index.html.
   #match "/*path", to: "home#index"
 
-  match "/signup",        to: "users#new",          via: 'get'
-  match "/signin",        to: "sessions#new",       via: 'get'
-  match "/signout",       to: "sessions#destroy",   via: 'delete'
+  get "/signup",        to: "users#new",          via: 'get'
+  get "/signin",        to: "sessions#new",       via: 'get'
+  get "/signout",       to: "sessions#destroy",   via: 'delete'
 
-  match "/digest",        to: "home#enter"
-  match "/feed",          to: "home#enter"
-  match "/all",           to: "home#enter"
-  match "/all/popular",   to: "home#enter"
-  match "/bookmarks",     to: "home#enter"
-  match "/users",         to: "home#enter"
-  match "/new",           to: "home#enter"
-  match "/edit",          to: "home#enter"
-  match "/:id",           to: "home#post", constraints: {id: /\d\d*/}
-  match "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /\d\d*/}
+  get "/digest",        to: "home#enter"
+  get "/feed",          to: "home#enter"
+  get "/all",           to: "home#enter"
+  get "/all/popular",   to: "home#enter"
+  get "/bookmarks",     to: "home#enter"
+  get "/users",         to: "home#enter"
+  get "/new",           to: "home#enter"
+  get "/edit",          to: "home#enter"
+  get "/:id",           to: "home#post", constraints: {id: /\d\d*/}
+  get "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /\d\d*/}
 
-  match "/:id/followers", to: "home#user", constraints: {id: /user\d*/}
-  match "/:id/following", to: "home#user", constraints: {id: /user\d*/}
-  match "/:id/likes",     to: "home#user", constraints: {id: /user\d*/}
-  match "/:id/posts",     to: "home#user", constraints: {id: /user\d*/}
-  match "/:id/deleted",   to: "home#user", constraints: {id: /user\d*/}
-  match "/:id",           to: "home#user", constraints: {id: /user\d*/}
-  match "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /user\d*/}
+  get "/:id/followers", to: "home#user", constraints: {id: /user\d*/}
+  get "/:id/following", to: "home#user", constraints: {id: /user\d*/}
+  get "/:id/likes",     to: "home#user", constraints: {id: /user\d*/}
+  get "/:id/posts",     to: "home#user", constraints: {id: /user\d*/}
+  get "/:id/deleted",   to: "home#user", constraints: {id: /user\d*/}
+  get "/:id",           to: "home#user", constraints: {id: /user\d*/}
+  get "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /user\d*/}
 
   #match "/:id/:page",     to: "home#nf"
   #match "/:id",           to: "home#nf"

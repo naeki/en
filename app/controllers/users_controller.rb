@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
 
     if @user.save
       sign_in @user
@@ -35,6 +35,9 @@ class UsersController < ApplicationController
   def posts
     @user = User.find(params[:id])
     options = params[:options] || {}
+    if (!current_user?(@user))
+      options["access"] = 1
+    end
     @posts = @user.own_posts(options)
     respond_to do |format|
       format.json { render json: Post.build_posts_lite(@posts), location: root_path }
@@ -43,7 +46,7 @@ class UsersController < ApplicationController
 
   def likes
     @user = User.find(params[:id])
-    @posts = @user.likes.map{|l| Post.find(l.post_id)}
+    @posts = @user.recommendations
 
     respond_to do |format|
       format.json { render json: Post.build_posts_lite(@posts), location: root_path }
@@ -130,7 +133,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name)
     end
 
     def correct_user
