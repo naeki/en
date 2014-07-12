@@ -253,15 +253,23 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     initialize : function(models, options){
         options && (this.parent = options.parent);
     },
+    by_tag : function(id){
+        return PostsCollection.fetch("/tags", {data: {tag_id: id}}).then(function(result){
+            this.tag = new Tag(result.tag);
+            this.reset(result.posts.map(Post.builder));
+            return $.Deferred().resolve();
+        }.bind(this));
+    },
     find : function(str){
         if (!str.length) return this.fetch();
 
-        PostsCollection.fetch("find", {data: {string: str}}).done(function(result){
-            this.reset(result.map(Post.builder));
+        PostsCollection.fetch("/posts/find", {data: {string: str}}).done(function(result){
+            this.reset(result.posts.map(Post.builder));
+            this.tags.reset(result.tags);
         }.bind(this));
     },
     fetch : function(){
-        var url = this.parent.type;
+        var url = "/posts/" + this.parent.type;
 
         if (this.parent.subType) url += "/" + this.parent.subType;
 
@@ -271,7 +279,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     }
 }, {
     fetch : function(url, options){
-        return App.loader.sync("/posts/" + url, options);
+        return App.loader.sync(url, options);
     }
 });
 

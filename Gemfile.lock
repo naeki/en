@@ -76,6 +76,7 @@ GEM
     foreman (0.74.0)
       dotenv (~> 0.11.1)
       thor (~> 0.19.1)
+    highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
     jquery-rails (3.1.1)
@@ -96,10 +97,14 @@ GEM
       mini_portile (= 0.6.0)
     nokogiri (1.6.2.1-x86-mingw32)
       mini_portile (= 0.6.0)
+    options (2.3.2)
     pg (0.17.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
     pr_geohash (1.0.0)
+    progress_bar (1.0.2)
+      highline (~> 1.6.1)
+      options (~> 2.3.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -182,6 +187,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick
   pg
+  progress_bar
   rails
   sass-rails
   sunspot_rails

@@ -10,6 +10,7 @@ window.App = {
 
 App.Lang.En = {
     all            : "Все записи",
+    search         : "Поиск",
     bookmarks      : "Закладки",
     digest         : "Дайджест",
     feed           : "Лента",
@@ -79,6 +80,7 @@ App.Router = Backbone.Router.extend({
     },
     routes: {
         "all"             : "_all",
+        "search"          : "_search",
         "all/popular"     : "_popular",
         "digest"          : "_digest",
         "feed"            : "_feed",
@@ -86,6 +88,7 @@ App.Router = Backbone.Router.extend({
         'users'           : "_users",
         "user:id(/)"      : "_user",
         "user:id(/:page)" : "_user",
+        "tag:id(/)"       : "_search",
         "edit"            : "_edit",
         ":id"             : "_post",
         "new"             : "_post"
@@ -96,10 +99,23 @@ App.Router = Backbone.Router.extend({
     _edit      : function(){App.main.editProfile()},
 
     _all       : function(){
-        this._use({folder : App.Views.All, type: "new"})
+        this._use({
+            folder : App.Views.All,
+            type   : "new"})
     },
+    _search    : function(){
+        this._use({
+            folder : App.Views.Search,
+            tag    : arguments[0],
+            type   : "new"
+        })
+    },
+
     _popular   : function(){
-        this._use({folder : App.Views.All, type: "pop"})
+        this._use({
+            folder : App.Views.All,
+            type   : "pop"
+        })
     },
     _digest    : function(){this._use({folder : App.Views.Digest})},
     _feed      : function(){this._use({folder : App.Views.Feed})},

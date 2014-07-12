@@ -175,8 +175,12 @@ class PostsController < ApplicationController
 
     @posts = Post.build_posts_lite(search.results)
 
+    @tags = Tag.search do
+      fulltext params[:string]
+    end
+
     respond_to do |format|
-      format.json { render json: @posts, location: root_path }
+      format.json { render json: {posts: @posts, tags: @tags.results}, location: root_path }
     end
   end
 

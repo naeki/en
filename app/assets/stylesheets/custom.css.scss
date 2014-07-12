@@ -202,7 +202,7 @@ $blue            : rgb(7, 95, 226);
 .sidebar {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.5s;
-  background: url(/images/p0.gif) #00022f; //url(/images/sidebar.jpg)
+  background: #25263F; //url(/images/p0.gif)  url(/images/sidebar.jpg)
   color: #fff;
   padding: 0 25px;
   @include box_sizing;
@@ -455,6 +455,22 @@ $blue            : rgb(7, 95, 226);
 .folder-body{
   margin: 50px 0 0;
 }
+
+
+.tag{
+  cursor: pointer;
+}
+.found-tags{
+
+}
+.search-tag{
+  display: inline-block;
+  margin-right: 10px;
+  .tag:hover{
+    text-decoration: line-through;
+  }
+}
+
 
 /* page of post -> header */
 .post-page-view{

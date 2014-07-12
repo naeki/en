@@ -62,6 +62,9 @@ En::Application.routes.draw do
   end
 
 
+  get '/tags'               => 'tags#show'
+
+
   get '/users/all'          => 'users#index'
   get '/users/find'         => 'users#show'
   get '/users/posts'        => 'users#posts'
@@ -121,6 +124,7 @@ En::Application.routes.draw do
   get "/digest",        to: "home#enter"
   get "/feed",          to: "home#enter"
   get "/all",           to: "home#enter"
+  get "/search",        to: "home#enter"
   get "/all/popular",   to: "home#enter"
   get "/bookmarks",     to: "home#enter"
   get "/users",         to: "home#enter"
@@ -136,6 +140,8 @@ En::Application.routes.draw do
   get "/:id/deleted",   to: "home#user", constraints: {id: /user\d*/}
   get "/:id",           to: "home#user", constraints: {id: /user\d*/}
   get "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /user\d*/}
+
+  get "/:id",           to: "home#enter", constraints: {id: /tag\d*/}
 
   #match "/:id/:page",     to: "home#nf"
   #match "/:id",           to: "home#nf"

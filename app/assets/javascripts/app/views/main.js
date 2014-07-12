@@ -55,12 +55,13 @@ App.Views.Main = Backbone.View.extend({
         this.current_view = User.builder({id : parseInt(options.user)}).open({page: options.page});
     },
     openFolder : function(options){
-        var view;
+        var view,
+            settings = _.omit(options, "folder");
 
         if (view = options.folder.view) {
-            view.setState(options.type);
+            view.setState(settings);
         }
-        else view = new options.folder({subType: options.type});
+        else view = new options.folder(settings);
 
         this.$context.html(view.$el);
     },
@@ -96,6 +97,7 @@ App.Views.Sidebar = Backbone.View.extend({
         <ul class='sidebar-small-menu'>\
             <li><span class='new-post'>"+ Lang.new_post +"</span></li>\
             <li><span class='users'>"+ Lang.users +"</span></li>\
+            <li><span class='search'>"+ Lang.search +"</span></li>\
         </ul>",
     events : {
         "click .new-post" : function(){
@@ -103,6 +105,9 @@ App.Views.Sidebar = Backbone.View.extend({
         },
         "click .users" : function(){
             App.router.navigate("users", {trigger:true, replace:false});
+        },
+        "click .search" : function(){
+            App.router.navigate("search", {trigger:true, replace:false});
         }
     },
     initialize : function(){
