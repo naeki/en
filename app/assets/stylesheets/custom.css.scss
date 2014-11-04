@@ -202,8 +202,8 @@ $blue            : rgb(7, 95, 226);
 .sidebar {
   opacity: 1;
   -webkit-transition: -webkit-transform 0.5s;
-  background: #25263F; //url(/images/p0.gif)  url(/images/sidebar.jpg)
-  color: #fff;
+  background: url(/images/sidebar.jpg) #25263F;
+color: #fff;
   padding: 0 25px;
   @include box_sizing;
   width: 250px;
