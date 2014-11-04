@@ -1,49 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5b7ef06c-50c6-4e68-861d-7f595f210599" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/tags.views.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log/sunspot-solr-development.log.lck" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d.fdt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d.fdx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d.fnm" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d.nvd" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d.nvm" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d.si" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d_Lucene41_0.doc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d_Lucene41_0.pos" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d_Lucene41_0.tim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/_1d_Lucene41_0.tip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/index/segments_1f" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000039" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000040" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000041" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000042" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000043" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000044" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000045" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000046" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000047" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/solr/development/data/tlog/tlog.0000000000000000048" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photo/105a1b62f9403d96b8793e19f80bf174.jpg" afterPath="$PROJECT_DIR$/public/photo/105a1b62f9403d96b8793e19f80bf174.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photo/105a1b62f9403d96b8793e19f80bf174_b.jpg" afterPath="$PROJECT_DIR$/public/photo/105a1b62f9403d96b8793e19f80bf174_b.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photo/105a1b62f9403d96b8793e19f80bf174_s.jpg" afterPath="$PROJECT_DIR$/public/photo/105a1b62f9403d96b8793e19f80bf174_s.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photo/e1c715d12db0a95abc06af116f170292.jpg" afterPath="$PROJECT_DIR$/public/photo/e1c715d12db0a95abc06af116f170292.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photo/e1c715d12db0a95abc06af116f170292_n.jpg" afterPath="$PROJECT_DIR$/public/photo/e1c715d12db0a95abc06af116f170292_n.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/photo/e1c715d12db0a95abc06af116f170292_s.gif" afterPath="$PROJECT_DIR$/public/photo/e1c715d12db0a95abc06af116f170292_s.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solr/development/data/index/segments.gen" afterPath="$PROJECT_DIR$/solr/development/data/index/segments.gen" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/app.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/division.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/division.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.page.show.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.page.show.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/sessions_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/sessions_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/solr/pids/development/sunspot-solr-development.pid" afterPath="$PROJECT_DIR$/solr/pids/development/sunspot-solr-development.pid" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="5b7ef06c-50c6-4e68-861d-7f595f210599" name="Default" comment="" />
     <ignored path="en.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,50 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="post.views.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1207" max-vertical-offset="2601">
-              <caret line="71" column="66" selection-start-line="71" selection-start-column="66" selection-end-line="71" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post.page.show.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/post.page.show.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="11594">
-              <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
-              <folding>
-                <marker date="1405789089165" expanded="true" signature="136:1529" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="171:582" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="334:566" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="615:1517" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="695:1501" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="737:903" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="984:1481" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="1086:1279" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="1324:1457" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="12540:12558" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="12693:12711" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="12784:12820" placeholder="..." />
-                <marker date="1405789089165" expanded="true" signature="12984:13002" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user.page.show.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/user.page.show.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="4114">
-              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="custom.css.scss" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
@@ -133,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="application.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/application.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7638889" vertical-offset="453" max-vertical-offset="1207">
+            <state vertical-scroll-proportion="0.0" vertical-offset="453" max-vertical-offset="1207">
               <caret line="59" column="90" selection-start-line="59" selection-start-column="90" selection-end-line="59" selection-end-column="90" />
               <folding />
             </state>
@@ -146,8 +60,8 @@
       <file leaf-file-name="user.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1758" max-vertical-offset="3740">
-              <caret line="134" column="46" selection-start-line="134" selection-start-column="46" selection-end-line="134" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="3740">
+              <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -156,8 +70,18 @@
       <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="949" max-vertical-offset="2771">
-              <caret line="120" column="41" selection-start-line="120" selection-start-column="41" selection-end-line="120" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="643" max-vertical-offset="2771">
+              <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sessions_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -166,18 +90,38 @@
       <file leaf-file-name="sessions_helper.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/helpers/sessions_helper.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1258">
-              <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="53" selection-end-column="103" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="496" max-vertical-offset="1258">
+              <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="like.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/like.rb">
+      <file leaf-file-name="schema.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/schema.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="238">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.4643399" vertical-offset="935" max-vertical-offset="2363">
+              <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20140319195752_add_published_at_to_posts.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20140319195752_add_published_at_to_posts.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20140530212702_change_default_photo_id_at_posts.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20140530212702_change_default_photo_id_at_posts.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -374,6 +318,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="en" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="en" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrate" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1069,27 +1031,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="532" max-vertical-offset="1178">
-          <caret line="28" column="12" selection-start-line="28" selection-start-column="12" selection-end-line="28" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="45" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/digest_settings.js.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07610147" vertical-offset="0" max-vertical-offset="749">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43124166" vertical-offset="0" max-vertical-offset="749">
@@ -1192,13 +1133,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="722">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1064" max-vertical-offset="2641">
-          <caret line="71" column="43" selection-start-line="71" selection-start-column="43" selection-end-line="71" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1374,48 +1308,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/sessions_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1258">
-          <caret line="52" column="4" selection-start-line="52" selection-start-column="4" selection-end-line="53" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1758" max-vertical-offset="3740">
-          <caret line="134" column="46" selection-start-line="134" selection-start-column="46" selection-end-line="134" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="949" max-vertical-offset="2771">
-          <caret line="120" column="41" selection-start-line="120" selection-start-column="41" selection-end-line="120" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/post.page.show.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="11594">
           <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding>
-            <marker date="1405789089165" expanded="true" signature="136:1529" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="171:582" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="334:566" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="615:1517" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="695:1501" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="737:903" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="984:1481" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="1086:1279" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="1324:1457" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="12540:12558" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="12693:12711" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="12784:12820" placeholder="..." />
-            <marker date="1405789089165" expanded="true" signature="12984:13002" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1405789089165" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1446,8 +1356,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/application.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7638889" vertical-offset="453" max-vertical-offset="1207">
+        <state vertical-scroll-proportion="0.0" vertical-offset="453" max-vertical-offset="1207">
           <caret line="59" column="90" selection-start-line="59" selection-start-column="90" selection-end-line="59" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="643" max-vertical-offset="2771">
+          <caret line="76" column="29" selection-start-line="76" selection-start-column="29" selection-end-line="76" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="3740">
+          <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/sessions_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="496" max-vertical-offset="1258">
+          <caret line="43" column="6" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140319195752_add_published_at_to_posts.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20140530212702_change_default_photo_id_at_posts.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="672">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4643399" vertical-offset="935" max-vertical-offset="2363">
+          <caret line="73" column="30" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
           <folding />
         </state>
       </provider>
