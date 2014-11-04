@@ -117,9 +117,9 @@ En::Application.routes.draw do
   # just remember to delete public/index.html.
   #match "/*path", to: "home#index"
 
-  get "/signup",        to: "users#new",          via: 'get'
-  get "/signin",        to: "sessions#new",       via: 'get'
-  get "/signout",       to: "sessions#destroy",   via: 'delete'
+  get    "/signup",     to: "users#new",          via: 'get'
+  get    "/signin",     to: "sessions#new",       via: 'get'
+  delete "/signout",    to: "sessions#destroy"
 
   get "/digest",        to: "home#enter"
   get "/feed",          to: "home#enter"

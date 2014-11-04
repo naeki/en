@@ -97,16 +97,13 @@ App.Views.Page_Post = App.Views.BASE.extend({
     renderTags : function(){
         if (this.model.get("deleted")) return this.$tags.remove();
 
-        this.$tags.empty();
-
-        for (var i=0;this.model.tags.models[i];i++){
-            var tag = this.model.tags.models[i];
-            this.$tags.append(
-                $("<li></li>").append($("<span class='tag'></span>")
-                    .html(tag.get("name"))
-                    .data("id", tag.id)
-            ));
-        }
+        if (this.tags) this.tags.render();
+        else
+            this.tags = new TagsView({
+                collection : this.model.tags,
+                el         : this.$tags,
+                parent     : this
+            });
     },
     openText : function(){
         if (this.model.get("deleted")) return this.$viewer.html("<div class='error-note deleted'>"+ Lang.post_deleted +"</div>");

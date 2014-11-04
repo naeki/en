@@ -94,26 +94,24 @@ App.Views.All = App.Views.Folder.extend({
     label     : Lang.all,
     _markup   :
         "<div class='folder-header'>\
-            <input class='search-posts' type='text' placeholder='search'>\
-            <span class='controls'>\
+            <input class='search-posts' type='text' placeholder='"+ Lang.searchPosts +"'>\
+            <div class='controls'>\
                 <input class='change-type' type='button' value='liked'>\
-            </span>\
+            </div>\
             <div class='settings'></div>\
         </div> \
-        <div class='found-tags'></div>\
+        <ul class='found-tags'></ul>\
         <div class='folder-body'></div>",
     events : {
         'click .change-type'  : 'toggle',
-        'input .search-posts' : 'find',
-        'click .tag'          : function(e){
-            App.router.navigate("tag" + $(e.target).data("id"), {trigger: true, replace: false});
-        }
+        'input .search-posts' : 'find'
     },
     initCollection : function(){
-        this.collection || (this.collection = new PostsCollection([], {parent : this}));
-
-        this.collection.tags = new Tags([], {parent : this.collection});
-        this.listenTo(this.collection.tags, "add remove reset", this.renderTags);
+        if (!this.collection) {
+            this.collection      = new PostsCollection([], {parent : this});
+            this.collection.tags = new Tags([], {parent : this.collection});
+            this.listenTo(this.collection.tags, "add remove reset", this.renderTags);
+        }
 
         this.collection.reset();
         this.collection.fetch();
@@ -124,26 +122,36 @@ App.Views.All = App.Views.Folder.extend({
         this.updateToggle();
     },
     updateToggle : function(){
-        this.$('.change-type').val(this.subType == "new" ? 'popular' : 'last added');
+        this.$('.change-type').val(this.subType == "new" ? Lang.sort_pop : Lang.sort_new);
     },
     find : function(){
-        this.collection.find($(".search-posts").val());
+        var val = $(".search-posts").val();
+        this.$controls[val ? "hide" : "show"]();
+        this.collection.find(val);
     },
     renderHeader : function(){
         this.$h1.html(this.label);
         this.updateToggle();
     },
     renderTags : function(){
-        var $tags = this.$(".found-tags").empty();
+        if (this.tags) this.tags.render();
+        else
+            this.tags = new TagsView({
+                collection : this.collection.tags,
+                el         : this.$('.found-tags'),
+                parent     : this
+            });
 
-        for (var i=0;this.collection.tags.models[i];i++){
-            var tag = this.collection.tags.models[i];
-            $tags.append(
-                $("<li></li>").append($("<span class='tag'></span>")
-                        .html(tag.get("name"))
-                        .data("id", tag.id)
-                ));
-        }
+//        var $tags = this.$(".found-tags").empty();
+//
+//        for (var i=0;this.collection.tags.models[i];i++){
+//            var tag = this.collection.tags.models[i];
+//            $tags.append(
+//                $("<li></li>").append($("<span class='tag-link'></span>")
+//                        .html(tag.get("name"))
+//                        .data("id", tag.id)
+//                ));
+//        }
     }
 });
 
@@ -153,10 +161,7 @@ App.Views.Search = App.Views.Folder.extend({
     subType  : "new",
     _markup :
         "<div class='folder-header'>\
-            <span class='controls'>\
-                <div class='search-tag'></div>\
-                <input class='change-type' type='button' value='liked'>\
-            </span>\
+            <div class='search-tag'></div>\
         </div>\
         <div class='folder-body'></div>",
     events : {

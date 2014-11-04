@@ -50,8 +50,8 @@ module SessionsHelper
     obj = current_user.as_json
 
     obj["name"]            = current_user.name.empty? ? current_user.email : current_user.name        #TEMPORARY!!!!
-    obj["posts_count"]     = current_user.posts.count
-    obj["likes_count"]     = current_user.likes.count
+    obj["posts_count"]     = current_user.posts.select{|m| !m.deleted && m.access == 1}.count
+    obj["likes_count"]     = current_user.likes.select{|m| !m.post.deleted && m.post.access == 1}.count
     obj["followers"]       = fs
     obj["following"]       = fg
     obj["likes"]           = likes

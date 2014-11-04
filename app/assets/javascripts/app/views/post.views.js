@@ -11,6 +11,7 @@ App.Views.Post_small = App.Views.BASE.extend({
                 <span class='post-title'></span>\
                 <div class='post-text'></div>\
                 <span class='post-publish-date'></span>\
+                <ul class='post-tags'></ul>\
             </div>",
     events : {
         "click .post-title" : function(e){
@@ -22,6 +23,7 @@ App.Views.Post_small = App.Views.BASE.extend({
         this.bindChain();
 
         this.render();
+        this.renderTags();
     },
     bindChain : function(){
         var dfd = this.options.prev ? this.options.prev.chain : $.Deferred().resolve();
@@ -38,7 +40,7 @@ App.Views.Post_small = App.Views.BASE.extend({
         this.$el[this.model.get("deleted") ? "addClass" : "removeClass"]("deleted");
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
-        this.picture = this.$(".post-small-photo");
+        this.$picture = this.$('.post-small-photo');
 
         this.$(".user-photo-small").attr({
             src : this.model.user.getSmallPhoto(),
@@ -46,16 +48,16 @@ App.Views.Post_small = App.Views.BASE.extend({
         }).data("user-id", this.model.user.id);
 
         if (this.model.getPhoto()){
-            this.picture.show().attr({
+            this.$picture.show().attr({
                 src : this.model.getSmallPhoto(),
                 alt : this.model.get("title")
             });
-            this.picture.on('load', function(){
+            this.$picture.on('load', function(){
                 this.dfd.resolve();
             }.bind(this));
         }
         else{
-            this.picture.hide();
+            this.$picture.hide();
             this.dfd.resolve()
         }
 
@@ -65,6 +67,17 @@ App.Views.Post_small = App.Views.BASE.extend({
         this.$(".post-publish-date").html(Post.getShortDate(this.model.get("published_at") || this.model.get("created_at")));
         this.$(".post-comments").html(this.model.get("comments"));
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.get("user_id"));
+    },
+    renderTags : function(){
+        if (this.model.get("deleted")) return this.$('.post-tags').remove();
+
+        if (this.tags) this.tags.render();
+        else
+            this.tags = new TagsView({
+                collection : this.model.tags,
+                el         : this.$('.post-tags'),
+                parent     : this
+            });
     },
     columnate : function(){
         var scroll = window.innerHeight != $("body")[0].scrollHeight,

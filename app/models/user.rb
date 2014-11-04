@@ -113,8 +113,8 @@ class User < ActiveRecord::Base
     result = user.as_json
     result["followers_count"] = user.followers.count
     result["following_count"] = user.followed_users.count
-    result["likes_count"]     = user.likes.count
-    result["posts_count"]     = user.posts.count
+    result["posts_count"]        = user.posts.select{|m| !m.deleted && m.access == 1}.count
+    result["likes_count"]        = user.likes.select{|m| !m.post.deleted && m.post.access == 1}.count
     result["name"]            = user.name.empty? ? user.email : user.name        #TEMPORARY!!!!
     result.delete("admin")
     result.delete("digest")

@@ -10,7 +10,10 @@ window.App = {
 
 App.Lang.En = {
     all            : "Все записи",
+    sort_pop       : "popular ↑↓",
+    sort_new       : "last added ↑↓",
     search         : "Поиск",
+    searchPosts    : "Search: viewed all posts",
     bookmarks      : "Закладки",
     digest         : "Дайджест",
     feed           : "Лента",
