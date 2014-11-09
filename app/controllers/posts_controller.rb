@@ -10,11 +10,11 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
 
-    # if @post.save
+    if @post.save
       respond_to do |format|
         format.json { render json: @post, location: root_path }
       end
-    # end
+    end
   end
 
   def show
