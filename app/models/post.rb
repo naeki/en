@@ -26,8 +26,6 @@ class Post < ActiveRecord::Base
   searchable do
     text    :title, :boost => 5
     text    :text
-    boolean :deleted
-    integer :access
   end
 
 
