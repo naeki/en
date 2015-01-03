@@ -5,9 +5,9 @@ class Tag < ActiveRecord::Base
    before_save {self.name = name.downcase.strip}
    validates_uniqueness_of :name
 
-   searchable do
-     text :name
-   end
+   # searchable do
+   #   text :name
+   # end
 
    def self.get_tag(name)
      @tag = self.find_by_name(name) || self.create(name: name)

@@ -23,12 +23,12 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :text, :user_id
 
 
-  searchable do
-    text    :title, :boost => 5
-    text    :text
-    boolean :deleted
-    integer :access
-  end
+  # searchable do
+  #   text    :title, :boost => 5
+  #   text    :text
+  #   boolean :deleted
+  #   integer :access
+  # end
 
 
 
