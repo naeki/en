@@ -1,35 +1,43 @@
 App.Views.Page_Post = App.Views.BASE.extend({
-    pageStep : 3000,
+
+    pageStep : 1500,
+
     className : "page-post",
     _markup:"<div class='post-page-view'>\
         <div class='page-header'>\
-            <img class='post-page-photo'>\
-            <div class='history-back'></div>\
             <div class='h1'></div>\
             <div class='post-stats'>\
                 <span class='post-stat-likes post-stat link'></span>\
-                <span class='post-stat-comments post-stat link'></span>\
+                <span class='post-stat-comments post-stat link'></span><br>\
                 <span class='post-stat-view post-stat-info'></span>\
             </div>\
+            <div class='post-page-illustration'>\
+                <div class='post-page-illustration__wrapper'>\
+                    <div class='post-page-photo__dot'><img class='post-page-photo'></div>\
+                </div>\
+            </div>\
+            <div class='history-back'></div>\
         </div>\
         <div class='page-body'>\
-            <div class='page-viewer'></div>\
-            <div class='omnibar'>\
-                <div class='author-box'>\
-                    <img class='user-photo-middle user-link'><br>\
-                    <span class='post-author user-name user-link'></span>\
-                </div>\
-                <ul class='tags'></ul>\
-                <div class='post-meta'>\
-                    <div class='edit-controls'></div>\
-                    <ul class='post-actions'>\
-                        <li><span class='post-action do-bookmark link'></span></li>\
-                        <li><span class='post-action do-like link'></span></li>\
-                    </ul>\
-                    <div class='post-info'>\
-                        <p class='page-number'></p>\
-                        <p class='help-title'></p>\
-                    </div>\
+            <div class='page-viewer'>\
+                <div class='post-page-text'></div>\
+            </div>\
+        </div>\
+        <div class='omnibar'>\
+            <div class='author-box'>\
+                <img class='user-photo-middle user-link'><br>\
+                <span class='post-author user-name user-link'></span>\
+            </div>\
+            <ul class='tags'></ul>\
+            <div class='post-meta'>\
+                <div class='edit-controls'></div>\
+                <ul class='post-actions'>\
+                    <li><span class='post-action do-bookmark link'></span></li>\
+                    <li><span class='post-action do-like link'></span></li>\
+                </ul>\
+                <div class='post-info'>\
+                    <p class='page-number'></p>\
+                    <p class='help-title'></p>\
                 </div>\
             </div>\
         </div>\
@@ -42,8 +50,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         "click .do-bookmark"        : "bookmarkAction",
         "click .return"             : "openText",
         "click .post-stat-comments" : "openComments",
-        "click .post-stat-likes"    : "openLikes",
-        "click .page-header"        : "togglePicture"
+        "click .post-stat-likes"    : "openLikes"
     },
     init : function(){
         this.render();
@@ -51,7 +58,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$header       = this.$(".page-header");
         this.$picture      = this.$(".post-page-photo");
         this.$body         = this.$(".page-body");
-        this.$viewer       = this.$(".page-viewer");
+        this.$viewer       = this.$(".post-page-text");
         this.$tags         = this.$(".tags");
         this.$comments     = this.$(".post-stat-comments");
         this.$likes        = this.$(".post-stat-likes");
@@ -81,6 +88,8 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$header.children(".h1").html(this.model.get("title"));
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
+
+        //this.$(".post-page-illustration__wrapper").css("background-image", "url("+ this.model.getBigPhoto() +")");
         this.$picture.attr({
             src : this.model.getBigPhoto(),
             alt : this.model.get("title")
@@ -174,12 +183,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$('.page-mark').remove();
         this.$viewer.append(this.comments.$el);
     },
-    togglePicture : function(){
-        if (!this.pictureOpened)
-            this.pictureOpened = !!this.$header.css('height', this.$header[0].scrollHeight);
-        else
-            this.pictureOpened = !this.$header.css('height', "auto");
-    },
     pasteParts : function(){
         var height = this.resizeText(),
             length = parseInt(this.model.get("text").length / this.pageStep),
@@ -232,7 +235,6 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         "click .do-bookmark"        : "bookmarkAction",
         "click .post-stat-comments" : "openComments",
         "click .post-stat-likes"    : "openLikes",
-        "click .page-header"        : "togglePicture",
         "click .return"    : "openText",
         "click .settings"  : "openSettings"
     },
@@ -269,10 +271,6 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     renderHeader : function(){
         this.$header.children(".h1").addClass("edit-title").attr("contenteditable", true).html(this.model.get("title"));
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
-
-        setTimeout(function(){
-            this.$header.height(this.$header[0].offsetHeight);
-        }.bind(this), 100);
 
         this.$picture.attr({
             src : this.model.getBigPhoto(),

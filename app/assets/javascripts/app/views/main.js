@@ -1,6 +1,6 @@
 App.Views.Main = Backbone.View.extend({
     className : "main",
-    _markup : "<aside class='sidebar'></aside>\
+    _markup : "<aside class='sidebar'><div class='sidebar-content'></div></aside>\
                <div class='context'></div>",
     events : {
         "click .user-link" : function(e){
@@ -12,7 +12,7 @@ App.Views.Main = Backbone.View.extend({
         this.$context = this.$el.children(".context");
 
         new App.Views.Sidebar({
-            el : this.$(".sidebar")
+            el : this.$(".sidebar-content")
         });
     },
     render : function(){

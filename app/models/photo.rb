@@ -15,7 +15,7 @@ class Photo < ActiveRecord::Base
     image.format "jpg"
     image.write normal_path
 
-    image.resize "50x50"
+    image.resize "60x60"
     image.format "gif"
     image.write small_path
 
@@ -28,14 +28,14 @@ class Photo < ActiveRecord::Base
     directory = "public/photo/"
 
     small_path    = directory + name + '_s.jpg'
-    big_path   = directory + name + '_b.jpg'
+    big_path      = directory + name + '_b.jpg'
     original_path = directory + name + '.jpg'
 
     image_b = MiniMagick::Image.read(file.read)
     image_b.write original_path
 
-    image_b.resize "1900"
-    image_b.crop "x600+0+0"
+    image_b.resize "900x900^"
+    image_b.crop "900x900+450+0"
     image_b.format "jpg"
     image_b.write big_path
 
