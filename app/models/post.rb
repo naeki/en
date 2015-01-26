@@ -11,6 +11,7 @@
 require 'elasticsearch/model'
 
 class Post < ActiveRecord::Base
+  Elasticsearch::Model.client = Elasticsearch::Client.new({url: ENV['BONSAI_URL'], logs: true})
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
