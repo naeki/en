@@ -167,20 +167,32 @@ class PostsController < ApplicationController
 
 
   def find
-    search = Post.search do
-      fulltext params[:string]
-      with :deleted, false
-      with :access, 1
-    end
+    # search = Post.search do
+    #   fulltext params[:string]
+    #   with :deleted, false
+    #   with :access, 1
+    # end
 
-    @posts = Post.build_posts_lite(search.results)
+    search = Post.__elasticsearch__.search(
+        query: {
+          query_string: {
+            query: "*"+ params[:string] +"* AND deleted:false AND access: 1",
+            fields: ['title^10', 'text']
+          }
+        }
+    )
 
-    @tags = Tag.search do
-      fulltext params[:string]
-    end
+
+        # Post.search params[:string]
+    posts  = search.records.to_a
+    @posts = Post.build_posts_lite(posts)
+
+    # @tags = Tag.search do
+    #   fulltext params[:string]
+    # end
 
     respond_to do |format|
-      format.json { render json: {posts: @posts, tags: @tags.results}, location: root_path }
+      format.json { render json: {posts: @posts}, location: root_path }
     end
   end
 
@@ -208,6 +220,16 @@ class PostsController < ApplicationController
 
 
   private
+    def as_indexed_json
+      self.as_json({
+        only: [:title, :text],
+        include: {
+          author: { only: :name },
+          tags:   { only: :name }
+        }
+      })
+    end
+
     def post_params
       params.require(:data).permit(:title, :text, :access, :deleted)
     end

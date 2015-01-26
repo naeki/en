@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+# ruby require 'elasticsearch/rails/instrumentation'
 
 require 'rails/all'
 

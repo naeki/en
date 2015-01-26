@@ -29,8 +29,12 @@ gem 'jquery-rails'
 gem 'foreman'
 
 ruby '2.1.2'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+gem 'elasticsearch', '~> 0.4'
+
+# gem 'sunspot_rails'
+# gem 'sunspot_solr'
 gem 'progress_bar'
 
 

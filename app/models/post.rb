@@ -8,8 +8,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+require 'elasticsearch/model'
 
 class Post < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   has_many :comments  , dependent: :destroy
   has_many :likes     , foreign_key: 'post_id', dependent: :destroy
   has_many :bookmarks , foreign_key: 'post_id', dependent: :destroy
@@ -150,3 +154,6 @@ class Post < ActiveRecord::Base
   end
 
 end
+
+
+Post.import
