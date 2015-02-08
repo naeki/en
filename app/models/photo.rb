@@ -39,6 +39,11 @@ class Photo < ActiveRecord::Base
     image_b.format "jpg"
     image_b.write big_path
 
+    image_s = MiniMagick::Image.open(original_path)
+    image_s.resize "250x200^"
+    image_s.crop "x200+0+0"
+    image_s.format "jpg"
+    image_s.write small_path
 
 
     #path = File.join(directory, name + '.jpg')            # create the file path     # Here is type appending, responsively with original filetype
