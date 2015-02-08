@@ -52,7 +52,7 @@ App.Views.Post_small = App.Views.BASE.extend({
                 src : this.model.getSmallPhoto(),
                 alt : this.model.get("title")
             });
-            this.$picture.on('load', function(){
+            this.$picture.on('load error', function(){
                 this.dfd.resolve();
             }.bind(this));
         }
