@@ -128,7 +128,7 @@ class Post < ActiveRecord::Base
       Photo.savePostPhoto(file, self.photo_id)
     else
       name = Digest::MD5.hexdigest(Time.now.to_i.to_s + file.original_filename)
-      self.update_attribute(:photo_id, name)
+      # self.update_attribute(:photo_id, name)
       if (Photo.savePostPhoto(file, name.to_s))
         self.update_attribute(:photo_id, name)
       end
