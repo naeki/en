@@ -52,8 +52,8 @@ select{
 
 
 .h1{
-  font: 200 55px "_roboto";
-  color: #304197;
+  font: 200 64px "_roboto";
+  color: #00CB76;
   letter-spacing: -0.8px;
   display: inline-block;
   -webkit-transition: opacity 0.2s;
@@ -71,7 +71,7 @@ select{
 .post-page-view .h1{
   font: 300 42px "_roboto_slab";
   letter-spacing: 0px;
-  color: #333;
+  color: #222;
   line-height: 50px;
   display: block;
   margin-right: 0px;
@@ -185,6 +185,11 @@ $blue            : rgb(7, 95, 226);
 //    z-index: 3;
 //    -webkit-transform: translateX(-220px);
     &:hover{
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+      & + .context{
+        opacity: 0.1;
+      }
       .sidebar-content{
         opacity: 1;
 //      -webkit-transform: translateX(0px);
@@ -210,11 +215,13 @@ $blue            : rgb(7, 95, 226);
   color: #2a0084;
   padding: 0 0 0 25px;
   @include box_sizing;
-  width: 220px;
+  width: 240px;
   float: left;
   height: 100%;
   position: fixed;
   background: #f7f7f7;
+  -webkit-transition: background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 0px rgba(0,0,0,0.1);
   z-index: 1;
 }
 .sidebar-content {
@@ -263,12 +270,12 @@ $blue            : rgb(7, 95, 226);
   padding: 60px 0 10px;
   li {
     margin: 18px 0;
-    font: 300 29px "_roboto";
-    letter-spacing: -0px;
+    font: 300 36px "_roboto";
+    letter-spacing: -0.5px;
     .select-option {
       cursor: pointer;
       display: inline-block;
-      line-height: 34px;
+      line-height: 38px;
       border-bottom: 1px solid transparent;
       &:hover {
         border-bottom: 1px solid rgba(41,0,133,0.35);
@@ -354,15 +361,14 @@ $blue            : rgb(7, 95, 226);
 }
 .tag-link, .tag{
   background: transparent;
-  padding: 3px 19px 3px 8px;
+  padding: 0px 0px 0px 7px;
   display: inline-block;
-  color: #3B6E88;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
+  color: #597DA6;
+  font-size: 14px;
+  text-transform: lowercase;
+  letter-spacing: 0.2px;
   font-family: _roboto;
   font-weight: 400;
-  border: 1px solid #BDD6E7;
   border-radius: 16px;
   position: relative;
   &::after{
@@ -489,6 +495,7 @@ $blue            : rgb(7, 95, 226);
 /* context */
 .context{
   margin-left: 300px;
+  -webkit-transition: opacity 0.3s;
 }
 
 /* folder -> header */
@@ -795,11 +802,12 @@ $blue            : rgb(7, 95, 226);
     display: inline-block;
     position: relative;
     margin-right: 70px;
-    font: 300 30px "_roboto";
+    font: 300 36px "_roboto";
     cursor: pointer;
     color: #444;
     border-bottom: 1px solid transparent;
-    line-height: 24px;
+    line-height: 38px;
+    letter-spacing: -0.5px;
     &:hover{
       border-color: #888;
     }
@@ -1082,9 +1090,9 @@ $blue            : rgb(7, 95, 226);
       margin-bottom: 5px;
     }
     .tag-link{
-      font-size: 9px;
-      padding: 1px 6px;
-      font-weight: 500;
+      font-size: 12px;
+      padding: 0px 5px 0 0;
+      font-weight: 400;
     }
   }
 }
@@ -1157,22 +1165,26 @@ $blue            : rgb(7, 95, 226);
     cursor: pointer;
     display: inline-block;
     margin: 15px 0 14px;
-    font: 300 28px "_roboto_slab";
-    line-height: 29px;
-    letter-spacing: -0.8px;
-    &:hover{text-decoration: underline}
+    font: 300 25px "_roboto_slab";
+    position: relative;
+    line-height: 28px;
+    left: 0px;
+    letter-spacing: -0.2px;
+    -webkit-transition: color 0.3s, left 0.3s;
+    &:hover{color: #641D55; left: 4px;}
   }
   .post-text{
     font-size: 12px;
     color: #555;
-    line-height: 15px;
-    font-family: PT Serif;
+    line-height: 18px;
+    font-family: _roboto_slab;
   }
   .post-publish-date{
     margin-top: 10px;
     display: block;
     font-size: 11px;
     font-weight: bold;
+    display: none;
   }
 }
 
