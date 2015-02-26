@@ -8,7 +8,7 @@ gem 'rails'
 gem 'pg'
 gem 'annotate'
 #gem 'carrierwave'
-gem 'mini_magick'
+gem 'paperclip'
 gem 'therubyracer'
 gem 'execjs'
 

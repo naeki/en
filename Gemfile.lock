@@ -55,6 +55,10 @@ GEM
     builder (3.2.2)
     cancan (1.6.10)
     chronic (0.10.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.5)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -104,12 +108,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mini_magick (3.7.0)
-      subexec (~> 0.2.1)
     minitest (5.3.5)
     multi_json (1.10.1)
     multipart-post (2.0.0)
     options (2.3.2)
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     pg (0.17.1-x86-mingw32)
     polyglot (0.3.5)
@@ -153,7 +160,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    subexec (0.2.3)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -189,7 +195,7 @@ DEPENDENCIES
   execjs
   foreman
   jquery-rails
-  mini_magick
+  paperclip
   pg
   progress_bar
   rails
