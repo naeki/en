@@ -11,6 +11,7 @@ gem 'annotate'
 gem 'paperclip'
 gem 'therubyracer'
 gem 'execjs'
+gem 'aws-sdk'
 
 
 # Gems used only for assets and not required

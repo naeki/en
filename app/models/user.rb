@@ -33,10 +33,7 @@ class User < ActiveRecord::Base
 
 
   # Paperclip attachment
-  has_attached_file :avatar, :styles => {:thumbnail => "100x100#"},
-                             :url    => "public/:id/:style/:style_:filename",
-                             :path   => "public/:id/:style/:style_:filename"
-
+  has_attached_file :avatar, :styles => {:thumbnail => "100x100#"}
   validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 
