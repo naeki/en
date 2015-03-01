@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     current_user.set_photo(params[:file])
 
     respond_to do |format|
-      format.json { render json: current_user, location: root_path }
+      format.json { render json: User._build(current_user), location: root_path }
     end
   end
 
@@ -133,7 +133,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar)
     end
 
     def correct_user

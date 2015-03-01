@@ -12,7 +12,7 @@
 #
 
 class User < ActiveRecord::Base
-  has_one  :photo, dependent: :destroy
+  # has_one  :photo, dependent: :destroy
   has_many :posts
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
   has_many :views    , foreign_key: "user_id", dependent: :destroy
 
   has_many :recommendations, -> { where deleted: false, access: 1}, through: :likes, source: :post
+
+
+  # Paperclip attachment
+  has_attached_file :avatar, :styles => {:thumbnail => "100x100#"},
+                             :url    => "public/:id/:style/:style_:filename",
+                             :path   => "public/:id/:style/:style_:filename"
+
+  validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
+
 
   has_secure_password
 
@@ -113,9 +123,10 @@ class User < ActiveRecord::Base
     result = user.as_json
     result["followers_count"] = user.followers.count
     result["following_count"] = user.followed_users.count
-    result["posts_count"]        = user.posts.select{|m| !m.deleted && m.access == 1}.count
-    result["likes_count"]        = user.likes.select{|m| !m.post.deleted && m.post.access == 1}.count
+    result["posts_count"]     = user.posts.select{|m| !m.deleted && m.access == 1}.count
+    result["likes_count"]     = user.likes.select{|m| !m.post.deleted && m.post.access == 1}.count
     result["name"]            = user.name.empty? ? user.email : user.name        #TEMPORARY!!!!
+    result["avatar_url"]      = user.avatar.url(":thumbnail")
     result.delete("admin")
     result.delete("digest")
     result.delete("email")
@@ -127,20 +138,26 @@ class User < ActiveRecord::Base
 
 
   def set_photo(file)
-    if (self[:photo_id])
-      Photo.saveUserPhoto(file, self.photo_id)
-    else
-      name = Digest::MD5.hexdigest(Time.now.to_i.to_s + file.original_filename)
-      if (Photo.saveUserPhoto(file, name.to_s))
-        self.update_attribute(:photo_id, name)
-      end
-    end
+    self.avatar = file
+    self.save
+
+    # if (self[:photo_id])
+    #   Photo.saveUserPhoto(file, self.photo_id)
+    # else
+    #   name = Digest::MD5.hexdigest(Time.now.to_i.to_s + file.original_filename)
+    #   if (Photo.saveUserPhoto(file, name.to_s))
+    #     self.update_attribute(:photo_id, name)
+    #   end
+    # end
   end
 
   def delete_photo
-    if (self[:photo_id])
-      self.update_attribute(:photo_id, nil)   #Delete the file
-    end
+    self.avatar = nil
+    self.save
+
+    # if (self[:photo_id])
+    #   self.update_attribute(:photo_id, nil)   #Delete the file
+    # end
   end
 
 

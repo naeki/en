@@ -230,7 +230,8 @@ App.Views.User_Form = App.Views.BASE.extend({
     },
     renderBody : function(){
         this.$(".user-photo").attr({
-            src : Src.userPhoto + (this.model.get("photo_id") || Src.defaultUserPhoto) + ".jpg",
+//            src : Src.userPhoto + (this.model.get("photo_id") || Src.defaultUserPhoto) + ".jpg",
+            src : this.model.get("avatar_url"),
             alt : this.model.get("email")
         });
     }
