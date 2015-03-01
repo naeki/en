@@ -137,7 +137,6 @@ class User < ActiveRecord::Base
 
   def set_photo(file)
     self.avatar = file
-    self.save
 
     # if (self[:photo_id])
     #   Photo.saveUserPhoto(file, self.photo_id)
@@ -151,7 +150,6 @@ class User < ActiveRecord::Base
 
   def delete_photo
     self.avatar = nil
-    self.save
 
     # if (self[:photo_id])
     #   self.update_attribute(:photo_id, nil)   #Delete the file

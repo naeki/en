@@ -93,6 +93,7 @@ class UsersController < ApplicationController
 
   def upload_photo
     current_user.set_photo(params[:file])
+    current_user.save
 
     respond_to do |format|
       format.json { render json: User._build(current_user), location: root_path }
@@ -101,6 +102,7 @@ class UsersController < ApplicationController
 
   def delete_photo
     current_user.delete_photo
+    current_user.save
 
     respond_to do |format|
       format.json { render json: current_user, location: root_path }
