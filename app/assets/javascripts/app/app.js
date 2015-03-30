@@ -137,8 +137,16 @@ App.loader = {
     dfd : {
         current_user : $.Deferred()
     },
+
+
+
+    //todo: Зачем этот метод? только чтобы запускать другой?
+
+
+
+
     sync : function(url, params, options){
-        var options = options || {}, dfd = $.Deferred();
+        var options = options || {}; dfd = $.Deferred();
         App.loader.send(dfd, url, params, options)
         .then(
             function(result){

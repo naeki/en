@@ -11,7 +11,10 @@ gem 'annotate'
 gem 'paperclip'
 gem 'therubyracer'
 gem 'execjs'
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
+gem 'aws-s3'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 
 # Gems used only for assets and not required

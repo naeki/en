@@ -11,6 +11,8 @@
 #  remember_token  :string(255)
 #
 
+
+
 class User < ActiveRecord::Base
   # has_one  :photo, dependent: :destroy
   has_many :posts

@@ -92,11 +92,19 @@ class UsersController < ApplicationController
 
 
   def upload_photo
-    current_user.set_photo(params[:file])
-    current_user.save
 
-    respond_to do |format|
-      format.json { render json: User._build(current_user), location: root_path }
+    @user = User.find(current_user.id)
+    current_user.set_photo(params[:file])
+
+    # @user.attributes(name: '12')
+    if (@user.save)
+      respond_to do |format|
+        format.json { render json: User._build(current_user), location: root_path }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: "error", location: root_path }
+      end
     end
   end
 
