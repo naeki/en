@@ -39,11 +39,15 @@ GEM
       builder
       mime-types
       xml-simple
-    aws-sdk (1.63.0)
-      aws-sdk-v1 (= 1.63.0)
-    aws-sdk-v1 (1.63.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
+    aws-sdk (2.0.28)
+      aws-sdk-resources (= 2.0.28)
+    aws-sdk-core (2.0.28)
+      builder (~> 3.0)
+      jmespath (~> 1.0)
+      multi_json (~> 1.0)
+      multi_xml (~> 0.5)
+    aws-sdk-resources (2.0.28)
+      aws-sdk-core (= 2.0.28)
     backbone-on-rails (1.1.1.0)
       actionmailer
       actionpack
@@ -110,6 +114,8 @@ GEM
     highline (1.6.21)
     hike (1.2.3)
     i18n (0.6.9)
+    jmespath (1.0.2)
+      multi_json (~> 1.0)
     jquery-rails (3.1.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -119,14 +125,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mini_portile (0.6.2)
     minitest (5.3.5)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
-    nokogiri (1.6.6.2-x86-mingw32)
-      mini_portile (~> 0.6.0)
     options (2.3.2)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
@@ -202,7 +204,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   aws-s3
-  aws-sdk (< 2.0)
+  aws-sdk (~> 2)
   backbone-on-rails
   bcrypt-ruby
   bootstrap-sass
