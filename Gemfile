@@ -11,6 +11,7 @@ gem 'annotate'
 gem 'paperclip'
 gem 'therubyracer'
 gem 'execjs'
+gem 'aws-sdk-v1'
 gem 'aws-sdk', '~> 2'
 gem 'aws-s3'
 
