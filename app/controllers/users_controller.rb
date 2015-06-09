@@ -92,25 +92,15 @@ class UsersController < ApplicationController
 
 
   def upload_photo
-
-    @user = User.find(current_user.id)
     current_user.set_photo(params[:file])
 
-    # @user.attributes(name: '12')
-    if (@user.save)
-      respond_to do |format|
-        format.json { render json: User._build(current_user), location: root_path }
-      end
-    else
-      respond_to do |format|
-        format.json { render json: "error", location: root_path }
-      end
+    respond_to do |format|
+      format.json { render json: current_user, location: root_path }
     end
   end
 
   def delete_photo
     current_user.delete_photo
-    current_user.save
 
     respond_to do |format|
       format.json { render json: current_user, location: root_path }
@@ -143,7 +133,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :avatar)
+      params.require(:user).permit(:email, :password, :password_confirmation, :name)
     end
 
     def correct_user

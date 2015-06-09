@@ -289,7 +289,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 App.Collections.UserPosts = App.Collections.Posts.extend({
     fetch : function(){
         App.loader.sync("/users/posts", {data : {id: this.model.id}, type: "GET"}).done(function(result){
-            this.reset(result.map(Post.builder));
+            this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }
 });

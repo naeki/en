@@ -35,8 +35,8 @@ class User < ActiveRecord::Base
 
 
   # Paperclip attachment
-  has_attached_file :avatar, :styles => {:thumbnail => "100x100#"}
-  validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  # has_attached_file :avatar, :styles => {:thumbnail => "100x100#"}
+  # validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 
 
@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
     result["posts_count"]     = user.posts.select{|m| !m.deleted && m.access == 1}.count
     result["likes_count"]     = user.likes.select{|m| !m.post.deleted && m.post.access == 1}.count
     result["name"]            = user.name.empty? ? user.email : user.name        #TEMPORARY!!!!
-    result["avatar_url"]      = user.avatar.url(":thumbnail")
+    # result["avatar_url"]      = user.avatar.url(":thumbnail")
     result.delete("admin")
     result.delete("digest")
     result.delete("email")
@@ -138,24 +138,52 @@ class User < ActiveRecord::Base
 
 
   def set_photo(file)
-    self.avatar = file
+    # self.avatar = file
+    require "base64"
+
+
+    image = MiniMagick::Image.read(file.read)
+
+    # image.write original_path
+
+    image.resize "150x150^"
+    image.crop "150x150+0+0"
+    image.format "jpg"
+
+    enc   = Base64.encode64(image.to_blob())
+
+    image.resize "60x60"
+    image.format "gif"
+    # image.write small_path
+
+    enc_s = Base64.encode64(image.to_blob())
+
+
+
+    # self.update_attribute(:photo, enc)
+    # self.update_attribute(:photo_s, enc_s)
+
+    self.update({photo_s: enc_s, photo: enc})
+
+
 
     # if (self[:photo_id])
     #   Photo.saveUserPhoto(file, self.photo_id)
     # else
-    #   name = Digest::MD5.hexdigest(Time.now.to_i.to_s + file.original_filename)
-    #   if (Photo.saveUserPhoto(file, name.to_s))
-    #     self.update_attribute(:photo_id, name)
-    #   end
+    #   # name = Digest::MD5.hexdigest(Time.now.to_i.to_s + file.original_filename)
+    #   # if (Photo.saveUserPhoto(file, self))
+    #   #   self.update_attribute(:photo_id, name)
+    #   # end
+    #   Photo.saveUserPhoto(file, self)
     # end
   end
 
   def delete_photo
-    self.avatar = nil
+    # self.avatar = nil
 
-    # if (self[:photo_id])
-    #   self.update_attribute(:photo_id, nil)   #Delete the file
-    # end
+    if (self[:photo_id])
+      self.update_attribute(:photo_id, nil)   #Delete the file
+    end
   end
 
 

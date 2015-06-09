@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150301124522) do
+ActiveRecord::Schema.define(version: 20150530104535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,20 +106,20 @@ ActiveRecord::Schema.define(version: 20150301124522) do
   create_table "users", force: true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "remember_token"
-    t.boolean  "admin",               default: false
-    t.string   "name",                default: ""
-    t.string   "digest",              default: ""
-    t.string   "tank",                default: ""
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.boolean  "admin",           default: false
+    t.string   "name",            default: ""
+    t.string   "digest",          default: ""
+    t.string   "tank",            default: ""
+    t.string   "photo_id"
+    t.text     "photo_s"
+    t.text     "photo"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["photo_id"], name: "index_users_on_photo_id", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
   create_table "views", force: true do |t|

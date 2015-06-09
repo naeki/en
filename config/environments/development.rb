@@ -36,13 +36,18 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
 
-  config.paperclip_defaults = {
-      :storage => :s3,
-      :s3_credentials => {
-          :bucket => ENV['S3_BUCKET_NAME'],
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
-      }
-  }
+  # config.paperclip_defaults = {
+  #     :storage => :s3,
+  #     :region => 'us-west-2',
+  #     :s3_credentials => {
+  #         :bucket => ENV['S3_BUCKET_NAME'],
+  #         :access_key_id => 'AKIAJZVF2MDTXIKOSC3A',
+  #         :secret_access_key => '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'
+  #     }
+  # }
+  # Aws.config.update({
+  #   region: 'us-west-2',
+  #   credentials: Aws::Credentials.new('AKIAJZVF2MDTXIKOSC3A', 'bKYiNHQ132KnBKtmhyMlAjWlJSnoed8vo1ZF07gs')
+  # })
 
 end
