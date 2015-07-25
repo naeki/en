@@ -347,7 +347,7 @@ $blue            : rgb(7, 95, 226);
   right:0px;
   top:0px;
   text-align: right;
-  z-index: 2;
+  z-index: 222;
 }
 
 .author-box{
@@ -674,10 +674,16 @@ $blue            : rgb(7, 95, 226);
   margin: 0px 0 30px;
   display: block;
 }
+
+.file-source{
+}
+
+/* Uploading photo*/
 .select-file{
-  display: block;
+  display: inline-block;
   margin-bottom: 30px;
 }
+
 .upload-bar{
   height: 20px;
   width: 300px;
@@ -694,6 +700,39 @@ $blue            : rgb(7, 95, 226);
     background-size: 0% 100%;
   }
 }
+
+.or-divider{
+  font-size: 14px;
+  margin: 0px 10px;
+  color: #bbb;
+}
+
+
+
+
+/* Flickr*/
+input.flickr-open{
+  background-color: #ff0084;
+  color: #fff;
+}
+
+.flickr-gallery-fade{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.1);
+  z-index: 1000;
+  left: 0px;
+  top:0px;
+}
+.flickr-gallery{
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+
+
 
 
 
@@ -991,6 +1030,14 @@ $blue            : rgb(7, 95, 226);
 
 
 
+
+
+
+/* Post-settings page */
+.post-settings{
+  font-family: "_roboto";
+  font-size: 14px;
+}
 
 .change-access,
 .change-photo{

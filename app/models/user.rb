@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
 
   has_many :recommendations, -> { where deleted: false, access: 1}, through: :likes, source: :post
 
-
+  validates :photo, length: { maximum: 100000 }
+  validates :photo_s, length: { maximum: 100500 }
   # Paperclip attachment
   # has_attached_file :avatar, :styles => {:thumbnail => "100x100#"}
   # validates_attachment :avatar, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
@@ -160,10 +161,13 @@ class User < ActiveRecord::Base
 
 
 
-    # self.update_attribute(:photo, enc)
-    # self.update_attribute(:photo_s, enc_s)
+    self.update_attribute(:photo, enc)
+    self.update_attribute(:photo_s, enc_s)
 
-    self.update({photo_s: enc_s, photo: enc})
+    # self.photo_s = enc_s
+    # self.photo = enc
+
+
 
 
 

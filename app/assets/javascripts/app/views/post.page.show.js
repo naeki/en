@@ -360,13 +360,18 @@ App.Views.Post_Settings = App.Views.BASE.extend({
             <h3>"+ Lang.photo_change +"</h3>\
             <img class='post-picture'>\
             <div class='upload-bar'></div>\
-            <input type='file' class='select-file' value='"+ Lang.upload +"'>\
+            <div class='file-source'>\
+                <input type='file' class='select-file' value='"+ Lang.upload +"'>\
+                <span class='or-divider'>or</span>\
+                <input type='button' class='flickr-open' value='" + Lang.flickr_open + "'>\
+            </div>\
             <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
             <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
         </div>\
         <div class='edit-tags'></div>",
     events : {
         "click .change-life"  : "changeLife",
+        "click .flickr-open"  : "openGallery",
         "click .submit-photo" : "submitPicture",
         "click .delete-photo" : "deletePicture",
         "change .access-select" : function(e){
@@ -433,6 +438,13 @@ App.Views.Post_Settings = App.Views.BASE.extend({
             }.bind(this)
         );
     },
+
+    openGallery : function(){
+        if (!this.gallery) this.gallery = new App.Views.FlickrGallery();
+
+        this.gallery.open();
+    },
+
     deletePicture : function(){
         var data = {id : this.model.id};
         return App.loader.sync("posts/picture", {data: data, type: "DELETE"});
