@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
 
   # Own posts
   def own_posts(options)
-    options = {"deleted" => false}.merge(options)
+    options = {"deleted" => 0}.merge(options)
     # query = ''
     # options.each {|key, value| query += " AND #{key}=#{value}" }
 

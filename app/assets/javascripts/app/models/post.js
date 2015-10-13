@@ -47,7 +47,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
     },
     del : function(){
         if (confirm(Lang.confirm)){
-            this.set('deleted', true);
+            this.set('deleted', 1);
             return Post.save(this).done(function(result){
                 //App.router.navigate("all", {trigger:true, replace:true});
             });
@@ -301,7 +301,7 @@ App.Collections.UserPosts = App.Collections.Posts.extend({
 
 App.Collections.UserDel = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : true}}, type: "GET"}).done(function(result){
+        App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : 1}}, type: "GET"}).done(function(result){
             this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }
