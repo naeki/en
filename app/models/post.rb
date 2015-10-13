@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
 
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
-    where("(user_id IN (#{followed_user_ids})) AND deleted=false AND access=1",
+    where("(user_id IN (#{followed_user_ids})) AND deleted=0 AND access=1",
           user_id: user)
   end
 
