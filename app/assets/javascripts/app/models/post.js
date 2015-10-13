@@ -68,13 +68,16 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         return this.set("permissions", result);
     },
     getPhoto : function(){
-        return this.get("photo_id") && (Src.userPhoto + this.get("photo_id") + ".jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_o.jpg");
     },
     getSmallPhoto : function(){
-        return this.get("photo_id") && (Src.userPhoto + this.get("photo_id") + "_s.jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_q.jpg");
+    },
+    getNormalPhoto : function(){
+        return this.get("photo_id") && (this.get("photo_id") + "_n.jpg");
     },
     getBigPhoto : function(){
-        return this.get("photo_id") && (Src.userPhoto + this.get("photo_id") + "_b.jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_b.jpg");
     },
 
 
@@ -223,6 +226,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
                 data : _.omit(model.toJSON(), Post.frontAttributes)
             };
 
+        // All fields? seriously?
         return App.loader.sync(url, {data: data, type: type}).done(function(result){
                 model.set(result);
             });

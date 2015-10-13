@@ -414,33 +414,38 @@ App.Views.Post_Settings = App.Views.BASE.extend({
     // PICTURE
     renderPicture : function(){
         this.$picture.attr({
-            src : Src.userPhoto + (this.model.get("photo_id") || Src.defaultUserPhoto) + ".jpg",
+            src : this.model.getNormalPhoto(),
             alt : this.model.get("title")
         });
     },
-    submitPicture : function(){
-        var data = {
-            file    : this.$(".select-file")[0].files[0],
-            id : this.model.id
-        };
-
-        this.$uploadBar.addClass("visible");
-        return App.loader.sync("posts/picture", {data: data, type: "POST"}).then(
-            function(result){
-                setTimeout(function(){
-                    Post.builder(result).trigger("change:photo_id");
-                    this.$uploadBar.removeClass("visible").css("background-size","0% 100%");
-                }.bind(this), 200);
-            }.bind(this),
-            function(){},
-            function(progress){
-                this.$uploadBar.css("background-size", progress*100 + "% 100%");
-            }.bind(this)
-        );
-    },
+//    submitPicture : function(){
+//        var data = {
+//            file    : this.$(".select-file")[0].files[0],
+//            id : this.model.id
+//        };
+//
+//        this.$uploadBar.addClass("visible");
+//        return App.loader.sync("posts/picture", {data: data, type: "POST"}).then(
+//            function(result){
+//                setTimeout(function(){
+//                    Post.builder(result).trigger("change:photo_id");
+//                    this.$uploadBar.removeClass("visible").css("background-size","0% 100%");
+//                }.bind(this), 200);
+//            }.bind(this),
+//            function(){},
+//            function(progress){
+//                this.$uploadBar.css("background-size", progress*100 + "% 100%");
+//            }.bind(this)
+//        );
+//    },
 
     openGallery : function(){
-        if (!this.gallery) this.gallery = new App.Views.FlickrGallery();
+        if (!this.gallery) {
+            this.gallery = new App.Views.FlickrGallery();
+            this.listenTo(this.gallery, "select", function(id){
+                this.model.set("photo_id", id).save();
+            });
+        }
 
         this.gallery.open();
     },
