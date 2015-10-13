@@ -176,7 +176,7 @@ class PostsController < ApplicationController
     search = Post.__elasticsearch__.search(
         query: {
           query_string: {
-            query: "*"+ params[:string] +"* AND deleted:false AND access: 1",
+            query: "*"+ params[:string] +"* AND deleted:0 AND access: 1",
             fields: ['title^10', 'text']
           }
         }

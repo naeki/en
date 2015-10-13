@@ -52,12 +52,12 @@ class Post < ActiveRecord::Base
   end
 
   def self.all_public
-    sql = "SELECT * FROM posts WHERE (deleted=false AND access=1) ORDER BY published_at DESC"
+    sql = "SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY published_at DESC"
     @posts = Post.find_by_sql(sql)
   end
 
   def self.all_public_pop
-    sql = "SELECT * FROM posts WHERE (deleted=false AND access=1) ORDER BY likes_count DESC"
+    sql = "SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY likes_count DESC"
     @posts = Post.find_by_sql(sql)
   end
 
