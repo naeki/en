@@ -256,6 +256,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     model : Post,
     initialize : function(models, options){
         options && (this.parent = options.parent);
+        options && (this.user = options.user);
     },
     by_tag : function(id){
         return PostsCollection.fetch("/tags", {data: {tag_id: id}}).then(function(result){
@@ -292,7 +293,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 // Posts of user
 App.Collections.UserPosts = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/posts", {data : {id: this.model.id}, type: "GET"}).done(function(result){
+        App.loader.sync("/users/posts", {data : {id: this.user.id}, type: "GET"}).done(function(result){
             this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }

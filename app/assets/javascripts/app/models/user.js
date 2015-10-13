@@ -1,10 +1,10 @@
 window.User = App.Models.User = Backbone.Model.extend({
     initialize : function(){
-        this.posts       = new App.Collections.UserPosts(null, {model : this});
-        this.deleted     = new App.Collections.UserDel(null, {model : this});
-        this.likes       = new App.Collections.UserLikes(null, {model : this});
-        this.followers   = new App.Collections.Followers(null, {model : this});
-        this.following   = new App.Collections.Following(null, {model : this});
+        this.posts       = new App.Collections.UserPosts(null, {user : this});
+        this.deleted     = new App.Collections.UserDel(null,   {user : this});
+        this.likes       = new App.Collections.UserLikes(null, {user : this});
+        this.followers   = new App.Collections.Followers(null, {user : this});
+        this.following   = new App.Collections.Following(null, {user : this});
         this.digest_tags = new Tags(null);
     },
     open : function(options){
