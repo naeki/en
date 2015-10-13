@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150530104535) do
+ActiveRecord::Schema.define(version: 20151013193442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,14 +67,14 @@ ActiveRecord::Schema.define(version: 20150530104535) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "text"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "user_id"
-    t.boolean  "deleted",      default: false
     t.string   "photo_id"
     t.integer  "likes_count",  default: 0
     t.integer  "access",       default: 0
     t.integer  "published_at", default: 0
+    t.integer  "deleted",      default: 0
   end
 
   add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree

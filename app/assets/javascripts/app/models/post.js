@@ -301,13 +301,8 @@ App.Collections.UserPosts = App.Collections.Posts.extend({
 
 App.Collections.UserDel = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/posts", {data : {
-            id: this.model.id,
-            options: {
-                deleted : true
-            }
-        }, type: "GET"}).done(function(result){
-            this.reset(result.map(Post.builder));
+        App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : true}}, type: "GET"}).done(function(result){
+            this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }
 });
@@ -315,8 +310,8 @@ App.Collections.UserDel = App.Collections.Posts.extend({
 // Likes posts of user
 App.Collections.UserLikes = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/likes", {data : {id: this.model.id}, type: "GET"}).done(function(result){
-            this.reset(result.map(Post.builder));
-        }.bind(this));;
+        App.loader.sync("/users/likes", {data : {id: this.user.id}, type: "GET"}).done(function(result){
+            this.reset((result.posts || result).map(Post.builder));
+        }.bind(this));
     }
 });

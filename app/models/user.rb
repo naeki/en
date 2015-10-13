@@ -101,11 +101,11 @@ class User < ActiveRecord::Base
   # Own posts
   def own_posts(options)
     options = {"deleted" => false}.merge(options)
-    query = ''
-    options.each {|key, value| query += " AND #{key}=#{value}" }
+    # query = ''
+    # options.each {|key, value| query += " AND #{key}=#{value}" }
 
-    sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query
-    @posts = Post.find_by_sql(sql)
+    # sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query
+    @posts = Post.where(options)
   end
 
   def own_public_posts(options)
