@@ -151,7 +151,7 @@ App.loader = {
         var options = options || {}; dfd = $.Deferred();
         App.loader.send(dfd, url, params, options)
         .then(
-            function(result){
+            function(dfd, result){
                 if (!result || result.error){
                     if (result && result.error && (result.error == 2))
                         return App.service.signout();
@@ -160,7 +160,7 @@ App.loader = {
                 }
                 else
                     return dfd.resolve(result);
-            }.bind(this),
+            }.bind(this, dfd),
 
             function(result){
                 alert(Lang.error.loading + result.toString());
