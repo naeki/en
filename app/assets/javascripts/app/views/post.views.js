@@ -49,7 +49,7 @@ App.Views.Post_small = App.Views.BASE.extend({
 
         if (this.model.getPhoto()){
             this.$picture.show().attr({
-                src : this.model.getSmallPhoto(),
+                src : this.model.getNormalPhoto(),
                 alt : this.model.get("title")
             });
             this.$picture.on('load error', function(){
