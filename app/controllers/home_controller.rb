@@ -9,6 +9,8 @@ class HomeController < ApplicationController
     if (signed_in?)
       render 'index'
     else
+      SessionsController.new
+      @user = User.new
       render file: 'home/static', layout: 'simple'
     end
   end

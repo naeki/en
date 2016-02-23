@@ -64,7 +64,7 @@ class Post < ActiveRecord::Base
   def self._build(post)
     result = post.as_json
 
-    if (post.deleted || post.access == 0)
+    if (post.deleted == 1 || post.access == 0)
       result.delete("text")
     else
       result["tags"] = post.tags
@@ -96,7 +96,7 @@ class Post < ActiveRecord::Base
     result.delete("text")
 
     if (!post.deleted || post.access == 1)
-      result["short_text"] = post.text.split(" ").slice(0, 50).join(" ") + "..." #Считать слова а не буквы  slice(0, 300)
+      result["short_text"] = post.text.split(" ").slice(0, 23).join(" ") + "..." #Считать слова а не буквы  slice(0, 300)
       result["tags"] = post.tags
     else
       result["short_text"] = "Post was deleted"

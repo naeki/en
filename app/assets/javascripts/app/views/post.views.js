@@ -1,17 +1,14 @@
 App.Views.Post_small = App.Views.BASE.extend({
     className : "post-small",
     _markup : "\
-            <div class='post-small-header'>\
-                <div class='post-stat'></div>\
-                <img class='user-photo-small user-link'>\
-                <span class='post-author user-link'></span>\
-            </div>\
             <img class='post-small-photo'>\
             <div class='post-small-body'>\
                 <span class='post-title'></span>\
+                <div class='post-stat post-stat-likes'></div>\
                 <div class='post-text'></div>\
                 <span class='post-publish-date'></span>\
                 <ul class='post-tags'></ul>\
+                <img class='user-photo-small user-link'>\
             </div>",
     events : {
         "click .post-title" : function(e){
@@ -61,7 +58,9 @@ App.Views.Post_small = App.Views.BASE.extend({
             this.dfd.resolve()
         }
 
-        this.$(".post-stat").html(this.model.get("likes"));
+
+
+        this.$(".post-stat-likes").attr("data-likes", this.model.get("likes"));
         this.$(".post-title").html(this.model.get("title"));
         this.$(".post-text").html(this.model.get("short_text"));
         this.$(".post-publish-date").html(Post.getShortDate(this.model.get("published_at") || this.model.get("created_at")));

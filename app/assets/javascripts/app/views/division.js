@@ -1,4 +1,5 @@
 App.Views.Folder = App.Views.BASE.extend({
+    className : "folder-view",
     _markup :
         "<div class='folder-header'>\
             <span class='h1'></span>\

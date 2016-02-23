@@ -1,3 +1,29 @@
-<h1>HOME</h1>
-<%= link_to "signin", signin_path %>
-<%= link_to "Sign out", signout_path, method: "delete" %>
+<div class="input-block">
+  <div class="black-box">
+      <div class="form-box signin-box active">
+        <%= form_for(:session, url: sessions_path) do |f| %>
+            <%= f.text_field :email, :html => {:autocomplete => 'off'} %>
+            <%= f.label :email %>
+            <%= f.password_field :password %>
+            <%= f.label :password %>
+        <% end %>
+      </div>
+      <div class="form-box signup-box">
+        <%= form_for @user, :html => {:autocomplete => 'off'}, url: register_path do |f| %>
+                <%= f.text_field :email, :autocomplete => 'off' %>
+                <%= f.label :email %>
+
+
+                <%= f.password_field :password %>
+                <%= f.label :password %>
+
+                <%= f.password_field :password_confirmation %>
+                <%= f.label :password_confirmation %>
+        <% end %>
+      </div>
+    <button class="send signin"></button>
+  </div>
+  <span class="toggle-type">Sign up</span>
+</div>
+
+

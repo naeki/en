@@ -4,17 +4,14 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
     className : "page-post",
     _markup:"<div class='post-page-view'>\
+        <div class='post-page-photo'></div>\
         <div class='page-header'>\
             <div class='h1'></div>\
+            <ul class='tags'></ul>\
             <div class='post-stats'>\
                 <span class='post-stat-likes post-stat link'></span>\
                 <span class='post-stat-comments post-stat link'></span><br>\
                 <span class='post-stat-view post-stat-info'></span>\
-            </div>\
-            <div class='post-page-illustration'>\
-                <div class='post-page-illustration__wrapper'>\
-                    <div class='post-page-photo__dot'><img class='post-page-photo'></div>\
-                </div>\
             </div>\
             <div class='history-back'></div>\
         </div>\
@@ -28,12 +25,11 @@ App.Views.Page_Post = App.Views.BASE.extend({
                 <img class='user-photo-middle user-link'><br>\
                 <span class='post-author user-name user-link'></span>\
             </div>\
-            <ul class='tags'></ul>\
             <div class='post-meta'>\
                 <div class='edit-controls'></div>\
                 <ul class='post-actions'>\
-                    <li><span class='post-action do-bookmark link'></span></li>\
                     <li><span class='post-action do-like link'></span></li>\
+                    <li><span class='post-action do-bookmark link'></span></li>\
                 </ul>\
                 <div class='post-info'>\
                     <p class='page-number'></p>\
@@ -90,10 +86,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
 
         //this.$(".post-page-illustration__wrapper").css("background-image", "url("+ this.model.getBigPhoto() +")");
-        this.$picture.attr({
-            src : this.model.getBigPhoto(),
-            alt : this.model.get("title")
-        });
+        this.$picture.css("background-image", "url(" + this.model.getBigPhoto() + ")");
 
         this.$likes.html(this.model.get("likes"));
         this.$comments.html(this.model.get("comments"));
@@ -141,14 +134,14 @@ App.Views.Page_Post = App.Views.BASE.extend({
     renderActions : function(){
 
         if (this.model.iAdded())
-            this.$('.do-bookmark').html("Добавлено").addClass("done");
+            this.$('.do-bookmark').addClass("done");
         else
-            this.$('.do-bookmark').html("Добавить").removeClass("done");
+            this.$('.do-bookmark').removeClass("done");
 
         if (this.model.iLike())
-            this.$('.do-like').html("Рекомендуете").addClass("done");
+            this.$('.do-like').addClass("done");
         else
-            this.$('.do-like').html("Рекомендую").removeClass("done");
+            this.$('.do-like').removeClass("done");
     },
     likeAction : function(){
         this.model.like() || this.model.unlike();

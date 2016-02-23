@@ -1,6 +1,9 @@
 App.Views.Main = Backbone.View.extend({
     className : "main",
-    _markup : "<aside class='sidebar'><div class='sidebar-content'></div></aside>\
+    _markup : "\
+                   <div class='sidebar-container'>\
+                       <aside class='sidebar'></aside>\
+                   </div>\
                <div class='context'></div>",
     events : {
         "click .user-link" : function(e){
@@ -12,7 +15,7 @@ App.Views.Main = Backbone.View.extend({
         this.$context = this.$el.children(".context");
 
         new App.Views.Sidebar({
-            el : this.$(".sidebar-content")
+            el : this.$(".sidebar")
         });
     },
     render : function(){
@@ -93,12 +96,14 @@ App.Views.Sidebar = Backbone.View.extend({
             <span class='user-name user-link'></span>\
             <a href='/signout' data-method='delete' class='link signout' rel='nofollow'>"+ Lang.signout +"</a>\
         </div>\
-        <ul class='sidebar-menu'></ul>\
-        <ul class='sidebar-small-menu'>\
-            <li><span class='new-post'>"+ Lang.new_post +"</span></li>\
-            <li><span class='users'>"+ Lang.users +"</span></li>\
-            <li><span class='search'>"+ Lang.search +"</span></li>\
-        </ul>",
+        <div class='footer'>\
+            <ul class='sidebar-menu'></ul>\
+            <ul class='sidebar-small-menu'>\
+                <li><span class='new-post'>"+ Lang.new_post +"</span></li>\
+                <li><span class='users'>"+ Lang.users +"</span></li>\
+                <li><span class='search'>"+ Lang.search +"</span></li>\
+            </ul>\
+        </div>",
     events : {
         "click .new-post" : function(){
             App.router.navigate("new", {trigger:true, replace:false});

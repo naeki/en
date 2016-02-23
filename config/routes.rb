@@ -35,6 +35,7 @@ En::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy] do
     collection do
+      post '/auth' , to: 'sessions#auth'
       get :get_current_user
     end
   end
@@ -118,7 +119,7 @@ En::Application.routes.draw do
   #match "/*path", to: "home#index"
 
   get    "/signup",     to: "users#new",          via: 'get'
-  get    "/signin",     to: "sessions#new",       via: 'get'
+  # get    "/signin",     to: "sessions#new",       via: 'get'
   delete "/signout",    to: "sessions#destroy"
 
   get "/digest",        to: "home#enter"

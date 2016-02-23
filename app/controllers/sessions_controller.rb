@@ -14,6 +14,21 @@ class SessionsController < ApplicationController
     end
   end
 
+  def auth
+    user = User.find_by_email(params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
+      sign_in user
+      # redirect_to root_path
+      respond_to do |format|
+        format.json { render json: _build_current_user, location: root_path }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: {error => "wrong pass or login"}, location: root_path }
+      end
+    end
+  end
+
   def get_current_user
     respond_to do |format|
       format.json { render json: _build_current_user, location: root_path }

@@ -205,7 +205,7 @@ class User < ActiveRecord::Base
 
 
 
-  def self.run_digest_generation
+  def User.run_digest_generation
     User.all.each do |user|
       user.generate_digest
     end
