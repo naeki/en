@@ -49,6 +49,7 @@ gem 'progress_bar'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'cancan'
 gem 'bootstrap-sass'
 
