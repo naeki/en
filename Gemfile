@@ -37,7 +37,7 @@ end
 gem 'jquery-rails'
 gem 'foreman'
 
-ruby '2.1.2'
+ruby '2.3.0'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'elasticsearch', '~> 0.4'
