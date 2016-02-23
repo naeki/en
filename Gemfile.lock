@@ -233,6 +233,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   backbone-on-rails
+  bcrypt
   bootstrap-sass
   cancan
   coffee-rails
