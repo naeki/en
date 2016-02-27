@@ -1,0 +1,264 @@
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Regular-webfont.eot');
+    src: url('font/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/Roboto-Regular-webfont.woff') format('woff'),
+         url('font/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('font/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Light-webfont.eot');
+    src: url('font/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/Roboto-Light-webfont.svg#robotolight') format('svg'),
+        url('font/Roboto-Light-webfont.woff') format('woff'),
+        url('font/Roboto-Light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Thin-webfont.eot');
+    src: url('font/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/Roboto-Thin-webfont.svg#robotothin') format('svg'),
+        url('font/Roboto-Thin-webfont.woff') format('woff'),
+        url('font/Roboto-Thin-webfont.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Medium-webfont.eot');
+    src: url('font/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/Roboto-Medium-webfont.svg#robotomedium') format('svg'),
+        url('font/Roboto-Medium-webfont.woff') format('woff'),
+        url('font/Roboto-Medium-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: '_roboto_slab';
+    src: url('font/RobotoSlab-Thin-webfont.eot');
+    src: url('font/RobotoSlab-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/RobotoSlab-Thin-webfont.svg#roboto_slabthin') format('svg'),
+        url('font/RobotoSlab-Thin-webfont.woff') format('woff'),
+        url('font/RobotoSlab-Thin-webfont.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto_slab';
+    src: url('font/RobotoSlab-Light-webfont.eot');
+    src: url('font/RobotoSlab-Light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/RobotoSlab-Light-webfont.svg#roboto_slablight') format('svg'),
+        url('font/RobotoSlab-Light-webfont.woff') format('woff'),
+        url('font/RobotoSlab-Light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto_slab';
+    src: url('font/RobotoSlab-Regular-webfont.eot');
+    src: url('font/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/RobotoSlab-Regular-webfont.svg#roboto_slabregular') format('svg'),
+        url('font/RobotoSlab-Regular-webfont.woff') format('woff'),
+        url('font/RobotoSlab-Regular-webfont.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+
+
+
+*/
+
+@import url(http://fonts.googleapis.com/css?family=PT+Serif+Caption|PT+Serif&subset=cyrillic-ext,latin);
+
+
+.input-block{
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    min-width: 340px;
+    height: 550px;
+    background: url("../images/ship.png");
+    top: 100px;
+    margin: 0 auto;
+}
+
+.black-box{
+    width: 340px;
+    height: 340px;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    background: #000;
+}
+.form-box{
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    padding: 20px;
+}
+.form-box.active{
+    z-index: 2;
+}
+
+.form-box form{
+    padding: 0px;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.form-box.active form{
+    opacity: 1;
+}
+
+.form-box input{
+    background: none;
+    border: 0px;
+    text-align: center;
+    margin-top: 43px;
+    color: #fff;
+    font-family: _roboto;
+    width: 90%;
+    font-size: 17px;
+    height: 35px;
+    font-weight: 300;
+}
+input#session_password,
+input#user_password,
+input#user_password_confirmation{
+    font-size: 28px;
+    line-height: 37px;
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+input.send,
+button.send{
+    width: 50px;
+    height: 50px;
+    border: 2px solid #bbb;
+    border-radius: 50px;
+    background: #000;
+    display: block;
+    transition: border-color 0.2s, background 0.2s, transform 0.4s;
+    bottom: 0px;
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+}
+button.send.signin{
+    transform: translateY(-40px);
+}
+button.send.signup{
+    transform: translateY(-40px);
+}
+
+input.send:hover,
+button.send:hover{
+    border: 2px solid #ddd;
+}
+input.send::before,
+button.send::before{
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 1px;
+    background: #eee;
+    content: "";
+    left: 11px;
+}
+input.send::after,
+button.send::after{
+    width: 14px;
+    height: 14px;
+    border-top: 1px solid #eee;
+    border-right: 1px solid #eee;
+    transform: rotate(45deg);
+    display: block;
+    position: absolute;
+    content: "";
+    top: 16px;
+    left: 17px;
+}
+input.send:focus,
+button.send:focus{
+    outline: none;
+    border-color: #4395dd;
+}
+.toggle-type{
+    position: absolute;
+    font-family: _roboto;
+    bottom: -40px;
+    right: 0px;
+    font-weight: 300;
+    font-size: 16px;
+    border-bottom: 1px solid #404040;
+    line-height: 16px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+form.new_user{
+    position: relative;
+}
+
+.signup-box input{
+    background: #000;
+    margin-bottom: 5px;
+    margin-top: 22px;
+    outline: none;
+}
+.signup-box form{
+    #autocomplete: off;
+}
+
+
+.form-box input + label{
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    transition: transform 0.2s, opacity 0.2s;
+    left: 0px;
+    transform: translateY(28px);
+    font-family: _roboto;
+    font-size: 18px;
+    font-weight: 300;
+    pointer-events: none;
+    cursor: text;
+    opacity: 0.4;
+}
+
+.form-box input:focus + label,
+.form-box input.val + label{
+    transform: translateY(5px) scale(0.6);
+    opacity: 0.4;
+}
+
+
+.signin-box input + label{
+    transform: translateY(44px);
+}
+
+.signin-box input:focus + label,
+.signin-box input.val + label{
+    transform: translateY(17px) scale(0.6);
+    opacity: 0.4;
+}
