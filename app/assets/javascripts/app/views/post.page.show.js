@@ -124,7 +124,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$(".help-title").html(this.model.get("title"));
 
         if (this.model.get("permissions")&Post.OWNER)
-            $("<span class='post-action settings link'>Настройки</span>").insertAfter(this.$tags);
+            $("<span class='post-action settings link'>Настройки</span>").prependTo(this.$(".omnibar"));
 
         // Show/hide user box
         this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
@@ -283,7 +283,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     },
     renderControls : function(){
         this.$controls.empty()
-            .append("<input type='button' class='big post-save' value='"+ Lang.save +"'>");
+            .append("<div class='big post-save'></div>");
     },
     save : function(){
         var title = this.$header.children(".h1")[0].textContent,

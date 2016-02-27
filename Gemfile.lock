@@ -269,7 +269,7 @@ DEPENDENCIES
   multi_json
   pg
   progress_bar
-  rails
+  rails (= 4.2.5.1)
   sass-rails
   therubyracer
   uglifier
