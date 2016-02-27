@@ -265,10 +265,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$header.children(".h1").addClass("edit-title").attr("contenteditable", true).html(this.model.get("title"));
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
-        this.$picture.attr({
-            src : this.model.getBigPhoto(),
-            alt : this.model.get("title")
-        });
+        this.$picture.css("background-image", "url(" + this.model.getBigPhoto() + ")");
 
         this.$likes.html(this.model.get("likes") || 0);
         this.$comments.html(this.model.get("comments") || 0);
