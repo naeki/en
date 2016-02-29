@@ -3,8 +3,7 @@ App.Views.Post_small = App.Views.BASE.extend({
     _markup : "\
             <img class='post-small-photo'>\
             <div class='post-small-body'>\
-                <span class='post-title'></span>\
-                <div class='post-stat post-stat-likes'></div>\
+                <span class='post-title'>&nbsp;<div class='post-stat post-stat-likes'><svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' class='likes' x='0px' y='0px' viewBox='0 0 25 22' xml:space='preserve' width='25px' height='22px'><path d='M12.604,3.291C9.395-2.26-0.047-0.375,0,7.609c0.031,5.663,3.878,8.444,7.041,10.768  c3.091,2.271,3.716,2.451,5.584,3.624c1.686-1.147,3.191-2.022,5.957-4.206c3.101-2.446,6.384-4.811,6.418-9.886  C25.059-0.87,15.604-2.236,12.604,3.291z'/></svg></div></span>\
                 <div class='post-text'></div>\
                 <span class='post-publish-date'></span>\
                 <ul class='post-tags'></ul>\
@@ -60,12 +59,23 @@ App.Views.Post_small = App.Views.BASE.extend({
 
 
 
-        this.$(".post-stat-likes").attr("data-likes", this.model.get("likes"));
-        this.$(".post-title").html(this.model.get("title"));
+        this.renderLikes();
+        this.$(".post-title").prepend(this.model.get("title"));
         this.$(".post-text").html(this.model.get("short_text"));
         this.$(".post-publish-date").html(Post.getShortDate(this.model.get("published_at") || this.model.get("created_at")));
         this.$(".post-comments").html(this.model.get("comments"));
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.get("user_id"));
+    },
+    renderLikes : function(){
+        this.$likes = this.$(".post-stat-likes")[this.model.get("likes") ? "show" : "hide"]();
+        var likes = this.model.get("likes");
+        if (likes) {
+            if (likes > 0 && likes < 2)  this.$likes.attr("likes", 1);
+            if (likes > 1 && likes < 7)  this.$likes.attr("likes", 2);
+            if (likes > 6 && likes < 9)  this.$likes.attr("likes", 3);
+            if (likes > 9 && likes < 20) this.$likes.attr("likes", 4);
+            if (likes > 19)              this.$likes.attr("likes", 5);
+        }
     },
     renderTags : function(){
         if (this.model.get("deleted")) return this.$('.post-tags').remove();

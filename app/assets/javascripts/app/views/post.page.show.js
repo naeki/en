@@ -9,9 +9,10 @@ App.Views.Page_Post = App.Views.BASE.extend({
             <div class='h1'></div>\
             <ul class='tags'></ul>\
             <div class='post-stats'>\
-                <span class='post-stat-likes post-stat link'></span>\
-                <span class='post-stat-comments post-stat link'></span><br>\
-                <span class='post-stat-view post-stat-info'></span>\
+                <span class='post-stat-comments post-stat link'></span>\
+                <span class='post-stat-likes post-stat link'>\
+                    <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' class='likes' x='0px' y='0px' viewBox='0 0 25 22' xml:space='preserve' width='25px' height='22px'><path d='M12.604,3.291C9.395-2.26-0.047-0.375,0,7.609c0.031,5.663,3.878,8.444,7.041,10.768  c3.091,2.271,3.716,2.451,5.584,3.624c1.686-1.147,3.191-2.022,5.957-4.206c3.101-2.446,6.384-4.811,6.418-9.886  C25.059-0.87,15.604-2.236,12.604,3.291z'/></svg>\
+                </span><br>\
             </div>\
             <div class='history-back'></div>\
         </div>\
@@ -25,6 +26,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
                 <img class='user-photo-middle user-link'><br>\
                 <span class='post-author user-name user-link'></span>\
             </div>\
+            <span class='post-stat-view post-stat-info'></span>\
             <div class='post-meta'>\
                 <div class='edit-controls'></div>\
                 <ul class='post-actions'>\
@@ -84,17 +86,27 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$header.children(".h1").html(this.model.get("title"));
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
-
-        //this.$(".post-page-illustration__wrapper").css("background-image", "url("+ this.model.getBigPhoto() +")");
         this.$picture.css("background-image", "url(" + this.model.getBigPhoto() + ")");
 
-        this.$likes.html(this.model.get("likes"));
         this.$comments.html(this.model.get("comments"));
 
+        this.renderLikes();
+
         if (this.model.get("last_view"))
-            this.$lastview.html("Last viewed: " + Post.getDateString(this.model.get("last_view")));
+            this.$lastview.html("Last viewed:<br> " + Post.getDateString(this.model.get("last_view")));
 
         this.renderActions();
+    },
+    renderLikes : function(){
+        this.$likes[this.model.get("likes") ? "show" : "hide"]();
+        var likes = this.model.get("likes");
+        if (likes) {
+            if (likes > 0 && likes < 2)  this.$likes.attr("likes", 1);
+            if (likes > 1 && likes < 7)  this.$likes.attr("likes", 2);
+            if (likes > 6 && likes < 9)  this.$likes.attr("likes", 3);
+            if (likes > 9 && likes < 20) this.$likes.attr("likes", 4);
+            if (likes > 19)              this.$likes.attr("likes", 5);
+        }
     },
     renderTags : function(){
         if (this.model.get("deleted")) return this.$tags.remove();
@@ -124,7 +136,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$(".help-title").html(this.model.get("title"));
 
         if (this.model.get("permissions")&Post.OWNER)
-            $("<span class='post-action settings link'>Настройки</span>").prependTo(this.$(".omnibar"));
+            $("<span class='post-action settings link'></span>").prependTo(this.$actions);
 
         // Show/hide user box
         this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
@@ -267,8 +279,8 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.$picture.css("background-image", "url(" + this.model.getBigPhoto() + ")");
 
-        this.$likes.html(this.model.get("likes") || 0);
-        this.$comments.html(this.model.get("comments") || 0);
+        this.$comments.html(this.model.get("comments"));
+        this.renderLikes();
 
         if (this.model.isNew()) {
             this.$actions.remove();
