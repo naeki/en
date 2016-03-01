@@ -52,7 +52,6 @@ module En
     # config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    config.serve_static_files = true
     config.assets.enabled = true
     config.assets.initialize_on_precompile = true
 
