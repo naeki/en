@@ -2,6 +2,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
     pageStep : 1500,
 
+    
     className : "page-post",
     _markup:"<div class='post-page-view'>\
         <div class='post-page-photo'></div>\
