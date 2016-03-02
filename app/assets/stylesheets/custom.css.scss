@@ -1344,12 +1344,13 @@ input.flickr-open{
 
 .post-small-body{
   padding: 10px 35px 20px;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
   text-align: center;
   transition: -webkit-filter 0.4s, transform 0.4s;
   z-index: 2;
   position: relative;
-  margin: 40px;
+  margin: 35px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
 
   .post-title{
     cursor: pointer;
