@@ -11,7 +11,7 @@ body, li, ul, input, form{
 
 body{
   font-family: Arial;
-  background: #f7f7f7;
+  background: #fff;
 }
 h3{margin-bottom: 15px; margin-top: 0px; font: 500 17px "_roboto"; color: #304197;}
 h4{margin-bottom: 10px; color: #999; font-weight: normal; display: inline-block;}
@@ -1274,22 +1274,20 @@ input.flickr-open{
       padding: 0px 0px 0 0;
       font-weight: 400;
       letter-spacing: 0.8px;
+      color: #8980BB;
     }
   }
 }
 
 .post-small-photo{
-  width: 115px;
+  width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
   display: block;
   position: absolute;
   transition: width 0.4s;
-  z-index: 2;
-  &:hover{
-    width: 50%;
-  }
+  z-index: 1;
 }
 
 
@@ -1343,21 +1341,20 @@ input.flickr-open{
   }
 }
 
-.post-small-photo:hover + .post-small-body{
-  -webkit-filter: blur(2px);
-  transform: translateX(50px);
-}
 
 .post-small-body{
-  padding: 0 10px 15px 150px;
-  background: #fff;
-  text-align: left;
+  padding: 10px 35px 20px;
+  background: rgba(255,255,255,0.95);
+  text-align: center;
   transition: -webkit-filter 0.4s, transform 0.4s;
+  z-index: 2;
+  position: relative;
+  margin: 40px;
 
   .post-title{
     cursor: pointer;
     display: inline-block;
-    margin: 15px 20px 7px 0px;
+    margin: 15px 0px 7px 0px;
     font: 400 26px "PT Serif";
     position: relative;
     line-height: 29px;
@@ -1375,7 +1372,7 @@ input.flickr-open{
     line-height: 21px;
     font-family: _roboto;
     font-weight: 300;
-    margin: 0px 30px 0px 0px;
+    margin: 0px 10px;
     text-shadow: 0 0 0 #444;
   }
   .post-publish-date{
