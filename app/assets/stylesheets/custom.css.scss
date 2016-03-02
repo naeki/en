@@ -1237,7 +1237,7 @@ input.flickr-open{
   -webkit-transition: opacity 0.4s, box-shadow 0.4s, background 0.4s;
 //  box-shadow: 0 0 20px #eaeaea;
   left: 0px;
-  width: 450px;
+  width: 430px;
   position: absolute;
   background: #fff;
   overflow: hidden;
@@ -1251,9 +1251,9 @@ input.flickr-open{
 
   &.c1, &.c2, &.c3, &.c4{opacity: 0.9;}
   &.c1.deleted, &.c2.deleted, &.c3.deleted, &.c4.deleted{opacity: 0.6;}
-  &.c2{left: 460px;}
-  &.c3{left: 920px;}
-  &.c4{left: 1050px;}
+  &.c2{left: 490px;}
+  &.c3{left: 980px;}
+  &.c4{left: 1170px;}
   &.c5{left: 1400px;}
 
   &.deleted{
@@ -1349,7 +1349,7 @@ input.flickr-open{
   transition: -webkit-filter 0.4s, transform 0.4s;
   z-index: 2;
   position: relative;
-  margin: 35px;
+  margin: 40px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
 
   .post-title{
