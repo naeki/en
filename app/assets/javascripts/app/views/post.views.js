@@ -90,7 +90,7 @@ App.Views.Post_small = App.Views.BASE.extend({
 
     tileWidth: 450,
     tileMarginRight: 10,
-    tileMarginBottom: 60,
+    tileMarginBottom: 70,
     columnate : function(){
         var scroll = window.innerHeight != $("body")[0].scrollHeight,
             cols = parseInt((this.parent.el.offsetWidth + (scroll ? 12 : 0)) / (this.tileWidth + this.tileMarginRight)),  // || const

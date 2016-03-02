@@ -1249,11 +1249,11 @@ input.flickr-open{
   }
 
 
-  &.c1, &.c2, &.c3, &.c4{opacity: 0.9;}
+  &.c1, &.c2, &.c3, &.c4{opacity: 1;}
   &.c1.deleted, &.c2.deleted, &.c3.deleted, &.c4.deleted{opacity: 0.6;}
-  &.c2{left: 490px;}
-  &.c3{left: 980px;}
-  &.c4{left: 1170px;}
+  &.c2{left: 500px;}
+  &.c3{left: 1000px;}
+  &.c4{left: 1200px;}
   &.c5{left: 1400px;}
 
   &.deleted{
@@ -1344,7 +1344,7 @@ input.flickr-open{
 
 .post-small-body{
   padding: 10px 35px 20px;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 1);
   text-align: center;
   transition: -webkit-filter 0.4s, transform 0.4s;
   z-index: 2;
