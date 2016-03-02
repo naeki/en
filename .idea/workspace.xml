@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5b7ef06c-50c6-4e68-861d-7f595f210599" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js" />
     </list>
     <ignored path="en.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,8 +110,8 @@
       <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.233526" vertical-offset="21065" max-vertical-offset="25058">
-              <caret line="1251" column="35" selection-start-line="1251" selection-start-column="35" selection-end-line="1251" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.43236995" vertical-offset="21607" max-vertical-offset="25143">
+              <caret line="1293" column="23" selection-start-line="1293" selection-start-column="23" selection-end-line="1293" selection-end-column="23" />
               <folding>
                 <element signature="e#15002#16619#2" expanded="true" />
               </folding>
@@ -1438,8 +1437,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.233526" vertical-offset="21065" max-vertical-offset="25058">
-          <caret line="1251" column="35" selection-start-line="1251" selection-start-column="35" selection-end-line="1251" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.43236995" vertical-offset="21607" max-vertical-offset="25143">
+          <caret line="1293" column="23" selection-start-line="1293" selection-start-column="23" selection-end-line="1293" selection-end-column="23" />
           <folding>
             <element signature="e#15002#16619#2" expanded="true" />
           </folding>

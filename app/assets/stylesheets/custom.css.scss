@@ -1286,8 +1286,12 @@ input.flickr-open{
   background-position: center;
   display: block;
   position: absolute;
-  transition: width 0.4s;
+  transition: transform 0.4s;
   z-index: 1;
+}
+
+.post-small:hover .post-small-photo{
+  transform: scale(1.07);
 }
 
 
@@ -1340,6 +1344,7 @@ input.flickr-open{
     img{display: none;}
   }
 }
+
 
 
 .post-small-body{
