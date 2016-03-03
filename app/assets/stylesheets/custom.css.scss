@@ -1251,8 +1251,8 @@ input.flickr-open{
 
   &.c1, &.c2, &.c3, &.c4{opacity: 1;}
   &.c1.deleted, &.c2.deleted, &.c3.deleted, &.c4.deleted{opacity: 0.6;}
-  &.c2{left: 500px;}
-  &.c3{left: 1000px;}
+  &.c2{left: 520px;}
+  &.c3{left: 1040px;}
   &.c4{left: 1200px;}
   &.c5{left: 1400px;}
 
@@ -1354,8 +1354,8 @@ input.flickr-open{
   transition: -webkit-filter 0.4s, transform 0.4s;
   z-index: 2;
   position: relative;
-  margin: 40px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  margin: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   .post-title{
     cursor: pointer;

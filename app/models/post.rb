@@ -96,7 +96,7 @@ class Post < ActiveRecord::Base
     result.delete("text")
 
     if (!post.deleted || post.access == 1)
-      result["short_text"] = post.text.split(" ").slice(0, 23).join(" ") + "..." #Считать слова а не буквы  slice(0, 300)
+      result["short_text"] = post.text.split(". ").slice(0, 2).join(". ") + "..." #Считать слова а не буквы  slice(0, 300)
       result["tags"] = post.tags
     else
       result["short_text"] = "Post was deleted"
