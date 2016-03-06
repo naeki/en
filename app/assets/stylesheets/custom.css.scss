@@ -241,8 +241,6 @@ $blue            : rgb(7, 95, 226);
 
 .sidebar-container{
   position: fixed;
-  width: 20px;
-  height: 20px;
   z-index: 999;
   background: $logo;
 //  width: 61px;
@@ -1464,7 +1462,29 @@ input.flickr-open{
 
 
 
-
+@media (max-width: 800px) {
+  .sidebar-container{
+      width: 61px;
+      height: 25px;
+      bottom: 20px;
+      left: 20px;
+      overflow: hidden;
+      background-position: 0;
+      .sidebar{
+        display: none;
+      }
+    &:hover{
+      .sidebar{
+        display: block;
+      }
+    }
+  }
+  .all-view {
+    margin: 0 auto;
+    transform: translateX(30px);
+    width: 450px;
+  }
+}
 
 
 

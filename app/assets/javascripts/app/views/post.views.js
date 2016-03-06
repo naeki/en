@@ -93,7 +93,7 @@ App.Views.Post_small = App.Views.BASE.extend({
     tileMarginBottom: 70,
     columnate : function(){
         var scroll = window.innerHeight != $("body")[0].scrollHeight,
-            cols = parseInt((this.parent.el.offsetWidth + (scroll ? 12 : 0)) / (this.tileWidth + this.tileMarginRight)),  // || const
+            cols = parseInt((this.parent.el.offsetWidth + (scroll ? 12 : 0)) / (this.tileWidth)),  // || const
             sum = 0,
             postNum = this.parent.collection.models.indexOf(this.model) + 1,
             rc;
