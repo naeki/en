@@ -1462,7 +1462,7 @@ input.flickr-open{
 
 
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .sidebar-container{
       width: 61px;
       height: 25px;
@@ -1483,6 +1483,23 @@ input.flickr-open{
     margin: 0 auto;
     transform: translateX(30px);
     width: 450px;
+  }
+  .post-small{
+    width: 500px;
+  }
+  .post-small-body .post-text {
+    font-size: 17px;
+    line-height: 24px;
+  }
+  .post-small .post-tags .tag-link {
+    font-size: 12px;
+  }
+  .post-small-body .user-photo-small {
+    margin: 25px 0 5px 0;
+  }
+  .post-small-body .post-title {
+    margin: 15px 0px 14px 0px;
+    font: 400 27px "PT Serif";
   }
 }
 
