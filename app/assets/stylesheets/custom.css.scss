@@ -1481,10 +1481,12 @@ input.flickr-open{
   }
   .all-view {
     margin: 0 auto;
-    width: 600px;
+    width: 650px;
+    left: 28px;
+    position: relative;
   }
   .post-small{
-    width: 600px;
+    width: 650px;
     margin-bottom: 100px;
   }
   .post-small-body{
@@ -1493,6 +1495,7 @@ input.flickr-open{
   .post-small-body .post-text {
     font-size: 21px;
     line-height: 29px;
+    text-shadow: 0 0 0 #8C8C8C;
   }
   .post-small .post-tags{
     margin-bottom: 25px;
