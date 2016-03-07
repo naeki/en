@@ -2,7 +2,7 @@ App.Views.Main = Backbone.View.extend({
     className : "main",
     _markup : "\
                <div class='context'></div>\
-               <div class='sidebar-container'>\
+               <div class='sidebar-container' tabindex='1'>\
                    <aside class='sidebar'></aside>\
                </div>",
     events : {
