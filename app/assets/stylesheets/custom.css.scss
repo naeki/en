@@ -1464,12 +1464,12 @@ input.flickr-open{
 
 @media (max-width: 1000px) {
   .sidebar-container{
-      width: 61px;
-      height: 25px;
-      bottom: 20px;
-      left: 20px;
+      width: 100px;
+      height: 90px;
+      bottom: 0px;
+      left: 0px;
       overflow: hidden;
-      background-position: 0;
+      background-position: 15px 50px;
       .sidebar{
         display: none;
       }
@@ -1485,13 +1485,21 @@ input.flickr-open{
   }
   .post-small{
     width: 600px;
+    margin-bottom: 100px;
+  }
+  .post-small-body{
+    margin: 35px;
   }
   .post-small-body .post-text {
-    font-size: 20px;
+    font-size: 21px;
     line-height: 29px;
+    text-shadow: none;
+  }
+  .post-small .post-tags{
+    margin-bottom: 25px;
   }
   .post-small .post-tags .tag-link {
-    font-size: 14px;
+    font-size: 15px;
   }
   .post-small-body .user-photo-small {
     margin: 25px 0 5px 0;
@@ -1499,8 +1507,8 @@ input.flickr-open{
     height: 35px;
   }
   .post-small-body .post-title {
-    margin: 15px 0px 14px 0px;
-    font: 400 29px "PT Serif";
+    margin: 15px 0px 10px 0px;
+    font: 400 31px "PT Serif";
   }
 }
 

@@ -90,20 +90,20 @@ App.Views.Post_small = App.Views.BASE.extend({
 
     tileWidth: 450,
     tileMarginRight: 10,
-    tileMarginBottom: 70,
     columnate : function(){
         var scroll = window.innerHeight != $("body")[0].scrollHeight,
             cols = parseInt((this.parent.el.offsetWidth + (scroll ? 12 : 0)) / (this.tileWidth)),  // || const
             sum = 0,
             postNum = this.parent.collection.models.indexOf(this.model) + 1,
-            rc;
+            rc,
+            tileMarginBottom = this.$el.css("margin-bottom") || "30";
 
        //if ((this.parent.collection.models.length/cols) < 1.75 && (this.parent.collection.models.length/cols) >= 1.25) cols = (cols - 1) || 1;
 
         rc = "c" + ((postNum % cols) || cols);
 
         this.parent.$("." + rc).each(function(i, item){
-            sum += item.offsetHeight + this.tileMarginBottom;
+            sum += item.offsetHeight + parseInt(tileMarginBottom);
             $(item).removeClass('last');
         }.bind(this));
 

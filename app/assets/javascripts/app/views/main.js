@@ -1,10 +1,10 @@
 App.Views.Main = Backbone.View.extend({
     className : "main",
     _markup : "\
-                   <div class='sidebar-container'>\
-                       <aside class='sidebar'></aside>\
-                   </div>\
-               <div class='context'></div>",
+               <div class='context'></div>\
+               <div class='sidebar-container'>\
+                   <aside class='sidebar'></aside>\
+               </div>",
     events : {
         "click .user-link" : function(e){
             App.router.navigate("user" + $(e.target).data("user-id"), {trigger:true, replace:false});
