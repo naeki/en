@@ -1,0 +1,1818 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+
+*/
+
+
+
+@import url(http://fonts.googleapis.com/css?family=PT+Serif+Caption|PT+Serif&subset=cyrillic-ext,latin);
+/* line 6, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+body, li, ul, input, form {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+/* line 12, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+body {
+  font-family: Arial;
+  background: #fff;
+}
+
+/* line 16, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+h3 {
+  margin-bottom: 15px;
+  margin-top: 0px;
+  font: 500 17px "_roboto";
+  color: #304197;
+}
+
+/* line 17, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+h4 {
+  margin-bottom: 10px;
+  color: #999;
+  font-weight: normal;
+  display: inline-block;
+}
+
+/* line 18, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+hr {
+  box-shadow: 0 0 6px #cecece;
+}
+
+/* line 21, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+input[type=button], button {
+  border: 0px;
+  background-color: #DAE9F3;
+  border-radius: 3px;
+  padding: 5px 12px;
+  margin-right: 10px;
+  -webkit-transition: background-color 0.2s;
+}
+/* line 28, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+input[type=button]:hover, button:hover {
+  background-color: #afd8fa;
+}
+/* line 31, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+input[type=button].big, button.big {
+  font-size: 23px;
+  padding: 7px 20px;
+}
+
+/* line 36, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+input[type=text], input[type=password] {
+  background: #fff;
+  width: 300px;
+  padding: 11px 15px 13px;
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: bottom;
+  text-transform: lowercase;
+  font-weight: 300;
+  /* line-height: 26px; */
+  font-family: _roboto;
+  letter-spacing: 0.2px;
+  color: #202020;
+  border: 2px solid #9CCDFF;
+  border-radius: 1px;
+}
+
+/* line 53, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+input[type=password] {
+  font-size: 26px;
+  padding: 0px 10px;
+}
+
+/* line 57, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+select {
+  padding: 4px 8px;
+}
+
+/* line 62, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.h1 {
+  font: 200 90px "_roboto";
+  color: #83ECC0;
+  letter-spacing: -0.4px;
+  display: inline-block;
+  -webkit-transition: opacity 0.2s;
+  vertical-align: -8px;
+  margin-right: 10px;
+  position: absolute;
+}
+
+/* line 72, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.h2 {
+  font: 200 47px "_roboto";
+  color: #304197;
+  display: inline-block;
+  margin-right: 10px;
+  letter-spacing: -0.7px;
+  margin-bottom: 40px;
+}
+
+/* line 80, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-view .h1 {
+  font: 300 42px "PT Serif";
+  letter-spacing: 0px;
+  color: #000;
+  line-height: 55px;
+  display: block;
+  margin-right: 0px;
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0 auto 25px;
+}
+
+/* line 95, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.link {
+  cursor: pointer;
+}
+/* line 97, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.link:hover {
+  text-decoration: underline;
+}
+
+/* line 101, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.note {
+  display: inline-block;
+  color: #aaa;
+  vertical-align: bottom;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+/* line 108, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.error-note {
+  margin: 50px 0;
+  text-align: center;
+  font-size: 55px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ccc;
+}
+
+/* mixins, variables, etc. */
+/* miscellaneous */
+/* line 154, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 164, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-photo-small {
+  width: 30px;
+  height: 30px;
+}
+
+/* line 168, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-photo-middle {
+  width: 50px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+/* line 173, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-photo-big {
+  width: 155px;
+  height: 155px;
+  display: block;
+}
+
+/* line 178, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-link {
+  cursor: pointer;
+}
+
+/* line 181, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.context .user-link {
+  color: #333;
+  font-family: "_roboto", Tahoma, Arial;
+}
+/* line 184, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.context .user-link:hover {
+  text-decoration: underline;
+}
+
+/* line 191, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.main.loading::after {
+  display: block;
+  content: "loading";
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: red;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* line 204, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.main.fixed {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+/* line 211, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.main.clear .sidebar .sidebar-content {
+  opacity: 0.1;
+}
+/* line 216, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.main.clear .sidebar:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* line 219, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.main.clear .sidebar:hover + .context {
+  opacity: 0.1;
+}
+/* line 222, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.main.clear .sidebar:hover .sidebar-content {
+  opacity: 1;
+}
+
+/* sidebar */
+/* line 242, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-container {
+  position: fixed;
+  z-index: 999;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD0AAAAZCAYAAACCXybJAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjk3OUQ1MDgzREExRjExRTVCMkY0QjFFMzFCODg4NzgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjk3OUQ1MDg0REExRjExRTVCMkY0QjFFMzFCODg4NzgwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTc5RDUwODFEQTFGMTFFNUIyRjRCMUUzMUI4ODg3ODAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTc5RDUwODJEQTFGMTFFNUIyRjRCMUUzMUI4ODg3ODAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7GNtnNAAAENklEQVR42sSYeYhNURzH35uxDZ7H2GbGvo19GUuWLGXLX4ooEUkSEiUkxR8UBmUpZJkk05RimLKUF0mSZRiMjClpLIOxzYwZ+5jne/K99et07n333fcev/p071nuOfd3zu/8zu8cfzgc9knxV+dn4bEEjARtQHMWqYqV4CN4C16CcvCM7x9AQ/CYdf+rhIMzbcsaCGXVDx8F81XSpn4q6BGhvzwwL0IdNZBdQGsQAE2Z/w7cAzWJHJAG4n0iWBCHNueCA6AYZJI+oBffLWXt5AfYC9YnymKk0vEc3RBI8fhtY7AOVIOtIr8FSGZ+fSw/lyTeb4NXcVI6JdYlCVqB3rSa51T2E6gFl8Aor437pSPDulYNbQcTRJ0x4CffA7SOppwRpVwzzoKSCnAsBmXfgAJwHMwCqzRrlPKdzvZhtI7Mb/DeSuGrImuwXcOm9jgrnVzUVbNWBO6Tu6CEs3sKDHDRxkGw3LP3FjJMS9dGaZZrQa7DDB0C2zg4uoznTLd02V+HWNe0JSO0dEWUbZ4EGfTWyvSvaOVlNgoPBeejUFjJuVi9tyXSQXwFX0ATml0HOphmwuM/o2nWie/eE5+Wr+SXoc8gOCMCIV3q6by6c9tT6/kIyIlZaaznNDy6iqxGoJQBSbJDO+/p/EoMZZla+rOhzg7Q2aZttass5fq3nOkP4VxjNu/RhkHJjKCwkrZgkCG/hzaIPoayUpQFLbJpdz8YKxS2rMuzwialh3vcUwvBZUPZZENeuZZeZrPMdoMVNsshbhGZ5UwiyRNwA9zhDBRz7ZtkkiHvpZY27S3K2W34F7G3kixDHbVlnaWnvCIclBsZp6XrGIBYkmazp2fTWSVWaTixdDzaa+UXwByPcXlXKqXP8m+Rbm/z7cVEnrLkmh5iKD8Vw0HEFBuXamm7tr30OZqBz1Ow06159zWUF7oMPcMulX6qpV8wHE01KHDeRd9qm5tN79/PaVuEJas+KhGehpMc9tPf2sz0543KITqxcm4dKnB4zTg41SGctZygvsbzDPUOc9+X/6cuOXpSyV2M18v4LhX+Jg89UDYICnizU4T3dnKmuxkOBKqDqWAKSHcY8XQGEEr5LcwbaKj3yJC3iR48Q+Rl8NBTQ8fZiH0ku5j9zdoReSOYLg5P2VLpjoaAIzeKNaUs46a4Dgoa6jww5FVyawsZ/iFA3MoJen4p/bT0tCSawAzGtV6liNdNIXGXpos6ZFQ57P1ZjKXrPP7DPrDQ4F906wokQWEV9+bzUBGtXOedmIrkrmmxuB5J3YvQllpzizn4a8AtlwNQJi4cTNdIe3x/b3Atuer3VZ3+5lLhenZwlzMaYtpOcrSYejVDy2ikCS8TBvB0F+T6rmKQU8wlE3a6RGAMMpsBT75SupRO4iNn6AOfFWz4Hb14CY+ZbqUhlZ7GqG6l4bCRMHG6OfkjwAC/CBKLIQzAZgAAAABJRU5ErkJggg==");
+  top: 0px;
+  width: 195px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 15px 98%;
+}
+
+/* line 258, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.clear .sidebar-container .sidebar {
+  display: none;
+}
+/* line 261, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.clear .sidebar-container:hover .sidebar {
+  display: block;
+}
+
+/* line 267, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar {
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0 0 0 0px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 195px;
+  float: left;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  z-index: 1;
+}
+
+/* line 285, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.clear .sidebar {
+  background: none;
+}
+
+/* line 289, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar .footer {
+  position: absolute;
+  width: 100%;
+}
+
+/* line 294, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box {
+  padding: 30px 0 30px 20px;
+  font-size: 14px;
+  background: #1B035D;
+  cursor: default;
+}
+/* line 299, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box .user-link, .user-box .link {
+  text-decoration: none;
+}
+/* line 302, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box .user-photo-middle {
+  display: block;
+  margin-bottom: 20px;
+}
+/* line 306, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box .user-name {
+  margin-right: 10px;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  vertical-align: bottom;
+  color: white;
+  font-size: 16px;
+  font-family: "_roboto";
+  font-weight: 300;
+  line-height: 22px;
+}
+/* line 318, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box .user-name:hover {
+  color: white;
+}
+/* line 322, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box .signout {
+  opacity: 0.45;
+  white-space: nowrap;
+  color: white;
+  line-height: 22px;
+  font-family: "_roboto";
+  font-weight: 300;
+  font-size: 13px;
+  display: block;
+}
+/* line 331, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-box .signout:hover {
+  opacity: 1;
+}
+
+/* line 336, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-menu {
+  padding: 20px 0 0px 20px;
+  background: #07003E;
+  overflow: hidden;
+}
+/* line 340, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-menu li {
+  margin: 10px 0;
+  font: 300 24px "_roboto";
+}
+/* line 343, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-menu li .select-option {
+  cursor: pointer;
+  display: inline-block;
+  line-height: 38px;
+  border-bottom: 1px solid transparent;
+}
+/* line 348, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-menu li .select-option:hover {
+  /* border-bottom: 1px solid rgba(255, 255, 255, 1); */
+  color: #fff;
+}
+
+/* line 357, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-small-menu {
+  padding: 5px 0 50px 20px;
+  background: #07003E;
+}
+/* line 360, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-small-menu li {
+  margin: 7px 0;
+  font: 300 17px "_roboto";
+}
+/* line 363, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-small-menu li span {
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: inline-block;
+  line-height: 25px;
+  border-bottom: 1px solid transparent;
+}
+/* line 369, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.sidebar-small-menu li span:hover {
+  color: #fff;
+}
+
+/* line 396, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.omnibar {
+  padding: 0;
+  width: 250px;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  text-align: right;
+  z-index: 222;
+}
+
+/* line 407, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.author-box {
+  text-align: right;
+  margin-bottom: 50px;
+  margin-top: 80px;
+  margin-right: 30px;
+}
+/* line 412, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.author-box .user-photo-middle {
+  margin-bottom: 3px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+/* line 418, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.author-box .post-author {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+/* line 426, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.tags {
+  text-align: right;
+  padding: 0px;
+  margin-bottom: 40px;
+}
+/* line 430, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.tags li {
+  display: inline-block;
+  margin: 0px 7px 8px;
+}
+
+/* line 435, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.tag-link, .tag {
+  /* background: rgba(192, 192, 192, 0.18); */
+  padding: 0px 0px 0px 0px;
+  display: inline-block;
+  color: #A59FC7;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: _roboto;
+  font-weight: 400;
+  border-radius: 16px;
+  position: relative;
+  letter-spacing: 0.7px;
+  /* font-style: italic; */
+  /* background: #FCDEFB; */
+}
+/* line 448, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.tag-link::after, .tag::after {
+  width: 4px;
+  height: 4px;
+  border: 1px solid #C1B7E4;
+  position: absolute;
+  right: 8px;
+  top: 9px;
+  border-radius: 3px;
+}
+
+/* line 462, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-meta {
+  text-align: right;
+  position: fixed;
+  bottom: 10px;
+  right: 35px;
+  width: 160px;
+}
+
+/* line 470, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-controls {
+  position: absolute;
+  bottom: 50px;
+  right: 300px;
+}
+/* line 474, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-controls .post-save {
+  margin-right: 0px;
+  background: #3D35B4;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  transition: background-color 0.2s;
+}
+/* line 481, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-controls .post-save:hover {
+  background-color: #433FDA;
+}
+/* line 484, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-controls .post-save::after {
+  content: "";
+  width: 21px;
+  height: 19px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAATCAYAAAB/TkaLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjIyMjRDQzMxREExRTExRTVBNjBEQzYyQTMyMkY5RUIxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjIyMjRDQzMyREExRTExRTVBNjBEQzYyQTMyMkY5RUIxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MjIyNENDMkZEQTFFMTFFNUE2MERDNjJBMzIyRjlFQjEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MjIyNENDMzBEQTFFMTFFNUE2MERDNjJBMzIyRjlFQjEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7XswlrAAABF0lEQVR42mL4//8/AxWwFRBfAuLvQJxNDQNNgPjrfwT4wMRAGRAH4vVAzIUk9oQSQ5mBeCUQy6CJ91Pi7er/mOAqEDOTa6A5EP9GM/AvENuC5MkxkBeI72JxZT9MDTmGLsJi4E0g5kQ2VBGIZwNxFxArETAwHIuBf4DYElkdiLiHpAAUTsU4DJQA4rdYDO1AVwsiTmNR2IrF0A1Y1J0CYjZshtoD8T8sGiqQFMZikX8PDToGbIaCcBsWTSCLMoFYCojfYZELxBX2MAYzEG/EEQkXsIhPxBehyBwuID78nzA4jS0ccRkKS9j4DMYZjvgMBWFuIN6BI4yDiMkguCRYgXgamqGTiM11hBSAXPYYiGcSCkdkDBBgACR1pLcLjaWjAAAAAElFTkSuQmCC");
+  display: block;
+  position: absolute;
+  left: 19px;
+  top: 21px;
+}
+
+/* line 497, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-number {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* line 502, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.help-title {
+  color: #aaa;
+  font: 300 13px "PT Serif";
+  line-height: 18px;
+  margin-left: 25px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+  cursor: default;
+}
+/* line 510, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.help-title:hover {
+  color: #555;
+}
+
+/* line 515, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-actions {
+  margin-bottom: 60px;
+  position: relative;
+  left: 13px;
+}
+/* line 519, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-actions li {
+  margin-bottom: 10px;
+}
+
+/* line 521, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action {
+  color: #f70000;
+  font-size: 14px;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+}
+/* line 528, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.do-bookmark {
+  width: 36px;
+  height: 24px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAYCAYAAACSuF9OAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjA4RjYyQjQ2REExRjExRTU5NkQxODgzQjk5MURGRDNDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjA4RjYyQjQ3REExRjExRTU5NkQxODgzQjk5MURGRDNDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDhGNjJCNDREQTFGMTFFNTk2RDE4ODNCOTkxREZEM0MiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDhGNjJCNDVEQTFGMTFFNTk2RDE4ODNCOTkxREZEM0MiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7IaU6gAAABNElEQVR42mK0Nd3yn4E2gPHQKW+cknZmW8H2AtUwIoszMQwywILsIyqZSVGID+oQoimApRlC4iM3hNBz05DJZaMOGjRpiFCaGo2yEeMgpsHiIBUg3g7Ep4DYZCAdxAnETUB8BYg9gNgYiE8C8RQgFqC3g/yA+BoQ1wIxGxDPB+IuIP4LxNlQuUh6OEgZiDcD8UYgVgDi80BsDcRJQFwOxEZAfASIJYF4GRDvBmJVWjgIFD31QHwZiH2A+AMQ5wGxGRAfR1IHij47IE4G4jdA7ALV0wDEHNR00CUkQxcBsQYQTwbiPzhahfOAWBNKs0E9c4maDlKBGmgPxPFA/JII/W+gIWUHDTlVajnoExAXQnPRYTLMAaUpQ2ga+0qpg5ZCo2cCjughFvyB5kJtIN5EriEAAQYAarZDxqL+fYcAAAAASUVORK5CYII=");
+}
+/* line 532, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.do-bookmark.done {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAYCAYAAAD+vg1LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY0RUM4ODhDREExRjExRTU5OEVFODIyM0M5RDIzMjkyIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjY0RUM4ODhEREExRjExRTU5OEVFODIyM0M5RDIzMjkyIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NjRFQzg4OEFEQTFGMTFFNTk4RUU4MjIzQzlEMjMyOTIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NjRFQzg4OEJEQTFGMTFFNTk4RUU4MjIzQzlEMjMyOTIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5ThCnHAAAApUlEQVR42mK0Nd3yn4EGgImBRmDU4FGDRw0eNXjUYJoYDKoM5gNxFxD/ppbB54HYGoiTgLgciI2A+AglBn8A4jwgNgPi40jiV4DYDoiTgfgNKQaDvL0IiDWAeDIQ/8GhZh4Qa0Lp/4QMvgTE9kAcD8QviQimN1CX20F9gmHwJyAuBGJjID5MRiIAhbkhNA6+wgxeCvX2BBzeJhb8gaYabSDeBBBgAAXEIfhmGFSyAAAAAElFTkSuQmCC");
+}
+/* line 536, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.do-like {
+  width: 39px;
+  height: 22px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAAAWCAYAAABDhYU9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkVGN0UyNzkwREExRTExRTVBRkZBQkNENzA1Qjg3NDVGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkVGN0UyNzkxREExRTExRTVBRkZBQkNENzA1Qjg3NDVGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RUY3RTI3OEVEQTFFMTFFNUFGRkFCQ0Q3MDVCODc0NUYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RUY3RTI3OEZEQTFFMTFFNUFGRkFCQ0Q3MDVCODc0NUYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6nUsWYAAACiUlEQVR42rSWW4hNURjH99mmhIZM4kEpyqUmETNuRSHlMo1OSm4xxuUBOUW5RR4Y1wfCk1DkMvKAmIRx6bgUKYrEkCdTGqE0ZFzi99X/1LY6Z2bvffZ89Wuts8/aa/33+r61vi81sfKqF7AuMAfSUA49oAXuwnF46/1vA2A5VMMgPXsNV+AIfHbGe9nHs9xH3qQxDX/1Xyr4vCTQHwnnYJjzri06DtbBDqgDm6xWAro54ytEBhbBNS+m+WrHwgMJa4I1EjsUpsMpfUhO3Fw4JmFnYAL0FNPgOpRpB2fEFWcLdtWOdYfTclNbYEyTFquHS7AJWiGl3TnkzNko9sIGOAGD9U5kcTUwEJ7BMvhZYKy5Zzdsh1K4kUdY0LbAFLl4ARx1Y6xQ7AXdmlZ/fzvCcrYH3sFvWN/B2D8B8dVx3Vqh/p0Q43/AWqiCFyHGZ9WOdk5sKuxpLVO/JeQHNYT8ELMPavvGPa0f1S+N8N73iOt8iyvuvfrDveStXG1z3JgzF41S0N5LWFyV2vvtBqYTa8Gdu6D+CuidoDALk1Xqn4/r1kdwE3rB4YSEpXSv9VPmaSwmfa3WDb4QtiYg7ADM05w1xebWN7BYF6flz11aJKrlcm1GF/rsPJVMZHFmF1Vp/ILNStp9Isxl+fMhzIevMBNuF+MC3/lt1YcVXJ/UWr6dHGIeE/RElcxLVTm3ig1cP88zOxwjlHr6K5gPqmpxzUqkk3BW/XoJe5XEqfILPG9WRbFNST6jXZwaGGP/P1WsWsZYqR1sTeouKumgqtgJl1WiV2oXLTa/wFIdGnPnErkzUfNDjHmuSnejdiWtg9Oma2d8ZwgLK86Ta/fBEFXNWQV/nf7rFPsnwACqcJQh2JsglgAAAABJRU5ErkJggg==");
+}
+/* line 540, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.do-like.done {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAWCAYAAADeiIy1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU1RDFDRThFREExRTExRTU5MDNGOUI3QkYzOUIwM0JEIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU1RDFDRThGREExRTExRTU5MDNGOUI3QkYzOUIwM0JEIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTVEMUNFOENEQTFFMTFFNTkwM0Y5QjdCRjM5QjAzQkQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTVEMUNFOEREQTFFMTFFNTkwM0Y5QjdCRjM5QjAzQkQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6rXKUDAAABhklEQVR42rzWzSsEcRzH8d9O2hxIShQXF+TgKTY57MVJ2QvJgVKeTv4AF1w44Q9woXDYIgclBw+JTRycOHgoDshBuVhKUry/9Z0a2+7Obrszn3rVzjazn9/Mb+Y3GwiHdowjFiLoQT1K8YwYVvBo/qcSo3pMNX5xj20s4d3eMeAoasIaGk3yfGEai7o9qD9WlGL/VwzgUDYK9MsGHKPEpE4hFlCMS6zLQNPsX45ddOFIioLYcilxZgpxlxI7QR1QnczJEGpM5rGyGJSkSi6zHNRnvE9Eilp9KGqTojIfiiosnViv8ylFDz4UvUjRgQ9FMUufIa+zIUVn9jLhUU6xb+nGhEyYFzcBRuynXHKLcV1985Vv9OLOWSSJYhg/eSiJ66tjz7luObOKbrzlUHKDdpmXxAUyMTKKFn3ZZZtNhHCdbCVOlid0YkavtVs+MIZ+/WwyLTI6V7OyIOIizX7naMay27vFLVfowGTCaO1Xe1j/J5hci+yzm0et3p0nehZzmd6lfwIMAEx6SmIch0fXAAAAAElFTkSuQmCC");
+}
+/* line 544, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.settings {
+  width: 26px;
+  height: 26px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM2NUM4RTIyREU0NTExRTU5NzJERTJCRDEwNDRBRTA1IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM2NUM4RTIzREU0NTExRTU5NzJERTJCRDEwNDRBRTA1Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzY1QzhFMjBERTQ1MTFFNTk3MkRFMkJEMTA0NEFFMDUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzY1QzhFMjFERTQ1MTFFNTk3MkRFMkJEMTA0NEFFMDUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4EKyJWAAABw0lEQVR42ryWP0jDQBTG09DFyUWwCMUKJUscHNouRZeOOtpF946K4KaCom6C6OikoC7NWMcuYpc2g0uXUNBQEB2d3BK/hy9wJNfkCocf/GjvuLvv5f68u1wYhsZa7clQ0CzogyKXx6AGvp/765mdTUNdNJoFZhiL65SUl9QtggIYgADYoAH2JG3PwRxmpIuvGuKXAq+CT5R9sWEuNnUr4ABsgiFwQR2UMwIegR6ocGAOBQGzV5kRfckFm+gQme1HXyau0bxGE4PHKsg2g8vTpUtDXueEUcBmuuRi2gKZkc0Lr0t1rL0tM2oo7K5pVOYx/3bdarVDJ34DnIKllI4f4Aa0udwELbCQ0ucNHIFOntOKpRAhmZwI5ej/cUofCvweeKaQu7LUVqyTqWga/ySTs7CKmop1Mo3znOppM5yBUkrjVmy6mkLdJL2DQ9oMYq7bAVeaZ2wXh/Y6fo66nIV1acRjJg4s5aYXjUY9uqNkRibfJ7pU4YswYUQmyxqNbDFw0eiLLytdcnjMhJHPbwBHWLNbxQ1Cbe6E+yy6yv1Jb4asx0lJck4uaXdN+zhJ0xZ4iNVtg0fd7zqKxgM/jMd1SvoVYABicIysTg0IggAAAABJRU5ErkJggg==");
+  margin-right: 13px;
+  margin-bottom: 40px;
+  transition: transform 0.3s;
+}
+/* line 551, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.settings:hover {
+  transform: rotate(90deg);
+}
+/* line 555, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.done {
+  color: #666;
+  opacity: 1;
+}
+/* line 558, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-action.done:hover {
+  text-decoration: line-through;
+}
+
+/* context */
+/* line 601, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.context {
+  -webkit-transition: opacity 0.3s;
+}
+
+/* line 605, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.all-view {
+  margin-left: 330px;
+}
+
+/* folder*/
+/* line 611, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.folder-view {
+  margin-left: 270px;
+}
+
+/* line 614, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.folder-header {
+  padding: 25px 0px 10px;
+}
+/* line 616, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.folder-header .controls {
+  margin-top: 30px;
+}
+
+/* line 621, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.change-type {
+  font-size: 17px;
+}
+
+/* line 627, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.folder-body {
+  margin: 50px 0 0;
+}
+
+/* line 632, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.tag-link, .tag {
+  cursor: pointer;
+}
+
+/* line 635, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.found-tags {
+  margin-top: 20px;
+}
+
+/* line 638, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.search-tag {
+  display: inline-block;
+  padding: 8px;
+  border-top: 3px solid #e5e5e5;
+  border-left: 3px solid #EEE;
+  background: #fff;
+  width: 300px;
+}
+/* line 645, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.search-tag .tag:hover {
+  text-decoration: line-through;
+}
+
+/* page of post -> header */
+/* line 652, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-view {
+  max-width: 1000px;
+  margin: 0 15% 0 25%;
+  text-align: center;
+}
+/* line 656, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-view .page-viewer {
+  width: 100%;
+  font-size: 19px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 30px;
+  font-family: _roboto;
+  font-weight: 300;
+  color: #1D1D1D;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+/* line 669, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-view .page-header {
+  padding: 70px 0px 10px 0;
+  position: relative;
+  -webkit-transition: height 0.2s;
+}
+/* line 674, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-view .return {
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* line 683, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-likes,
+.post-settings,
+.page-comments,
+.post-page-text {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+}
+
+/* line 688, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-text {
+  line-height: 40px;
+}
+/* line 690, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-text > div {
+  line-height: normal;
+}
+
+/* line 696, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-illustration {
+  position: absolute;
+  height: 317px;
+  /* text-align: center; */
+  /* line-height: 704px; */
+  vertical-align: middle;
+  top: -11px;
+  left: 350px;
+  width: 300px;
+  z-index: 30;
+}
+
+/* line 707, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-illustration__wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 550px;
+  height: 550px;
+  -webkit-transition: border-width 1s;
+  background-position: center;
+  /* left: 200px; */
+  top: -70px;
+  border-radius: 500px;
+  display: inline-block;
+  border: 150px solid transparent;
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+}
+/* line 723, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-illustration__wrapper:hover {
+  border-width: 100px;
+}
+
+/* line 727, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-photo__dot {
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  top: 50%;
+  position: absolute;
+}
+
+/* line 734, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-page-photo {
+  display: block;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 25px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  width: 195px;
+  -webkit-filter: grayscale(1) brightness(0.6);
+}
+
+/* post-form page */
+/* line 750, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-title {
+  width: 70%;
+}
+
+/* line 753, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-text {
+  width: 100%;
+  font-size: inherit;
+  border: 0px;
+  font-family: inherit;
+  color: inherit;
+  resize: none;
+  background: transparent;
+  line-height: 36px;
+  max-width: 1000px;
+  margin: 0 auto 60px;
+  font-weight: inherit;
+  text-shadow: 0 0 0 #aaa;
+  display: block;
+}
+
+/* line 772, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-picture {
+  max-height: 300px;
+  margin: 0px 0 30px;
+  display: block;
+}
+
+/* Uploading photo*/
+/* line 782, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.select-file {
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+/* line 787, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.upload-bar {
+  height: 20px;
+  width: 300px;
+  margin: 0px 0 20px;
+  background-color: #eee;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 100, 0, 0.8) 100%);
+  background-repeat: no-repeat;
+  -webkit-transition: background-size 0.2s, opacity 0.2s;
+  opacity: 0;
+  display: none;
+}
+/* line 797, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.upload-bar.visible {
+  opacity: 1;
+  display: block;
+  background-size: 0% 100%;
+}
+
+/* line 804, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.or-divider {
+  font-size: 14px;
+  margin: 0px 10px;
+  color: #bbb;
+}
+
+/* Flickr*/
+/* line 814, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+input.flickr-open {
+  background-color: #ff0084;
+  color: #fff;
+}
+
+/* line 819, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.flickr-gallery-fade {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  left: 0px;
+  top: 0px;
+  overflow: auto;
+}
+
+/* line 829, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.flickr-gallery {
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+/* line 834, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.flickr-results {
+  line-height: 0px;
+  margin-top: 20px;
+}
+
+/* line 838, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.flickr-photo {
+  display: inline-block;
+  margin: 7px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* line 849, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header {
+  padding: 25px 0 50px;
+}
+/* line 851, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .history-back {
+  position: absolute;
+  display: none;
+  top: 0px;
+  width: 11px;
+  height: 15px;
+  cursor: pointer;
+  color: #ccc;
+  margin-right: 5px;
+}
+/* line 860, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .history-back:hover {
+  border-color: #000;
+  color: #000;
+}
+/* line 863, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .history-back::before {
+  display: block;
+  position: absolute;
+  content: "<";
+  font-size: 40px;
+  top: 41px;
+  left: -46px;
+}
+/* line 872, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .h1-link {
+  font-size: 16px;
+  color: #304197;
+  opacity: 0.6;
+  text-decoration: underline;
+  display: inline-block;
+  vertical-align: super;
+  cursor: pointer;
+}
+/* line 880, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .post-controls {
+  display: block;
+  vertical-align: super;
+}
+/* line 884, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .user-controls {
+  display: inline-block;
+  vertical-align: 10px;
+}
+/* line 888, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-header .tags {
+  display: inline-block;
+}
+
+/* line 891, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-user .history-back::before {
+  top: 37px;
+}
+
+/* line 895, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stats {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  letter-spacing: 0px;
+  text-align: center;
+}
+/* line 902, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stats * {
+  letter-spacing: normal;
+}
+/* line 905, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stats .post-stat {
+  position: relative;
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: top;
+  font-family: "_roboto", Tahoma, Arial;
+}
+/* line 913, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stats .post-stat-comments {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 21px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABsAAAAaCAYAAABGiCfwAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkNFOTE0MDRERTREMTFFNTlFMzE5N0ZGODk2QUM2NDYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkNFOTE0MDVERTREMTFFNTlFMzE5N0ZGODk2QUM2NDYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyQ0U5MTQwMkRFNEQxMUU1OUUzMTk3RkY4OTZBQzY0NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyQ0U5MTQwM0RFNEQxMUU1OUUzMTk3RkY4OTZBQzY0NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqGXkJIAAAGXSURBVHjavJbNKwRxGMdnxuDg4K38BZRSyoGbRHlJDqLc5KBwUk6S5CIXR5f1dqZctvZgvaQ4oCjZkgsHCjkQEbK0Po9+Nq0ZO3ZevvXpqX2Zzzzzexs9kUhodlmPxnRKFTRAPZRDCeTBreIUdmEbduDD7nq6lQxJDqUXBpXAaa4gBNNwn1aGSDqYhVIt80jHw7Dw80MjRTRC2XApkhTDPMyA+UuGaIIymXoDLtMHy5CVlCHqpoxq/qQdxr/GbG3lqEjNqELNv8Rlokln/T6LJNkwILIOLZg0i6wiIFmZoVoMIrrIbgKSnYvsMCDZpqEWnd+RPTEkskU48Vk2BzGjsaVSFlwPPPsk2oOh5HaFcJ/SCU8ei1ah6buR5KaLMEqpkYH0QPICY9AGj3+dZ7mU1wwlD7CkTo+L1C9Niz8U/OPi73CsxmULwqory1jJ8m1++wZyFJ2pXfxObQhxp3fmVCaPtQsibgbScPAYL6GWCRRxO2uMNJ3JK1o1ogMv1oFdZzJFp6AO0bVXi860mQitat15mk8BBgCl1WnsxnxX0AAAAABJRU5ErkJggg==");
+  width: 27px;
+  height: 26px;
+}
+/* line 921, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stats .post-stat-comments:hover {
+  text-decoration: none;
+}
+
+/* line 924, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes {
+  fill: #ff2f65;
+}
+/* line 926, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes[likes='1'] {
+  opacity: 0.15;
+}
+/* line 927, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes[likes='2'] {
+  opacity: 0.3;
+}
+/* line 928, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes[likes='3'] {
+  opacity: 0.5;
+}
+/* line 929, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes[likes='4'] {
+  opacity: 0.7;
+}
+/* line 930, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes[likes='5'] {
+  opacity: 1;
+}
+/* line 932, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-likes:hover::after {
+  content: attr(likes);
+  display: block;
+  position: absolute;
+  left: 9px;
+  top: 1px;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* line 944, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-stat-view {
+  font-size: 12px;
+  color: #aaa;
+  display: inline-block;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+
+/* line 953, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.lock .post-stat::after,
+.page-post.lock .post-stats::after {
+  content: "";
+  display: block;
+  width: 14px;
+  height: 17px;
+  left: -50px;
+  bottom: 0px;
+  opacity: 0.3;
+  background: url(/images/lock.gif);
+  position: absolute;
+}
+
+/* line 965, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-post.lock .post-stats::after {
+  left: -19px;
+  top: 40px;
+}
+
+/* line 971, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-menu {
+  margin: 40px 0 0px;
+}
+/* line 973, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-menu li {
+  display: inline-block;
+  position: relative;
+  margin-right: 70px;
+  font: 300 36px "_roboto";
+  cursor: pointer;
+  color: #444;
+  border-bottom: 1px solid transparent;
+  line-height: 38px;
+  letter-spacing: -0.5px;
+}
+/* line 983, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-menu li:hover {
+  border-color: #888;
+}
+/* line 986, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-menu li.locked {
+  text-decoration: none;
+  cursor: default;
+  border: 0px;
+}
+/* line 991, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-menu li i {
+  font-style: normal;
+  position: absolute;
+  top: -11px;
+  font-size: 18px;
+  margin-left: 3px;
+  color: #999;
+}
+
+/* line 1002, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.trash-link {
+  margin-bottom: 40px;
+  display: inline-block;
+  font-size: 17px;
+  cursor: pointer;
+  padding: 8px 15px 7px;
+}
+
+/* line 1011, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-body {
+  margin: 0px 0 50px;
+  position: relative;
+  z-index: 2;
+}
+
+/* line 1017, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-mark {
+  position: absolute;
+  right: 10px;
+  display: block;
+  height: 40px;
+  width: 100%;
+  border-bottom: 2px dashed #969696;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 15px;
+  font-weight: bold;
+  opacity: 0.2;
+}
+
+/* line 1032, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments {
+  max-width: 1000px;
+}
+/* line 1034, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comments {
+  margin-top: 50px;
+}
+/* line 1037, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment-form {
+  position: relative;
+}
+/* line 1040, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment-input {
+  border: 0px;
+  padding: 10px 15px 35px;
+  background: #f3f3f3;
+  resize: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  font: 14px Arial;
+  line-height: 22px;
+}
+/* line 1050, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .send-comment {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  border: 0px;
+  padding: 5px 17px;
+  background-color: #e4e4e4;
+}
+/* line 1057, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .send-comment:hover {
+  background-color: #d5d5d5;
+}
+/* line 1061, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment-block {
+  width: 100%;
+  padding-left: 50px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+/* line 1066, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment {
+  background: #fff;
+  margin-bottom: 50px;
+  position: relative;
+}
+/* line 1070, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment .comment-delete {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* line 1075, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment .user-photo-small {
+  position: absolute;
+  top: 5px;
+}
+/* line 1079, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment .comment-author {
+  font-size: 14px;
+  margin-right: 6px;
+}
+/* line 1083, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment .comment-date {
+  font-size: 11px;
+  color: #bbb;
+}
+/* line 1086, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-comments .comment .comment-message {
+  font-size: 14px;
+  margin-top: 7px;
+  line-height: 22px;
+  word-break: break-word;
+}
+
+/* User page */
+/* line 1102, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-photo {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 152px;
+  width: 152px;
+  border-radius: 100px;
+}
+/* line 1109, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-photo.static {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  max-height: 300px;
+  height: auto;
+  width: auto;
+  margin-bottom: 30px;
+}
+
+/* User-form page */
+/* line 1124, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-user .change-photo,
+.page-user .change-name {
+  margin-bottom: 50px;
+}
+/* line 1128, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-user .change-password label {
+  display: block;
+  font-size: 12px;
+  color: #777;
+  margin-bottom: 5px;
+}
+/* line 1134, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-user .change-password input[type=password] {
+  margin-bottom: 15px;
+  display: block;
+}
+/* line 1139, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.page-user .edit-name {
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* Post-settings page */
+/* line 1152, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-settings {
+  font-family: "_roboto";
+  font-size: 14px;
+}
+
+/* line 1158, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.change-access,
+.change-photo {
+  margin-top: 60px;
+}
+
+/* line 1168, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags {
+  margin-top: 60px;
+}
+/* line 1170, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags .tags {
+  margin-bottom: 15px;
+  text-align: left;
+}
+/* line 1171, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags li {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 0px;
+}
+/* line 1176, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags .tag, .edit-tags .tag-link {
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  font-family: _roboto;
+  font-weight: 400;
+}
+/* line 1183, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags .tag:hover, .edit-tags .tag-link:hover {
+  text-decoration: line-through;
+}
+/* line 1186, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags .input-tags {
+  border: 0px;
+  background: #eee;
+  padding: 9px 15px 7px;
+  font-size: 16px;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: bottom;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 20px;
+  font-family: _roboto;
+  letter-spacing: 0.2px;
+  color: #222;
+}
+/* line 1201, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.edit-tags .add-tags {
+  display: inline-block;
+  border: 0px;
+  padding: 0px 20px;
+  border-radius: 5px;
+  font-size: 24px;
+  height: 35px;
+}
+
+/* line 1215, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-settings.deleted .change-photo,
+.post-settings.deleted .change-access,
+.post-settings.deleted .edit-tags {
+  display: none;
+}
+
+/* line 1223, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-list {
+  position: relative;
+}
+
+/* posts */
+/* line 1233, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small {
+  margin: 0px;
+  opacity: 0;
+  -webkit-transition: opacity 0.4s, box-shadow 0.4s, background 0.4s;
+  left: 0px;
+  width: 380px;
+  position: absolute;
+  background: #fff;
+  overflow: hidden;
+  margin-bottom: 80px;
+}
+/* line 1245, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small:hover {
+  opacity: 1;
+  background: #fff;
+}
+/* line 1252, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.c1, .post-small.c2, .post-small.c3, .post-small.c4 {
+  opacity: 1;
+}
+/* line 1253, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.c1.deleted, .post-small.c2.deleted, .post-small.c3.deleted, .post-small.c4.deleted {
+  opacity: 0.6;
+}
+/* line 1254, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.c2 {
+  left: 470px;
+}
+/* line 1255, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.c3 {
+  left: 940px;
+}
+/* line 1256, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.c4 {
+  left: 1200px;
+}
+/* line 1257, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.c5 {
+  left: 1400px;
+}
+/* line 1260, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small.deleted:hover {
+  opacity: 0.6;
+}
+/* line 1265, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small .post-tags {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+/* line 1268, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small .post-tags li {
+  display: inline-block;
+  margin: 0px 10px 0px 0px;
+}
+/* line 1272, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small .post-tags .tag-link {
+  font-size: 9px;
+  padding: 0px 0px 0 0;
+  font-weight: 400;
+  letter-spacing: 0.8px;
+  color: #71699C;
+}
+
+/* line 1282, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-photo {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: block;
+  position: absolute;
+  transition: transform 0.4s;
+  z-index: 1;
+}
+
+/* line 1293, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small:hover .post-small-photo {
+  transform: scale(1.07);
+}
+
+/* line 1298, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-photo-small {
+  display: inline-block;
+  border-radius: 20px;
+}
+
+/* line 1303, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-header {
+  position: relative;
+  height: 31px;
+  top: 18px;
+  left: -18px;
+}
+/* line 1308, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-header .post-author {
+  display: inline-block;
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: 300;
+  color: #111;
+  position: relative;
+  top: -21px;
+}
+/* line 1317, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-header .post-stat {
+  right: 0px;
+  bottom: 5px;
+  position: absolute;
+  color: #f70000;
+  font-weight: 300;
+  font-size: 21px;
+  line-height: 15px;
+  font-family: _roboto;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI1NDQzNjdDREExRjExRTU5OEVGOUY0RkZDNEI0MzY5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI1NDQzNjdEREExRjExRTU5OEVGOUY0RkZDNEI0MzY5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjU0NDM2N0FEQTFGMTFFNTk4RUY5RjRGRkM0QjQzNjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjU0NDM2N0JEQTFGMTFFNTk4RUY5RjRGRkM0QjQzNjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4IVIL/AAAA1UlEQVR42mL8//8/A4NHnjoDA0MDENsB8U8g3gTE9UD8G4ibgTgSiAWB+AgQVzHsmHSa8b97rhaQcwyI+RlQwWkg/gDErmji34DYigVItGLRBAKmDNgBF8g1TEDCkYF0YAfSyE6GRj6QxptkaLwP0ricDI1LQRonA/F1EjRdBOIeJmCcgILXHYhvE6HpLBA7g/Qwgbk7Jj0GkuZAvAGPpgVAbAtU+xbEYQSnHBjwyGMEkikgp4BCDir6CYgzgRqWIZuCqhFhgAyQ7INqTgdqeoiuBCDAAAV7NXuExlsTAAAAAElFTkSuQmCC");
+}
+/* line 1327, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-header .post-stat::before {
+  display: block;
+  width: 13px;
+  height: 12px;
+  position: absolute;
+  content: "";
+  left: -17px;
+  top: 0px;
+}
+
+/* line 1341, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-photo-block {
+  background: url(/images/p0_s.gif);
+}
+/* line 1344, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-photo-block.empty img {
+  display: none;
+}
+
+/* line 1350, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body {
+  padding: 10px 35px 20px;
+  background: white;
+  text-align: center;
+  transition: -webkit-filter 0.4s, transform 0.4s;
+  z-index: 2;
+  position: relative;
+  margin: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+/* line 1360, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body .post-title {
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 0px 7px 0px;
+  font: 400 24px "PT Serif";
+  position: relative;
+  line-height: 27px;
+  left: 0px;
+  letter-spacing: -0.2px;
+  -webkit-transition: color 0.3s, left 0.3s;
+  color: #000000;
+}
+/* line 1375, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body .post-text {
+  font-size: 13px;
+  color: #6F6F6F;
+  line-height: 18px;
+  font-family: _roboto;
+  font-weight: 300;
+  margin: 0px 10px;
+  text-shadow: 0 0 0 #444;
+}
+/* line 1384, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body .post-publish-date {
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: bold;
+  display: none;
+}
+/* line 1390, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body .user-photo-small {
+  margin: 15px 0 5px 0;
+}
+/* line 1393, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body .post-stat-likes {
+  display: inline-block;
+}
+/* line 1395, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.post-small-body .post-stat-likes svg {
+  width: 14px;
+  height: 12px;
+}
+
+/* line 1409, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small {
+  float: left;
+  margin: 0 70px 50px 0;
+  width: 155px;
+  height: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 1416, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small .user-photo-big {
+  margin-bottom: 10px;
+}
+/* line 1419, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small .user-name {
+  font-size: 12px;
+}
+/* line 1422, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small .user-stat {
+  font-size: 18px;
+  color: #f70000;
+  font-weight: bold;
+  position: relative;
+  margin-top: 10px;
+}
+/* line 1430, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small .user-stat-likes::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 13px;
+  height: 12px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI1NDQzNjdDREExRjExRTU5OEVGOUY0RkZDNEI0MzY5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI1NDQzNjdEREExRjExRTU5OEVGOUY0RkZDNEI0MzY5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QjU0NDM2N0FEQTFGMTFFNTk4RUY5RjRGRkM0QjQzNjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QjU0NDM2N0JEQTFGMTFFNTk4RUY5RjRGRkM0QjQzNjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4IVIL/AAAA1UlEQVR42mL8//8/A4NHnjoDA0MDENsB8U8g3gTE9UD8G4ibgTgSiAWB+AgQVzHsmHSa8b97rhaQcwyI+RlQwWkg/gDErmji34DYigVItGLRBAKmDNgBF8g1TEDCkYF0YAfSyE6GRj6QxptkaLwP0ricDI1LQRonA/F1EjRdBOIeJmCcgILXHYhvE6HpLBA7g/Qwgbk7Jj0GkuZAvAGPpgVAbAtU+xbEYQSnHBjwyGMEkikgp4BCDir6CYgzgRqWIZuCqhFhgAyQ7INqTgdqeoiuBCDAAAV7NXuExlsTAAAAAElFTkSuQmCC");
+  left: -17px;
+  top: 4px;
+}
+/* line 1441, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small .user-stat-posts {
+  margin-left: 15px;
+  margin-right: 30px;
+}
+/* line 1444, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+.user-small .user-stat-posts::before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 11px;
+  height: 10px;
+  background-image: url("data:image/gif;base64,R0lGODlhCwAKAIAAAPcAAP///yH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4zLWMwMTEgNjYuMTQ1NjYxLCAyMDEyLzAyLzA2LTE0OjU2OjI3ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo0RUYxNDIyMTk2OTQxMUUzQTZENUE3OUU2NkUzQzNGQSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo0RUYxNDIyMjk2OTQxMUUzQTZENUE3OUU2NkUzQzNGQSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjRFRjE0MjFGOTY5NDExRTNBNkQ1QTc5RTY2RTNDM0ZBIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjRFRjE0MjIwOTY5NDExRTNBNkQ1QTc5RTY2RTNDM0ZBIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Af/+/fz7+vn49/b19PPy8fDv7u3s6+rp6Ofm5eTj4uHg397d3Nva2djX1tXU09LR0M/OzczLysnIx8bFxMPCwcC/vr28u7q5uLe2tbSzsrGwr66trKuqqainpqWko6KhoJ+enZybmpmYl5aVlJOSkZCPjo2Mi4qJiIeGhYSDgoGAf359fHt6eXh3dnV0c3JxcG9ubWxramloZ2ZlZGNiYWBfXl1cW1pZWFdWVVRTUlFQT05NTEtKSUhHRkVEQ0JBQD8+PTw7Ojk4NzY1NDMyMTAvLi0sKyopKCcmJSQjIiEgHx4dHBsaGRgXFhUUExIREA8ODQwLCgkIBwYFBAMCAQAAIfkEAAAAAAAsAAAAAAsACgAAAg+EjxDL7R+ShBTKVDO7ahUAOw==");
+  left: -15px;
+  top: 4px;
+}
+
+@media (max-width: 1300px) {
+  /* line 1468, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .all-view {
+    margin: 0 auto;
+    width: 850px;
+    position: relative;
+    left: 40px;
+  }
+
+  /* line 1474, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small.c2 {
+    left: 450px;
+  }
+
+  /* line 1477, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small {
+    margin-bottom: 60px;
+  }
+
+  /* line 1480, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container {
+    width: 100px;
+    height: 90px;
+    bottom: 0px;
+    left: 0px;
+    top: auto;
+    overflow: hidden;
+    background-position: 15px 50px;
+  }
+  /* line 1488, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container .sidebar {
+    display: none;
+  }
+  /* line 1491, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container:hover {
+    height: 100%;
+    width: 195px;
+  }
+  /* line 1492, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container:hover .sidebar {
+    display: block;
+    background-color: #07003E;
+  }
+
+  /* line 1500, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-box {
+    padding: 20px 0 20px 20px;
+  }
+
+  /* line 1503, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-menu {
+    padding: 15px 0 0px 20px;
+  }
+
+  /* line 1506, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-menu li {
+    margin: 0px 0;
+    font: 300 21px "_roboto";
+  }
+
+  /* line 1510, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-small-menu {
+    padding: 15px 0 30px 20px;
+    background: #07003E;
+  }
+
+  /* line 1514, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-small-menu li {
+    margin: 0px 0;
+    font: 300 15px "_roboto";
+  }
+
+  /* line 1518, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-photo-middle {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* line 1522, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-box .user-photo-middle {
+    margin-bottom: 10px;
+  }
+
+  /* line 1525, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-box .user-name {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1000px) {
+  /* line 1532, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container {
+    width: 100px;
+    height: 90px;
+    bottom: 0px;
+    left: 0px;
+    top: auto;
+    overflow: hidden;
+    background-position: 15px 50px;
+  }
+  /* line 1540, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container .sidebar {
+    display: none;
+  }
+  /* line 1543, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container:hover {
+    height: 100%;
+    width: 195px;
+  }
+  /* line 1546, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-container:hover .sidebar {
+    display: block;
+    background-color: transparent;
+  }
+
+  /* line 1552, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .all-view {
+    margin: 0 auto;
+    width: 650px;
+    left: 0px;
+    position: relative;
+  }
+
+  /* line 1558, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small {
+    width: 650px;
+    margin-bottom: 100px;
+  }
+
+  /* line 1562, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small-body {
+    margin: 35px;
+  }
+
+  /* line 1565, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small-body .post-text {
+    font-size: 21px;
+    line-height: 29px;
+    text-shadow: 0 0 0 #aaa;
+  }
+
+  /* line 1571, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small .post-tags {
+    margin-bottom: 25px;
+  }
+
+  /* line 1574, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small .post-tags .tag-link {
+    font-size: 15px;
+  }
+
+  /* line 1577, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small-body .user-photo-small {
+    margin: 25px 0 5px 0;
+    width: 35px;
+    height: 35px;
+  }
+
+  /* line 1582, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .post-small-body .post-title {
+    margin: 15px 0px 10px 0px;
+    font: 400 31px "PT Serif";
+  }
+
+  /* line 1587, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-menu {
+    padding: 20px 0 0px 20px;
+  }
+
+  /* line 1590, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-menu li {
+    margin: 10px 0;
+    font: 300 24px "_roboto";
+  }
+
+  /* line 1594, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-small-menu {
+    padding: 5px 0 50px 20px;
+  }
+
+  /* line 1597, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .sidebar-small-menu li {
+    margin: 7px 0;
+    font: 300 17px "_roboto";
+  }
+
+  /* line 1601, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-photo-middle {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* line 1605, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-box .user-photo-middle {
+    margin-bottom: 20px;
+  }
+
+  /* line 1608, /home/ryo/en/app/assets/stylesheets/custom.css.scss */
+  .user-box .user-name {
+    font-size: 16px;
+  }
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Regular-webfont.eot');
+    src: url('font/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/Roboto-Regular-webfont.woff') format('woff'),
+         url('font/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('font/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Light-webfont.eot');
+    src: url('font/Roboto-Light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/Roboto-Light-webfont.svg#robotolight') format('svg'),
+        url('font/Roboto-Light-webfont.woff') format('woff'),
+        url('font/Roboto-Light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Thin-webfont.eot');
+    src: url('font/Roboto-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/Roboto-Thin-webfont.svg#robotothin') format('svg'),
+        url('font/Roboto-Thin-webfont.woff') format('woff'),
+        url('font/Roboto-Thin-webfont.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto';
+    src: url('font/Roboto-Medium-webfont.eot');
+    src: url('font/Roboto-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/Roboto-Medium-webfont.svg#robotomedium') format('svg'),
+        url('font/Roboto-Medium-webfont.woff') format('woff'),
+        url('font/Roboto-Medium-webfont.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+
+@font-face {
+    font-family: '_roboto_slab';
+    src: url('font/RobotoSlab-Thin-webfont.eot');
+    src: url('font/RobotoSlab-Thin-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/RobotoSlab-Thin-webfont.svg#roboto_slabthin') format('svg'),
+        url('font/RobotoSlab-Thin-webfont.woff') format('woff'),
+        url('font/RobotoSlab-Thin-webfont.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto_slab';
+    src: url('font/RobotoSlab-Light-webfont.eot');
+    src: url('font/RobotoSlab-Light-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/RobotoSlab-Light-webfont.svg#roboto_slablight') format('svg'),
+        url('font/RobotoSlab-Light-webfont.woff') format('woff'),
+        url('font/RobotoSlab-Light-webfont.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: '_roboto_slab';
+    src: url('font/RobotoSlab-Regular-webfont.eot');
+    src: url('font/RobotoSlab-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+        url('font/RobotoSlab-Regular-webfont.svg#roboto_slabregular') format('svg'),
+        url('font/RobotoSlab-Regular-webfont.woff') format('woff'),
+        url('font/RobotoSlab-Regular-webfont.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
