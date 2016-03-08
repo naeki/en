@@ -171,8 +171,9 @@ $blue            : rgb(7, 95, 226);
   border-radius: 30px;
 }
 .user-photo-big{
-  width: 155px;
-  height: 155px;
+  width: 120px;
+  height: 120px;
+  border-radius: 100px;
   display: block;
 }
 .user-link{
@@ -891,6 +892,7 @@ input.flickr-open{
 .user-controls{
   display: inline-block;
   vertical-align: 40px;
+  background: #fff;
   .edit{
     display: inline-block;
     width: 26px;
@@ -1427,15 +1429,17 @@ input.flickr-open{
 .user-small{
   float: left;
   margin: 0 70px 50px 0;
-  width: 155px;
+  width: 120px;
   height: 230px;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   .user-photo-big{
     margin-bottom: 10px;
   }
   .user-name{
-    font-size: 12px;
+    font-size: 17px;
+    font-weight: 300;
   }
   .user-stat{
     font-size: 18px;
@@ -1449,7 +1453,7 @@ input.flickr-open{
       position: absolute;
       content: "";
       display: block;
-      width: 13px;
+      width: 14px;
       height: 12px;
       background-image: $heart_small;
       left: -17px;
@@ -1546,7 +1550,7 @@ input.flickr-open{
   .user-controls{
     position: fixed;
     left: 28px;
-    top: 90px;
+    top: 30px;
     z-index: 2;
   }
   .user-box {
@@ -1576,6 +1580,12 @@ input.flickr-open{
   }
   .user-box .user-name {
     font-size: 14px;
+  }
+  input.search-posts {
+    padding: 4px 15px 6px;
+  }
+  .folder-header{
+    padding-top: 20px;
   }
 }
 
@@ -1638,7 +1648,7 @@ input.flickr-open{
   }
   .user-controls{
     left: 33px;
-    top: 110px;
+    top: 40px;
   }
 
   .page-user .page-header{

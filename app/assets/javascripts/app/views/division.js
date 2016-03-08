@@ -201,7 +201,7 @@ App.Views.Bookmarks = App.Views.Folder.extend({
 
 App.Views.Users = App.Views.Folder.extend({
     label : Lang.users,
-    className : "users-view",
+    className : "users-view folder-view",
     initCollection : function(){
         this.collection || (this.collection = new App.Collections.Users(null, {parent : this}));
         this.collection.fetch();
