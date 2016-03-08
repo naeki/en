@@ -128,8 +128,8 @@
       <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46936417" vertical-offset="26641" max-vertical-offset="27659">
-              <caret line="1591" column="14" selection-start-line="1591" selection-start-column="14" selection-end-line="1591" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.19421965" vertical-offset="26182" max-vertical-offset="27659">
+              <caret line="1550" column="3" selection-start-line="1550" selection-start-column="3" selection-end-line="1550" selection-end-column="3" />
               <folding>
                 <element signature="e#15002#16619#2" expanded="true" />
                 <element signature="e#22000#24113#2" expanded="true" />
@@ -1485,8 +1485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46936417" vertical-offset="26641" max-vertical-offset="27659">
-          <caret line="1591" column="14" selection-start-line="1591" selection-start-column="14" selection-end-line="1591" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.19421965" vertical-offset="26182" max-vertical-offset="27659">
+          <caret line="1550" column="3" selection-start-line="1550" selection-start-column="3" selection-end-line="1550" selection-end-column="3" />
           <folding>
             <element signature="e#15002#16619#2" expanded="true" />
             <element signature="e#22000#24113#2" expanded="true" />
