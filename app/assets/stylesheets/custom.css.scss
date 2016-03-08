@@ -60,14 +60,13 @@ select{
 
 
 .h1{
-  font: 200 90px "_roboto";
-  color: #83ECC0;
+  font: 200 65px "_roboto";
+  color: #00E0A2;
   letter-spacing: -0.4px;
   display: inline-block;
   -webkit-transition: opacity 0.2s;
-  vertical-align: -8px;
+  vertical-align: 40px;
   margin-right: 10px;
-  position: absolute;
 }
 .h2{
   font: 200 47px "_roboto";
@@ -609,7 +608,7 @@ $blue            : rgb(7, 95, 226);
 
 /* folder*/
 .folder-view{
-  margin-left: 270px;
+  margin-left: 330px;
 }
 .folder-header{
   padding: 25px 0px 10px;
@@ -847,7 +846,7 @@ input.flickr-open{
 
 
 .page-header{
-  padding: 25px 0 50px;
+  padding: 40px 140px 50px 0px;
   .history-back{
     position: absolute;
     display: none;
@@ -872,7 +871,6 @@ input.flickr-open{
   .h1-link{             // for posts and users
     font-size: 16px;
     color: #304197;
-    opacity: 0.6;
     text-decoration: underline;
     display: inline-block;
     vertical-align: super;
@@ -883,7 +881,17 @@ input.flickr-open{
   }
   .user-controls{
     display: inline-block;
-    vertical-align: 10px;
+    vertical-align: 40px;
+    .edit{
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      background-image: $settings;
+      transition: transform 0.3s;
+      &:hover{
+        transform: rotate(90deg);
+      }
+    }
   }
   .tags{display: inline-block;}
 }
@@ -974,7 +982,7 @@ input.flickr-open{
     display: inline-block;
     position: relative;
     margin-right: 70px;
-    font: 300 36px "_roboto";
+    font: 300 33px "_roboto";
     cursor: pointer;
     color: #444;
     border-bottom: 1px solid transparent;
@@ -1100,11 +1108,9 @@ input.flickr-open{
 
 /* User page */
 .user-photo{
-  position: absolute;
-  right:20px;
-  top:20px;
-  height: 152px;
-  width: 152px;
+  height: 130px;
+  width: 130px;
+  margin-right: 25px;
   border-radius: 100px;
   &.static{
     position: relative;
@@ -1120,6 +1126,7 @@ input.flickr-open{
 
 /* User-form page */
 .page-user{
+  margin-left: 330px;
   .change-photo,
   .change-name{
     margin-bottom: 50px;
@@ -1238,7 +1245,7 @@ input.flickr-open{
   left: 0px;
   width: 380px;
   position: absolute;
-  background: #fff;
+  background: #BBB9CA;
   overflow: hidden;
   margin-bottom: 80px;
   margin-right: 90px;
@@ -1466,7 +1473,7 @@ input.flickr-open{
 
 
 @media (max-width: 1300px) {
-  .all-view {
+  .folder-view {
     margin: 0 auto;
     width: 850px;
     position: relative;
@@ -1551,7 +1558,8 @@ input.flickr-open{
       }
     }
   }
-  .all-view {
+  .page-user,
+  .folder-view {
     margin: 0 auto;
     width: 650px;
     left: 0px;
@@ -1584,6 +1592,28 @@ input.flickr-open{
   .post-small-body .post-title {
     margin: 15px 0px 10px 0px;
     font: 400 31px "PT Serif";
+  }
+
+  .page-user .page-header{
+    text-align: center;
+    padding-right: 0px;
+  }
+  .page-user .user-photo{
+    margin-bottom: 20px;
+  }
+  .page-user .h1{
+    display: block;
+  }
+  .page-menu{
+    margin-top: 0px;
+    letter-spacing: 37px;
+  }
+  .page-menu li{
+    display: inline-block;
+    /* margin-right: 70px; */
+    font: 300 28px "_roboto";
+    letter-spacing: -0.5px;
+    margin: 0px;
   }
 
   .sidebar-menu {

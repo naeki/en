@@ -70,7 +70,7 @@ App.Views.Page_User = App.Views.BASE.extend({
         });
 
         if (this.model.get("id") == App.currentUser.get("id"))
-            this.$controls.html($("<span class='h1-link edit'>"+ Lang.edit +"</span>"));
+            this.$controls.html($("<span class='h1-link edit'></span>"));
         else {
             var following = ~App.currentUser.get("following").indexOf(this.model.id);
 

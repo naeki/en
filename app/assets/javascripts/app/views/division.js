@@ -68,7 +68,7 @@ App.Views.Digest = App.Views.Folder.extend({
         </div> \
         <div class='folder-body'></div>",
     label : Lang.digest,
-    className : "digest-view",
+    className : "digest-view folder-view",
     renderHeader : function(){
         this.$h1.html(this.label);
 
@@ -85,13 +85,13 @@ App.Views.Digest = App.Views.Folder.extend({
 App.Views.Feed = App.Views.Folder.extend({
     type : "feed",
     label : Lang.feed,
-    className : "feed-view"
+    className : "feed-view folder-view"
 });
 
 
 App.Views.All = App.Views.Folder.extend({
     type      : "all",
-    className : "all-view",
+    className : "all-view folder-view",
     label     : Lang.all,
     _markup   :
         "<div class='folder-header'>\
@@ -193,7 +193,7 @@ App.Views.Search = App.Views.Folder.extend({
 App.Views.Bookmarks = App.Views.Folder.extend({
     type : "bookmarks",
     label : Lang.bookmarks,
-    className : "bookmarks-view"
+    className : "bookmarks-view folder-view"
 });
 
 
