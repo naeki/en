@@ -1535,33 +1535,60 @@ input.flickr-open{
   .post-small.c2 {
     left: 450px;
   }
-  .post-small{
+  .post-small {
     margin-bottom: 60px;
   }
-  .sidebar-container{
+  .sidebar-container {
     width: 100px;
     height: 90px;
     bottom: 0px;
     left: 0px;
     overflow: hidden;
     background-position: 15px 50px;
-    .sidebar{
+    .sidebar {
       display: none;
     }
-    &:hover{
-      .sidebar{
+    &:hover {
+      .sidebar {
         display: block;
       }
     }
-    &:focus{
+    &:focus {
       outline: none;
-      .sidebar{
+      .sidebar {
         display: block;
       }
     }
   }
+  .user-box {
+    padding: 20px 0 20px 20px;
+  }
+  .sidebar-menu {
+    padding: 15px 0 0px 20px;
+  }
+  .sidebar-menu li {
+    margin: 0px 0;
+    font: 300 21px "_roboto";
+  }
+  .sidebar-small-menu {
+    padding: 15px 0 30px 20px;
+    background: #07003E;
+  }
+  .sidebar-small-menu li {
+    margin: 0px 0;
+    font: 300 15px "_roboto";
+  }
+  .user-photo-middle {
+    width: 40px;
+    height: 40px;
+  }
+  .user-box .user-photo-middle {
+    margin-bottom: 10px;
+  }
+  .user-box .user-name {
+    font-size: 14px;
+  }
 }
-
 
 
 
