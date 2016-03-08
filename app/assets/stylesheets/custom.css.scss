@@ -602,7 +602,7 @@ $blue            : rgb(7, 95, 226);
 }
 
 .all-view{
-  margin-left: 270px;
+  margin-left: 300px;
 }
 
 
@@ -1235,10 +1235,11 @@ input.flickr-open{
   -webkit-transition: opacity 0.4s, box-shadow 0.4s, background 0.4s;
 //  box-shadow: 0 0 20px #eaeaea;
   left: 0px;
-  width: 430px;
+  width: 370px;
   position: absolute;
   background: #fff;
   overflow: hidden;
+  margin-bottom: 70px;
 
   &:hover{
 //    box-shadow: 0 0 30px #ddd;
@@ -1249,8 +1250,8 @@ input.flickr-open{
 
   &.c1, &.c2, &.c3, &.c4{opacity: 1;}
   &.c1.deleted, &.c2.deleted, &.c3.deleted, &.c4.deleted{opacity: 0.6;}
-  &.c2{left: 520px;}
-  &.c3{left: 1040px;}
+  &.c2{left: 450px;}
+  &.c3{left: 900px;}
   &.c4{left: 1200px;}
   &.c5{left: 1400px;}
 
@@ -1268,11 +1269,11 @@ input.flickr-open{
       margin: 0px 10px 0px 0px;
     }
     .tag-link{
-      font-size: 10px;
+      font-size: 9px;
       padding: 0px 0px 0 0;
       font-weight: 400;
       letter-spacing: 0.8px;
-      color: #8980BB;
+      color: #71699C;
     }
   }
 }
@@ -1359,9 +1360,9 @@ input.flickr-open{
     cursor: pointer;
     display: inline-block;
     margin: 15px 0px 7px 0px;
-    font: 400 26px "PT Serif";
+    font: 400 24px "PT Serif";
     position: relative;
-    line-height: 29px;
+    line-height: 27px;
     left: 0px;
     letter-spacing: -0.2px;
     -webkit-transition: color 0.3s, left 0.3s;
@@ -1371,9 +1372,9 @@ input.flickr-open{
 
 
   .post-text{
-    font-size: 15px;
+    font-size: 13px;
     color: #6F6F6F;
-    line-height: 21px;
+    line-height: 18px;
     font-family: _roboto;
     font-weight: 300;
     margin: 0px 10px;
@@ -1488,7 +1489,7 @@ input.flickr-open{
   .all-view {
     margin: 0 auto;
     width: 650px;
-    left: 28px;
+    left: 15px;
     position: relative;
   }
   .post-small{
