@@ -247,6 +247,7 @@ $blue            : rgb(7, 95, 226);
 //  height: 25px;
 //  bottom: 20px;
 //  left: 20px;
+  top: 0px;
   width: 195px;
   height: 100%;
   background-repeat: no-repeat;
@@ -273,7 +274,7 @@ $blue            : rgb(7, 95, 226);
   height: 100%;
   left: 0px;
   top: 0px;
-  position: fixed;
+  position: absolute;
 //  background: #4a5386 url("../images/sb.jpg") bottom left no-repeat;
 //  box-shadow: 0 0 0px rgba(0,0,0,0.1);
   z-index: 1;
@@ -1463,24 +1464,84 @@ input.flickr-open{
 
 
 
-@media (max-width: 950px) {
-  .sidebar-container{
-      width: 100px;
-      height: 90px;
-      bottom: 0px;
-      left: 0px;
-      overflow: hidden;
-      background-position: 15px 50px;
-      .sidebar{
-        display: none;
-      }
-    &:hover{
-      .sidebar{
+@media (max-width: 1200px) {
+  .all-view {
+    margin: 0 auto;
+    width: 900px;
+    position: relative;
+    left: 40px;
+  }
+  .post-small.c2 {
+    left: 450px;
+  }
+  .post-small {
+    margin-bottom: 60px;
+  }
+  .sidebar-container {
+    width: 100px;
+    height: 90px;
+    bottom: 0px;
+    left: 0px;
+    top: auto;
+    overflow: hidden;
+    background-position: 15px 50px;
+    .sidebar {
+      display: none;
+    }
+    &:hover {
+      .sidebar {
         display: block;
       }
+      height: 100%;
+      width: 195px;
     }
-    &:focus{
-      outline: none;
+  }
+  .user-box {
+    padding: 20px 0 20px 20px;
+  }
+  .sidebar-menu {
+    padding: 15px 0 0px 20px;
+  }
+  .sidebar-menu li {
+    margin: 0px 0;
+    font: 300 21px "_roboto";
+  }
+  .sidebar-small-menu {
+    padding: 15px 0 30px 20px;
+    background: #07003E;
+  }
+  .sidebar-small-menu li {
+    margin: 0px 0;
+    font: 300 15px "_roboto";
+  }
+  .user-photo-middle {
+    width: 40px;
+    height: 40px;
+  }
+  .user-box .user-photo-middle {
+    margin-bottom: 10px;
+  }
+  .user-box .user-name {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  .sidebar-container{
+    width: 100px;
+    height: 90px;
+    bottom: 0px;
+    left: 0px;
+    top: auto;
+    overflow: hidden;
+    background-position: 15px 50px;
+    .sidebar{
+      display: none;
+    }
+    &:hover{
+      height: 100%;
+      width: 195px;
       .sidebar{
         display: block;
       }
@@ -1521,75 +1582,5 @@ input.flickr-open{
     font: 400 31px "PT Serif";
   }
 }
-
-
-
-
-@media (max-width: 1200px) {
-  .all-view {
-    margin: 0 auto;
-    width: 900px;
-    position: relative;
-    left: 40px;
-  }
-  .post-small.c2 {
-    left: 450px;
-  }
-  .post-small {
-    margin-bottom: 60px;
-  }
-  .sidebar-container {
-    width: 100px;
-    height: 90px;
-    bottom: 0px;
-    left: 0px;
-    overflow: hidden;
-    background-position: 15px 50px;
-    .sidebar {
-      display: none;
-    }
-    &:hover {
-      .sidebar {
-        display: block;
-      }
-    }
-    &:focus {
-      outline: none;
-      .sidebar {
-        display: block;
-      }
-    }
-  }
-  .user-box {
-    padding: 20px 0 20px 20px;
-  }
-  .sidebar-menu {
-    padding: 15px 0 0px 20px;
-  }
-  .sidebar-menu li {
-    margin: 0px 0;
-    font: 300 21px "_roboto";
-  }
-  .sidebar-small-menu {
-    padding: 15px 0 30px 20px;
-    background: #07003E;
-  }
-  .sidebar-small-menu li {
-    margin: 0px 0;
-    font: 300 15px "_roboto";
-  }
-  .user-photo-middle {
-    width: 40px;
-    height: 40px;
-  }
-  .user-box .user-photo-middle {
-    margin-bottom: 10px;
-  }
-  .user-box .user-name {
-    font-size: 14px;
-  }
-}
-
-
 
 
