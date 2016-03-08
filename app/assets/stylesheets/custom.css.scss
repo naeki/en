@@ -140,6 +140,9 @@ $grayMediumLight : #eaeaea;
 $grayLighter     : #dddddd;
 $grayLight       : #aaaaaa;
 $blue            : rgb(7, 95, 226);
+$iconBlue        : #3D35B4;
+
+
 
 
 
@@ -158,6 +161,13 @@ $blue            : rgb(7, 95, 226);
   margin-top: 45px;
   @include box_sizing;
 }
+
+
+
+// Icons SVG
+.icon-settings{}
+
+
 
 
 
@@ -551,10 +561,14 @@ $blue            : rgb(7, 95, 226);
   &.settings{
     width: 26px;
     height: 26px;
-    background-image: $settings;
     margin-right: 13px;
     margin-bottom: 40px;
     transition: transform 0.3s;
+    .icon-settings{
+      width: 26px;
+      height: 26px;
+      fill: #3D35B4;
+    }
     &:hover{
       transform: rotate(90deg);
     }
@@ -890,17 +904,26 @@ input.flickr-open{
   .tags{display: inline-block;}
 }
 .user-controls{
-  display: inline-block;
+  display: block;
   vertical-align: 40px;
   background: #fff;
+  position: fixed;
+  right: 30px;
+  bottom: 100px;
+  z-index: 4;
   .edit{
-    display: inline-block;
-    width: 26px;
-    height: 26px;
-    background-image: $settings;
+    display: block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
     transition: transform 0.3s;
     &:hover{
       transform: rotate(90deg);
+    }
+    .icon-settings{
+      width: 35px;
+      height: 35px;
+      fill: $iconBlue;
     }
   }
 }
@@ -986,16 +1009,16 @@ input.flickr-open{
 
 
 .page-menu{
-  margin: 40px 0 0px;
+  margin: 50px 0 0px;
+  letter-spacing: 70px;
   li{
     display: inline-block;
     position: relative;
-    margin-right: 70px;
-    font: 300 33px "_roboto";
+    font: 300 30px "_roboto";
     cursor: pointer;
     color: #444;
     border-bottom: 1px solid transparent;
-    line-height: 38px;
+    line-height: 31px;
     letter-spacing: -0.5px;
     &:hover{
       border-color: #888;
@@ -1307,11 +1330,14 @@ input.flickr-open{
   display: block;
   position: absolute;
   transition: transform 0.4s;
+//  -webkit-filter: blur(2.3px);
+  transform: scale(1.2);
   z-index: 1;
 }
 
 .post-small:hover .post-small-photo{
-  transform: scale(1.07);
+  transform: scale(1.1);
+//  -webkit-filter: blur(0);
 }
 
 
@@ -1498,8 +1524,19 @@ input.flickr-open{
     left: 450px;
   }
   .post-small {
-    margin-bottom: 60px;
+    margin-bottom: 55px;
     margin-right: 0px;
+  }
+  .post-small-photo{
+    -webkit-filter: blur(2.3px);
+    transition: 0;
+    transform: scale(1.2);
+  }
+  .post-small:hover .post-small-photo{
+    transform: scale(1.2);
+  }
+  .post-small-body{
+    margin: 20px;
   }
   .sidebar-container {
     width: 100px;
@@ -1528,6 +1565,8 @@ input.flickr-open{
   .page-user .h1{
     vertical-align: 15px;
     display: block;
+    font-size: 60px;
+    line-height: 75px;
   }
   .page-menu{
     margin-top: 50px;
@@ -1549,10 +1588,21 @@ input.flickr-open{
   }
   .user-controls{
     position: fixed;
-    left: 28px;
-    top: 30px;
+    left: 20px;
+    top: 20px;
     z-index: 2;
+    right: auto;
+    bottom: auto;
   }
+  .user-controls .edit{
+    width: 40px;
+    height: 40px;
+  }
+  .user-controls .edit .icon-settings{
+    width: 40px;
+    height: 40px;
+  }
+
   .user-box {
     padding: 20px 0 20px 20px;
   }
@@ -1623,7 +1673,7 @@ input.flickr-open{
     margin-bottom: 100px;
   }
   .post-small-body{
-    margin: 35px;
+    margin: 30px;
   }
   .post-small-body .post-text {
     font-size: 21px;
@@ -1631,6 +1681,7 @@ input.flickr-open{
     text-shadow: 0 0 0 #aaa;
 
   }
+
   .post-small .post-tags{
     margin-bottom: 25px;
   }
@@ -1647,8 +1698,18 @@ input.flickr-open{
     font: 400 31px "PT Serif";
   }
   .user-controls{
-    left: 33px;
-    top: 40px;
+    left: 20px;
+    top: 30px;
+    right: auto;
+    bottom: auto;
+  }
+  .user-controls .edit{
+    width: 50px;
+    height: 50px;
+  }
+  .user-controls .edit .icon-settings{
+    width: 50px;
+    height: 50px;
   }
   .folder-header{
     padding-top: 30px;
@@ -1666,6 +1727,8 @@ input.flickr-open{
   }
   .page-user .h1{
     display: block;
+    font-size: 70px;
+    line-height: 110px;
   }
   .page-menu{
     margin-top: 50px;

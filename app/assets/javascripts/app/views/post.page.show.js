@@ -137,7 +137,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$(".help-title").html(this.model.get("title"));
 
         if (this.model.get("permissions")&Post.OWNER)
-            $("<span class='post-action settings link'></span>").prependTo(this.$actions);
+            $("<span class='post-action settings link'></span>").html(App.SVG.settings).prependTo(this.$actions);
 
         // Show/hide user box
         this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
