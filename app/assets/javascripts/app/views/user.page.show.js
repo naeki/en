@@ -1,11 +1,11 @@
 App.Views.Page_User = App.Views.BASE.extend({
     className : "page-user",
     _markup : "\
+        <div class='user-controls'></div>\
         <div class='page-header'>\
             <div class='history-back'></div>\
             <img class='user-photo'>\
             <div class='h1'></div>\
-            <div class='user-controls'></div>\
             <ul class='page-menu'>\
                 <li class='user-posts'>"+ Lang.posts +"<i></i></li>\
                 <li class='user-likes'>"+ Lang.likes +"<i></i></li>\
@@ -97,7 +97,7 @@ App.Views.Page_User = App.Views.BASE.extend({
         this.$(".trash-link").remove();
 
         if (this.model.get("permissions")&User.ME && !this.options.page || this.options.page == "posts" || this.options.page == "deleted")
-            this.$(".page-body").append('<button class="trash-link">ʬ '+ Lang.deleted +'</button>');
+            this.$(".page-body").append('<button class="trash-link">ʬ</button>');
         if (this.options.page == "deleted")
             this.$(".trash-link").prepend("← ");
 

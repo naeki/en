@@ -1,6 +1,7 @@
 App.Views.Main = Backbone.View.extend({
     className : "main",
     _markup : "\
+               <img class='user-photo-middle user-link common-user-box'>\
                <div class='context'></div>\
                <div class='sidebar-container'>\
                    <aside class='sidebar'></aside>\
@@ -21,6 +22,12 @@ App.Views.Main = Backbone.View.extend({
     render : function(){
         this.$el.html(this._markup);
         $("body").html(this.$el);
+
+        this.$(".common-user-box").attr({
+            src : App.currentUser.getSmallPhoto(),
+            alt : App.currentUser.get("name")
+        }).data("user-id", App.currentUser.id);
+
     },
     open : function(options){
         var dfd = $.Deferred().resolve();

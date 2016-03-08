@@ -68,6 +68,7 @@ App.Views.Post_small = App.Views.BASE.extend({
     renderLikes : function(){
         this.$likes = this.$(".post-stat-likes")[this.model.get("likes") ? "show" : "hide"]();
         var likes = this.model.get("likes");
+        this.$likes.attr("title", likes + " likes");
         if (likes) {
             if (likes > 0 && likes < 2)  this.$likes.attr("likes", 1);
             if (likes > 1 && likes < 7)  this.$likes.attr("likes", 2);
