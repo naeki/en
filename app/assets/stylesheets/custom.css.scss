@@ -1463,7 +1463,7 @@ input.flickr-open{
 
 
 
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
   .sidebar-container{
       width: 100px;
       height: 90px;
@@ -1522,6 +1522,45 @@ input.flickr-open{
   }
 }
 
+
+
+
+@media (max-width: 1200px) {
+  .all-view {
+    margin: 0 auto;
+    width: 900px;
+    position: relative;
+    left: 40px;
+  }
+  .post-small.c2 {
+    left: 450px;
+  }
+  .post-small{
+    margin-bottom: 60px;
+  }
+  .sidebar-container{
+    width: 100px;
+    height: 90px;
+    bottom: 0px;
+    left: 0px;
+    overflow: hidden;
+    background-position: 15px 50px;
+    .sidebar{
+      display: none;
+    }
+    &:hover{
+      .sidebar{
+        display: block;
+      }
+    }
+    &:focus{
+      outline: none;
+      .sidebar{
+        display: block;
+      }
+    }
+  }
+}
 
 
 
