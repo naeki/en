@@ -89,22 +89,24 @@ App.Views.Post_small = App.Views.BASE.extend({
     },
 
     tileWidth: 450,
-    tileMarginRight: 10,
+    tileMarginRight: 0,
     columnate : function(){
-        var scroll = window.innerHeight != $("body")[0].scrollHeight,
+        var //scroll = window.innerHeight != $("body")[0].scrollHeight,
             sum = 0,
             postNum = this.parent.collection.models.indexOf(this.model) + 1,
             rc,
-            tilesWidth = parseInt(this.$el.css("width")) || this.tileWidth,
-            tileMarginBottom = this.$el.css("margin-bottom") || "30",
-            cols = parseInt((this.parent.el.offsetWidth + (scroll ? 12 : 0)) / tilesWidth),  // || const;
+            tilesWidth       = parseInt(this.$el.css("width")) || this.tileWidth,
+            tileMarginBottom = parseInt(this.$el.css("margin-bottom")) || "30",
+            tileMarginRight  = parseInt(this.$el.css("margin-right")) || this.tileMarginRight,
+
+            cols = parseInt((this.parent.el.offsetWidth + 12) / (tilesWidth + tileMarginRight)),  // || const;
 
        //if ((this.parent.collection.models.length/cols) < 1.75 && (this.parent.collection.models.length/cols) >= 1.25) cols = (cols - 1) || 1;
 
         rc = "c" + ((postNum % cols) || cols);
 
         this.parent.$("." + rc).each(function(i, item){
-            sum += item.offsetHeight + parseInt(tileMarginBottom);
+            sum += item.offsetHeight + tileMarginBottom;
             $(item).removeClass('last');
         }.bind(this));
 
@@ -128,7 +130,7 @@ App.Views.PostList = App.Views.BASE.extend({
 
         this.listenTo(this.collection, "reset", this.render);
 
-        $(window).on("resize", this.columnateAll.bind(this));    //TODO: Только через requestAnimationFrame
+        $(window).on("resize", _.debounce(this.columnateAll.bind(this)));    //TODO: Только через requestAnimationFrame
     },
     render : function(){
         _.invoke(this.views, "remove");

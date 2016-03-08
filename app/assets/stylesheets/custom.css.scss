@@ -1241,6 +1241,7 @@ input.flickr-open{
   background: #fff;
   overflow: hidden;
   margin-bottom: 80px;
+  margin-right: 90px;
 
   &:hover{
 //    box-shadow: 0 0 30px #ddd;
@@ -1476,6 +1477,7 @@ input.flickr-open{
   }
   .post-small {
     margin-bottom: 60px;
+    margin-right: 0px;
   }
   .sidebar-container {
     width: 100px;
@@ -1551,12 +1553,12 @@ input.flickr-open{
   }
   .all-view {
     margin: 0 auto;
-    width: 750px;
+    width: 650px;
     left: 0px;
     position: relative;
   }
   .post-small{
-    width: 750px;
+    width: 650px;
     margin-bottom: 100px;
   }
   .post-small-body{
