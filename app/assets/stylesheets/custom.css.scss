@@ -602,7 +602,7 @@ $blue            : rgb(7, 95, 226);
 }
 
 .all-view{
-  margin-left: 300px;
+  margin-left: 330px;
 }
 
 
@@ -1235,11 +1235,11 @@ input.flickr-open{
   -webkit-transition: opacity 0.4s, box-shadow 0.4s, background 0.4s;
 //  box-shadow: 0 0 20px #eaeaea;
   left: 0px;
-  width: 370px;
+  width: 380px;
   position: absolute;
   background: #fff;
   overflow: hidden;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
 
   &:hover{
 //    box-shadow: 0 0 30px #ddd;
@@ -1250,8 +1250,8 @@ input.flickr-open{
 
   &.c1, &.c2, &.c3, &.c4{opacity: 1;}
   &.c1.deleted, &.c2.deleted, &.c3.deleted, &.c4.deleted{opacity: 0.6;}
-  &.c2{left: 450px;}
-  &.c3{left: 900px;}
+  &.c2{left: 470px;}
+  &.c3{left: 940px;}
   &.c4{left: 1200px;}
   &.c5{left: 1400px;}
 
@@ -1489,7 +1489,7 @@ input.flickr-open{
   .all-view {
     margin: 0 auto;
     width: 650px;
-    left: 15px;
+    left: 0px;
     position: relative;
   }
   .post-small{
