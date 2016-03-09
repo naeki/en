@@ -259,7 +259,6 @@ $iconBlue        : #3D35B4;
 .sidebar-container{
   position: fixed;
   z-index: 999;
-  background: $logo;
 //  width: 61px;
 //  height: 25px;
 //  bottom: 20px;
@@ -269,6 +268,14 @@ $iconBlue        : #3D35B4;
   height: 100%;
   background-repeat: no-repeat;
   background-position: 15px 98%;
+  .icon-logo{
+    width: 70px;
+    height: 35px;
+    fill: #00DC9F;
+    position: absolute;
+    left: 20px;
+    bottom: 30px;
+  }
 }
 
 .clear .sidebar-container{
@@ -931,6 +938,15 @@ input.flickr-open{
 .page-user .history-back::before{
   top: 37px;
 }
+.icon-trash{
+  position: fixed;
+  fill: #aaa;
+  cursor: pointer;
+  right: 30px;
+  bottom: 30px;
+  height: 43px;
+  width: 33px;
+}
 
 .post-stats{
   position: relative;
@@ -1039,17 +1055,6 @@ input.flickr-open{
   }
 }
 
-.trash-link{
-//  margin-bottom: 40px;
-  display: inline-block;
-  font-size: 17px;
-  cursor: pointer;
-  position: fixed;
-  padding: 8px 15px 7px;
-  bottom: 20px;
-  right: 20px;
-  margin-right: 0px;
-}
 
 
 .page-body{
@@ -1546,6 +1551,14 @@ input.flickr-open{
     top: auto;
     overflow: hidden;
     background-position: 15px 50px;
+    .icon-logo{
+      width: 70px;
+      height: 35px;
+      fill: #00DC9F;
+      position: absolute;
+      left: 20px;
+      bottom: 30px;
+    }
     .sidebar {
       display: none;
     }
@@ -1649,6 +1662,11 @@ input.flickr-open{
     top: auto;
     overflow: visible;
     background-position: 15px 50px;
+    .icon-logo {
+      width: 90px;
+      height: 45px;
+      left: 30px;
+    }
     .sidebar{
       display: none;
       width: 100%;
@@ -1698,7 +1716,7 @@ input.flickr-open{
     font: 400 31px "PT Serif";
   }
   .user-controls{
-    left: 20px;
+    left: 30px;
     top: 30px;
     right: auto;
     bottom: auto;
@@ -1730,6 +1748,10 @@ input.flickr-open{
     font-size: 70px;
     line-height: 110px;
   }
+  .page-user .icon-trash{
+    height: 60px;
+    width: 48px;
+  }
   .page-menu{
     margin-top: 50px;
     letter-spacing: 37px;
@@ -1743,21 +1765,21 @@ input.flickr-open{
   }
 
   .sidebar-menu {
-    padding: 25px 0 0px 20px;
+    padding: 25px 0 0px 30px;
   }
   .sidebar-menu li {
     margin: 25px 0;
     font: 300 42px "_roboto";
   }
   .sidebar-small-menu {
-    padding: 15px 0 50px 20px;
+    padding: 15px 0 50px 30px;
   }
   .sidebar-small-menu li {
     margin: 20px 0;
     font: 300 29px "_roboto";
   }
   .user-box {
-    padding: 30px 0 30px 20px;
+    padding: 30px 0 30px 30px;
   }
   .user-photo-middle {
     width: 50px;
@@ -1776,6 +1798,7 @@ input.flickr-open{
   }
   .common-user-box{
     top: 30px;
+    left: 30px;
   }
 }
 

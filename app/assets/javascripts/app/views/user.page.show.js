@@ -39,7 +39,7 @@ App.Views.Page_User = App.Views.BASE.extend({
         "click .user-follow.unfollow" : function(){
             App.currentUser.unfollow(this.model);
         },
-        "click .trash-link" : function(){
+        "click .icon-trash" : function(){
             var url = _.last(Backbone.history.getFragment().split("/")) == "deleted" ? "" : "/deleted";
             App.router.navigate("user" + this.model.id + url, {trigger: true, replace: false});
         }
@@ -97,7 +97,7 @@ App.Views.Page_User = App.Views.BASE.extend({
         this.$(".trash-link").remove();
 
         if (this.model.get("permissions")&User.ME && !this.options.page || this.options.page == "posts" || this.options.page == "deleted")
-            this.$(".page-body").append('<button class="trash-link">ʬ</button>');
+            this.$(".page-body").append(App.SVG.trash);
         if (this.options.page == "deleted")
             this.$(".trash-link").prepend("← ");
 

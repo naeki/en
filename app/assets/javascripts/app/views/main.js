@@ -3,8 +3,9 @@ App.Views.Main = Backbone.View.extend({
     _markup : "\
                <img class='user-photo-middle user-link common-user-box'>\
                <div class='context'></div>\
-               <div class='sidebar-container'>\
-                   <aside class='sidebar'></aside>\
+               <div class='sidebar-container'>" +
+                    App.SVG.logo +
+                   "<aside class='sidebar'></aside>\
                </div>",
     events : {
         "click .user-link" : function(e){
