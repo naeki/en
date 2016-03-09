@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5b7ef06c-50c6-4e68-861d-7f595f210599" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/app.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/user.page.show.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/user.page.show.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="en.iws" />
@@ -122,8 +119,8 @@
       <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37336504" vertical-offset="15700" max-vertical-offset="30787">
-              <caret line="942" column="12" selection-start-line="942" selection-start-column="12" selection-end-line="942" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.5350773" vertical-offset="29980" max-vertical-offset="30855">
+              <caret line="1790" column="16" selection-start-line="1790" selection-start-column="16" selection-end-line="1790" selection-end-column="16" />
               <folding>
                 <element signature="e#2187#4872#2" expanded="true" />
                 <element signature="e#14989#16606#2" expanded="true" />
@@ -1526,8 +1523,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37336504" vertical-offset="15700" max-vertical-offset="30787">
-          <caret line="942" column="12" selection-start-line="942" selection-start-column="12" selection-end-line="942" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.5350773" vertical-offset="29980" max-vertical-offset="30855">
+          <caret line="1790" column="16" selection-start-line="1790" selection-start-column="16" selection-end-line="1790" selection-end-column="16" />
           <folding>
             <element signature="e#2187#4872#2" expanded="true" />
             <element signature="e#14989#16606#2" expanded="true" />
