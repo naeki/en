@@ -4,7 +4,7 @@ App.Views.Page_User = App.Views.BASE.extend({
         <div class='user-controls'></div>\
         <div class='page-header'>\
             <div class='history-back'></div>\
-            <img class='user-photo'>\
+                <img class='user-photo'>\
             <div class='h1'></div>\
             <ul class='page-menu'>\
                 <li class='user-posts'>"+ Lang.posts +"<i></i></li>\
@@ -48,26 +48,23 @@ App.Views.Page_User = App.Views.BASE.extend({
         this.render();
 
         this.$title    = this.$(".h1");
-        this.$photo    = this.$(".user-photo");
         this.$controls = this.$(".user-controls");
 
         this.renderHeader();
         this.renderBody();
 
-        this.listenTo(App.currentUser, "change:following", this.renderHeader);
-        this.listenTo(this.model, "change", this.renderHeader);
-        this.listenTo(this.model.posts, "add remove reset", this.renderHeader);
+//        this.listenTo(App.currentUser, "change:following", this.renderHeader);
+//        this.listenTo(this.model, "change", this.renderHeader);
+//        this.listenTo(this.model.posts, "add remove reset", this.renderHeader);
     },
     render : function(){
         this.$el.html(this._markup).appendTo(this.options.renderTo);
     },
+    pictureLoaded : false,
     renderHeader : function(){
         this.$title.html(this.model.get("name"));
 
-        this.$photo.attr({
-            src : this.model.getNormalPhoto(),
-            alt : this.model.get("name")
-        });
+        this.$(".user-photo").attr("src", this.model.getNormalPhoto());
 
         if (this.model.get("id") == App.currentUser.get("id"))
             this.$controls.html($("<span class='h1-link edit'></span>").html(App.SVG.settings));
@@ -137,34 +134,36 @@ App.Views.User_Form = App.Views.BASE.extend({
         </div>\
         <div class='page-body'>\
             <div class='change-photo'>\
-                <h3>"+ Lang.photo_change +"</h3>\
-                <img class='user-photo static'>\
+                <div class='user-photo-wrapper'>\
+                    <input type='file' class='select-file' value='"+ Lang.upload +"'>\
+                    <img class='user-photo'>\
+                </div>\
                 <div class='upload-bar'></div>\
-                <input type='file' class='select-file' value='"+ Lang.upload +"'>\
-                <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
                 <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
             </div>\
             <div class='change-name'>\
-                <h3>"+ Lang.change_name +"</h3>\
                 <input type='text' class='edit-name'>\
-                <input type='button' class='submit-name' value='"+ Lang.save_name +"'>\
+                <label>"+ Lang.change_name +"</label>\
             </div>\
             <div class='change-password'>\
                 <h3>"+ Lang.change_pass +"</h3>\
-                <label>"+ Lang.old_pass +":</label><input name='old-pass' type='password'>\
-                <label>"+ Lang.new_pass +":</label><input name='new-pass' type='password'>\
-                <label>"+ Lang.confirm_pass +":</label><input name='confirm-pass' type='password'>\
-                <input type='button' class='submit-pass' value='"+ Lang.save_pass +"'>\
+                <input name='new-pass' type='password'><label>"+ Lang.new_pass +"</label><br>\
+                <input name='confirm-pass' type='password'><label>"+ Lang.confirm_pass +"</label><br>\
+                <input name='old-pass' type='password'><label>"+ Lang.old_pass +"</label>\
             </div>\
+            <input class='submit-changes' type='button' value='save'>\
         </div>",
     events : {
         "click .history-back" : function(){
             Backbone.history.history.back();
         },
-        "click .submit-pass"  : "submitPass",
-        "click .submit-photo" : "submitPhoto",
-        "click .delete-photo" : "deletePhoto",
-        "click .submit-name"  : "submitName"
+        "click .submit-changes"  : function(){
+            this.submitPass();
+            this.submitName();
+        },
+        "change .select-file" : "submitPhoto",
+//        "click .submit-photo" : "submitPhoto",
+        "click .delete-photo" : "deletePhoto"
     },
     init : function(){
         this.render();
@@ -229,10 +228,6 @@ App.Views.User_Form = App.Views.BASE.extend({
     renderHeader : function(){
     },
     renderBody : function(){
-        this.$(".user-photo").attr({
-            src : this.model.getNormalPhoto(),
-//            src : this.model.get("avatar_url"),
-            alt : this.model.get("email")
-        });
+        this.$(".user-photo").attr("src", this.model.getNormalPhoto());
     }
 });

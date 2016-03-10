@@ -13,7 +13,7 @@ body{
   font-family: Arial;
   background: #fff;
 }
-h3{margin-bottom: 15px; margin-top: 0px; font: 500 17px "_roboto"; color: #304197;}
+h3{margin-bottom: 19px;  margin-top: 0px;  font: 300 13px "_roboto";  color: #aaa;  text-transform: uppercase;  letter-spacing: 1px;}
 h4{margin-bottom: 10px; color: #999; font-weight: normal; display: inline-block;}
 hr{
   box-shadow: 0 0 6px #cecece;
@@ -48,8 +48,7 @@ input[type=text], input[type=password]{
   height: 26px;
   letter-spacing: 0.2px;
   color: #202020;
-  border: 2px solid #9CCDFF;
-  border-radius: 1px;
+  border: 2px solid #BFBAFF;
 }
 input[type=password]{
   font-size: 26px;
@@ -225,7 +224,6 @@ $iconBlue        : #3D35B4;
 //    z-index: 3;
 //    -webkit-transform: translateX(-220px);
     &:hover{
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
 //      background: #fff;
       & + .context{
         opacity: 0.1;
@@ -253,7 +251,7 @@ $iconBlue        : #3D35B4;
 .common-user-box{
   position: fixed;
   left: 20px;
-  top: 20px;
+  top: 30px;
 }
 
 .sidebar-container{
@@ -271,7 +269,7 @@ $iconBlue        : #3D35B4;
   .icon-logo{
     width: 70px;
     height: 35px;
-    fill: #00DC9F;
+    fill: #00ecab;
     position: absolute;
     left: 20px;
     bottom: 30px;
@@ -1151,8 +1149,9 @@ input.flickr-open{
 .user-photo{
   height: 130px;
   width: 130px;
-  margin-right: 25px;
+  display: block;
   border-radius: 100px;
+  background-size: cover;
   &.static{
     position: relative;
     left: 0px;
@@ -1168,25 +1167,103 @@ input.flickr-open{
 /* User-form page */
 .page-user{
   margin-left: 330px;
-  .change-photo,
-  .change-name{
-    margin-bottom: 50px;
+  .page-body{
   }
+  .change-photo{
+    margin-bottom: 80px;
+  }
+  .change-photo .user-photo-wrapper{
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    border-radius: 100px;
+    input{
+      position: absolute;
+      left: -32px;
+      top: -50px;
+      width: 131%;
+      height: 140%;
+      opacity: 0;
+      z-index: 2;
+      cursor: pointer;
+    }
+  }
+
+  .delete-photo{
+    background: transparent;
+    color: #969696;
+    font-size: 17px;
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0px;
+    outline: none;
+    font-weight: 300;
+    vertical-align: 50px;
+    margin-left: 25px;
+    font-family: "_roboto";
+    &:hover{
+      background: transparent;
+    }
+  }
+
   .change-password{
+    display: inline-block;
+    text-align: left;
+    border: 1px dashed #ddd;
+    padding: 20px;
+    border-radius: 4px;
     label{
-      display: block;
-      font-size: 12px;
-      color: #777;
+      display: inline-block;
       margin-bottom: 5px;
+      position: absolute;
+      transform: translateY(13px) translateX(-173px);
+      font-size: 14px;
+      color: #aaa;
+      pointer-events: none;
+      cursor: text;
+      text-align: right;
+      width: 155px;
+      overflow: visible;
+      white-space: nowrap;
     }
     input[type=password]{
       margin-bottom: 15px;
-      display: block;
+      width: 260px;
+      vertical-align: 0px;
+      padding: 6px 15px;
+      margin-right: 0px;
+    }
+    input[name=old-pass]{
+      margin-bottom: 0px;
+      width: 200px;
+    }
+    input[name=new-pass]{
+      vertical-align: 0px;
+      margin-bottom: 20px;
+    }
+    input[name=confirm-pass]{
+      margin-bottom: 50px;
     }
   }
+  .change-name{
+    margin-bottom: 80px;
+  }
   .edit-name{
-    margin-bottom: 15px;
-    display: block;
+    width: 300px;
+    &+label{
+      position: absolute;
+      transform: translateY(16px) translateX(-110px);
+      font-size: 14px;
+      color: #aaa;
+      pointer-events: none;
+      cursor: text;
+    }
+  }
+  .submit-changes{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
   }
 }
 
@@ -1202,8 +1279,7 @@ input.flickr-open{
   font-size: 14px;
 }
 
-.change-access,
-.change-photo{
+.change-access{
   margin-top: 60px;
 }
 
@@ -1575,6 +1651,9 @@ input.flickr-open{
     text-align: center;
     padding-right: 0px;
   }
+  .page-user .page-body{
+    text-align: center;
+  }
   .page-user .h1{
     vertical-align: 15px;
     display: block;
@@ -1596,13 +1675,12 @@ input.flickr-open{
   .page-user .user-photo{
     height: 120px;
     width: 120px;
-    margin-right: 15px;
-    margin-bottom: 25px;
+    display: inline-block;
   }
   .user-controls{
     position: fixed;
     left: 20px;
-    top: 20px;
+    top: 30px;
     z-index: 2;
     right: auto;
     bottom: auto;
@@ -1648,7 +1726,7 @@ input.flickr-open{
     padding: 4px 15px 6px;
   }
   .folder-header{
-    padding-top: 20px;
+    padding-top: 30px;
   }
 }
 
@@ -1743,11 +1821,13 @@ input.flickr-open{
   .page-user .user-photo{
     margin-bottom: 20px;
   }
+
   .page-user .h1{
     display: block;
     font-size: 70px;
     line-height: 110px;
   }
+
   .page-user .icon-trash{
     height: 60px;
     width: 48px;
