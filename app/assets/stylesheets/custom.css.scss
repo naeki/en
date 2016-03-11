@@ -48,7 +48,7 @@ input[type=text], input[type=password]{
   height: 26px;
   letter-spacing: 0.2px;
   color: #202020;
-  border: 2px solid #BFBAFF;
+  border: 2px solid #728FE4;
 }
 input[type=password]{
   font-size: 26px;
@@ -221,24 +221,24 @@ $iconBlue        : #3D35B4;
     .sidebar-content{
       opacity: 0.1;
     }
-//    z-index: 3;
-//    -webkit-transform: translateX(-220px);
+    //    z-index: 3;
+    //    -webkit-transform: translateX(-220px);
     &:hover{
-//      background: #fff;
+      //      background: #fff;
       & + .context{
         opacity: 0.1;
       }
       .sidebar-content{
         opacity: 1;
-//      -webkit-transform: translateX(0px);
-//      & + .context{
+        //      -webkit-transform: translateX(0px);
+        //      & + .context{
       }
     }
   }
-//  .context{
-//    margin-left: 100px;
-//    -webkit-transition: -webkit-transform 0.5s;
-//  }
+  //  .context{
+  //    margin-left: 100px;
+  //    -webkit-transition: -webkit-transform 0.5s;
+  //  }
 }
 
 
@@ -257,10 +257,10 @@ $iconBlue        : #3D35B4;
 .sidebar-container{
   position: fixed;
   z-index: 999;
-//  width: 61px;
-//  height: 25px;
-//  bottom: 20px;
-//  left: 20px;
+  //  width: 61px;
+  //  height: 25px;
+  //  bottom: 20px;
+  //  left: 20px;
   top: 0px;
   width: 195px;
   height: 100%;
@@ -287,7 +287,7 @@ $iconBlue        : #3D35B4;
 
 
 .sidebar {
-//  background: url(/images/sidebar.jpg) #25263F;
+  //  background: url(/images/sidebar.jpg) #25263F;
   color: rgba(255, 255, 255, 0.6);
   padding: 0 0 0 0px;
   @include box_sizing;
@@ -297,8 +297,8 @@ $iconBlue        : #3D35B4;
   left: 0px;
   top: 0px;
   position: absolute;
-//  background: #4a5386 url("../images/sb.jpg") bottom left no-repeat;
-//  box-shadow: 0 0 0px rgba(0,0,0,0.1);
+  //  background: #4a5386 url("../images/sb.jpg") bottom left no-repeat;
+  //  box-shadow: 0 0 0px rgba(0,0,0,0.1);
   z-index: 1;
 
 
@@ -370,7 +370,7 @@ $iconBlue        : #3D35B4;
       &:hover {
         /* border-bottom: 1px solid rgba(255, 255, 255, 1); */
         color: #fff;
-//        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3);
+        //        text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.3);
       }
     }
   }
@@ -389,8 +389,8 @@ $iconBlue        : #3D35B4;
       line-height: 25px;
       border-bottom: 1px solid transparent;
       &:hover {
-//        border-bottom: 1px solid rgba(169,34,136,0.5);
-          color: #fff;
+        //        border-bottom: 1px solid rgba(169,34,136,0.5);
+        color: #fff;
       }
     }
   }
@@ -468,8 +468,8 @@ $iconBlue        : #3D35B4;
   letter-spacing: 0.7px;
   /* font-style: italic; */
   &::after{
-//    display: block;
-//    content: "";
+    //    display: block;
+    //    content: "";
     width: 4px;
     height: 4px;
     border: 1px solid #C1B7E4;
@@ -493,28 +493,40 @@ $iconBlue        : #3D35B4;
   position: absolute;
   bottom: 50px;
   right: 300px;
-  .post-save{
-    margin-right: 0px;
-    background: #3D35B4;
-    border-radius: 30px;
-    width: 60px;
-    height: 60px;
-    transition: background-color 0.2s;
-    &:hover{
-      background-color: #433FDA;
-    }
-    &::after{
-      content: "";
-      width: 21px;
-      height: 19px;
-      background-image: $ok_save;
-      display: block;
-      position: absolute;
-      left: 19px;
-      top: 21px;
-    }
+}
+
+div.save-button,
+button.save-button{
+  margin-right: 0px;
+  background-color: #3D35B4;
+  border-radius: 30px;
+  width: 60px;
+  height: 60px;
+  opacity: 1;
+  background-repeat: no-repeat;
+  transition: background-color 0.3s, opacity 0.2s, background-size 0.4s;
+  background-image: -webkit-linear-gradient(left, #2b2578 0%, #2b2578 100%);
+  background-size: 0% 100%;
+  &:hover{
+    background-color: #433FDA;
+  }
+  &:focus{
+    outline: none;
+    background-size: 100% 100%;
+  }
+  &::after{
+    content: "";
+    width: 21px;
+    height: 19px;
+    background-image: $ok_save;
+    display: block;
+    position: absolute;
+    left: 19px;
+    top: 21px;
+    opacity: 1;
   }
 }
+
 
 .page-number{
   font-size: 16px;
@@ -811,17 +823,16 @@ $iconBlue        : #3D35B4;
 }
 
 .upload-bar{
-  height: 20px;
-  width: 300px;
+  height: 4px;
+  width: 100%;
   margin: 0px 0 20px;
-  background-color: #eee;
-  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0.5) 0%, rgba(0,100,0,0.8) 100%);
+  background-image: -webkit-linear-gradient(left, #00e4a5 0%, #00e4a5 100%);
   background-repeat: no-repeat;
-  -webkit-transition: background-size 0.2s, opacity 0.2s;
-  opacity: 0;
+  -webkit-transition: background-size 0.4s;
   display: none;
+  position: absolute;
+  top: 60px;
   &.visible{
-    opacity: 1;
     display: block;
     background-size: 0% 100%;
   }
@@ -1149,7 +1160,8 @@ input.flickr-open{
 .user-photo{
   height: 130px;
   width: 130px;
-  display: block;
+  display: inline-block;
+  margin-right: 20px;
   border-radius: 100px;
   background-size: cover;
   &.static{
@@ -1177,6 +1189,8 @@ input.flickr-open{
     display: inline-block;
     position: relative;
     border-radius: 100px;
+    width: 130px;
+    height: 130px;
     input{
       position: absolute;
       left: -32px;
@@ -1187,6 +1201,16 @@ input.flickr-open{
       z-index: 2;
       cursor: pointer;
     }
+  }
+
+  .save-button{
+    position: fixed;
+    left: 800px;
+    bottom: 30px;
+    display: none;
+  }
+  .save-button.visible{
+    display: block;
   }
 
   .delete-photo{
@@ -1358,7 +1382,7 @@ input.flickr-open{
   margin: 0px;
   opacity: 0;
   -webkit-transition: opacity 0.4s, box-shadow 0.4s, background 0.4s;
-//  box-shadow: 0 0 20px #eaeaea;
+  //  box-shadow: 0 0 20px #eaeaea;
   left: 0px;
   width: 380px;
   position: absolute;
@@ -1368,7 +1392,7 @@ input.flickr-open{
   margin-right: 90px;
 
   &:hover{
-//    box-shadow: 0 0 30px #ddd;
+    //    box-shadow: 0 0 30px #ddd;
     opacity: 1;
   }
 
@@ -1411,14 +1435,14 @@ input.flickr-open{
   display: block;
   position: absolute;
   transition: transform 0.4s;
-//  -webkit-filter: blur(2.3px);
+  //  -webkit-filter: blur(2.3px);
   transform: scale(1.2);
   z-index: 1;
 }
 
 .post-small:hover .post-small-photo{
   transform: scale(1.1);
-//  -webkit-filter: blur(0);
+  //  -webkit-filter: blur(0);
 }
 
 
@@ -1673,8 +1697,8 @@ input.flickr-open{
     line-height: 30px;
   }
   .page-user .user-photo{
-    height: 120px;
-    width: 120px;
+    height: 130px;
+    width: 130px;
     display: inline-block;
   }
   .user-controls{
@@ -1692,6 +1716,10 @@ input.flickr-open{
   .user-controls .edit .icon-settings{
     width: 40px;
     height: 40px;
+  }
+  .page-user .save-button{
+    right: 30px;
+    left: auto;
   }
 
   .user-box {
@@ -1732,6 +1760,10 @@ input.flickr-open{
 
 
 @media (max-width: 1000px) {
+  h3{
+    font-size: 17px;
+    margin-bottom: 30px;
+  }
   .sidebar-container{
     width: 100px;
     height: 90px;
@@ -1812,6 +1844,40 @@ input.flickr-open{
   }
   input.search-posts {
     padding: 14px 15px 16px;
+  }
+  .page-user .edit-name {
+    width: 400px;
+    padding: 15px 20px 17px;
+    font-size: 30px;
+  }
+  .page-user .edit-name + label {
+    transform: translateY(22px) translateX(-140px);
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  .page-user .change-password {
+    border: 2px dashed #ddd;
+    padding: 30px 43px;
+    border-radius: 10px;
+    margin-right: 6px;
+  }
+  .page-user .change-password input[type=password] {
+    margin-bottom: 25px;
+    width: 320px;
+    vertical-align: 0px;
+    padding: 12px 15px;
+    margin-right: 0px;
+  }
+  .page-user .change-password input[name=confirm-pass] {
+    margin-bottom: 50px;
+  }
+  .page-user .change-password input[name=old-pass] {
+    margin-bottom: 10px;
+    width: 250px;
+  }
+  .page-user .change-password label {
+    transform: translateY(16px) translateX(-173px);
+    font-size: 19px;
   }
 
   .page-user .page-header{

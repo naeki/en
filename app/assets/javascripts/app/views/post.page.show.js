@@ -231,7 +231,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
 App.Views.Post_Form = App.Views.Page_Post.extend({
     events : {
-        "click .post-save"   : "save",
+        "click .save-button"   : "save",
         "click .post-delete" : function(){this.model.del();},
         "click .history-back" : function(){
             Backbone.history.history.back();   // Перенести эту чертову стрелку в мэйн
@@ -296,7 +296,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     },
     renderControls : function(){
         this.$controls.empty()
-            .append("<div class='big post-save'></div>");
+            .append("<div class='save-button'></div>");
     },
     save : function(){
         var title = this.$header.children(".h1")[0].textContent,

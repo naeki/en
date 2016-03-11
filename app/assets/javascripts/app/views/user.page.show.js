@@ -67,7 +67,7 @@ App.Views.Page_User = App.Views.BASE.extend({
         this.$(".user-photo").attr("src", this.model.getNormalPhoto());
 
         if (this.model.get("id") == App.currentUser.get("id"))
-            this.$controls.html($("<span class='h1-link edit'></span>").html(App.SVG.settings));
+            this.$controls.html($("<a href='' onclick='return false' class='h1-link edit'></a>").html(App.SVG.settings));
         else {
             var following = ~App.currentUser.get("following").indexOf(this.model.id);
 
@@ -137,8 +137,8 @@ App.Views.User_Form = App.Views.BASE.extend({
                 <div class='user-photo-wrapper'>\
                     <input type='file' class='select-file' value='"+ Lang.upload +"'>\
                     <img class='user-photo'>\
+                    <div class='upload-bar'></div>\
                 </div>\
-                <div class='upload-bar'></div>\
                 <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
             </div>\
             <div class='change-name'>\
@@ -151,19 +151,19 @@ App.Views.User_Form = App.Views.BASE.extend({
                 <input name='confirm-pass' type='password'><label>"+ Lang.confirm_pass +"</label><br>\
                 <input name='old-pass' type='password'><label>"+ Lang.old_pass +"</label>\
             </div>\
-            <input class='submit-changes' type='button' value='save'>\
+            <button class='save-button'></button>\
         </div>",
     events : {
         "click .history-back" : function(){
             Backbone.history.history.back();
         },
-        "click .submit-changes"  : function(){
+        "click .save-button" : function(){
             this.submitPass();
             this.submitName();
         },
         "change .select-file" : "submitPhoto",
-//        "click .submit-photo" : "submitPhoto",
-        "click .delete-photo" : "deletePhoto"
+        "click .delete-photo" : "deletePhoto",
+        "input input" : "refreshSaveButton"
     },
     init : function(){
         this.render();
@@ -180,7 +180,9 @@ App.Views.User_Form = App.Views.BASE.extend({
         this.$(".edit-name").val(this.model.get("name"));
     },
     submitPass : function(){                                                // TODO: Какого черта это тут делает? перенести в модель
-        var data = {
+        var pass = this.$("input[type=password]"),
+            val = pass[0].value && pass[1].value && pass[2].value,
+            data = {
             id   : this.model.id,
             old  : this.$("[name=old-pass]").val(),
             user : {
@@ -189,9 +191,12 @@ App.Views.User_Form = App.Views.BASE.extend({
             }
         };
 
+        if (!val) return this.refreshSaveButton();
+
         return App.loader.sync("users", {data: data , type: "PUT"})
             .done(function(){
                 this.$(".change-password input[type=password]").val("");
+                setTimeout(this.refreshSaveButton.bind(this), 200);
                 return $.Deferred().resolve();
             }.bind(this));
     },
@@ -216,18 +221,42 @@ App.Views.User_Form = App.Views.BASE.extend({
         return App.loader.sync("users/photo", {type: "DELETE"});
     },
     submitName : function(){                                                // TODO: Какого черта это тут делает? перенести в модель как сейв
+        var val = this.$(".edit-name").val();
+
+        if (this.model.get("name") == val) return this.refreshSaveButton();
+
         return App.loader.sync("users", {
             data: {
                 id : this.model.id,
                 user : {
-                    name : this.$(".edit-name").val()
+                    name : val
                 }
             },
-            type: "PUT"}).done(function(model){User.builder(model)});
+            type: "PUT"})
+            .then(
+            function(model){
+                User.builder(model);
+                setTimeout(this.refreshSaveButton.bind(this), 200);
+            }.bind(this)
+        );
     },
     renderHeader : function(){
     },
     renderBody : function(){
         this.$(".user-photo").attr("src", this.model.getNormalPhoto());
+    },
+    refreshSaveButton : function(e){
+        var button = this.$(".save-button"),
+            pass = this.$("input[type=password]"),
+            val = pass[0].value && pass[1].value && pass[2].value;
+
+        if (e && e.target.className == "edit-name" && this.model.get("name") != e.target.value || val)
+            button.addClass("visible");
+        else {
+            button.css("opacity", 0);
+            setTimeout(function(){
+                button.removeClass("visible").css('opacity', 1);
+            }, 300);
+        }
     }
 });
