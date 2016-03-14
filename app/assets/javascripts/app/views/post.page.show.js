@@ -22,22 +22,26 @@ App.Views.Page_Post = App.Views.BASE.extend({
                 <div class='post-page-text'></div>\
             </div>\
         </div>\
-        <div class='omnibar'>\
+        <div id='post-page-about' class='post-page-about'>\
             <div class='author-box'>\
-                <img class='user-photo-middle user-link'><br>\
+                <img class='user-photo-middle user-link'>\
                 <span class='post-author user-name user-link'></span>\
             </div>\
+            <span class='post-stat-comments post-stat link'></span>\
             <span class='post-stat-view post-stat-info'></span>\
-            <div class='post-meta'>\
-                <div class='edit-controls'></div>\
-                <ul class='post-actions'>\
-                    <li><span class='post-action do-like link'></span></li>\
-                    <li><span class='post-action do-bookmark link'></span></li>\
-                </ul>\
-                <div class='post-info'>\
-                    <p class='page-number'></p>\
-                    <p class='help-title'></p>\
-                </div>\
+            <ul class='post-actions'>\
+                <li><span class='post-action do-like link'></span></li>\
+                <li><span class='post-action do-bookmark link'></span></li>\
+            </ul>\
+        </div>\
+        <div class='post-page-nav'>\
+            <a href='#post-page-about' class='vertical-nav about'></a>\
+        </div>\
+        <div class='post-meta'>\
+            <div class='edit-controls'></div>\
+            <div class='post-info'>\
+                <p class='page-number'></p>\
+                <p class='help-title'></p>\
             </div>\
         </div>\
     </div>",
@@ -62,6 +66,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$comments     = this.$(".post-stat-comments");
         this.$likes        = this.$(".post-stat-likes");
         this.$lastview     = this.$(".post-stat-view");
+        this.$nav          = this.$(".post-page-nav");
 
         this.openText();
         this.view();
@@ -137,7 +142,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$(".help-title").html(this.model.get("title"));
 
         if (this.model.get("permissions")&Post.OWNER)
-            $("<span class='post-action settings link'></span>").html(App.SVG.settings).prependTo(this.$actions);
+            $("<span class='post-action settings link'></span>").html(App.SVG.settings).appendTo(this.$nav);
 
         // Show/hide user box
         this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
@@ -258,6 +263,8 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$lastview = this.$(".post-stat-view");
         this.$actions  = this.$(".post-actions");
         this.$controls = this.$(".edit-controls");
+        this.$nav      = this.$(".post-page-nav");
+
 
         //this.openSettings();
         this.openText();

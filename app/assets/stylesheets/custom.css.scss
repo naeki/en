@@ -414,32 +414,53 @@ $iconBlue        : #3D35B4;
 
 
 
+.post-page-nav{
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  .vertical-nav{
+    display: block;
+    width: 26px;
+    height: 26px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    &.about::after{
+      content: "";
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 9px;
+      position: relative;
+      top: 9px;
+      background: $iconBlue;
+      box-shadow: 10px 0 0 $iconBlue, 20px 0 0 $iconBlue;
+    }
+  }
+}
 
-.omnibar{
-  padding: 0;
-  width: 250px;
-  height: 100%;
-  position: absolute;
-  right:0px;
-  top:0px;
-  text-align: right;
-  z-index: 222;
+
+.post-page-about{
+  text-align: left;
+  margin: 30px 0 50px;
+  position: relative;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
 }
 
 .author-box{
-  text-align: right;
-  margin-bottom: 50px;
-  margin-top: 80px;
   margin-right: 30px;
+  display: inline-block;
+  vertical-align: -15px;
   .user-photo-middle{
-    margin-bottom: 3px;
+    margin-right: 5px;
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
   .post-author{
     font-size: 14px;
     font-weight: 300;
+    vertical-align: 15px;
   }
 }
 
@@ -449,6 +470,9 @@ $iconBlue        : #3D35B4;
   text-align: right;
   padding: 0px;
   margin-bottom: 40px;
+  &:empty{
+    margin-bottom: 0px;
+  }
   li{
     display: inline-block;
     margin:0px 7px 8px;
@@ -486,13 +510,14 @@ $iconBlue        : #3D35B4;
   position: fixed;
   bottom: 10px;
   right: 35px;
-  width:160px;
+  width:120px;
 }
 
 .edit-controls{
   position: absolute;
-  bottom: 50px;
-  right: 300px;
+  display: none;
+  bottom: 300px;
+  right: 0px;
 }
 
 div.save-button,
@@ -505,7 +530,7 @@ button.save-button{
   opacity: 1;
   background-repeat: no-repeat;
   transition: background-color 0.3s, opacity 0.2s, background-size 0.4s;
-  background-image: -webkit-linear-gradient(left, #2b2578 0%, #2b2578 100%);
+  background-image: -webkit-linear-gradient(left, #3D35B4 0%, #2b2578 100%);
   background-size: 0% 100%;
   &:hover{
     background-color: #433FDA;
@@ -537,7 +562,6 @@ button.save-button{
   color: #aaa;
   font: 300 13px "PT Serif";
   line-height: 18px;
-  margin-left: 25px;
   margin-top: 10px;
   margin-bottom: 4px;
   cursor: default;
@@ -547,9 +571,11 @@ button.save-button{
 }
 
 .post-actions{
-  margin-bottom: 60px;
-  position: relative;
-  left: 13px;
+  margin-bottom: 0px;
+  position: fixed;
+  right: 21px;
+  bottom: 100px;
+  text-align: right;
   li{margin-bottom: 10px;}
 }
 .post-action{
@@ -578,8 +604,6 @@ button.save-button{
   &.settings{
     width: 26px;
     height: 26px;
-    margin-right: 13px;
-    margin-bottom: 40px;
     transition: transform 0.3s;
     .icon-settings{
       width: 26px;
@@ -703,6 +727,7 @@ button.save-button{
     color: #1D1D1D;
     max-width: 1000px;
     margin: 0 auto;
+    text-align: left;
   }
   .page-header{
     padding: 70px 0px 10px 0;
@@ -802,6 +827,7 @@ button.save-button{
   font-weight: inherit;
   text-shadow: 0 0 0 #aaa;
   display: block;
+  overflow: hidden;
 }
 
 
@@ -960,7 +986,7 @@ input.flickr-open{
 .post-stats{
   position: relative;
   z-index: 2;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-top: 0px;
   letter-spacing: 0px;
   text-align: center;
@@ -974,18 +1000,20 @@ input.flickr-open{
     vertical-align: top;
     font-family: "_roboto", Tahoma, Arial;
   }
-
-  .post-stat-comments{
-    font-size: 13px;
-    color: #fff;
-    font-weight: 500;
-    line-height: 21px;
-    background-image: $comments;
-    width: 27px;
-    height: 26px;
-    &:hover{text-decoration: none;}
-  }
 }
+.post-stat-comments{
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+  line-height: 21px;
+  background-image: $comments;
+  display: inline-block;
+  text-align: center;
+  width: 27px;
+  height: 26px;
+  &:hover{text-decoration: none;}
+}
+
 .post-stat-likes{
   fill: #ff2f65;
   &[likes='1'] {opacity: 0.15;} //svg{fill: #BBDAFF;}
@@ -1010,8 +1038,7 @@ input.flickr-open{
   font-size: 12px;
   color: #aaa;
   display: inline-block;
-  margin-top: 30px;
-  margin-right: 30px;
+  margin-left: 10px;
 }
 
 .post-small.lock .post-stat::after,
@@ -1618,6 +1645,19 @@ input.flickr-open{
 
 
 @media (max-width: 1300px) {
+  .post-actions{
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    li{
+      display: inline-block;
+      vertical-align: top;
+      margin-left: 5px;
+    }
+  }
+  .post-meta {
+    right: 25px;
+  }
   .page-user,
   .folder-view {
     margin: 0 auto;
@@ -1796,6 +1836,54 @@ input.flickr-open{
     left: 0px;
     position: relative;
   }
+
+  .post-page-view .page-viewer {
+    font-size: 23px;
+  }
+  .edit-text {
+    line-height: 40px;
+  }
+  .post-page-view {
+    margin: 0 15%;
+  }
+  .post-page-photo {
+    display: none;
+  }
+  .post-page-view .page-header {
+    padding: 30px 0px 0px 0;
+  }
+  .post-page-nav {
+    top: 30px;
+    right: 30px;
+  }
+  .post-page-nav .vertical-nav.about::after {
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    top: 19px;
+    left: 1px;
+    background: #3d35b4;
+    box-shadow: 18px 0 0 #3d35b4, 36px 0 0 #3d35b4;
+  }
+  .post-page-nav .vertical-nav {
+    display: block;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+  .post-action.settings .icon-settings {
+    width: 50px;
+    height: 50px;
+  }
+  .post-action.settings {
+    width: 50px;
+    height: 50px;
+  }
+  .tag-link, .tag {
+    font-size: 17px;
+  }
+
   .post-small{
     width: 650px;
     margin-bottom: 100px;

@@ -191,7 +191,7 @@ App.Views.User_Form = App.Views.BASE.extend({
             }
         };
 
-        if (!val) return this.refreshSaveButton();
+        if (!val) return;
 
         return App.loader.sync("users", {data: data , type: "PUT"})
             .done(function(){
@@ -236,7 +236,7 @@ App.Views.User_Form = App.Views.BASE.extend({
             .then(
             function(model){
                 User.builder(model);
-                setTimeout(this.refreshSaveButton.bind(this), 200);
+                setTimeout(this.refreshSaveButton.bind(this), 300);
             }.bind(this)
         );
     },
