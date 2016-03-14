@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="efa88bab-71f2-47fd-a443-ddbb0edbab38" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="en.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -160,8 +161,8 @@
       <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27514452" vertical-offset="0" max-vertical-offset="34850">
-              <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.732948" vertical-offset="30663" max-vertical-offset="34850">
+              <caret line="1841" column="17" selection-start-line="1841" selection-start-column="17" selection-end-line="1841" selection-end-column="17" />
               <folding>
                 <element signature="e#2254#4939#2" expanded="true" />
                 <element signature="e#16694#18543#2" expanded="true" />
@@ -832,8 +833,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27514452" vertical-offset="0" max-vertical-offset="34850">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.732948" vertical-offset="30663" max-vertical-offset="34850">
+          <caret line="1841" column="17" selection-start-line="1841" selection-start-column="17" selection-end-line="1841" selection-end-column="17" />
           <folding>
             <element signature="e#2254#4939#2" expanded="true" />
             <element signature="e#16694#18543#2" expanded="true" />
