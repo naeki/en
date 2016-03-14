@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="efa88bab-71f2-47fd-a443-ddbb0edbab38" name="Default" comment="" />
+    <list default="true" id="efa88bab-71f2-47fd-a443-ddbb0edbab38" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
+    </list>
     <ignored path="en.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -158,8 +160,8 @@
       <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.88786125" vertical-offset="30512" max-vertical-offset="34833">
-              <caret line="1840" column="20" selection-start-line="1840" selection-start-column="20" selection-end-line="1840" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.9468208" vertical-offset="30512" max-vertical-offset="34833">
+              <caret line="1843" column="19" selection-start-line="1843" selection-start-column="19" selection-end-line="1843" selection-end-column="19" />
               <folding>
                 <element signature="e#2215#4900#2" expanded="true" />
                 <element signature="e#16655#18504#2" expanded="true" />
@@ -830,8 +832,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88786125" vertical-offset="30512" max-vertical-offset="34833">
-          <caret line="1840" column="20" selection-start-line="1840" selection-start-column="20" selection-end-line="1840" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.9468208" vertical-offset="30512" max-vertical-offset="34833">
+          <caret line="1843" column="19" selection-start-line="1843" selection-start-column="19" selection-end-line="1843" selection-end-column="19" />
           <folding>
             <element signature="e#2215#4900#2" expanded="true" />
             <element signature="e#16655#18504#2" expanded="true" />
