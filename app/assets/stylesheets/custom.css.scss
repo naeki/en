@@ -12,6 +12,7 @@ body, li, ul, input, form{
 body{
   font-family: Arial;
   background: #fff;
+  -webkit-font-smoothing: antialiased;
 }
 h3{margin-bottom: 19px;  margin-top: 0px;  font: 300 13px "_roboto";  color: #aaa;  text-transform: uppercase;  letter-spacing: 1px;}
 h4{margin-bottom: 10px; color: #999; font-weight: normal; display: inline-block;}
