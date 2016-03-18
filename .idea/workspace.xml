@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efa88bab-71f2-47fd-a443-ddbb0edbab38" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/main.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
     </list>
     <ignored path="en.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37105548" vertical-offset="1546" max-vertical-offset="3060">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1546" max-vertical-offset="3060">
               <caret line="111" column="18" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
               <folding>
                 <marker date="1458336865996" expanded="true" signature="3278:3478" placeholder="..." />
@@ -150,11 +150,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="custom.css.scss" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="custom.css.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.407408" vertical-offset="16151" max-vertical-offset="37128">
-              <caret line="999" column="1" selection-start-line="999" selection-start-column="1" selection-end-line="999" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.116763" vertical-offset="14196" max-vertical-offset="37162">
+              <caret line="841" column="33" selection-start-line="841" selection-start-column="33" selection-end-line="841" selection-end-column="33" />
               <folding>
                 <element signature="e#2208#4893#2" expanded="true" />
               </folding>
@@ -188,11 +188,11 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/views/user.page.show.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/views/tags.views.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/views/controls.js" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/models/post.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/views/flickr.view.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/views/post.page.show.js" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/app/views/main.js" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss" />
       </list>
     </option>
   </component>
@@ -1218,16 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.407408" vertical-offset="16151" max-vertical-offset="37128">
-          <caret line="999" column="1" selection-start-line="999" selection-start-column="1" selection-end-line="999" selection-end-column="1" />
-          <folding>
-            <element signature="e#2208#4893#2" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/models/post.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3617" max-vertical-offset="5474">
@@ -1288,12 +1278,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37105548" vertical-offset="1546" max-vertical-offset="3060">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1546" max-vertical-offset="3060">
           <caret line="111" column="18" selection-start-line="111" selection-start-column="18" selection-end-line="111" selection-end-column="18" />
           <folding>
             <marker date="1458336865996" expanded="true" signature="3278:3478" placeholder="..." />
             <marker date="1458336865996" expanded="true" signature="3546:3680" placeholder="..." />
             <marker date="1458336865996" expanded="true" signature="3635:3680" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/custom.css.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.116763" vertical-offset="14196" max-vertical-offset="37162">
+          <caret line="841" column="33" selection-start-line="841" selection-start-column="33" selection-end-line="841" selection-end-column="33" />
+          <folding>
+            <element signature="e#2208#4893#2" expanded="true" />
           </folding>
         </state>
       </provider>

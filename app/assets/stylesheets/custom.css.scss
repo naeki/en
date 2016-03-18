@@ -497,7 +497,7 @@ $iconBlue        : #3D35B4;
   right: 0px;
   top: 0px;
   opacity: 0;
-  background: rgba(20, 15, 86, 0.8);
+  background: rgba(7, 0, 62, 0.8);
   z-index: 3;
   width: 20%;
   height: 100%;
@@ -812,6 +812,7 @@ button.save-button{
   margin: 0 35% 0 15%;
   overflow-x: hidden;
   text-align: center;
+  will-change: transform;
   transition: transform 0.4s, background-color 0.4s;
   .page-viewer{
     width: 100%;
@@ -838,7 +839,7 @@ button.save-button{
   }
 }
 .move .post-page-view{transform: translateX(-300px);}
-.move .post-page-photo{width: 1300px; -webkit-filter: grayscale(0) brightness(0.8);}
+.move .post-page-photo{width: 70%; -webkit-filter: grayscale(0) brightness(0.8);}
 
 .post-likes,
 .post-settings,
@@ -908,6 +909,7 @@ button.save-button{
   width: 20%;
   transition: width 0.4s, -webkit-filter 0.4s;
   -webkit-filter: grayscale(1) brightness(0.6);
+  will-change: width, -webkit-filter;
 }
 
 
