@@ -109,7 +109,6 @@ App.Views.Sidebar = Backbone.View.extend({
             <ul class='sidebar-small-menu'>\
                 <li><span class='new-post'>"+ Lang.new_post +"</span></li>\
                 <li><span class='users'>"+ Lang.users +"</span></li>\
-                <li><span class='search'>"+ Lang.search +"</span></li>\
             </ul>\
         </div>",
     events : {
