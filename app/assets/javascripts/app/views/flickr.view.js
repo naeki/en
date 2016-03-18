@@ -1,13 +1,5 @@
 App.Views.FlickrGallery = App.Views.BASE.extend({
     className : "flickr-gallery",
-    _markup : '\
-        <div class="flickr-search">\
-            <input class="flickr-search-input" type="text" placeholder="'+ Lang.search +'">\
-            <input class="flickr-search-submit" type="button" value="'+ Lang.find +'">\
-            <div class="samples"></div>\
-        </div>\
-        <div class="flickr-results"></div>\
-    ',
     events : {
         "click .flickr-search-submit" : "search",
         "keydown .flickr-search-input" : function(e){
@@ -17,7 +9,6 @@ App.Views.FlickrGallery = App.Views.BASE.extend({
     },
     init : function(){
         this.render();
-
         this.$input   = this.$(".flickr-search-input");
         this.$results = this.$(".flickr-results");
     },
@@ -25,13 +16,13 @@ App.Views.FlickrGallery = App.Views.BASE.extend({
         this.$el.html(this._markup);
     },
 
-    search : function(){
+    search : function(val){
         $.ajax({
             url    : "https://api.flickr.com/services/rest/",
             dataType : "json",
             data : {
                 method : 'flickr.photos.search',
-                text   : this.$input.val(),
+                text   : val,
                 api_key: "f6bb4da0186965584d006a50bd8ddda1",
                 size   : "T",
                 nojsoncallback:1,
@@ -48,7 +39,7 @@ App.Views.FlickrGallery = App.Views.BASE.extend({
 
         for(var i=0;data.photo[i];i++){
             var $pic = this.renderPic(data.photo[i]);
-            this.$results.append($pic);
+            this.$el.append($pic);
         }
     },
     renderPic : function(model){
@@ -66,28 +57,27 @@ App.Views.FlickrGallery = App.Views.BASE.extend({
         var model = $(e.target).data("model");
         var id = "https://farm"+ model.farm +".staticflickr.com/"+ model.server +"/"+ model.id +"_" + model.secret;
         this.trigger("select", id);
-        this.close();
+        this.chosenId = id;
+//        this.close();
 //        this.openBigPic(model);
 //        this.close();
     },
 
-    openBigPic : function(model){
-        $("body").append($("<img>", {
-            "class" : "flickr-big-photo",
-            "src"   : model.url_n
-        }))
-    },
+//    openBigPic : function(model){
+//        $("body").append($("<img>", {
+//            "class" : "flickr-big-photo",
+//            "src"   : model.url_n
+//        }))
+//    },
     open : function(){
-        this.getFade().appendTo($("body"));
-        this.$el.appendTo(this.$fade);
+        this.$el.appendTo(this.options.renderTo);
 
         this.lastScrollTop = window.scrollY;
         App.main.$el.addClass("fixed").css("top", -1 * this.lastScrollTop);
+        delete this.chosenId;
     },
     close : function(){
         this.$results.empty();
-        this.$input.val("");
-        this.$fade.detach();
 
         App.main.$el.removeClass("fixed");
         window.scrollTo(0, this.lastScrollTop);
@@ -99,6 +89,10 @@ App.Views.FlickrGallery = App.Views.BASE.extend({
         }.bind(this));
 
         return this.$fade;
+    }
+}, {
+    getBigPhoto : function(id){
+        return id && (id + "_b.jpg");
     }
 });
 

@@ -4,11 +4,25 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
 
     className : "page-post",
-    _markup:"<div class='post-page-view'>\
-        <div class='post-page-photo'></div>\
+    _markup:"\
+    <div id='post-page-about' class='post-page-about'>\
+        <div class='author-box'>\
+            <img class='user-photo-middle user-link'>\
+            <span class='post-author user-name user-link'></span>\
+        </div>\
+        <span class='post-stat-view post-stat-info'></span>\
+    </div>\
+    <div class='post-page-photo'>\
+    </div>\
+    <ul class='post-actions'>\
+        <li><span class='post-action do-like link'></span></li>\
+        <li><span class='post-action do-bookmark link'></span></li>\
+    </ul>\
+    <p class='help-title'></p>\
+    <div class='post-page-view'>\
         <div class='page-header'>\
             <div class='h1'></div>\
-            <ul class='tags'></ul>\
+            <div class='tags'></div>\
             <div class='post-stats'>\
                 <span class='post-stat-comments post-stat link'></span>\
                 <span class='post-stat-likes post-stat link'>\
@@ -22,26 +36,10 @@ App.Views.Page_Post = App.Views.BASE.extend({
                 <div class='post-page-text'></div>\
             </div>\
         </div>\
-        <div id='post-page-about' class='post-page-about'>\
-            <div class='author-box'>\
-                <img class='user-photo-middle user-link'>\
-                <span class='post-author user-name user-link'></span>\
-            </div>\
-            <span class='post-stat-comments post-stat link'></span>\
-            <span class='post-stat-view post-stat-info'></span>\
-            <ul class='post-actions'>\
-                <li><span class='post-action do-like link'></span></li>\
-                <li><span class='post-action do-bookmark link'></span></li>\
-            </ul>\
-        </div>\
-        <div class='post-page-nav'>\
-            <a href='#post-page-about' class='vertical-nav about'></a>\
-        </div>\
         <div class='post-meta'>\
             <div class='edit-controls'></div>\
             <div class='post-info'>\
                 <p class='page-number'></p>\
-                <p class='help-title'></p>\
             </div>\
         </div>\
     </div>",
@@ -53,7 +51,9 @@ App.Views.Page_Post = App.Views.BASE.extend({
         "click .do-bookmark"        : "bookmarkAction",
         "click .return"             : "openText",
         "click .post-stat-comments" : "openComments",
-        "click .post-stat-likes"    : "openLikes"
+        "click .post-stat-likes"    : "openLikes",
+//        "click" : function(){if (this.moved) this.movePage(false);},
+        "wheel" : "_wheel"
     },
     init : function(){
         this.render();
@@ -99,7 +99,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.renderLikes();
 
         if (this.model.get("last_view"))
-            this.$lastview.html("Last viewed:<br> " + Post.getDateString(this.model.get("last_view")));
+            this.$lastview.html(Post.getDateString(this.model.get("last_view")));
 
         this.renderActions();
     },
@@ -227,6 +227,16 @@ App.Views.Page_Post = App.Views.BASE.extend({
     },
     resizeText : function(){
         return this.$viewer[0].scrollHeight;
+    },
+    _wheel : function(e){
+        requestAnimationFrame(function (e){
+            if ($(e.target).parents(".flickr-gallery").length || $(e.target).hasClass("flickr-gallery")) return;
+            if (e && e.originalEvent.deltaY < 0 && window.scrollY == 0 && !this.moved)          this.movePage(true);
+            if (e === false || e.originalEvent.deltaY > 0 && window.scrollY == 0 && this.moved) this.movePage(false);
+        }.bind(this, e));
+    },
+    movePage : function(open){
+        this.$el[(this.moved = open) ? "addClass" : "removeClass"]("move");
     }
 });
 
@@ -235,6 +245,14 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
 
 App.Views.Post_Form = App.Views.Page_Post.extend({
+    _imageControlsMarkup : "\
+    <div class='image-settings'>\
+        <h3>"+ Lang.photo_change +"</h3>\
+        <input class='flickr-search-input' type='text' placeholder='"+ Lang.search +"'>\
+        <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
+        <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
+    </div>\
+    <button class='image-settings-button'>Change picture</button>",
     events : {
         "click .save-button"   : "save",
         "click .post-delete" : function(){this.model.del();},
@@ -247,7 +265,27 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         "click .post-stat-comments" : "openComments",
         "click .post-stat-likes"    : "openLikes",
         "click .return"    : "openText",
-        "click .settings"  : "openSettings"
+        "click .settings"  : "openSettings",
+//        "click" : function(){if (this.moved) this.movePage(false);},
+        "wheel" : "_wheel",
+        "wheel .flickr-gallery" : function(e){
+            if (!this.reqwheel) e.stopPropagation();
+
+            this.reqwheel = requestAnimationFrame(function(e){
+                e.stopPropagation();
+                delete this.reqwheel;
+            }.bind(this, e));
+        },
+        "click .flickr-open"  : "openGallery",
+        "click .image-settings-button" : "openImageSettings",
+        "click .submit-photo" : "savePicture",
+        "click .delete-photo" : "deletePicture",
+        "click .post-page-about" : function(e){
+            if (e.target.className == "post-page-about") this.movePage(true);
+        },
+        "keydown .flickr-search-input" : function(e){
+            if (e.keyCode == 13) this.gallery.search(this.$(".flickr-search-input").val());
+        }
     },
     init : function(){
         this.render();
@@ -266,13 +304,14 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$nav      = this.$(".post-page-nav");
 
 
+
         //this.openSettings();
         this.openText();
         this.renderControls();
 
         //this.on("model", this.setModel, this);
-        this.listenTo(this.model, "change:tags", this.renderTags);
-        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view change:access", this.renderHeader);
+//        this.listenTo(this.model, "change:tags", this.renderTags);
+        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
 
         $(window).on("resize", this.pasteParts.bind(this));
@@ -285,8 +324,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$header.children(".h1").addClass("edit-title").attr("contenteditable", true).html(this.model.get("title"));
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
-        this.$picture.css("background-image", "url(" + this.model.getBigPhoto() + ")");
-
+        this.renderPicture();
         this.$comments.html(this.model.get("comments"));
         this.renderLikes();
 
@@ -297,9 +335,17 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         }
 
         if (this.model.get("last_view"))
-            this.$lastview.html("Last viewed: " + Post.getDateString(this.model.get("last_view")));
+            this.$lastview.html(Post.getDateString(this.model.get("last_view")));
 
+        this.renderAccess();
+        this.renderImageControls();
         this.renderActions();
+    },
+    renderPicture : function(id){
+        var url = this.model.getBigPhoto();
+        if (id) url = App.Views.FlickrGallery.getBigPhoto(id);
+
+        this.$picture.css("background-image", "url(" + url + ")");
     },
     renderControls : function(){
         this.$controls.empty()
@@ -341,6 +387,72 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.$('.page-mark').remove();
         this.$viewer.append(this.settings.$el);
+    },
+    renderTags : function(){
+        if (this.model.get("deleted")) return this.$tags.remove();
+
+        if (!this.tags)
+            this.tags = new App.Views.TagsControl({
+                collection : this.model.tags,
+                el         : this.$tags,
+                parent     : this,
+                model      : this.model
+            });
+    },
+    renderAccess : function(){
+        if (this.access) return;
+
+        this.$(".post-page-about").append("<div class='access-control'><label>Public access</label></div>");
+        this.access = new App.Views.ToggleControl({
+            model    : this.model,
+            renderTo : this.$(".access-control"),
+            parent   : this
+        });
+    },
+    renderImageControls : function(){
+        this.$(".post-page-about").append(this._imageControlsMarkup);
+        this.$input   = this.$(".flickr-search-input");
+    },
+    openImageSettings : function(){
+        this.$(".image-settings").show();
+        this.$(".image-settings-button").hide();
+        this.movePage(true);
+
+        if (!this.gallery) {
+            this.gallery = new App.Views.FlickrGallery({
+                renderTo : this.$(".post-page-photo")
+            });
+
+            this.listenTo(this.gallery, "select", function(id){
+                this.renderPicture(id);
+            }.bind(this));
+        }
+
+        this.gallery.open();
+        this.$(".post-page-about").addClass("fixed");
+    },
+    closeImageSettings : function(){
+        this.$(".image-settings").hide();
+        this.$(".image-settings-button").show();
+        this.$(".post-page-about").removeClass("fixed");
+
+        this.gallery.close();
+        this.gallery.remove();
+        delete this.gallery;
+    },
+    savePicture : function(id){
+        if (typeof id != "number") id = this.gallery.chosenId;
+
+        this.model.set("photo_id", id).save();
+        this.closeImageSettings();
+        this.movePage(false);
+    },
+    movePage : function(open){
+        if (this.moved == open) return;
+
+        this.$el[(this.moved = open) ? "addClass" : "removeClass"]("move");
+        this[open ? "openImageSettings" : "closeImageSettings"]();
+
     }
 });
 
@@ -368,11 +480,7 @@ App.Views.Post_Settings = App.Views.BASE.extend({
         </div>\
         <div class='change-photo'>\
             <h3>"+ Lang.photo_change +"</h3>\
-            <img class='post-picture'>\
-            <div class='upload-bar'></div>\
             <div class='file-source'>\
-                <input type='file' class='select-file' value='"+ Lang.upload +"'>\
-                <span class='or-divider'>or</span>\
                 <input type='button' class='flickr-open' value='" + Lang.flickr_open + "'>\
             </div>\
             <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
@@ -465,15 +573,12 @@ App.Views.Post_Settings = App.Views.BASE.extend({
         return App.loader.sync("posts/picture", {data: data, type: "DELETE"});
     },
 
-    renderAccess : function(){
-        this.$access.val(this.model.get("access"));
-    },
 
     // TAGS
     renderTags : function(){
         this.tags = new App.Views.TagsControl({
             parent     : this,
-            renderTo   : this.$tags,
+            el         : this.$tags,
             model      : this.model,
             collection : this.model.tags
         });
@@ -482,73 +587,6 @@ App.Views.Post_Settings = App.Views.BASE.extend({
 
 
 
-
-
-// Вьюшка выбора тегов
-App.Views.TagsControl = App.Views.BASE.extend({
-    className : "tags-control",
-    _markup : "<h3>"+ Lang.tags_edit +"</h3>\
-        <ul class='tags'></ul>\
-        <input type='text' class='input-tags'>\
-        <input type='button' class='add-tags' value='"+ Lang.add +"'>\
-        <ul class='get-tags'></ul>",
-    events : {
-        "input .input-tags" : "getTags",
-        "click .tag" : function(e){
-            this.model.removeTag($(e.target).data("id"));
-        },
-        "click .add-tags" : function(){
-            var value;
-            if (!(value = this.$(".input-tags").val()).length) return;
-
-            this.model.addTags(value);
-            this.$(".input-tags").val("").trigger("input");
-        },
-        "click .tag-found" : function(e){
-            this.model.addTags($(e.target).data("tag").name);
-            this.$(".input-tags").val("").trigger("input");
-        }
-    },
-    init : function(){
-        this.render();
-
-        this.$tags    = this.$(".tags");
-        this.$input   = this.$(".input-tags");
-        this.$suggest = this.$(".get-tags");
-
-        this.renderTags();
-
-        // Сделать теги поста как коллекцию тегов у поста, запрашивать их в одном запросе, но не пихать в модель поста как сейчас
-
-        this.listenTo(this.collection, "add remove reset", this.renderTags);
-    },
-    render : function(){
-        this.$el.html(this._markup).appendTo(this.options.renderTo);
-    },
-    renderTags : function(){
-        this.$tags.empty();
-
-        for (var i=0;this.collection.models[i];i++){
-            var tag = this.collection.models[i];
-            this.$tags.append(
-                $("<li></li>").append($("<span class='tag'></span>")
-                    .html(tag.get("name"))
-                    .data("id", tag.id)
-                ));
-        }
-    },
-    getTags : function(){
-        var val = this.$input.val();
-        if (!val) return this.$suggest.empty();
-
-        return App.loader.sync("posts/tags", {data : {search: val.toLowerCase()}, type: "GET"}).done(function(result){
-            this.$suggest.empty();
-            _.each(result, function(item){
-                $("<li class='tag-found'>").html(item.name).data("tag", item).appendTo(this.$suggest);
-            }, this);
-        }.bind(this));
-    }
-});
 
 
 

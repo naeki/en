@@ -26,9 +26,6 @@ input[type=button], button{
   padding: 5px 12px;
   margin-right: 10px;
   -webkit-transition: background-color 0.2s;
-  &:hover{
-    background-color: #afd8fa;
-  }
   &.big{
     font-size: 23px;
     padding: 7px 20px;
@@ -165,7 +162,58 @@ $iconBlue        : #3D35B4;
 
 
 // Icons SVG
-.icon-settings{}
+.icon-settings{fill: $iconBlue;}
+
+
+
+
+
+
+//Controls
+
+.toggle-control{
+  width: 50px;
+  height: 25px;
+  background: #fff;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  &.on {
+    .toggle-control__toggle {
+      left: 0px;
+    }
+    .toggle-control__border{
+      background: #00DC9F;
+    }
+  }
+}
+.toggle-control__toggle{
+  width: 100px;
+  height: 100%;
+  position: absolute;
+  left: -40px;
+  transition: left 0.2s;
+}
+
+.toggle-control__on,
+.toggle-control__off{
+  width: 35px;
+  height: 25px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 26px;
+  display: inline-block;
+  cursor: default;
+  vertical-align: top;
+}
+.toggle-control__border{
+  display: inline-block;
+  width: 20px;
+  height: 25px;
+  background: #aaa;
+  transition: background 0.2s;
+  vertical-align: top;
+}
 
 
 
@@ -298,6 +346,7 @@ $iconBlue        : #3D35B4;
   left: 0px;
   top: 0px;
   position: absolute;
+  background: #07003E;
   //  background: #4a5386 url("../images/sb.jpg") bottom left no-repeat;
   //  box-shadow: 0 0 0px rgba(0,0,0,0.1);
   z-index: 1;
@@ -305,9 +354,6 @@ $iconBlue        : #3D35B4;
 
 }
 
-.clear .sidebar {
-  background: none;
-}
 
 .sidebar .footer{
   position: absolute;
@@ -419,6 +465,8 @@ $iconBlue        : #3D35B4;
   position: fixed;
   top: 80px;
   right: 20px;
+  overflow: hidden;
+  z-index: 2;
   .vertical-nav{
     display: block;
     width: 26px;
@@ -439,19 +487,33 @@ $iconBlue        : #3D35B4;
   }
 }
 
+.vertical-nav:hover .post-page-about{display: block; overflow: visible}
 
 .post-page-about{
   text-align: left;
-  margin: 30px 0 50px;
-  position: relative;
-  padding-top: 30px;
-  border-top: 1px solid #eee;
+  position: fixed;
+  margin: 0px 0 50px;
+  padding: 30px;
+  right: 0px;
+  top: 0px;
+  opacity: 0;
+  background: rgba(20, 15, 86, 0.8);
+  z-index: 3;
+  width: 20%;
+  height: 100%;
+  box-sizing: border-box;
+  transition: opacity 0.4s;
+  font-family: _roboto;
+  &.fixed,
+  &:hover{
+    opacity: 1;
+  }
 }
 
 .author-box{
-  margin-right: 30px;
-  display: inline-block;
+  display: block;
   vertical-align: -15px;
+  margin-bottom: 20px;
   .user-photo-middle{
     margin-right: 5px;
     display: inline-block;
@@ -459,10 +521,24 @@ $iconBlue        : #3D35B4;
     height: 40px;
   }
   .post-author{
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
-    vertical-align: 15px;
+    vertical-align: 13px;
+    display: inline-block;
+    line-height: 18px;
+    color: #fff;
+    &:hover{
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    }
   }
+}
+.post-stat-view{
+  font-size: 14px;
+  color: #fff;
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: 300;
 }
 
 
@@ -483,14 +559,17 @@ $iconBlue        : #3D35B4;
   /* background: rgba(192, 192, 192, 0.18); */
   padding: 0px 0px 0px 0px;
   display: inline-block;
-  color: #A59FC7;
-  font-size: 13px;
-  text-transform: uppercase;
-  font-family: _roboto;
-  font-weight: 400;
+  color: $iconBlue;
   border-radius: 16px;
   position: relative;
-  letter-spacing: 0.7px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: _roboto;
+  font-weight: 300;
+
   /* font-style: italic; */
   &::after{
     //    display: block;
@@ -505,13 +584,25 @@ $iconBlue        : #3D35B4;
   }
   /* background: #FCDEFB; */
 }
+.access-control{
+  margin-top: 30px;
+  position: relative;
+  label{
+    position: absolute;
+    left: 60px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 25px;
+  }
+}
 
 .post-meta{
   text-align: right;
   position: fixed;
-  bottom: 10px;
-  right: 35px;
-  width:120px;
+  bottom: 20px;
+  right: 22%;
+  margin-right: 13px;
 }
 
 .edit-controls{
@@ -552,29 +643,31 @@ button.save-button{
     opacity: 1;
   }
 }
-
-
 .page-number{
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
 }
 .help-title{
-  color: #aaa;
-  font: 300 13px "PT Serif";
-  line-height: 18px;
+  text-align: right;
+  position: fixed;
+  bottom: 20px;
+  right: 35px;
+  width:150px;
+  color: rgba(255,255,255,0.7);
+  font: 300 14px "PT Serif";
+  line-height: 20px;
   margin-top: 10px;
   margin-bottom: 4px;
   cursor: default;
-  &:hover{
-    color: #555;
-  }
+  z-index: 4;
+  pointer-events: none;
 }
 
 .post-actions{
   margin-bottom: 0px;
   position: fixed;
-  right: 21px;
+  right: 22%;
   bottom: 100px;
   text-align: right;
   li{margin-bottom: 10px;}
@@ -609,7 +702,6 @@ button.save-button{
     .icon-settings{
       width: 26px;
       height: 26px;
-      fill: #3D35B4;
     }
     &:hover{
       transform: rotate(90deg);
@@ -712,10 +804,15 @@ button.save-button{
 
 
 /* page of post -> header */
+.page-post{
+  overflow-x: hidden;
+}
 .post-page-view{
   max-width: 1000px;
-  margin: 0 15% 0 25%;
+  margin: 0 35% 0 15%;
+  overflow-x: hidden;
   text-align: center;
+  transition: transform 0.4s, background-color 0.4s;
   .page-viewer{
     width: 100%;
     font-size: 19px;
@@ -740,6 +837,8 @@ button.save-button{
     color: #aaa;
   }
 }
+.move .post-page-view{transform: translateX(-300px);}
+.move .post-page-photo{width: 1300px; -webkit-filter: grayscale(0) brightness(0.8);}
 
 .post-likes,
 .post-settings,
@@ -795,6 +894,7 @@ button.save-button{
   top: 50%;
   position: absolute;
 }
+
 .post-page-photo{
   display: block;
   height: 100%;
@@ -803,11 +903,14 @@ button.save-button{
   margin-bottom: 25px;
   position: fixed;
   top: 0px;
-  left: 0px;
-  z-index: 3;
-  width: 195px;
+  right: 0px;
+  z-index: 2;
+  width: 20%;
+  transition: width 0.4s, -webkit-filter 0.4s;
   -webkit-filter: grayscale(1) brightness(0.6);
 }
+
+
 
 
 /* post-form page */
@@ -880,29 +983,27 @@ input.flickr-open{
   color: #fff;
 }
 
-.flickr-gallery-fade{
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.1);
-  z-index: 1000;
-  left: 0px;
-  top:0px;
-  overflow: auto;
-}
 .flickr-gallery{
-  width: 70%;
-  margin: 0 auto;
-  margin-top: 100px;
-}
-.flickr-results{
-  line-height: 0px;
-  margin-top: 20px;
+  position: absolute;
+  z-index: 2;
+  height: 100%;
+  right: 0px;
+  top: 0px;
+  margin-right: 35%;
+  overflow-y: auto;
+  width: 800px;
+  padding-top: 20px;
+  &:empty{
+    display: none;
+  }
 }
 .flickr-photo{
-  display: inline-block;
-  margin: 7px;
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+  display: block;
+  margin: 0px 0px 30px 0px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  float: right;
+  clear: both;
 }
 
 
@@ -944,7 +1045,10 @@ input.flickr-open{
     display: block;
     vertical-align: super;
   }
-  .tags{display: inline-block;}
+  .tags{
+    position: relative;
+    display: inline-block;
+  }
 }
 .user-controls{
   display: block;
@@ -966,7 +1070,6 @@ input.flickr-open{
     .icon-settings{
       width: 35px;
       height: 35px;
-      fill: $iconBlue;
     }
   }
 }
@@ -1035,12 +1138,6 @@ input.flickr-open{
   }
 }
 
-.post-stat-view{
-  font-size: 12px;
-  color: #aaa;
-  display: inline-block;
-  margin-left: 10px;
-}
 
 .post-small.lock .post-stat::after,
 .page-post.lock .post-stats::after{
@@ -1341,46 +1438,65 @@ input.flickr-open{
 
 
 // Редактирование тегов
+.edit-tags-button{
+  position: absolute;
+  top: 5px;
+}
 .edit-tags{
-  margin-top: 60px;
-  .tags{margin-bottom: 15px; text-align: left;}
+  text-align: center;
+  .tags{
+    text-align: left;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 5px;
+    margin-bottom: 10px;
+  }
+  .edit-tags-controls{
+    display: inline-block;
+    position: relative;
+    margin-top: 10px;
+  }
   li{
     display: inline-block;
-    margin-right: 10px;
-    margin-left: 0px;
   }
   .tag, .tag-link{
-    cursor: pointer;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.2px;
-    font-family: _roboto;
-    font-weight: 400;
     &:hover{text-decoration: line-through;}
   }
 
   .input-tags{
-    border: 0px;
-    background: #eee;
-    padding: 9px 15px 7px;
-    font-size: 16px;
+    border: 2px solid #7275E8;
+    padding: 0px 5px 0px;
+    font-size: 15px;
     display: inline-block;
-    margin-right: 5px;
-    vertical-align: bottom;
+    margin-right: 0px;
+    vertical-align: 0px;
     text-transform: uppercase;
-    font-weight: 500;
-    line-height: 20px;
+    font-weight: 300;
+    line-height: 23px;
     font-family: _roboto;
-    letter-spacing: 0.2px;
-    color: #222;
+    letter-spacing: 1px;
+    height: 23px;
+    color: $iconBlue;
+    width: auto;
   }
   .add-tags{
     display: inline-block;
     border: 0px;
-    padding: 0px 20px;
+    padding: 0px 0px 2px;
     border-radius: 5px;
-    font-size: 24px;
-    height: 35px;
+    font-size: 35px;
+    height: 27px;
+    background: #fff;
+    color: #3D35B4;
+    line-height: 13px;
+    vertical-align: top;
+    position: absolute;
+    width: 30px;
+    font-weight: 300;
+    margin-right: 0px;
+    font-family: _roboto;
+    right: -30px;
+    top: 0px;
   }
 }
 
@@ -1401,6 +1517,24 @@ input.flickr-open{
 }
 
 
+.image-settings-button{
+  margin-top: 30px;
+}
+.image-settings{
+  display: none;
+  margin-top: 50px;
+  h3{
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+input.flickr-search-input{
+  width: 80%;
+  padding: 4px 10px;
+  margin-bottom: 20px;
+  border: 2px solid #00ECAB;
+  font-size: 16px;
+}
 
 
 
