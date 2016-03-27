@@ -25,7 +25,6 @@ Auth.signIn = function(){
         }
         else {
             window.location.reload();
-            alert("You are logged in")
         }
     });
     return false;
@@ -33,16 +32,20 @@ Auth.signIn = function(){
 
 
 
-Auth.toggleType = function(){
-    Auth.currentForm = Auth.currentForm ? 0 : 1;
+Auth.toggleType = function(e){
+    var type = e.target.classList[1];
+    $(".input-block").removeClass("sign-in sign-up repass").addClass(type);
 
-    $(".toggle-type").html(Auth.currentForm ? Auth.lang.signin : Auth.lang.signup);
 
-
-    $(".form-box").removeClass("active");
-
-    (Auth.currentForm ? $(".signup-box") : $(".signin-box")).addClass("active");
-    $(".send").removeClass("signup signin").addClass(Auth.currentForm ? "signup" : "signin");
+//    Auth.currentForm = Auth.currentForm ? 0 : 1;
+//
+//    $(".toggle-type").html(Auth.currentForm ? Auth.lang.signin : Auth.lang.signup);
+//
+//
+//    $(".form-box").removeClass("active");
+//
+//    (Auth.currentForm ? $(".signup-box") : $(".signin-box")).addClass("active");
+//    $(".send").removeClass("signup signin").addClass(Auth.currentForm ? "signup" : "signin");
 }
 
 
@@ -50,9 +53,7 @@ $(document).on('ready', function(){
     $("body").on("click", ".signin", Auth.signIn);
 //    $("body").on("click", ".signup", Auth.signUp);
 
-    $("body").on("click", ".toggle-type", function(){
-        Auth.toggleType();
-    })
+    $("body").on("click", ".page-link", Auth.toggleType);
 
     $("body").on("input", "input", function(){
         $(this)[$(this).val().length ? "addClass" : "removeClass"]("val");
