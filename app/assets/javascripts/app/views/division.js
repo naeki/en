@@ -128,7 +128,7 @@ App.Views.All = App.Views.Folder.extend({
     find : function(){
         var val = $(".search-posts").val();
         this.$controls[val ? "hide" : "show"]();
-        if (val.length>2) this.collection.find(val);
+        this.collection.find(val);
     },
     renderHeader : function(){
         this.$h1.html(this.label);

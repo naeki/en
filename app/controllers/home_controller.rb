@@ -19,7 +19,7 @@ class HomeController < ApplicationController
     store_location
 
     if (!signed_in?)
-      redirect_to signin_path
+      redirect_to '/'
     else
       @model = Post.find_by_id(params[:id])
 
@@ -36,7 +36,7 @@ class HomeController < ApplicationController
     store_location
 
     if (!signed_in?)
-      redirect_to signin_path
+      redirect_to '/'
     else
       @model = User.find_by_id(params[:id].slice(/\d*$/))
 
@@ -55,7 +55,7 @@ class HomeController < ApplicationController
     if (signed_in?)
       render "index"
     else
-      redirect_to signin_path
+      redirect_to '/'
     end
   end
 

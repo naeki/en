@@ -267,11 +267,11 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     },
     find : function(str){
         if (!str.length) return this.fetch();
-
-        PostsCollection.fetch("/posts/find", {data: {string: str}}).done(function(result){
-            this.reset(result.posts.map(Post.builder));
-            this.tags.reset(result.tags);
-        }.bind(this));
+        else if (str.length>2)
+            PostsCollection.fetch("/posts/find", {data: {string: str}}).done(function(result){
+                this.reset(result.posts.map(Post.builder));
+                this.tags.reset(result.tags);
+            }.bind(this));
     },
     fetch : function(){
         var url = "/posts/" + this.parent.type;
