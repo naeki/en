@@ -40,11 +40,11 @@ window.TagsView = App.Views.BASE.extend({
 App.Views.TagsControl = TagsView.extend({
     _markup : "\
         <ul class='tags-list'></ul>\
-        <span class='edit-tags-button'>Edit</span>\
+        <div class='edit-tags-button'></div>\
     ",
     _editMarkup : "\
         <div class='edit-tags-controls'>\
-            <input type='text' class='input-tags' size='13'>\
+            <input type='text' class='input-tags' placeholder="+ Lang.tags +" size='13'>\
             <input type='button' class='add-tags' value='"+ Lang.add +"'>\
             <ul class='get-tags'></ul>\
         </div>",
@@ -73,22 +73,36 @@ App.Views.TagsControl = TagsView.extend({
         this.$tags = this.$(".tags-list");
 
         this.renderList();
+        if (!this.collection.length) this.renderEditable();
+//        this.renderControl();
 
         // Сделать теги поста как коллекцию тегов у поста, запрашивать их в одном запросе, но не пихать в модель поста как сейчас
 
-        this.listenTo(this.collection, "add remove reset", this.renderList);
+        this.listenTo(this.collection, "add remove reset", function(){
+            this.renderList();
+//            this.renderControl();
+        }.bind(this));
     },
     renderStatic : function(){
         this.$(".edit-tags-controls").remove();
         this.$el.removeClass("edit-tags");
         this.editable = false;
+        this.$(".edit-tags-button").css("display", "inline-block");
     },
     renderEditable : function(){
         this.$el.addClass("edit-tags").append(this._editMarkup);
         this.$input = this.$(".input-tags");
         this.$suggest = this.$(".get-tags");
         this.editable = true;
+        this.$(".edit-tags-button").css("display", "none");
     },
+//    renderControl : function(){
+//        this.$control = this.$(".edit-tags-button")
+//        if (this.collection.length)
+//            this.$control.html(App.SVG.tags);
+//        else
+//            this.$control.html(App.SVG.tags + "<label>Добавить теги</label>");
+//    },
     getTags : function(){
         var val = this.$input.val();
         if (!val) return this.$suggest.empty();

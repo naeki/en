@@ -72,10 +72,16 @@ window.User = App.Models.User = Backbone.Model.extend({
         return this.get("photo") ? "data:image/jpg;base64," + this.get("photo") : (Src.userPhoto + Src.defaultUserPhoto + ".jpg");
     },
     getSmallPhoto : function(){
+        if (this.get("provider") == "google_oauth2")
+            return this.get("photo_id");
+
         return this.get("photo_s") ? "data:image/gif;base64," + this.get("photo_s") : (Src.userPhoto + Src.defaultUserPhoto + "_s.gif");
 //        return Src.userPhoto + (this.get("photo_id") || Src.defaultUserPhoto) + "_s.gif";
     },
     getNormalPhoto : function(){
+        if (this.get("provider") == "google_oauth2")
+            return this.get("photo_id") + "?sz=120";
+
         return this.get("photo") ? "data:image/jpg;base64," + this.get("photo") : (Src.userPhoto + Src.defaultUserPhoto + "_n.jpg");
 //        return Src.userPhoto + (this.get("photo_id") || Src.defaultUserPhoto) + "_n.jpg";
     },

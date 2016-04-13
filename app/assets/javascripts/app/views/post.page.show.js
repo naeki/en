@@ -6,40 +6,43 @@ App.Views.Page_Post = App.Views.BASE.extend({
     className : "page-post",
     _markup:"\
     <div id='post-page-about' class='post-page-about'>\
-        <div class='author-box'>\
-            <img class='user-photo-middle user-link'>\
-            <span class='post-author user-name user-link'></span>\
+        <div class='post-last-visit'>\
+            <h3>"+ Lang.last_seen +"</h3>\
+            <span class='post-stat-view post-stat-info'></span>\
         </div>\
-        <span class='post-stat-view post-stat-info'></span>\
     </div>\
     <div class='post-page-photo'>\
     </div>\
     <ul class='post-actions'>\
+        <li><span class='post-stat-comments post-stat link'>" + App.SVG.comments + "</span></li>\
         <li><span class='post-action do-like link'></span></li>\
         <li><span class='post-action do-bookmark link'></span></li>\
     </ul>\
     <p class='help-title'></p>\
+    <div class='author-box'>\
+        <img class='user-photo-middle user-link'>\
+        <span class='post-author user-name user-link'></span>\
+    </div>\
+    <div class='post-meta'>\
+        <div class='edit-controls'></div>\
+        <div class='post-info'>\
+            <p class='page-number'></p>\
+        </div>\
+    </div>\
     <div class='post-page-view'>\
         <div class='page-header'>\
-            <div class='h1'></div>\
             <div class='tags'></div>\
             <div class='post-stats'>\
-                <span class='post-stat-comments post-stat link'></span>\
-                <span class='post-stat-likes post-stat link'>\
-                    <svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' class='likes' x='0px' y='0px' viewBox='0 0 25 22' xml:space='preserve' width='25px' height='22px'><path d='M12.604,3.291C9.395-2.26-0.047-0.375,0,7.609c0.031,5.663,3.878,8.444,7.041,10.768  c3.091,2.271,3.716,2.451,5.584,3.624c1.686-1.147,3.191-2.022,5.957-4.206c3.101-2.446,6.384-4.811,6.418-9.886  C25.059-0.87,15.604-2.236,12.604,3.291z'/></svg>\
-                </span><br>\
+                <span class='post-stat-lock'></span>\
+                <span class='post-stat-likes post-stat link'>"+ App.SVG.like +"</span>\
             </div>\
+            <div class='h1'></div>\
             <div class='history-back'></div>\
         </div>\
+        <div class='post-page-marks'></div>\
         <div class='page-body'>\
             <div class='page-viewer'>\
                 <div class='post-page-text'></div>\
-            </div>\
-        </div>\
-        <div class='post-meta'>\
-            <div class='edit-controls'></div>\
-            <div class='post-info'>\
-                <p class='page-number'></p>\
             </div>\
         </div>\
     </div>",
@@ -89,12 +92,16 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.renderOmnibar();
     },
     renderHeader : function(){
+
+        var url = this.model.getBigPhoto();
+
         this.$header.children(".h1").html(this.model.get("title"));
+
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
-        this.$picture.css("background-image", "url(" + this.model.getBigPhoto() + ")");
+        this.$picture.css("background-image", "url(" + url + ")")[url ? "addClass" : "removeClass"]("image");
 
-        this.$comments.html(this.model.get("comments"));
+        this.model.get("comments") && this.$comments.attr("count", this.model.get("comments"));
 
         this.renderLikes();
 
@@ -102,16 +109,19 @@ App.Views.Page_Post = App.Views.BASE.extend({
             this.$lastview.html(Post.getDateString(this.model.get("last_view")));
 
         this.renderActions();
+
     },
     renderLikes : function(){
         this.$likes[this.model.get("likes") ? "show" : "hide"]();
-        var likes = this.model.get("likes");
+        var likes = this.model.get("likes"), count;
         if (likes) {
-            if (likes > 0 && likes < 2)  this.$likes.attr("likes", 1);
-            if (likes > 1 && likes < 7)  this.$likes.attr("likes", 2);
-            if (likes > 6 && likes < 9)  this.$likes.attr("likes", 3);
-            if (likes > 9 && likes < 20) this.$likes.attr("likes", 4);
-            if (likes > 19)              this.$likes.attr("likes", 5);
+            if (likes > 0 && likes < 2)  count = 1;
+            if (likes > 1 && likes < 7)  count = 2;
+            if (likes > 6 && likes < 9)  count = 3;
+            if (likes > 9 && likes < 20) count = 4;
+            if (likes > 19)              count = 5;
+
+            this.$likes.attr("likes", count);
         }
     },
     renderTags : function(){
@@ -212,7 +222,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         var top = (num-1)*step;
         if (!top) return;
         num -= 1;
-        this.$body.append($("<a class='page-mark'>"+ num +"</a>").css('top', top).data("number", num));
+        this.$(".post-page-marks").append($("<a class='page-mark'>"+ num +"</a>").css('top', top).data("number", num));
         return top;
     },
     setPageNumber : function(){
@@ -249,17 +259,19 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     <div class='image-settings'>\
         <h3>"+ Lang.photo_change +"</h3>\
         <input class='flickr-search-input' type='text' placeholder='"+ Lang.search +"'>\
-        <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
-        <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
-    </div>\
-    <button class='image-settings-button'>Change picture</button>",
+        <div class='submit-photo save-button'></div>\
+        <!--<input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>-->\
+    </div>",
     events : {
-        "click .save-button"   : "save",
+        "click .save-post"   : "save",
         "click .post-delete" : function(){this.model.del();},
         "click .history-back" : function(){
             Backbone.history.history.back();   // Перенести эту чертову стрелку в мэйн
         },
-        "input .edit-text" : "resizeText",
+        "input .edit-text" : function(){
+            this.refreshSaveButton();
+            this.resizeText();
+        },
         "click .do-like"   : "likeAction",
         "click .do-bookmark"        : "bookmarkAction",
         "click .post-stat-comments" : "openComments",
@@ -277,15 +289,19 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
             }.bind(this, e));
         },
         "click .flickr-open"  : "openGallery",
-        "click .image-settings-button" : "openImageSettings",
+//        "click .image-settings-button" : "openImageSettings",
         "click .submit-photo" : "savePicture",
         "click .delete-photo" : "deletePicture",
         "click .post-page-about" : function(e){
             if (e.target.className == "post-page-about") this.movePage(true);
         },
         "keydown .flickr-search-input" : function(e){
-            if (e.keyCode == 13) this.gallery.search(this.$(".flickr-search-input").val());
-        }
+            if (e.keyCode == 13) {
+                this.openImageSettings();
+                this.gallery.search(this.$(".flickr-search-input").val());
+            }
+        },
+        "input .edit-title" : "refreshSaveButton"
     },
     init : function(){
         this.render();
@@ -313,46 +329,70 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 //        this.listenTo(this.model, "change:tags", this.renderTags);
         this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
+        this.listenTo(this.model, "change:access", this.renderAccessIndication.bind(this));
 
         $(window).on("resize", this.pasteParts.bind(this));
         $(window).on("scroll", this.setPageNumber.bind(this));
 
         this.constructor.view = this;
         this.view();
+
+        if (this.model.isNew())
+            this.initNew();
+    },
+    initNew : function(){
+        this.$el.addClass("new");
+
+        this.listenTo(this.model, "change:id", function(){
+            this.$el.removeClass("new");
+        }.bind(this));
     },
     renderHeader : function(){
-        this.$header.children(".h1").addClass("edit-title").attr("contenteditable", true).html(this.model.get("title"));
-        this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
+        this.$header.children(".h1").addClass("edit").html(
+            $("<input class='edit-title' placeholder='"+ Lang.new_post_name +"'>").val(this.model.get("title"))
+        );
 
+        this.renderAccessIndication();
         this.renderPicture();
-        this.$comments.html(this.model.get("comments"));
+        this.model.get("comments") && this.$comments.attr("count", this.model.get("comments"));
         this.renderLikes();
+        this.renderImageControls();
 
-        if (this.model.isNew()) {
-            this.$actions.remove();
-            this.$stats.remove();
-            return;
-        }
 
         if (this.model.get("last_view"))
             this.$lastview.html(Post.getDateString(this.model.get("last_view")));
 
         this.renderAccess();
-        this.renderImageControls();
         this.renderActions();
     },
     renderPicture : function(id){
         var url = this.model.getBigPhoto();
         if (id) url = App.Views.FlickrGallery.getBigPhoto(id);
 
-        this.$picture.css("background-image", "url(" + url + ")");
+        if (url)
+            this.$picture.addClass("image").css("background-image", "url(" + url + ")");
+    },
+    renderAccessIndication : function(){
+        this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
+    },
+    renderGalleryPreview : function(id){
+        if (!this.$galleryPreview)
+            this.$picture.prepend(this.$galleryPreview = $("<div class='post-gallery-preview'></div>"));
+
+        this.$galleryPreview.css("background-image", "url(" + App.Views.FlickrGallery.getBigPhoto(id) + ")");
+    },
+    removeGalleryPreview : function(){
+        if (this.$galleryPreview)
+            this.$galleryPreview.remove();
+
+        delete this.$galleryPreview;
     },
     renderControls : function(){
         this.$controls.empty()
-            .append("<div class='save-button'></div>");
+            .append("<div class='save-button save-post'></div>");
     },
     save : function(){
-        var title = this.$header.children(".h1")[0].textContent,
+        var title = this.$(".edit-title").val(),
             text  = this.$text.val().replace(/\n/g, "<br>");
 
         return this.model.set({
@@ -361,8 +401,9 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         }).save();
     },
     openText : function(){
-        this.$viewer[0].innerHTML = "<textarea class='edit-text'></textarea>";
+        this.$viewer[0].innerHTML = "<textarea class='edit-text'></textarea><bg></bg>";
         this.$text = this.$(".edit-text").val(this.model.get("text").replace(/<br>/g, "\n") || "");
+        this.$text.focus();
 
         this.model.loading.done(this.pasteParts.bind(this));
     },
@@ -402,19 +443,28 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     renderAccess : function(){
         if (this.access) return;
 
-        this.$(".post-page-about").append("<div class='access-control'><label>Public access</label></div>");
+        this.$(".post-page-about").append("<div class='access-control'><h3>"+ Lang.change_access +"</h3></div>");
+        this.$(".access-control").append(this.$accessLabel = $("<label></label>"));
+
         this.access = new App.Views.ToggleControl({
             model    : this.model,
             renderTo : this.$(".access-control"),
             parent   : this
         });
+
+        function setLabel(value){
+            this.$accessLabel.html(value ? "Доступно всем" : "Доступно только вам");
+        }
+        setLabel.call(this, this.model.get("access"));
+
+        this.listenTo(this.access, "change", setLabel.bind(this));
     },
     renderImageControls : function(){
         this.$(".post-page-about").append(this._imageControlsMarkup);
-        this.$input   = this.$(".flickr-search-input");
+        this.$input = this.$(".flickr-search-input");
     },
     openImageSettings : function(){
-        this.$(".image-settings").show();
+//        this.$(".image-settings").show();
         this.$(".image-settings-button").hide();
         this.movePage(true);
 
@@ -423,29 +473,40 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
                 renderTo : this.$(".post-page-photo")
             });
 
+            /*
+            // Event from gallery
+            */
+
             this.listenTo(this.gallery, "select", function(id){
-                this.renderPicture(id);
+
+                //Show save button
+                this.$(".submit-photo").addClass("visible");
+                this.renderGalleryPreview(id);
             }.bind(this));
+
         }
 
         this.gallery.open();
         this.$(".post-page-about").addClass("fixed");
     },
     closeImageSettings : function(){
-        this.$(".image-settings").hide();
+//        this.$(".image-settings").hide();
         this.$(".image-settings-button").show();
         this.$(".post-page-about").removeClass("fixed");
 
         this.gallery.close();
         this.gallery.remove();
         delete this.gallery;
+        this.$(".submit-photo").removeClass("visible");
+        this.removeGalleryPreview();
     },
     savePicture : function(id){
         if (typeof id != "number") id = this.gallery.chosenId;
 
         this.model.set("photo_id", id).save();
-        this.closeImageSettings();
+//        this.closeImageSettings();
         this.movePage(false);
+        this.renderPicture(id);
     },
     movePage : function(open){
         if (this.moved == open) return;
@@ -453,6 +514,20 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$el[(this.moved = open) ? "addClass" : "removeClass"]("move");
         this[open ? "openImageSettings" : "closeImageSettings"]();
 
+    },
+    refreshSaveButton : function(e){
+        var button = this.$(".save-post"),
+            changedName = this.$(".edit-title").val() != (this.model.get("name") || ""),
+            changedText = this.$(".edit-text").val()  != (this.model.get("text") || "");
+
+        if (changedName || changedText)
+            button.addClass("visible");
+        else {
+            button.css("opacity", 0);
+            setTimeout(function(){
+                button.removeClass("visible").css('opacity', 1);
+            }, 300);
+        }
     }
 });
 

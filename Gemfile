@@ -52,6 +52,8 @@ gem 'bcrypt'
 gem 'cancan'
 gem 'bootstrap-sass'
 
+gem 'omniauth-google-oauth2'
+
 gem 'backbone-on-rails'
 
 gem 'whenever', :require => false

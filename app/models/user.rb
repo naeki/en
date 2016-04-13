@@ -42,16 +42,31 @@ class User < ActiveRecord::Base
 
 
 
-  has_secure_password
+  # has_secure_password
 
-  before_save {self.email = email.downcase}
-  before_create :create_remember_token
+  # before_save {self.email = email.downcase}
+  # before_create :create_remember_token
 
-  validates_presence_of   :email, :password
-  validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_uniqueness_of :email
+  # validates_presence_of   :email, :password
+  # validates_format_of     :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  # validates_uniqueness_of :email
 
   # attr_accessible :password, :password_confirmation, :email, :name
+
+  def self.from_omniauth(auth_hash)
+    @user = find_by(uid: auth_hash['uid'], provider: auth_hash['provider'])
+
+    if (!@user)
+      @user = create(uid: auth_hash['uid'], provider: auth_hash['provider'])
+      @user.name = auth_hash['info']['name']
+      # user.location = auth_hash['info']['location']
+      @user.photo_id = auth_hash['info']['image']
+      # user.url = auth_hash['info']['urls'][user.provider.capitalize]
+      @user.save!
+    end
+
+    @user
+  end
 
   def feed
     @posts = Post.from_users_followed_by(self)

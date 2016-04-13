@@ -37,8 +37,9 @@ module SessionsHelper
   end
 
   def current_user
-    remember_token = User.encrypt(cookies[:remember_token])
-    @current_user ||= User.find_by_remember_token(remember_token)
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    # remember_token = User.encrypt(cookies[:remember_token])
+    # @current_user ||= User.find_by_remember_token(remember_token)
   end
 
   def _build_current_user
@@ -62,6 +63,7 @@ module SessionsHelper
   end
 
   def sign_out
+    session[:user_id] = nil
     self.current_user = nil
     cookies.delete(:remember_token)
   end

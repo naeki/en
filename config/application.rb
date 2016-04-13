@@ -56,6 +56,7 @@ module En
     config.assets.initialize_on_precompile = true
 
     config.assets.precompile += %w( basic.css )
+    config.assets.precompile += %w( error.css )
     config.assets.precompile += %w( basic.js )
 
     config.assets.precompile += %w(rails_admin/rails_admin.css rails_admin/rails_admin.js)

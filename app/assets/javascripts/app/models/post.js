@@ -4,6 +4,9 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         "title" : "",
         "text"  : ""
     },
+    _defaults : {
+        title: Lang.defaults.title
+    },
     initialize : function(){
         this.comments = new App.Collections.Comments(null, {model: this});
         this.likes    = new App.Collections.PostLikes(null, {model: this});
@@ -41,6 +44,13 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         return Post.fetch(this.get("id"));
     },
     save : function(){
+
+        if (this.isNew()){
+
+            if (!this.get("title")) this.set("title", this._defaults.title);
+
+        }
+
         return Post.save(this).done(function(){
             App.router.navigate(this.get("id")+"", {trigger:true, replace:true});
         }.bind(this));
@@ -68,16 +78,16 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         return this.set("permissions", result);
     },
     getPhoto : function(){
-        return this.get("photo_id") && (this.get("photo_id") + "_o.jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_o.jpg") || "";
     },
     getSmallPhoto : function(){
-        return this.get("photo_id") && (this.get("photo_id") + "_q.jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_q.jpg") || "";
     },
     getNormalPhoto : function(){
-        return this.get("photo_id") && (this.get("photo_id") + "_n.jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_n.jpg") || "";
     },
     getBigPhoto : function(){
-        return this.get("photo_id") && (this.get("photo_id") + "_b.jpg");
+        return this.get("photo_id") && (this.get("photo_id") + "_b.jpg") || "";
     },
 
 
@@ -93,7 +103,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         if (!labels.length) return;
         labels = labels.map(function(l){return l.trim().toLowerCase()});
 
-        if (this.isNew()) dfd = this.save();
+        if (this.isNew()) return;//dfd = this.save();
 
         return dfd.then(function(){
             return App.loader.sync("/posts/"+ this.id +"/add_tags", {

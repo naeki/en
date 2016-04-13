@@ -73,7 +73,6 @@ En::Application.routes.draw do
   get '/users/followers'    => 'users#followers'
   get '/users/following'    => 'users#following'
 
-
   post '/register'          => 'users#create'
   post '/users/photo'       => 'users#upload_photo'
 
@@ -143,6 +142,8 @@ En::Application.routes.draw do
   get "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /user\d*/}
 
   get "/:id",           to: "home#enter", constraints: {id: /tag\d*/}
+
+  get "/auth/:provider/callback", to: "sessions#create"
 
   #match "/:id/:page",     to: "home#nf"
   #match "/:id",           to: "home#nf"
