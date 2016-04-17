@@ -97,7 +97,8 @@ App.Views.All = App.Views.Folder.extend({
         "<div class='folder-header'>\
             <input class='search-posts' type='text' placeholder='"+ Lang.searchPosts +"'>\
             <div class='controls'>\
-                <input class='change-type' type='button' value='liked'>\
+                <input class='change-type news' type='button' value='"+ Lang.sort_new +"'>\
+                <input class='change-type pops' type='button' value='"+ Lang.sort_pop +"'>\
             </div>\
             <div class='settings'></div>\
         </div> \
@@ -123,7 +124,8 @@ App.Views.All = App.Views.Folder.extend({
         this.updateToggle();
     },
     updateToggle : function(){
-        this.$('.change-type').val(this.subType == "new" ? Lang.sort_pop : Lang.sort_new);
+        this.$('.change-type').removeClass("active");
+        this.$(this.subType == "new" ? '.change-type.news' : '.change-type.pops').addClass("active");
     },
     find : function(){
         var val = $(".search-posts").val();
@@ -142,17 +144,6 @@ App.Views.All = App.Views.Folder.extend({
                 el         : this.$('.found-tags'),
                 parent     : this
             });
-
-//        var $tags = this.$(".found-tags").empty();
-//
-//        for (var i=0;this.collection.tags.models[i];i++){
-//            var tag = this.collection.tags.models[i];
-//            $tags.append(
-//                $("<li></li>").append($("<span class='tag-link'></span>")
-//                        .html(tag.get("name"))
-//                        .data("id", tag.id)
-//                ));
-//        }
     }
 });
 

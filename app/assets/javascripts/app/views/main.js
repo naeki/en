@@ -1,7 +1,6 @@
 App.Views.Main = Backbone.View.extend({
     className : "main",
     _markup : "\
-               <img class='user-photo-middle user-link common-user-box'>\
                <div class='context'></div>\
                <div class='sidebar-container'>" +
                     App.SVG.logo +
@@ -24,10 +23,10 @@ App.Views.Main = Backbone.View.extend({
         this.$el.html(this._markup);
         $("body").html(this.$el);
 
-        this.$(".common-user-box").attr({
-            src : App.currentUser.getSmallPhoto(),
-            alt : App.currentUser.get("name")
-        }).data("user-id", App.currentUser.id);
+//        this.$(".common-user-box").attr({
+//            src : App.currentUser.getSmallPhoto(),
+//            alt : App.currentUser.get("name")
+//        }).data("user-id", App.currentUser.id);
 
     },
     open : function(options){
@@ -156,10 +155,10 @@ App.Views.Sidebar = Backbone.View.extend({
 // MAIN MENU
 App.Views.SideMenu = Backbone.View.extend({
     _markup :
-        "<li><span class='select-option' data-location='digest'>"+ Lang.digest +"</span></li>\
+//        "<li><span class='select-option' data-location='digest'>"+ Lang.digest +"</span></li>\
+        "<li><span class='select-option' data-location='all'>"+ Lang.all +"</span></li>\
         <li><span class='select-option' data-location='bookmarks'>"+ Lang.bookmarks +"</span></li>\
-        <li><span class='select-option' data-location='feed'>"+ Lang.feed +"</span></li>\
-        <li><span class='select-option' data-location='all'>"+ Lang.all +"</span></li>",
+        <li><span class='select-option' data-location='feed'>"+ Lang.feed +"</span></li>",
     events : {
         "click .select-option" : "selectOption"
     },

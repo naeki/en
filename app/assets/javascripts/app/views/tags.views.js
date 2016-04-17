@@ -44,7 +44,7 @@ App.Views.TagsControl = TagsView.extend({
     ",
     _editMarkup : "\
         <div class='edit-tags-controls'>\
-            <input type='text' class='input-tags' placeholder="+ Lang.tags +" size='13'>\
+            <input type='text' class='input-tags' placeholder='"+ Lang.tags +"' size='15'>\
             <input type='button' class='add-tags' value='"+ Lang.add +"'>\
             <ul class='get-tags'></ul>\
         </div>",
@@ -58,7 +58,8 @@ App.Views.TagsControl = TagsView.extend({
             if (!(value = this.$(".input-tags").val()).length) return;
 
             this.model.addTags(value);
-            this.$(".input-tags").val("").trigger("input")[0].size = 15;
+            this.$(".input-tags").focus().val("").trigger("input")[0].size = 15;
+
         },
         "click .tag-found" : function(e){
             this.model.addTags($(e.target).data("tag").name);
@@ -70,7 +71,7 @@ App.Views.TagsControl = TagsView.extend({
         this.render();
         this.renderStatic();
 
-        this.$tags = this.$(".tags-list");
+        this.$tags      = this.$(".tags-list");
 
         this.renderList();
         if (!this.collection.length) this.renderEditable();
@@ -95,6 +96,8 @@ App.Views.TagsControl = TagsView.extend({
         this.$suggest = this.$(".get-tags");
         this.editable = true;
         this.$(".edit-tags-button").css("display", "none");
+
+        this.$input.focus();
     },
 //    renderControl : function(){
 //        this.$control = this.$(".edit-tags-button")
@@ -104,18 +107,18 @@ App.Views.TagsControl = TagsView.extend({
 //            this.$control.html(App.SVG.tags + "<label>Добавить теги</label>");
 //    },
     getTags : function(){
-        var val = this.$input.val();
+        var val = _.escape(this.$input.val());
         if (!val) return this.$suggest.empty();
 
 
         // Увеличение инпута по мере набора
-        if (val.length + 3 > this.$input[0].size){this.$input[0].size = val.length + 3}
+        if (val.length + 4 > this.$input[0].size){this.$input[0].size = val.length + 4}
 
 
         return App.loader.sync("posts/tags", {data : {search: val.toLowerCase()}, type: "GET"}).done(function(result){
             this.$suggest.empty();
             _.each(result, function(item){
-                $("<li class='tag-found'>").html(item.name).data("tag", item).appendTo(this.$suggest);
+                $("<li class='tag tag-found'>").html(item.name).data("tag", item).appendTo(this.$suggest);
             }, this);
         }.bind(this));
     },

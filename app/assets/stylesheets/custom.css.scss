@@ -83,7 +83,7 @@ select{
   position: relative;
   z-index: 1;
   max-width: 500px;
-  margin: 100px 0 100px;
+  margin: 110px 0 0px;
 }
 
 
@@ -229,7 +229,7 @@ $mint            : #00e4a5;
   position: absolute;
   display: block;
   top: 5px;
-  background: #BAB8D2;
+  background: #807DAF;
   right: 26px;
 }
 .toggle-control__off::after{
@@ -240,7 +240,7 @@ $mint            : #00e4a5;
   display: inline-block;
   width: 20px;
   height: 25px;
-  background: #BAB8D2;
+  background: #8F8CBB;
   transition: background 0.2s;
   vertical-align: top;
 }
@@ -567,23 +567,26 @@ $mint            : #00e4a5;
   display: block;
   vertical-align: -13px;
   margin-bottom: 0px;
-  position: absolute;
+  margin-top: 10px;
+//  position: absolute;
   left: 20px;
   z-index: 2;
   top: 30px;
   .user-photo-middle{
-    margin-right: 5px;
+    margin-right: 3px;
     display: inline-block;
-    box-shadow: 0 0 68px 43px #fff;
+    height: 25px;
+    width: 25px;
+//    box-shadow: 0 0 68px 43px #fff;
     background: #fff;
   }
   .post-author{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
-    vertical-align: 13px;
+    vertical-align: 7px;
     display: inline-block;
     line-height: 18px;
-    color: #fff;
+    color: #888;
     &:hover{
       text-decoration: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.7);
@@ -839,13 +842,48 @@ button.save-button{
   margin-left: 330px;
 }
 .folder-header{
-  padding: 30px 0px 10px;
+  padding: 40px 0px 20px;
   position: relative;
+  .search-posts{
+    padding: 2px 15px 3px;
+    border: 2px solid #00ECAD;
+    font-size: 16px;
+    vertical-align: top;
+    margin-bottom: 3px;
+  }
   .controls{
-    margin-top: 30px;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+    margin-top: 0px;
+    display: inline-block;
+    margin-left: 50px;
+
+    input{
+      margin-right: 0px;
+      float: left;
+      background: #FFFFFF;
+      font-weight: 300;
+      font-family: _roboto;
+      font-size: 16px;
+      /* border: 2px solid #728FE4; */
+      cursor: pointer;
+      padding: 6px 11px;
+      color: #A2A2A2;
+      margin-right: 7px;
+      &:hover{
+        color: #666;
+      }
+      &.active{
+        background: $iconBlue;
+        color: #fff;
+        cursor: default;
+        border-radius: 5px;
+      }
+//      &:first-of-type{
+//        border-radius: 5px 0px 0px 5px;
+//      }
+//      &:last-of-type{
+//        border-radius: 0px 5px 5px 0px;
+//      }
+    }
   }
 }
 
@@ -868,9 +906,8 @@ button.save-button{
 }
 .search-tag{
   display: inline-block;
-  padding: 8px;
-  border-top: 3px solid #e5e5e5;
-  border-left: 3px solid #EEE;
+  padding: 8px 15px 5px;
+  border: 2px solid $mint;
   background: #fff;
   width: 300px;
   .tag:hover{
@@ -1009,16 +1046,17 @@ button.save-button{
   border: 0px;
   padding-left: 0px;
   /* left: -22px; */
-  border-bottom: 2px solid #8D86F7;
+  border-bottom: 5px solid #8D86F7;
   margin: 30px 0 15px;
   /* background-color: #F6F5FF; */
-  padding-bottom: 5px;
+  padding-bottom: 7px;
   /* padding-right: 50px; */
   outline: none;
   font-size: 40px;
   font-weight: 300;
-  font-family: "_roboto_slab";
+  font-family: "PT Serif";
   line-height: 50px;
+//  box-shadow: 0px 2px 0px #F6F6FF;
   &:empty::before{
     content: attr(placeholder);
     position: absolute;
@@ -1187,13 +1225,14 @@ input.flickr-open{
     vertical-align: -7px;
     margin-right: 0px;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 80px;
+    min-height: 30px;
   }
   .tags-list{
     display: inline-block;
     margin-right: 0px;
     margin-bottom: 4px;
-    margin-top: 12px;
+    margin-top: 8px;
     &:empty{
       display: none;
       & + .edit-tags-button {
@@ -1201,6 +1240,9 @@ input.flickr-open{
       }
     }
   }
+}
+.page-post-form .page-header .tags{
+  margin-bottom: 50px;
 }
 .user-controls{
   display: block;
@@ -1242,13 +1284,13 @@ input.flickr-open{
 .post-stats{
   position: absolute;
   z-index: 2;
-  margin-bottom: 10px;
-  margin-top: 0px;
+  /* margin-bottom: 10px; */
+  margin-top: 15px;
   letter-spacing: 0px;
   display: inline-block;
   /* margin-right: 25px; */
-  right: 0px;
-  top: 45px;
+  right: 22%;
+  top: 175px;
   & *{
     letter-spacing: normal;
   }
@@ -1259,6 +1301,12 @@ input.flickr-open{
     vertical-align: top;
     font-family: "_roboto", Tahoma, Arial;
   }
+}
+.page-post-form .post-stats{
+  top: 125px;
+}
+.page-post-form.new .post-stats{
+  top: 90px;
 }
 .post-stat-comments{
   line-height: 19px;
@@ -1406,6 +1454,9 @@ input.flickr-open{
   /* margin: 0 35% 0 15%; */
   /* max-width: 1000px; */
   /* padding-right: 41%; */
+  &:empty{
+    display: none;
+  }
 }
 .page-mark{
   position: absolute;
@@ -1657,14 +1708,14 @@ input.flickr-open{
   cursor: pointer;
   font-weight: 200;
   display: inline-block;
-  height: 19px;
+  height: 17px;
   position: relative;
   font-family: _roboto;
-  left: -19px;
+  left: -15px;
   font-size: 33px;
   color: #3D35B4;
   line-height: 15px;
-  padding: 3px;
+  padding: 0px 3px 5px 3px;
   margin-left: 0px;
   width: 17px;
   &::after{
@@ -1717,7 +1768,7 @@ input.flickr-open{
   li{
     display: inline-block;
   }
-  .tag, .tag-link{
+  .tag-link{
     &:hover{text-decoration: line-through;}
   }
 
@@ -1773,6 +1824,18 @@ input.flickr-open{
     right: -3px;
     top: 0px;
     cursor: pointer;
+  }
+  .get-tags{
+    position: absolute;
+  }
+  .tag-found{
+    font-size: 10px;
+    margin-top: 4px;
+    margin-right: 0px;
+    margin-left: 4px;
+    opacity: 1;
+    font-weight: 300;
+    color: #656565;
   }
 }
 
@@ -1919,7 +1982,7 @@ input.flickr-search-input{
     margin: 15px 0px 7px 0px;
     font: 300 25px "PT Serif";
     position: relative;
-    line-height: 32px;
+    line-height: 31px;
     left: 0px;
     letter-spacing: -0.2px;
     -webkit-transition: color 0.3s, left 0.3s;
@@ -1953,7 +2016,7 @@ input.flickr-search-input{
   }
   .post-stat-likes{
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 5px;
     svg{
       width: 18px;
       height: 16px;

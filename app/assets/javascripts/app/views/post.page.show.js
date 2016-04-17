@@ -19,10 +19,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
         <li><span class='post-action do-bookmark link'></span></li>\
     </ul>\
     <p class='help-title'></p>\
-    <div class='author-box'>\
-        <img class='user-photo-middle user-link'>\
-        <span class='post-author user-name user-link'></span>\
-    </div>\
     <div class='post-meta'>\
         <div class='edit-controls'></div>\
         <div class='post-info'>\
@@ -30,13 +26,17 @@ App.Views.Page_Post = App.Views.BASE.extend({
         </div>\
     </div>\
     <div class='post-page-view'>\
+        <div class='post-stats'>\
+            <span class='post-stat-lock'></span>\
+            <span class='post-stat-likes post-stat link'>"+ App.SVG.like +"</span>\
+        </div>\
         <div class='page-header'>\
-            <div class='tags'></div>\
-            <div class='post-stats'>\
-                <span class='post-stat-lock'></span>\
-                <span class='post-stat-likes post-stat link'>"+ App.SVG.like +"</span>\
+            <div class='author-box'>\
+                <img class='user-photo-middle user-link'>\
+                <span class='post-author user-name user-link'></span>\
             </div>\
             <div class='h1'></div>\
+            <div class='tags'></div>\
             <div class='history-back'></div>\
         </div>\
         <div class='post-page-marks'></div>\
@@ -71,8 +71,8 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$lastview     = this.$(".post-stat-view");
         this.$nav          = this.$(".post-page-nav");
 
-        this.openText();
         this.view();
+        this.openText();
 
         this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view change:access", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
@@ -94,7 +94,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
     renderHeader : function(){
 
         var url = this.model.getBigPhoto();
-
         this.$header.children(".h1").html(this.model.get("title"));
 
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
@@ -110,6 +109,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         this.renderActions();
 
+        this.renderTags();
     },
     renderLikes : function(){
         this.$likes[this.model.get("likes") ? "show" : "hide"]();
@@ -156,8 +156,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         // Show/hide user box
         this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
-
-        this.renderTags();
     },
     renderActions : function(){
 
@@ -255,6 +253,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
 
 App.Views.Post_Form = App.Views.Page_Post.extend({
+    className : "page-post page-post-form",
     _imageControlsMarkup : "\
     <div class='image-settings'>\
         <h3>"+ Lang.photo_change +"</h3>\
@@ -352,6 +351,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
             $("<input class='edit-title' placeholder='"+ Lang.new_post_name +"'>").val(this.model.get("title"))
         );
 
+        this.renderTags();
         this.renderAccessIndication();
         this.renderPicture();
         this.model.get("comments") && this.$comments.attr("count", this.model.get("comments"));
@@ -403,7 +403,10 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     openText : function(){
         this.$viewer[0].innerHTML = "<textarea class='edit-text'></textarea><bg></bg>";
         this.$text = this.$(".edit-text").val(this.model.get("text").replace(/<br>/g, "\n") || "");
-        this.$text.focus();
+
+//        requestAnimationFrame(function(){
+//            this.$text.focus();
+//        }.bind(this));
 
         this.model.loading.done(this.pasteParts.bind(this));
     },

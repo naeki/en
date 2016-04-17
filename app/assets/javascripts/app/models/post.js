@@ -103,7 +103,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         if (!labels.length) return;
         labels = labels.map(function(l){return l.trim().toLowerCase()});
 
-        if (this.isNew()) return;//dfd = this.save();
+        if (this.isNew()) dfd = this.save();
 
         return dfd.then(function(){
             return App.loader.sync("/posts/"+ this.id +"/add_tags", {
