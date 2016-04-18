@@ -70,7 +70,7 @@ class Post < ActiveRecord::Base
       result["tags"] = post.tags
     end
     result["user_name"]     = post.user.name.blank? ? post.user.email : post.user.name
-    result["user_photo_id"] = post.user.photo_id
+    result["user_photo_id"] = post.user.provider == "google_oauth2" ? post.user.photo_id : post.user.photo_s
     result["comments"]      = post.comments.count
     result["likes"]         = post.likes.count
 
@@ -82,7 +82,7 @@ class Post < ActiveRecord::Base
 
     result["tags"] = post.tags
     result["user_name"]     = post.user.name.blank? ? post.user.email : post.user.name
-    result["user_photo_id"] = post.user.photo_id
+    result["user_photo_id"] = post.user.provider == "google_oauth2" ? post.user.photo_id : post.user.photo_s
     result["comments"]      = post.comments.count
     result["likes"]         = post.likes.count
 
@@ -104,7 +104,7 @@ class Post < ActiveRecord::Base
 
     result["title"]         = post.title.size > 45 ? post.title.slice(0, 45).concat('...') : post.title
     result["user_name"]     = post.user.name.blank? ? post.user.email : post.user.name
-    result["user_photo_id"] = post.user.photo_id
+    result["user_photo_id"] = post.user.provider == "google_oauth2" ? post.user.photo_id : post.user.photo_s
     result["comments"]      = post.comments.count
     result["likes"]         = post.likes.count
 

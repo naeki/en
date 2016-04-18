@@ -53,9 +53,9 @@ App.Views.Page_User = App.Views.BASE.extend({
         this.renderHeader();
         this.renderBody();
 
-//        this.listenTo(App.currentUser, "change:following", this.renderHeader);
-//        this.listenTo(this.model, "change", this.renderHeader);
-//        this.listenTo(this.model.posts, "add remove reset", this.renderHeader);
+        this.listenTo(App.currentUser, "change:following", this.renderHeader);
+        this.listenTo(this.model, "change", this.renderHeader);
+        this.listenTo(this.model.posts, "add remove reset", this.renderHeader);
     },
     render : function(){
         this.$el.html(this._markup).appendTo(this.options.renderTo);

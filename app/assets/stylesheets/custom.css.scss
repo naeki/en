@@ -624,14 +624,14 @@ $mint            : #00e4a5;
   line-height: 16px;
   text-transform: uppercase;
   font-family: _roboto;
-  font-weight: 300;
+  font-weight: 400;
   /* background: rgba(192, 192, 192, 0.18); */
-  color: #3C34AD;
-  font-size: 16px;
-  letter-spacing: 1.7px;
+  color: #8D8AD6;
+  font-size: 15px;
+  letter-spacing: 2px;
   /* font-style: italic; */
   /* background: #FCDEFB; */
-  transform: scaleY(0.9);
+  transform: scaleY(0.92);
 
 
   /* font-style: italic; */
@@ -1046,7 +1046,7 @@ button.save-button{
   border: 0px;
   padding-left: 0px;
   /* left: -22px; */
-  border-bottom: 5px solid #8D86F7;
+  border-bottom: 3px solid #8D86F7;
   margin: 30px 0 15px;
   /* background-color: #F6F5FF; */
   padding-bottom: 7px;
@@ -1931,9 +1931,9 @@ input.flickr-search-input{
     .tag-link{
       font-size: 11px;
       padding: 0px 0px 0 0;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 1.5px;
-      color: #3C34AD;
+      color: #817CD0;
       transform: scaleY(0.95);
     }
   }
