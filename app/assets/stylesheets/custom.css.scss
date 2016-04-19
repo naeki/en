@@ -1897,7 +1897,7 @@ input.flickr-search-input{
   left: 0px;
   width: 380px;
   position: absolute;
-  background: #BBB9CA;
+  background: #000;
   overflow: hidden;
   margin-bottom: 80px;
   margin-right: 90px;
@@ -1929,12 +1929,12 @@ input.flickr-search-input{
       margin: 0px 10px 0px 0px;
     }
     .tag-link{
-      font-size: 11px;
+      font-size: 10px;
       padding: 0px 0px 0 0;
       font-weight: 400;
-      letter-spacing: 1.5px;
-      color: #817CD0;
-      transform: scaleY(0.95);
+      letter-spacing: 1.2px;
+      color: #5F58D4;
+      transform: scaleY(0.97);
     }
   }
 }
@@ -1950,6 +1950,7 @@ input.flickr-search-input{
   background-image: $textile_bg;
   //  -webkit-filter: blur(2.3px);
   transform: scale(1.2);
+  opacity: 0.95;
   z-index: 1;
 }
 
@@ -1973,18 +1974,18 @@ input.flickr-search-input{
   transition: -webkit-filter 0.4s, transform 0.4s;
   z-index: 2;
   position: relative;
-  margin: 30px;
+  margin: 25px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 
   .post-title{
     cursor: pointer;
     display: inline-block;
     margin: 15px 0px 7px 0px;
-    font: 300 25px "PT Serif";
+    font: 300 23px "PT Serif";
     position: relative;
     line-height: 31px;
     left: 0px;
-    letter-spacing: -0.2px;
+    letter-spacing: 0px;
     -webkit-transition: color 0.3s, left 0.3s;
     color: #222;
     &:hover{}
@@ -1992,12 +1993,13 @@ input.flickr-search-input{
 
 
   .post-text{
-    font-size: 14px;
-    color: #6F6F6F;
+    font-size: 13.80px;
+    color: #585858;
     line-height: 22px;
     font-family: _roboto;
     font-weight: 300;
-    text-shadow: 0 0 0 #777;
+    /* text-shadow: 0 0 0 #777; */
+    letter-spacing: .3px;
   }
   .post-publish-date{
     margin-top: 10px;
