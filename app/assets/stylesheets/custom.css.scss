@@ -77,7 +77,7 @@ select{
   font: 300 45px "PT Serif";
   letter-spacing: 0px;
   color: #000;
-  line-height: 60px;
+  line-height: 55px;
   display: block;
   margin-right: 0px;
   position: relative;
@@ -611,12 +611,11 @@ $mint            : #00e4a5;
   }
   li{
     display: inline-block;
-    margin: 0px 23px 0px 0px;
+    margin: 0px 23px 10px 0px;
   }
 }
 .tag-link, .tag{
-  /* background: rgba(192, 192, 192, 0.18); */
-  padding: 0px 0px 0px 0px;
+  padding: 0 0 0 0;
   display: inline-block;
   border-radius: 16px;
   position: relative;
@@ -625,13 +624,10 @@ $mint            : #00e4a5;
   text-transform: uppercase;
   font-family: _roboto;
   font-weight: 400;
-  /* background: rgba(192, 192, 192, 0.18); */
-  color: #8D8AD6;
-  font-size: 15px;
-  letter-spacing: 2px;
-  /* font-style: italic; */
-  /* background: #FCDEFB; */
-  transform: scaleY(0.92);
+  color: #5f58d4;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  transform: scaleY(.97);
 
 
   /* font-style: italic; */
@@ -1224,7 +1220,7 @@ input.flickr-open{
     display: inline-block;
     vertical-align: -7px;
     margin-right: 0px;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 80px;
     min-height: 30px;
   }
