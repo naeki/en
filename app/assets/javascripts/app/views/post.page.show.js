@@ -77,7 +77,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.listenTo(this.model, "change:title change:last_view change:access", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
         this.listenTo(this.model, "change:deleted", this.view);
-        this.listenTo(this.model, "change:likes", this.renderActions);
+        this.listenTo(this.model, "change:likes change:bookmarks", this.renderActions);
         this.listenTo(this.model.tags, "add remove reset", this.renderTags);
 
         $(window).on("resize", this.pasteParts.bind(this));
@@ -332,7 +332,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 //        this.listenTo(this.model, "change:tags", this.renderTags);
         this.listenTo(this.model, "change:title change:last_view", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
-        this.listenTo(this.model, "change:likes", this.renderActions);
+        this.listenTo(this.model, "change:likes change:bookmarks", this.renderActions);
         this.listenTo(this.model, "change:access", this.renderAccessIndication.bind(this));
 
         $(window).on("resize", this.pasteParts.bind(this));
