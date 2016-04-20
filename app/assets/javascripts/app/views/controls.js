@@ -2,7 +2,7 @@ App.Views.ToggleControl = App.Views.BASE.extend({
     className : "toggle-control",
     _markup : '' +
         '<div class="toggle-control__toggle">' +
-            '<span class="toggle-control__on">'+ App.SVG.ok +'</span>' +
+            '<span class="toggle-control__on"></span>' +
             '<div class="toggle-control__border"></div>' +
             '<span class="toggle-control__off"></span>' +
         '</div>',

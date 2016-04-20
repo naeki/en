@@ -57,7 +57,7 @@ App.Views.TagsControl = TagsView.extend({
             var value;
             if (!(value = this.$(".input-tags").val()).length) return;
 
-            this.model.addTags(value);
+            this.trigger("change", value);
             this.$(".input-tags").focus().val("").trigger("input")[0].size = 15;
 
         },

@@ -169,7 +169,7 @@ App.Collections.Following = App.Collections.Users.extend({
 
 App.Collections.PostLikes = App.Collections.Users.extend({
     fetch : function(){
-        App.loader.sync("/posts/likes", {data: {id: this.user.id}, type: "GET"}).done(function(result){
+        App.loader.sync("/posts/likes", {data: {id: this.model.id}, type: "GET"}).done(function(result){
             this.reset(result.map(User.builder));
         }.bind(this));
     }

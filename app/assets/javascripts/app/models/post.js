@@ -105,13 +105,14 @@ window.Post = App.Models.Post = Backbone.Model.extend({
 
         if (this.isNew()) dfd = this.save();
 
+        var tags = labels.map(function(label){return {name: label}});
+        this.tags.add(tags);
+
         return dfd.then(function(){
             return App.loader.sync("/posts/"+ this.id +"/add_tags", {
                 data: {data: {labels: labels}},
                 type: "PUT"
-            }).done(function(result){
-                    Post.builder(result);
-                });
+            });
         }.bind(this));
     },
     removeTag : function(id){

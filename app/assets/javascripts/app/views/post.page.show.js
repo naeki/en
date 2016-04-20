@@ -74,9 +74,10 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.view();
         this.openText();
 
-        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view change:access", this.renderHeader);
+        this.listenTo(this.model, "change:title change:last_view change:access", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
         this.listenTo(this.model, "change:deleted", this.view);
+        this.listenTo(this.model, "change:likes", this.renderActions);
         this.listenTo(this.model.tags, "add remove reset", this.renderTags);
 
         $(window).on("resize", this.pasteParts.bind(this));
@@ -102,7 +103,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         this.model.get("comments") && this.$comments.attr("count", this.model.get("comments"));
 
-        this.renderLikes();
 
         if (this.model.get("last_view"))
             this.$lastview.html(Post.getDateString(this.model.get("last_view")));
@@ -110,19 +110,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.renderActions();
 
         this.renderTags();
-    },
-    renderLikes : function(){
-        this.$likes[this.model.get("likes") ? "show" : "hide"]();
-        var likes = this.model.get("likes"), count;
-        if (likes) {
-            if (likes > 0 && likes < 2)  count = 1;
-            if (likes > 1 && likes < 7)  count = 2;
-            if (likes > 6 && likes < 9)  count = 3;
-            if (likes > 9 && likes < 20) count = 4;
-            if (likes > 19)              count = 5;
-
-            this.$likes.attr("likes", count);
-        }
     },
     renderTags : function(){
         if (this.model.get("deleted")) return this.$tags.remove();
@@ -148,7 +135,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
         }).data("user-id", this.model.user.id);
 
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.user.id);
-        this.$(".page-number").html("1");
         this.$(".help-title").html(this.model.get("title"));
 
         if (this.model.get("permissions")&Post.OWNER)
@@ -157,7 +143,9 @@ App.Views.Page_Post = App.Views.BASE.extend({
         // Show/hide user box
         this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
     },
+
     renderActions : function(){
+        this.renderLikes();
 
         if (this.model.iAdded())
             this.$('.do-bookmark').addClass("done");
@@ -169,6 +157,20 @@ App.Views.Page_Post = App.Views.BASE.extend({
         else
             this.$('.do-like').removeClass("done");
     },
+    renderLikes : function(){
+        this.$likes[this.model.get("likes") ? "show" : "hide"]();
+        var likes = this.model.get("likes"), count;
+        if (likes) {
+            if (likes > 0 && likes < 2)  count = 1;
+            if (likes > 1 && likes < 7)  count = 2;
+            if (likes > 6 && likes < 9)  count = 3;
+            if (likes > 9 && likes < 20) count = 4;
+            if (likes > 19)              count = 5;
+
+            this.$likes.attr("likes", count);
+        }
+    },
+
     likeAction : function(){
         this.model.like() || this.model.unlike();
     },
@@ -209,6 +211,8 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         this.topsArray = [];
         this.$('.page-mark').remove();
+
+        if (length === 0) return;
 
         for (var i=1; i <= length; i++){
             this.topsArray.push(this.createPageMark(i, heightStep));
@@ -326,8 +330,9 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         //this.on("model", this.setModel, this);
 //        this.listenTo(this.model, "change:tags", this.renderTags);
-        this.listenTo(this.model, "change:title change:comments change:likes change:bookmarks change:last_view", this.renderHeader);
+        this.listenTo(this.model, "change:title change:last_view", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
+        this.listenTo(this.model, "change:likes", this.renderActions);
         this.listenTo(this.model, "change:access", this.renderAccessIndication.bind(this));
 
         $(window).on("resize", this.pasteParts.bind(this));
@@ -335,6 +340,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.constructor.view = this;
         this.view();
+        this.renderImageControls();
 
         if (this.model.isNew())
             this.initNew();
@@ -355,8 +361,6 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.renderAccessIndication();
         this.renderPicture();
         this.model.get("comments") && this.$comments.attr("count", this.model.get("comments"));
-        this.renderLikes();
-        this.renderImageControls();
 
 
         if (this.model.get("last_view"))
@@ -390,15 +394,6 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     renderControls : function(){
         this.$controls.empty()
             .append("<div class='save-button save-post'></div>");
-    },
-    save : function(){
-        var title = this.$(".edit-title").val(),
-            text  = this.$text.val().replace(/\n/g, "<br>");
-
-        return this.model.set({
-            title : title,
-            text  : text
-        }).save();
     },
     openText : function(){
         this.$viewer[0].innerHTML = "<textarea class='edit-text'></textarea><bg></bg>";
@@ -435,13 +430,18 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     renderTags : function(){
         if (this.model.get("deleted")) return this.$tags.remove();
 
-        if (!this.tags)
+        if (!this.tags) {
             this.tags = new App.Views.TagsControl({
-                collection : this.model.tags,
-                el         : this.$tags,
-                parent     : this,
-                model      : this.model
+                collection: this.model.tags,
+                el: this.$tags,
+                parent: this,
+                model: this.model
             });
+
+            this.tags.on("change", function(value){
+                this.model.addTags(value);
+            }.bind(this))
+        }
     },
     renderAccess : function(){
         if (this.access) return;
@@ -503,14 +503,6 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.$(".submit-photo").removeClass("visible");
         this.removeGalleryPreview();
     },
-    savePicture : function(id){
-        if (typeof id != "number") id = this.gallery.chosenId;
-
-        this.model.set("photo_id", id).save();
-//        this.closeImageSettings();
-        this.movePage(false);
-        this.renderPicture(id);
-    },
     movePage : function(open){
         if (this.moved == open) return;
 
@@ -531,6 +523,25 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
                 button.removeClass("visible").css('opacity', 1);
             }, 300);
         }
+    },
+    savePicture : function(id){
+        if (typeof id != "number") id = this.gallery.chosenId;
+
+        this.model.set("photo_id", id);
+        this.save();
+
+//        this.closeImageSettings();
+        this.movePage(false);
+        this.renderPicture(id);
+    },
+    save : function(){
+        var title = this.$(".edit-title").val(),
+            text  = this.$text.val().replace(/\n/g, "<br>");
+
+        return this.model.set({
+            title : title,
+            text  : text
+        }).save();
     }
 });
 
@@ -541,127 +552,127 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
 
 
-App.Views.Post_Settings = App.Views.BASE.extend({
-    className : "post-settings",
-    _markup : "\
-        <span class='h2'>Настройки</span><span class='return link'>← К тексту</span>\
-        <div class='edit-life'>\
-            <h3>"+ Lang.change_life +"</h3>\
-            <input type='button' class='change-life'>\
-        </div>\
-        <div class='change-access'>\
-            <h3>"+ Lang.change_access +"</h3>\
-            <select class='access-select'>\
-                <option value='0'>"+ Lang.private +"</option>\
-                <option value='1'>"+ Lang.public +"</option>\
-            </select>\
-        </div>\
-        <div class='change-photo'>\
-            <h3>"+ Lang.photo_change +"</h3>\
-            <div class='file-source'>\
-                <input type='button' class='flickr-open' value='" + Lang.flickr_open + "'>\
-            </div>\
-            <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
-            <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
-        </div>\
-        <div class='edit-tags'></div>",
-    events : {
-        "click .change-life"  : "changeLife",
-        "click .flickr-open"  : "openGallery",
-        "click .submit-photo" : "submitPicture",
-        "click .delete-photo" : "deletePicture",
-        "change .access-select" : function(e){
-            this.model.set('access', parseInt(e.target.value));
-            this.model.save();
-        }
-    },
-    init : function(){
-        this.render();
-
-        this.$picture   = this.$(".post-picture");
-        this.$uploadBar = this.$(".upload-bar");
-        this.$tags      = this.$(".edit-tags");
-        this.$access    = this.$(".access-select");
-
-        this.renderLife();
-        this.renderPicture();
-        this.renderTags();
-        this.renderAccess();
-
-        this.listenTo(this.model, "change:photo_id", this.renderPicture);
-        this.listenTo(this.model, "change:deleted",  this.renderLife);
-        this.listenTo(this.model, "change:access",   this.renderAccess);
-    },
-    render : function(){
-        this.$el.html(this._markup);
-    },
-
-    // LIFE
-    renderLife : function(){
-        var del = this.model.get("deleted");
-        this.$(".change-life").val(del ? Lang.return : Lang.delete).data("value", !del);
-        this.$el[del ? "addClass" : "removeClass"]("deleted");
-        this.$('.edit-life > h3').html(del ? Lang.post_isdeleted : Lang.change_life);
-    },
-    changeLife : function(e){
-        this.model[$(e.target).data("value") ? "del" : "ret"]();
-    },
-
-    // PICTURE
-    renderPicture : function(){
-        this.$picture.attr({
-            src : this.model.getNormalPhoto(),
-            alt : this.model.get("title")
-        });
-    },
-//    submitPicture : function(){
-//        var data = {
-//            file    : this.$(".select-file")[0].files[0],
-//            id : this.model.id
-//        };
-//
-//        this.$uploadBar.addClass("visible");
-//        return App.loader.sync("posts/picture", {data: data, type: "POST"}).then(
-//            function(result){
-//                setTimeout(function(){
-//                    Post.builder(result).trigger("change:photo_id");
-//                    this.$uploadBar.removeClass("visible").css("background-size","0% 100%");
-//                }.bind(this), 200);
-//            }.bind(this),
-//            function(){},
-//            function(progress){
-//                this.$uploadBar.css("background-size", progress*100 + "% 100%");
-//            }.bind(this)
-//        );
+//App.Views.Post_Settings = App.Views.BASE.extend({
+//    className : "post-settings",
+//    _markup : "\
+//        <span class='h2'>Настройки</span><span class='return link'>← К тексту</span>\
+//        <div class='edit-life'>\
+//            <h3>"+ Lang.change_life +"</h3>\
+//            <input type='button' class='change-life'>\
+//        </div>\
+//        <div class='change-access'>\
+//            <h3>"+ Lang.change_access +"</h3>\
+//            <select class='access-select'>\
+//                <option value='0'>"+ Lang.private +"</option>\
+//                <option value='1'>"+ Lang.public +"</option>\
+//            </select>\
+//        </div>\
+//        <div class='change-photo'>\
+//            <h3>"+ Lang.photo_change +"</h3>\
+//            <div class='file-source'>\
+//                <input type='button' class='flickr-open' value='" + Lang.flickr_open + "'>\
+//            </div>\
+//            <input type='button' class='submit-photo' value='"+ Lang.save_photo +"'>\
+//            <input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>\
+//        </div>\
+//        <div class='edit-tags'></div>",
+//    events : {
+//        "click .change-life"  : "changeLife",
+//        "click .flickr-open"  : "openGallery",
+//        "click .submit-photo" : "submitPicture",
+//        "click .delete-photo" : "deletePicture",
+//        "change .access-select" : function(e){
+//            this.model.set('access', parseInt(e.target.value));
+//            this.model.save();
+//        }
 //    },
-
-    openGallery : function(){
-        if (!this.gallery) {
-            this.gallery = new App.Views.FlickrGallery();
-            this.listenTo(this.gallery, "select", function(id){
-                this.model.set("photo_id", id).save();
-            });
-        }
-
-        this.gallery.open();
-    },
-
-    deletePicture : function(){
-        var data = {id : this.model.id};
-        return App.loader.sync("posts/picture", {data: data, type: "DELETE"});
-    },
-
-
-    // TAGS
-    renderTags : function(){
-        this.tags = new App.Views.TagsControl({
-            parent     : this,
-            el         : this.$tags,
-            model      : this.model,
-            collection : this.model.tags
-        });
-    }
-});
+//    init : function(){
+//        this.render();
+//
+//        this.$picture   = this.$(".post-picture");
+//        this.$uploadBar = this.$(".upload-bar");
+//        this.$tags      = this.$(".edit-tags");
+//        this.$access    = this.$(".access-select");
+//
+//        this.renderLife();
+//        this.renderPicture();
+//        this.renderTags();
+//        this.renderAccess();
+//
+//        this.listenTo(this.model, "change:photo_id", this.renderPicture);
+//        this.listenTo(this.model, "change:deleted",  this.renderLife);
+//        this.listenTo(this.model, "change:access",   this.renderAccess);
+//    },
+//    render : function(){
+//        this.$el.html(this._markup);
+//    },
+//
+//    // LIFE
+//    renderLife : function(){
+//        var del = this.model.get("deleted");
+//        this.$(".change-life").val(del ? Lang.return : Lang.delete).data("value", !del);
+//        this.$el[del ? "addClass" : "removeClass"]("deleted");
+//        this.$('.edit-life > h3').html(del ? Lang.post_isdeleted : Lang.change_life);
+//    },
+//    changeLife : function(e){
+//        this.model[$(e.target).data("value") ? "del" : "ret"]();
+//    },
+//
+//    // PICTURE
+//    renderPicture : function(){
+//        this.$picture.attr({
+//            src : this.model.getNormalPhoto(),
+//            alt : this.model.get("title")
+//        });
+//    },
+////    submitPicture : function(){
+////        var data = {
+////            file    : this.$(".select-file")[0].files[0],
+////            id : this.model.id
+////        };
+////
+////        this.$uploadBar.addClass("visible");
+////        return App.loader.sync("posts/picture", {data: data, type: "POST"}).then(
+////            function(result){
+////                setTimeout(function(){
+////                    Post.builder(result).trigger("change:photo_id");
+////                    this.$uploadBar.removeClass("visible").css("background-size","0% 100%");
+////                }.bind(this), 200);
+////            }.bind(this),
+////            function(){},
+////            function(progress){
+////                this.$uploadBar.css("background-size", progress*100 + "% 100%");
+////            }.bind(this)
+////        );
+////    },
+//
+//    openGallery : function(){
+//        if (!this.gallery) {
+//            this.gallery = new App.Views.FlickrGallery();
+//            this.listenTo(this.gallery, "select", function(id){
+//                this.model.set("photo_id", id).save();
+//            });
+//        }
+//
+//        this.gallery.open();
+//    },
+//
+//    deletePicture : function(){
+//        var data = {id : this.model.id};
+//        return App.loader.sync("posts/picture", {data: data, type: "DELETE"});
+//    },
+//
+//
+//    // TAGS
+//    renderTags : function(){
+//        this.tags = new App.Views.TagsControl({
+//            parent     : this,
+//            el         : this.$tags,
+//            model      : this.model,
+//            collection : this.model.tags
+//        });
+//    }
+//});
 
 
 
