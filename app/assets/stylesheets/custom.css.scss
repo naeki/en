@@ -1849,9 +1849,20 @@ input.flickr-open{
 }
 
 
-
+.user-list,
 .post-list{
   position: relative;
+  &:empty::after{
+    content: attr(placeholder);
+    display: block;
+    position: relative;
+    font-size: 38px;
+    font-family: _roboto;
+    font-weight: 200;
+    color: #C7C7C7;
+    top: 200px;
+    margin: 0 auto;
+  }
 }
 
 
@@ -1998,8 +2009,8 @@ input.flickr-search-input{
     line-height: 21px;
     font-family: _roboto;
     font-weight: 300;
-    letter-spacing: .5px;
-    /* text-shadow: 0 0 0 #777; */
+    letter-spacing: .2px;
+    text-shadow: 0 0 0 #ddd;
   }
   .post-publish-date{
     margin-top: 10px;

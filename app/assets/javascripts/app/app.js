@@ -64,6 +64,11 @@ App.Lang.En = {
     change_access  : "Публикация",
     private        : "Private",
     public         : "Public",
+    no_posts       : "Нет записей",
+    no_likes       : "Нет рекоммендаций",
+    no_users       : "Нет пользователей",
+    no_followers   : "Нет подписчиков",
+    no_following   : "Нет подписок",
     error : {
         loading    : "Error loading ",
         password   : "Entered password is wrong"

@@ -29,9 +29,13 @@ App.Views.User = App.Views.BASE.extend({
 
 App.Views.UserList = App.Views.BASE.extend({
     className : "user-list",
+    attributes : {
+        placeholder: Lang.no_users
+    },
     init : function(){
         this.render();
         this.$el.appendTo(this.options.renderTo);
+        if (this.options.page) this.$el.attr("placeholder", Lang["no_" + this.options.page]);
 
         this.listenTo(this.collection, "add", this.addUser);
         this.listenTo(this.collection, "reset", this.render);

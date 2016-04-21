@@ -107,14 +107,16 @@ App.Views.Page_User = App.Views.BASE.extend({
         new App.Views.PostList({
             collection : this.collection,
             renderTo   : this.$(".page-body"),
-            parent     : this
+            parent     : this,
+            page       : this.options.page
         });
     },
     renderFollows : function(){
         new App.Views.UserList({
             collection : this.collection,
             renderTo   : this.$(".page-body"),
-            parent     : this
+            parent     : this,
+            page       : this.options.page
         });
     }
 });
