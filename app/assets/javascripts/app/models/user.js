@@ -72,7 +72,10 @@ window.User = App.Models.User = Backbone.Model.extend({
         return this.get("photo") ? "data:image/jpg;base64," + this.get("photo") : (Src.userPhoto + Src.defaultUserPhoto + ".jpg");
     },
     getSmallPhoto : function(){
-        if (this.get("provider") == "google_oauth2")
+
+        var photo_id = this.get("photo_id");
+
+        if (/^http/.test(photo_id))
             return this.get("photo_id");
 
         return this.get("photo_id") ? "data:image/gif;base64," + this.get("photo_id") : (Src.userPhoto + Src.defaultUserPhoto + "_s.gif");
