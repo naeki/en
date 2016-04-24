@@ -1,4 +1,8 @@
 class Tag < ActiveRecord::Base
+   Elasticsearch::Model.client = Elasticsearch::Client.new({url: ENV['BONSAI_URL'], logs: true})
+   include Elasticsearch::Model
+   include Elasticsearch::Model::Callbacks
+
    has_and_belongs_to_many :posts
    has_many :digest_settings, foreign_key: "tag_id", class_name:  "DigestSettings", dependent: :destroy
 

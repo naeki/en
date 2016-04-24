@@ -65,9 +65,9 @@ select{
   vertical-align: 40px;
   margin-right: 10px;
 }
-.h2{
-  font: 200 47px "_roboto";
-  color: #304197;
+.h2, h2{
+  font: 200 38px "_roboto";
+  color: #c7c7c7;
   display: inline-block;
   margin-right: 10px;
   letter-spacing: -0.7px;
@@ -902,8 +902,13 @@ button.save-button{
   cursor: pointer;
 }
 .found-tags{
+  display: none;
   margin-top: 20px;
 }
+.found-tags.found{
+  display: block;
+}
+
 .search-tag{
   display: inline-block;
   padding: 8px 15px 5px;
@@ -1865,6 +1870,8 @@ input.flickr-open{
   }
 }
 
+.rendering.post-list:empty::after{color: red; content: "LOAD"}
+
 
 .image-settings-button{
   margin-top: 30px;
@@ -1903,7 +1910,7 @@ input.flickr-search-input{
 .post-small{
   margin: 0px;
   opacity: 0;
-  -webkit-transition: opacity 0.4s, box-shadow 0.4s, background 0.4s;
+  -webkit-transition: opacity 0.5s, box-shadow 0.4s, background 0.4s;
   //  box-shadow: 0 0 20px #eaeaea;
   left: 0px;
   width: 380px;
@@ -1957,12 +1964,15 @@ input.flickr-search-input{
   background-position: center;
   display: block;
   position: absolute;
-  transition: transform 0.4s;
+  transition: transform 0.4s, opacity 0.4s;
   background-image: $textile_bg;
   //  -webkit-filter: blur(2.3px);
   transform: scale(1.2);
-  opacity: 0.95;
+  opacity: 0;
   z-index: 1;
+  &.show{
+    opacity: 0.95;
+  }
 }
 
 .post-small:hover .post-small-photo{

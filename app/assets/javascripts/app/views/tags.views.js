@@ -12,7 +12,7 @@ window.TagsView = App.Views.BASE.extend({
         this.renderList();
     },
     render : function(){
-        this.$el.html(this._markup);
+        this.$el.append(this._markup);
     },
     renderList : function(){
         this.$tags.empty();

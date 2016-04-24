@@ -45,7 +45,7 @@ App.Views.Folder = App.Views.BASE.extend({
         this.$h1.html(this.label);
     },
     renderBody : function(){
-        new App.Views.PostList({
+        this.list = new App.Views.PostList({
             collection : this.collection,
             parent     : this,
             renderTo   : this.$body
@@ -102,42 +102,67 @@ App.Views.All = App.Views.Folder.extend({
             </div>\
             <div class='settings'></div>\
         </div> \
-        <ul class='found-tags'></ul>\
+        <ul class='found-tags'>\
+            <h2>Найденные теги:</h2>\
+        </ul>\
         <div class='folder-body'></div>",
     events : {
         'click .change-type'  : 'toggle',
         'input .search-posts' : 'find'
     },
     initCollection : function(){
+
         if (!this.collection) {
+
             this.collection      = new PostsCollection([], {parent : this});
             this.collection.tags = new Tags([], {parent : this.collection});
             this.listenTo(this.collection.tags, "add remove reset", this.renderTags);
+
         }
 
         this.collection.reset();
         this.collection.fetch();
+
     },
     backend : true,
     toggle : function(){
+
         App.router.navigate(this.subType == "new" ? "/all/popular" : "/all", {trigger: true, replace: false});
         this.updateToggle();
+
     },
     updateToggle : function(){
+
         this.$('.change-type').removeClass("active");
         this.$(this.subType == "new" ? '.change-type.news' : '.change-type.pops').addClass("active");
+
     },
-    find : function(){
-        var val = $(".search-posts").val();
+    find : _.debounce(function(){
+
+        var dfd = this.list.renderDfd || $.Deferred().resolve();
+        var val = _.escape($(".search-posts").val());
+
         this.$controls[val ? "hide" : "show"]();
-        this.collection.find(val);
-    },
+
+        dfd.done(function(val){
+
+            this.collection.tags.reset();
+            this.collection.find(val);
+
+        }.bind(this, val));
+
+    }, 250),
     renderHeader : function(){
+
         this.$h1.html(this.label);
         this.updateToggle();
+
     },
     renderTags : function(){
-        if (this.tags) this.tags.render();
+
+        this.$(".found-tags")[this.collection.tags.length ? "addClass" : "removeClass"]("found");
+
+        if (this.tags) this.tags.renderList();
         else
             this.tags = new TagsView({
                 collection : this.collection.tags,
@@ -168,6 +193,7 @@ App.Views.Search = App.Views.Folder.extend({
 
         this.collection.reset();
         this.collection.by_tag(this.tag);
+
     },
     renderTag : function(){
         var tag = this.collection.tag;

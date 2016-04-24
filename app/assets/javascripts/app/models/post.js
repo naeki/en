@@ -277,21 +277,63 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
         }.bind(this));
     },
     find : function(str){
-        if (!str.length) return this.fetch();
-        else if (str.length>2)
-            PostsCollection.fetch("/posts/find", {data: {string: str}}).done(function(result){
-                this.reset(result.posts.map(Post.builder));
+
+        if (str.length<3 && this.results) {
+
+            delete this.results;
+            this.reset();
+
+            this.fetch();
+
+            return
+        }
+
+        if (str.length>2) {
+
+            this.reset();
+
+            this.fetchDfd = PostsCollection.fetch("/posts/find", {data: {string: str}}).done(function (result) {
+
+                if (this.results != result.posts) {
+
+                    this.trigger("before:reset", result.posts);
+
+                    this.reset((this.results = result.posts).map(Post.builder));
+
+                }
+
+                delete this.fetchDfd;
+
                 this.tags.reset(result.tags);
+
             }.bind(this));
+
+            this.trigger("search");
+
+            return this.fetchDfd;
+        }
+
     },
     fetch : function(){
+        if (this.fetchDfd) return;
+
         var url = "/posts/" + this.parent.type;
 
         if (this.parent.subType) url += "/" + this.parent.subType;
 
-        return PostsCollection.fetch(url).done(function(result){
+        this.fetchDfd = PostsCollection.fetch(url).done(function(result){
+
+            this.trigger("before:reset", result);
+
             this.reset(result.map(Post.builder));
+
+            delete this.fetchDfd;
+
         }.bind(this));
+
+        this.trigger("fetch");
+
+        return this.fetchDfd;
     }
 }, {
     fetch : function(url, options){
@@ -304,7 +346,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 // Posts of user
 App.Collections.UserPosts = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/posts", {data : {id: this.user.id}, type: "GET"}).done(function(result){
+        return App.loader.sync("/users/posts", {data : {id: this.user.id}, type: "GET"}).done(function(result){
             this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }
@@ -312,7 +354,7 @@ App.Collections.UserPosts = App.Collections.Posts.extend({
 
 App.Collections.UserDel = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : 1}}, type: "GET"}).done(function(result){
+        return App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : 1}}, type: "GET"}).done(function(result){
             this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }
@@ -321,7 +363,7 @@ App.Collections.UserDel = App.Collections.Posts.extend({
 // Likes posts of user
 App.Collections.UserLikes = App.Collections.Posts.extend({
     fetch : function(){
-        App.loader.sync("/users/likes", {data : {id: this.user.id}, type: "GET"}).done(function(result){
+        return App.loader.sync("/users/likes", {data : {id: this.user.id}, type: "GET"}).done(function(result){
             this.reset((result.posts || result).map(Post.builder));
         }.bind(this));
     }

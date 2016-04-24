@@ -30,13 +30,27 @@ App.Views.Post_small = App.Views.BASE.extend({
         this.dfd = $.Deferred();
 
         this.chain = dfd.then(function(){
+
+            setTimeout(function(){
+
+                this.$el.appendTo(this.options.renderTo);
+
+                this.dfd.resolve();
+
+            }.bind(this), 50);
+
             return this.dfd;
+
         }.bind(this));
+
+        this.parent.renderDfd = this.parent.renderDfd ?  this.dfd.then(this.parent.renderDfd) : this.dfd;
+
+
 
         this.chain.done(this.columnate.bind(this));
     },
     render : function(){
-        this.$el.html(this._markup).data("post", this.model.get("id")).appendTo(this.options.renderTo);
+        this.$el.html(this._markup).data("post", this.model.get("id"));
         this.$el[this.model.get("deleted") ? "addClass" : "removeClass"]("deleted");
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
@@ -50,9 +64,9 @@ App.Views.Post_small = App.Views.BASE.extend({
         if (this.model.getPhoto()){
             this.$picture.attr("src", this.model.getNormalPhoto());
             this.$picture.on('load error', function(){
-                this.dfd.resolve();
+//                this.dfd.resolve();
                 this.$picture.remove();
-                this.$('.post-small-photo').css('background-image', "url(" + this.model.getNormalPhoto() + ")");
+                this.$('.post-small-photo').css('background-image', "url(" + this.model.getNormalPhoto() + ")").addClass("show");
             }.bind(this));
         }
         else{
@@ -96,6 +110,7 @@ App.Views.Post_small = App.Views.BASE.extend({
     tileWidth: 450,
     tileMarginRight: 0,
     columnate : function(){
+
         var //scroll = window.innerHeight != $("body")[0].scrollHeight,
             sum = 0,
             postNum = this.parent.collection.models.indexOf(this.model) + 1,
@@ -133,16 +148,45 @@ App.Views.PostList = App.Views.BASE.extend({
     },
     views : [],
     init : function(){
-        this.render();
+//        this.render();
         this.$el.appendTo(this.options.renderTo);
         if (this.options.page) this.$el.attr("placeholder", Lang["no_" + this.options.page]);
 
-        this.listenTo(this.collection, "reset", this.render);
+        this.listenTo(this.collection, "fetch search", this.startFetch.bind(this));
+        this.listenTo(this.collection, "before:reset", function(els){
+            if (els.length > 5) this.$el.css('min-height', 1000);
+        }.bind(this));
+
+        this.startFetch();
+//        this.render();
+//        this.listenTo(this.collection, "reset", this.render);
 
         $(window).on("resize", _.debounce(this.columnateAll.bind(this)));    //TODO: Только через requestAnimationFrame
     },
+
+    startFetch : function(){
+        if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") {
+//            this.renderDfd = $.Deferred();
+            console.log("create rendfd")
+            this.$el.addClass("rendering");
+        }
+
+
+        this.collection.fetchDfd.then(
+            function(){
+
+                this.render().done(function(){
+                    this.$el.removeClass("rendering");
+                }.bind(this));
+
+            }.bind(this)
+        )
+
+    },
+
     render : function(){
         _.invoke(this.views, "remove");
+
         this.views = [];
 
         _.each(this.collection.models, function(m, i){
@@ -153,8 +197,12 @@ App.Views.PostList = App.Views.BASE.extend({
                 prev     : this.views[i-1]
             }));
         }, this);
+
+        return this.renderDfd;
+
     },
     columnateAll : function(){
+
         if (!this.busy);
 
         this.busy = true;

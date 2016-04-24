@@ -23,7 +23,7 @@ window.User = App.Models.User = Backbone.Model.extend({
         this.loading = this.fetch();
 
         collection.reset();
-        collection.fetch();
+        collection.fetchDfd = collection.fetch();
 
         return new App.Views.Page_User({
             model       : this,

@@ -174,7 +174,7 @@ class PostsController < ApplicationController
     #   with :access, 1
     # end
 
-    search = Post.__elasticsearch__.search(
+    searchPosts = Post.__elasticsearch__.search(
         query: {
           query_string: {
             query: "*"+ params[:string] +"* AND deleted:0 AND access: 1",
@@ -183,9 +183,12 @@ class PostsController < ApplicationController
         }
     )
 
+    sql = "SELECT * FROM tags WHERE name LIKE '" + params[:string] + "%'"
+    @tags = Tag.find_by_sql(sql)
+
 
         # Post.search params[:string]
-    posts  = search.records.to_a
+    posts  = searchPosts.records.to_a
     @posts = Post.build_posts_lite(posts)
 
     # @tags = Tag.search do
@@ -193,7 +196,7 @@ class PostsController < ApplicationController
     # end
 
     respond_to do |format|
-      format.json { render json: {posts: @posts}, location: root_path }
+      format.json { render json: {posts: @posts, tags: @tags}, location: root_path }
     end
   end
 
