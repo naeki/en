@@ -71,7 +71,8 @@ App.Views.Post_small = App.Views.BASE.extend({
         }
         else{
             this.$picture.hide();
-            this.dfd.resolve()
+            this.$('.post-small-photo').addClass("show");
+//            this.dfd.resolve();
         }
 
 
@@ -84,7 +85,7 @@ App.Views.Post_small = App.Views.BASE.extend({
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.get("user_id"));
     },
     renderLikes : function(){
-        this.$likes = this.$(".post-stat-likes")[this.model.get("likes") ? "show" : "hide"]();
+        this.$likes = this.$(".post-stat-likes").css("display", this.model.get("likes") ? "inline-block" : "none");
         var likes = this.model.get("likes");
         this.$likes.attr("title", likes + " likes");
         if (likes) {
