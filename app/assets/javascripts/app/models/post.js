@@ -270,11 +270,16 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
         options && (this.user = options.user);
     },
     by_tag : function(id){
-        return PostsCollection.fetch("/tags", {data: {tag_id: id}}).then(function(result){
+
+        return this.fetchDfd = PostsCollection.fetch("/tags", {data: {tag_id: id}}).then(function(result){
+
             this.tag = new Tag(result.tag);
             this.reset(result.posts.map(Post.builder));
+
             return $.Deferred().resolve();
+
         }.bind(this));
+
     },
     find : function(str){
 
