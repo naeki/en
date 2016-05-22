@@ -34,11 +34,25 @@ window.Post = App.Models.Post = Backbone.Model.extend({
 
         if (this.isNew())
             return this.loading.resolve(view_form.call(this));
-        else{
+        else
             this.loading = this.fetch().then(function(){
-                return $.Deferred().resolve(this.get("permissions")&Post.OWNER ? view_form.call(this) : view_page.call(this));
+
+                return this.get("permissions")&Post.OWNER ? view_form.call(this) : view_page.call(this)
+
             }.bind(this));
-        }
+
+    },
+    open_comments : function(){
+
+        this.loading = this.fetch().then(function(){
+
+            return new App.Views.Comments({
+                renderTo   : App.main.$context,
+                model      : this,
+                collection : this.comments
+            })
+
+        }.bind(this));
     },
     fetch : function(){
         return Post.fetch(this.get("id"));
@@ -189,7 +203,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
     frontAttributes : ["permissions", "user_name", "user_photo_id", "tags", "id", "comments", "likes", "last_view", "short_text"],
     getDateString : function(ts){
         var date = new Date(ts * 1000);
-        return Post.getShortDate(ts) + " | " + Post.getOTime(date.getHours()) + ":" + Post.getOTime(date.getMinutes());
+        return Post.getShortDate(ts) + " &nbsp; " + Post.getOTime(date.getHours()) + ":" + Post.getOTime(date.getMinutes());
     },
     getShortDate : function(ts){
         var date = typeof(ts) == "string" ? new Date(ts) : new Date(ts * 1000);

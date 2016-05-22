@@ -53,17 +53,28 @@ App.Views.Main = Backbone.View.extend({
             }
         }.bind(this));
     },
+
+
     openPost : function(options){
         var post = Post.builder(options.post === "new" ? {} : {id : options.post});
 
-        post.open();
+
+        if (options.page)
+            post["open_" + options.page].call(post);
+        else
+            post.open();
+
         return post.loading.done(function(view){
             this.current_view = view;
         }.bind(this));
     },
+
+
     openUser : function(options){
         this.current_view = User.builder({id : parseInt(options.user)}).open({page: options.page});
     },
+
+
     openFolder : function(options){
         var view,
             settings = _.omit(options, "folder");
@@ -75,6 +86,7 @@ App.Views.Main = Backbone.View.extend({
 
         this.$context.html(view.$el);
     },
+
     editProfile : function(){
         this.clearContext();
         this.$el.addClass("clear");

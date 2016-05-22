@@ -1,19 +1,30 @@
 App.Views.Comments = App.Views.BASE.extend({
     className : "page-comments",
     _markup :"\
-            <span class='h2'>Комментарии</span><span class='return link'>← К тексту</span>\
-            <div class='comment-form'>\
-                <textarea class='comment-input' placeholder='Input your comment...'></textarea>\
-                <input class='send-comment' type='button' value="+ Lang.send +">\
+            <div class='author-box'>\
+                <img class='user-photo-middle user-link'>\
+                <span class='post-author user-name user-link'></span>\
             </div>\
-            <div class='comments'></div>"
+            <div class='h1'></div>\
+            <span class='return link'></span>\
+            <span class='h2'>Комментарии</span>\
+            <div class='comment-form'>\
+                <img class='user-photo-middle'>\
+                <textarea class='comment-input' placeholder='Input your comment...'></textarea>\
+                <div class='send-comment save-button'></div>\
+            </div>\
+            <div class='comments' placeholder='"+ Lang.no_comments +"'></div>"
     ,
     events : {
         "click .send-comment"  : "send",
-        "input .comment-input" : "resizeText"
+        "input .comment-input" : "resizeText",
+        "click .return" : function(){
+            App.router.navigate(this.model.get("id")+"", {trigger: true, replace: false});
+        }
     },
     init : function(){
         this.render();
+        this.$el.appendTo(this.options.renderTo);
 
         this.$input = this.$(".comment-input");
 
@@ -22,7 +33,28 @@ App.Views.Comments = App.Views.BASE.extend({
     render : function(){
         this.$el.html(this._markup);
 
-        this.collection.fetch();
+        this.renderAuthor();
+
+        this.$(".comment-form .user-photo-middle").attr({
+            src : App.currentUser.getSmallPhoto(),
+            alt : App.currentUser.get("name")
+        }).data("user-id", App.currentUser.id);
+
+        this.$(".h1").html(this.model.get("title"));
+
+        this.collection.each(this.renderComment.bind(this));
+
+        this.collection.fetch().done(function(){
+//            this.$(".h2").append(" (" + this.collection.length + ")");
+        }.bind(this));
+    },
+    renderAuthor : function(){
+        this.$(".author-box .user-photo-middle").attr({
+            src : this.model.user.getSmallPhoto(),
+            alt : this.model.user.get("name")
+        }).data("user-id", this.model.user.id);
+
+        this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.user.id);
     },
     renderComment : function(model){
         return new App.Views.Comment({
@@ -53,12 +85,12 @@ App.Views.Comments = App.Views.BASE.extend({
 App.Views.Comment = App.Views.BASE.extend({
     className : "comment",
     _markup : "\
-            <img class='user-photo-small user-link'>\
+            <div class='comment-message'></div>\
             <div class='comment-block'>\
+                <img class='user-photo-small user-link'>\
                 <span class='comment-author user-link'></span>\
                 <span class='comment-date'></span>\
                 <em class='comment-delete'>X</em>\
-                <div class='comment-message'></div>\
             </div>",
     events : {
         "click .comment-delete" : "del"

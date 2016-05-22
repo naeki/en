@@ -128,13 +128,18 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         this.model.loading.done(this.pasteParts.bind(this));
     },
-    renderOmnibar : function(){
+    renderAuthor : function(){
         this.$(".user-photo-middle").attr({
             src : this.model.user.getSmallPhoto(),
             alt : this.model.user.get("name")
         }).data("user-id", this.model.user.id);
 
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.user.id);
+    },
+    renderOmnibar : function(){
+
+        this.renderAuthor();
+
         this.$(".help-title").html(this.model.get("title"));
 
         if (this.model.get("permissions")&Post.OWNER)
@@ -191,18 +196,9 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$viewer.append(this.likes.$el);
     },
     openComments : function(){    // Для обоих (лайков и комментариев) нужно сделать, чтобы каждый раз обновлялись, сейчас просто вставляется то, что уже было
-        this.$viewer[0].innerHTML = "";
 
-        if (!this.comments)
-            this.comments = new App.Views.Comments({
-                renderTo   : this.$viewer,
-                model      : this.model,
-                collection : this.model.comments,
-                parent     : this
-            });
+        App.router.navigate(this.model.get("id")+"/comments", {trigger: true, replace: false});
 
-        this.$('.page-mark').remove();
-        this.$viewer.append(this.comments.$el);
     },
     pasteParts : function(){
         var height = this.resizeText(),

@@ -69,6 +69,7 @@ App.Lang.En = {
     no_users       : "Нет пользователей",
     no_followers   : "Нет подписчиков",
     no_following   : "Нет подписок",
+    no_comments    : "Нет комментариев",
     error : {
         loading    : "Error loading ",
         password   : "Entered password is wrong"
@@ -125,6 +126,7 @@ App.Router = Backbone.Router.extend({
         "tag:id(/)"       : "_search",
         "edit"            : "_edit",
         ":id"             : "_post",
+        ":id(/:page)"     : "_post",
         "new"             : "_post"
     },
     _post      : function(){this._use({post : arguments[0], page : arguments[1]})},
@@ -151,6 +153,14 @@ App.Router = Backbone.Router.extend({
             type   : "pop"
         })
     },
+
+
+
+    /// Вынести все эти конструкторы в функцию по создании вьюшки в main
+    // Причем тут в роутере вьюшки вообще?
+
+
+
     _digest    : function(){this._use({folder : App.Views.Digest})},
     _feed      : function(){this._use({folder : App.Views.Feed})},
     _bookmarks : function(){this._use({folder : App.Views.Bookmarks})},

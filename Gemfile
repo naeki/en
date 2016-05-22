@@ -45,6 +45,7 @@ gem 'elasticsearch', '~> 0.4'
 # gem 'sunspot_rails'
 # gem 'sunspot_solr'
 gem 'progress_bar'
+gem 'responders', '~> 2.0'
 
 
 # To use ActiveModel has_secure_password

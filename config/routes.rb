@@ -131,7 +131,9 @@ En::Application.routes.draw do
   get "/new",           to: "home#enter"
   get "/edit",          to: "home#enter"
   get "/:id",           to: "home#post", constraints: {id: /\d\d*/}
+  get "/:id/comments",  to: "home#post", constraints: {id: /\d\d*/}
   get "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /\d\d*/}
+
 
   get "/:id/followers", to: "home#user", constraints: {id: /user\d*/}
   get "/:id/following", to: "home#user", constraints: {id: /user\d*/}

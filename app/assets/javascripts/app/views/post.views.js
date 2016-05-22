@@ -199,6 +199,7 @@ App.Views.PostList = App.Views.BASE.extend({
             }));
         }, this);
 
+        if (!this.renderDfd) this.renderDfd = $.Deferred().resolve();
         return this.renderDfd;
 
     },

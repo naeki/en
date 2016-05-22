@@ -218,6 +218,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
     ref (1.0.5)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     retriable (1.4.1)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -282,6 +284,7 @@ DEPENDENCIES
   pg
   progress_bar
   rails (= 4.2.5.1)
+  responders (~> 2.0)
   sass-rails
   therubyracer
   uglifier
