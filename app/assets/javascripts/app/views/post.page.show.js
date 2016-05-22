@@ -435,7 +435,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
             });
 
             this.tags.on("change", function(value){
-                this.model.addTags(value);
+                this.setData().addTags(value);
             }.bind(this))
         }
     },
@@ -531,13 +531,16 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.renderPicture(id);
     },
     save : function(){
+        this.setData().save();
+    },
+    setData : function(){
         var title = this.$(".edit-title").val(),
             text  = this.$text.val().replace(/\n/g, "<br>");
 
         return this.model.set({
             title : title,
             text  : text
-        }).save();
+        });
     }
 });
 
