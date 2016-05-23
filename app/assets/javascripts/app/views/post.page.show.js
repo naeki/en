@@ -146,7 +146,6 @@ App.Views.Page_Post = App.Views.BASE.extend({
             $("<span class='post-action settings link'></span>").html(App.SVG.settings).appendTo(this.$nav);
 
         // Show/hide user box
-        this.$(".author-box")[this.model.isNew() ? "hide" : "show"]();
     },
 
     renderActions : function(){
@@ -326,8 +325,11 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         //this.on("model", this.setModel, this);
 //        this.listenTo(this.model, "change:tags", this.renderTags);
-        this.listenTo(this.model, "change:title change:last_view", this.renderHeader);
-        this.listenTo(this.model, "change:text", this.openText);
+        this.listenTo(this.model, "change:id", function(){
+            this.renderAuthor();
+            this.refreshSaveButton();
+        }.bind(this));
+        this.listenTo(this.model, "change:title", this.renderTitle.bind(this));
         this.listenTo(this.model, "change:likes change:bookmarks", this.renderActions);
         this.listenTo(this.model, "change:access", this.renderAccessIndication.bind(this));
 
@@ -349,10 +351,8 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         }.bind(this));
     },
     renderHeader : function(){
-        this.$header.children(".h1").addClass("edit").html(
-            $("<input class='edit-title' placeholder='"+ Lang.new_post_name +"'>").val(this.model.get("title"))
-        );
 
+        this.renderTitle();
         this.renderTags();
         this.renderAccessIndication();
         this.renderPicture();
@@ -364,6 +364,11 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.renderAccess();
         this.renderActions();
+    },
+    renderTitle : function(){
+        this.$header.children(".h1").addClass("edit").html(
+            $("<input class='edit-title' placeholder='"+ Lang.new_post_name +"'>").val(this.model.get("title"))
+        );
     },
     renderPicture : function(id){
         var url = this.model.getBigPhoto();
@@ -508,7 +513,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     },
     refreshSaveButton : function(e){
         var button = this.$(".save-post"),
-            changedName = this.$(".edit-title").val() != (this.model.get("name") || ""),
+            changedName = this.$(".edit-title").val() != (this.model.get("title") || ""),
             changedText = this.$(".edit-text").val()  != (this.model.get("text") || "");
 
         if (changedName || changedText)

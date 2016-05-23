@@ -66,7 +66,7 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         }
 
         return Post.save(this).done(function(){
-            App.router.navigate(this.get("id")+"", {trigger:true, replace:true});
+            App.router.navigate(this.get("id")+"", {trigger:false, replace:true});
         }.bind(this));
     },
     del : function(){
@@ -120,9 +120,10 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         if (this.isNew()) dfd = this.save();
 
         var tags = labels.map(function(label){return {name: label}});
-        this.tags.add(tags);
 
         return dfd.then(function(){
+            this.tags.add(tags);
+
             return App.loader.sync("/posts/"+ this.id +"/add_tags", {
                 data: {data: {labels: labels}},
                 type: "PUT"

@@ -58,12 +58,11 @@ App.Views.TagsControl = TagsView.extend({
             if (!(value = this.$(".input-tags").val()).length) return;
 
             this.trigger("change", value);
-            this.$(".input-tags").focus().val("").trigger("input")[0].size = 15;
-
+            this.refreshInput();
         },
         "click .tag-found" : function(e){
-            this.model.addTags($(e.target).data("tag").name);
-            this.$(".input-tags").val("").trigger("input");
+            this.trigger("change", $(e.target).data("tag").name);
+            this.refreshInput();
         },
         "click .edit-tags-button" : "renderEditable"
     },
@@ -83,6 +82,9 @@ App.Views.TagsControl = TagsView.extend({
             this.renderList();
 //            this.renderControl();
         }.bind(this));
+    },
+    refreshInput : function(){
+        this.$(".input-tags").focus().val("").trigger("input")[0].size = 15;
     },
     renderStatic : function(){
         this.$(".edit-tags-controls").remove();
