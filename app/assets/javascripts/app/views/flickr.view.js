@@ -35,7 +35,7 @@ App.Views.FlickrGallery = App.Views.BASE.extend({
     renderPics : function(data){
 //        data = JSON.parse(data);
         data = data.photos;
-        this.$results.empty();
+        this.$(".flickr-photo").remove();
 
         for(var i=0;data.photo[i];i++){
             var $pic = this.renderPic(data.photo[i]);
