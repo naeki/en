@@ -537,6 +537,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
     },
     save : function(){
         this.setData().save();
+        this.refreshSaveButton();
     },
     setData : function(){
         var title = this.$(".edit-title").val(),
