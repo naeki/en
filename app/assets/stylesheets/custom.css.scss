@@ -2073,7 +2073,7 @@ input.flickr-search-input{
     background: rgba(255, 255, 255, 0.9);
   }
   .post-text{
-    opacity: 1;
+    color: rgba(0, 0, 0, 0.9);
   }
 }
 
@@ -2112,13 +2112,12 @@ input.flickr-search-input{
 
   .post-text{
     font-size: 14px;
-    color: #000;
+    color: rgba(0, 0, 0, 0.7);
     line-height: 21px;
     font-family: _roboto;
     font-weight: 300;
     letter-spacing: .2px;
-    opacity: 0.8;
-    -webkit-transition: opacity 0.4s;
+    -webkit-transition: color 0.4s;
     text-shadow: 0 0 0 #ddd;
   }
   .post-publish-date{
