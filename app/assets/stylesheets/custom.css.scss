@@ -1042,7 +1042,7 @@ button.save-button{
   right: 0px;
   z-index: 3;
   width: 20%;
-  transition: width 0.4s, -webkit-filter 0.4s;
+  transition: width 0.4s, -webkit-filter 0.4s, opacity 0.4s;
   -webkit-filter: grayscale(0) brightness(0.98);
 //  -webkit-filter: grayscale(1) brightness(0.8);
   will-change: width, -webkit-filter;
@@ -1168,6 +1168,7 @@ button.save-button{
   height: 100%;
   background-size: cover;
   background-position: center;
+  -webkit-transition: opacity 0.4s, background-image 0.4s;
 }
 
 
@@ -2064,10 +2065,18 @@ input.flickr-search-input{
   }
 }
 
-.post-small:hover .post-small-photo{
-  transform: scale(1.1);
-  //  -webkit-filter: blur(0);
+.post-small:hover{
+  .post-small-photo {
+    transform: scale(1.1);
+  }
+  .post-small-body{
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .post-text{
+    opacity: 1;
+  }
 }
+
 
 
 .user-photo-small{
@@ -2081,10 +2090,11 @@ input.flickr-search-input{
 .post-small-body{
   padding: 10px 35px 20px;
   background: rgba(255, 255, 255, 1);
-  transition: -webkit-filter 0.4s, transform 0.4s;
+  transition: -webkit-filter 0.4s, transform 0.4s, background 0.4s;
   z-index: 2;
   position: relative;
   margin: 28px;
+  opacity: 1;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
 
   .post-title{
@@ -2094,9 +2104,7 @@ input.flickr-search-input{
     font: 300 24px "PT Serif";
     position: relative;
     line-height: 31px;
-    left: 0px;
     letter-spacing: 0px;
-    -webkit-transition: color 0.3s, left 0.3s;
     color: #222;
     &:hover{}
   }
@@ -2104,11 +2112,13 @@ input.flickr-search-input{
 
   .post-text{
     font-size: 14px;
-    color: #464646;
+    color: #000;
     line-height: 21px;
     font-family: _roboto;
     font-weight: 300;
     letter-spacing: .2px;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.4s;
     text-shadow: 0 0 0 #ddd;
   }
   .post-publish-date{

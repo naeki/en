@@ -94,22 +94,30 @@ App.Views.Page_Post = App.Views.BASE.extend({
     },
     renderHeader : function(){
 
-        var url = this.model.getBigPhoto();
         this.$header.children(".h1").html(this.model.get("title"));
 
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
 
-        this.$picture.css("background-image", "url(" + url + ")")[url ? "addClass" : "removeClass"]("image");
-
         this.model.get("comments") && this.$comments.attr("count", this.model.get("comments"));
-
 
         if (this.model.get("last_view"))
             this.$lastview.html(Post.getDateString(this.model.get("last_view")));
 
+        this.renderPicture();
         this.renderActions();
-
         this.renderTags();
+    },
+    renderPicture : function(){
+        var url = this.model.getBigPhoto();
+        var shadow = $("<img width='1px' height='1px'>").attr({src: url}).appendTo("body");
+
+        this.$picture[url ? "addClass" : "removeClass"]("image").css("opacity", 0);
+
+        shadow.on("load", function(){
+            this.$picture.css("background-image", "url(" + url + ")").css("opacity", 1);
+            shadow.remove();
+        }.bind(this));
+
     },
     renderTags : function(){
         if (this.model.get("deleted")) return this.$tags.remove();
@@ -374,17 +382,33 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         var url = this.model.getBigPhoto();
         if (id) url = App.Views.FlickrGallery.getBigPhoto(id);
 
-        if (url)
-            this.$picture.addClass("image").css("background-image", "url(" + url + ")");
+        if (url) {
+
+            this.$picture.css("opacity", 0);
+            var shadow = $("<img width='1px' height='1px'>").attr({src: url}).appendTo("body");
+
+            shadow.on("load", function(){
+                this.$picture.css("opacity", 1);
+                this.$picture.addClass("image").css("background-image", "url(" + url + ")");
+                shadow.remove();
+            }.bind(this));
+        }
     },
     renderAccessIndication : function(){
         this.$el[!this.model.get("access") ? "addClass" : "removeClass"]("lock");
     },
     renderGalleryPreview : function(id){
         if (!this.$galleryPreview)
-            this.$picture.prepend(this.$galleryPreview = $("<div class='post-gallery-preview'></div>"));
+            this.$picture.prepend(this.$galleryPreview = $("<div class='post-gallery-preview'></div>").css("opacity", 0));
 
-        this.$galleryPreview.css("background-image", "url(" + App.Views.FlickrGallery.getBigPhoto(id) + ")");
+        var url = App.Views.FlickrGallery.getBigPhoto(id);
+
+        var shadow = $("<img width='1px' height='1px'>").attr({src: url}).appendTo("body");
+
+        shadow.on("load", function(){
+            this.$galleryPreview.css("opacity", 1).css("background-image", "url(" + url + ")");
+            shadow.remove();
+        }.bind(this));
     },
     removeGalleryPreview : function(){
         if (this.$galleryPreview)
