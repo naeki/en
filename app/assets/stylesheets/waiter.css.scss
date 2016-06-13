@@ -1,0 +1,67 @@
+/*
+*
+* WAITER
+*
+*/
+
+$iconBlue        : #544bff;
+
+
+@keyframes waiter{
+  0% {transform: translateY(0px)}
+  80% {transform: translateY(-5px)}
+  100% {transform: translateY(0px)}
+}
+
+.waiter{
+
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.4s;
+
+  div{
+    display: inline-block;
+    position: relative;
+    transition: transform 0.5s;
+    background: $iconBlue;
+    animation: waiter 0.7s infinite;
+  }
+
+  .dot2{animation-delay: 0.08s;}
+  .dot3{animation-delay: 0.16s;}
+
+
+  &.size1 div{width: 1px;height: 1px;border-radius: 1px;margin-right: 2px;}
+  &.size2 div{width: 2px;height: 2px;border-radius: 2px;margin-right: 2px;}
+  &.size3 div{width: 3px;height: 3px;border-radius: 3px;margin-right: 3px;}
+  &.size4 div{width: 4px;height: 4px;border-radius: 4px;margin-right: 3px;}
+  &.size5 div{width: 5px;height: 5px;border-radius: 5px;margin-right: 4px;}
+  &.size6 div{width: 6px;height: 6px;border-radius: 6px;margin-right: 4px;}
+  &.size7 div{width: 7px;height: 7px;border-radius: 7px;margin-right: 5px;}
+  &.size8 div{width: 8px;height: 8px;border-radius: 8px;margin-right: 5px;}
+  &.size9 div{width: 9px;height: 9px;border-radius: 9px;margin-right: 6px;}
+  &.size10 div{
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+  }
+  &.size13 div{
+    width: 13px;
+    height: 13px;
+    border-radius: 15px;
+    margin-right: 8px;
+  }
+
+
+  &.hide{
+    opacity: 0;
+  }
+
+
+  &.search{
+    top: 48px;
+    left: 303px;
+  }
+}
+

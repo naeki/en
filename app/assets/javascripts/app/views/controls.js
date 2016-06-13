@@ -30,3 +30,40 @@ App.Views.ToggleControl = App.Views.BASE.extend({
         this.model.get("access") ? this.$el.addClass("on") : this.$el.removeClass("on");
     }
 });
+
+
+
+
+
+App.Views.Waiter = App.Views.BASE.extend({
+    className: "waiter hide",
+    _markup : '<div class="dot1"></div><div class="dot2"></div><div class="dot3"></div>',
+    init : function(){
+        this.$el.html(this._markup).appendTo(this.options.renderTo);
+
+        this.show();
+
+        this.$el.addClass((this.options.cssclass || "") + " size" + (this.options.size || 1));
+    },
+    show : function(){
+
+        setTimeout(function(){
+
+                this.$el.removeClass('hide')
+
+            }.bind(this),
+            50
+        )
+    },
+    remove : function(){
+
+        this.$el.addClass("hide");
+
+
+        setTimeout(function(){
+
+            App.Views.BASE.prototype.remove.call(this);
+
+        }.bind(this), 400);
+    }
+})

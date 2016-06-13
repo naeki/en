@@ -181,7 +181,6 @@ $mint            : #00e4a5;
 
 
 
-
 //Controls
 
 .toggle-control{
@@ -256,6 +255,9 @@ $mint            : #00e4a5;
   transition: background 0.2s;
   vertical-align: top;
 }
+
+
+
 
 
 
@@ -866,6 +868,11 @@ button.save-button{
     font-size: 16px;
     vertical-align: top;
     margin-bottom: 3px;
+    transition: border-color 0.4s;
+    &:focus{
+      outline: none;
+      border-color: #00FFBB;
+    }
   }
   .controls{
     margin-top: 0px;
@@ -1957,6 +1964,11 @@ input.flickr-open{
     color: #C7C7C7;
     top: 200px;
     margin: 0 auto;
+  }
+  .waiter{
+    display: inline-block;
+    position: relative;
+    margin: 100px auto 0;
   }
 }
 

@@ -1,3 +1,8 @@
+window.AA = {};
+
+
+
+
 window.Post = App.Models.Post = Backbone.Model.extend({
     defaults : {
         "tags"  : [],
@@ -13,8 +18,21 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         this.tags     = new Tags(null);
 
         this.getPermissions();
+        this.duplicate();
 
         this.on("change:user_id", this.getPermissions, this);
+    },
+
+
+    duplicate : function(){
+        var attrs = this.attributes;
+
+        this.on("resetState", function() {
+
+            return attrs;
+
+        }.bind(this));
+
     },
     open : function(){
         var view_form = function(){
@@ -286,7 +304,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     },
     by_tag : function(id){
 
-        return this.fetchDfd = PostsCollection.fetch("/tags", {data: {tag_id: id}}).then(function(result){
+        return this.fetchDfd = PostsCollection.get("/tags", {data: {tag_id: id}}).then(function(result){
 
             this.tag = new Tag(result.tag);
             this.reset(result.posts.map(Post.builder));
@@ -296,23 +314,31 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
         }.bind(this));
 
     },
+
+
+
     find : function(str){
+
 
         if (str.length<3 && this.results) {
 
             delete this.results;
             this.reset();
 
-            this.fetch();
+            this.fetchDfd = this.fetch();
 
-            return
+            return this.fetchDfd;
         }
+
+
 
         if (str.length>2) {
 
             this.reset();
 
-            this.fetchDfd = PostsCollection.fetch("/posts/find", {data: {string: str}}).done(function (result) {
+
+            this.fetchDfd = PostsCollection.get("/posts/find", {data: {string: str}}).done(function (result) {
+
 
                 if (this.results != result.posts) {
 
@@ -322,26 +348,43 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
                 }
 
+
+
                 delete this.fetchDfd;
 
                 this.tags.reset(result.tags);
 
             }.bind(this));
 
+
+
             this.trigger("search");
 
             return this.fetchDfd;
         }
 
+
+        return $.Deferred().resolve();
+
     },
+
+
+
+
+
     fetch : function(){
+
         if (this.fetchDfd) return;
+
 
         var url = "/posts/" + this.parent.type;
 
-        if (this.parent.subType) url += "/" + this.parent.subType;
+        if (this.parent.subType)
+            url += "/" + this.parent.subType;
 
-        this.fetchDfd = PostsCollection.fetch(url).done(function(result){
+
+        this.fetchDfd = PostsCollection.get(url).done(function(result){
+
 
             this.trigger("before:reset", result);
 
@@ -349,14 +392,20 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
             delete this.fetchDfd;
 
+
         }.bind(this));
+
 
         this.trigger("fetch");
 
         return this.fetchDfd;
     }
+
+
+
+
 }, {
-    fetch : function(url, options){
+    get : function(url, options){
         return App.loader.sync(url, options);
     }
 });

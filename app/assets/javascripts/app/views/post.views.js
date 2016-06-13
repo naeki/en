@@ -168,8 +168,8 @@ App.Views.PostList = App.Views.BASE.extend({
     startFetch : function(){
         if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") {
 //            this.renderDfd = $.Deferred();
-            console.log("create rendfd")
             this.$el.addClass("rendering");
+            this.waiter = new App.Views.Waiter({renderTo: this.$el, size: 8})
         }
 
 
@@ -177,7 +177,11 @@ App.Views.PostList = App.Views.BASE.extend({
             function(){
 
                 this.render().done(function(){
-                    this.$el.removeClass("rendering");
+                    setTimeout(function(){
+                        this.$el.removeClass("rendering");
+                        this.waiter.remove();
+                    }.bind(this), 800);
+
                 }.bind(this));
 
             }.bind(this)

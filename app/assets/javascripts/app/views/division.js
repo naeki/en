@@ -116,6 +116,7 @@ App.Views.All = App.Views.Folder.extend({
 
             this.collection      = new PostsCollection([], {parent : this});
             this.collection.tags = new Tags([], {parent : this.collection});
+
             this.listenTo(this.collection.tags, "add remove reset", this.renderTags);
 
         }
@@ -147,7 +148,20 @@ App.Views.All = App.Views.Folder.extend({
         dfd.done(function(val){
 
             this.collection.tags.reset();
-            this.collection.find(val);
+
+            var dfd = this.collection.find(val).done(function(){
+
+                setTimeout(function(){
+                    if (this.waiter)
+                        this.waiter.remove();
+                }.bind(this), 800)
+
+            }.bind(this));
+
+
+            if (dfd.state() == "pending")
+                this.waiter = new App.Views.Waiter({renderTo: this.$('.folder-header'), cssclass: "search", size: 4})
+
 
         }.bind(this, val));
 
@@ -172,39 +186,39 @@ App.Views.All = App.Views.Folder.extend({
     }
 });
 
-App.Views.Search = App.Views.Folder.extend({
-    label    : Lang.search,
-    type     : "all",
-    subType  : "new",
-    _markup :
-        "<div class='folder-header'>\
-            <div class='search-tag'></div>\
-        </div>\
-        <div class='folder-body'></div>",
-    events : {
-        "click .tag" : function(){
-            App.router.navigate("/all", {trigger: true, replace: false});
-        }
-    },
-    initCollection : function(){
-        this.collection || (this.collection = new PostsCollection([], {parent : this}));
-
-        this.listenTo(this.collection, "reset", this.renderTag);
-
-        this.collection.reset();
-        this.collection.by_tag(this.tag);
-
-    },
-    renderTag : function(){
-        var tag = this.collection.tag;
-
-        tag && this.$(".search-tag").html(
-            $("<span class='tag'></span>")
-                .html(tag.get("name"))
-                .data("id", tag.id)
-            );
-    }
-})
+//App.Views.Search = App.Views.Folder.extend({
+//    label    : Lang.search,
+//    type     : "all",
+//    subType  : "new",
+//    _markup :
+//        "<div class='folder-header'>\
+//            <div class='search-tag'></div>\
+//        </div>\
+//        <div class='folder-body'></div>",
+//    events : {
+//        "click .tag" : function(){
+//            App.router.navigate("/all", {trigger: true, replace: false});
+//        }
+//    },
+//    initCollection : function(){
+//        this.collection || (this.collection = new PostsCollection([], {parent : this}));
+//
+//        this.listenTo(this.collection, "reset", this.renderTag);
+//
+//        this.collection.reset();
+//        this.collection.by_tag(this.tag);
+//
+//    },
+//    renderTag : function(){
+//        var tag = this.collection.tag;
+//
+//        tag && this.$(".search-tag").html(
+//            $("<span class='tag'></span>")
+//                .html(tag.get("name"))
+//                .data("id", tag.id)
+//            );
+//    }
+//})
 
 
 App.Views.Bookmarks = App.Views.Folder.extend({
@@ -230,5 +244,8 @@ App.Views.Users = App.Views.Folder.extend({
             parent     : this,
             renderTo   : this.$body
         })
+
+
+
     }
 });
