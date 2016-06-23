@@ -58,6 +58,8 @@ module SessionsHelper
     obj["likes"]           = likes
     obj["bookmarks"]       = bmks
     obj["digest_settings"] = current_user.digest_tags
+
+    obj
   end
 
   def sign_out

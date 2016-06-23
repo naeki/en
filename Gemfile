@@ -38,7 +38,6 @@ gem 'jquery-rails'
 gem 'foreman'
 
 ruby '2.2.4'
-gem 'rack', '1.6.2'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 gem 'elasticsearch-transport'

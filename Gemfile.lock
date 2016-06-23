@@ -187,7 +187,7 @@ GEM
     progress_bar (1.0.2)
       highline (~> 1.6.1)
       options (~> 2.3.0)
-    rack (1.6.2)
+    rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5.1)
@@ -284,7 +284,6 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   progress_bar
-  rack (= 1.6.2)
   rails (= 4.2.5.1)
   responders (~> 2.0)
   sass-rails
