@@ -186,39 +186,39 @@ App.Views.All = App.Views.Folder.extend({
     }
 });
 
-//App.Views.Search = App.Views.Folder.extend({
-//    label    : Lang.search,
-//    type     : "all",
-//    subType  : "new",
-//    _markup :
-//        "<div class='folder-header'>\
-//            <div class='search-tag'></div>\
-//        </div>\
-//        <div class='folder-body'></div>",
-//    events : {
-//        "click .tag" : function(){
-//            App.router.navigate("/all", {trigger: true, replace: false});
-//        }
-//    },
-//    initCollection : function(){
-//        this.collection || (this.collection = new PostsCollection([], {parent : this}));
-//
-//        this.listenTo(this.collection, "reset", this.renderTag);
-//
-//        this.collection.reset();
-//        this.collection.by_tag(this.tag);
-//
-//    },
-//    renderTag : function(){
-//        var tag = this.collection.tag;
-//
-//        tag && this.$(".search-tag").html(
-//            $("<span class='tag'></span>")
-//                .html(tag.get("name"))
-//                .data("id", tag.id)
-//            );
-//    }
-//})
+App.Views.Search = App.Views.Folder.extend({
+    label    : Lang.search,
+    type     : "all",
+    subType  : "new",
+    _markup :
+        "<div class='folder-header'>\
+            <div class='search-tag'></div>\
+        </div>\
+        <div class='folder-body'></div>",
+    events : {
+        "click .tag" : function(){
+            App.router.navigate("/all", {trigger: true, replace: false});
+        }
+    },
+    initCollection : function(){
+        this.collection || (this.collection = new PostsCollection([], {parent : this}));
+
+        this.listenTo(this.collection, "reset", this.renderTag);
+
+        this.collection.reset();
+        this.collection.by_tag(this.tag);
+
+    },
+    renderTag : function(){
+        var tag = this.collection.tag;
+
+        tag && this.$(".search-tag").html(
+            $("<span class='tag'></span>")
+                .html(tag.get("name"))
+                .data("id", tag.id)
+            );
+    }
+})
 
 
 App.Views.Bookmarks = App.Views.Folder.extend({

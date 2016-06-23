@@ -174,7 +174,7 @@ class PostsController < ApplicationController
     #   with :access, 1
     # end
 
-    searchPosts = Post.__elasticsearch__.search(
+    searchPosts = __elasticsearch__.search(
         query: {
           query_string: {
             query: "*"+ params[:string] +"* AND deleted:0 AND access: 1",

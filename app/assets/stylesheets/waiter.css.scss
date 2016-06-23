@@ -13,6 +13,18 @@ $iconBlue        : #544bff;
   100% {transform: translateY(0px)}
 }
 
+@keyframes waiter_c{
+  0% {transform: translateY(0px)}
+  80% {transform: translateY(-3px)}
+  100% {transform: translateY(0px)}
+}
+
+@keyframes waiter_b{
+  0% {transform: translateY(0px)}
+  80% {transform: translateY(-7px)}
+  100% {transform: translateY(0px)}
+}
+
 .waiter{
 
   position: absolute;
@@ -24,11 +36,15 @@ $iconBlue        : #544bff;
     position: relative;
     transition: transform 0.5s;
     background: $iconBlue;
-    animation: waiter 0.7s infinite;
+    animation-name: waiter_c;
+    animation-duration:0.7s;
+    animation-iteration-count: infinite;
   }
 
-  .dot2{animation-delay: 0.08s;}
-  .dot3{animation-delay: 0.16s;}
+  .dot2{animation-delay: 0.08s;animation-name: waiter;}
+  .dot3{animation-delay: 0.16s;animation-name: waiter_b;}
+
+
 
 
   &.size1 div{width: 1px;height: 1px;border-radius: 1px;margin-right: 2px;}
@@ -38,7 +54,7 @@ $iconBlue        : #544bff;
   &.size5 div{width: 5px;height: 5px;border-radius: 5px;margin-right: 4px;}
   &.size6 div{width: 6px;height: 6px;border-radius: 6px;margin-right: 4px;}
   &.size7 div{width: 7px;height: 7px;border-radius: 7px;margin-right: 5px;}
-  &.size8 div{width: 8px;height: 8px;border-radius: 8px;margin-right: 5px;}
+  &.size8 div{width: 8px;height: 8px;border-radius: 8px;margin-right: 5px;animation-name: waiter_b;}
   &.size9 div{width: 9px;height: 9px;border-radius: 9px;margin-right: 6px;}
   &.size10 div{
     width: 10px;
