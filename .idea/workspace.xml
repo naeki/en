@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="efa88bab-71f2-47fd-a443-ddbb0edbab38" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/models/post.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/models/post.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js" />
     </list>
     <ignored path="en.iws" />
@@ -67,24 +66,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.views.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="post.views.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.275862" vertical-offset="2384" max-vertical-offset="4131">
-              <caret line="168" column="31" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.20930232" vertical-offset="2707" max-vertical-offset="4182">
+              <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
               <folding>
-                <marker date="1466855596077" expanded="true" signature="179:1098" placeholder="..." />
-                <marker date="1466855596077" expanded="true" signature="277:871" placeholder="..." />
-                <marker date="1466855596077" expanded="false" signature="2318:2354" placeholder="..." />
+                <marker date="1466855776049" expanded="true" signature="179:1098" placeholder="..." />
+                <marker date="1466855776049" expanded="true" signature="277:871" placeholder="..." />
+                <marker date="1466855776049" expanded="false" signature="2318:2354" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="post.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="post.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/models/post.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22929381" vertical-offset="6078" max-vertical-offset="7735">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6078" max-vertical-offset="7735">
               <caret line="373" column="13" selection-start-line="373" selection-start-column="13" selection-end-line="373" selection-end-column="13" />
               <folding />
             </state>
@@ -1120,23 +1119,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/models/post.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.275862" vertical-offset="2384" max-vertical-offset="4131">
-          <caret line="168" column="31" selection-start-line="168" selection-start-column="31" selection-end-line="168" selection-end-column="31" />
-          <folding>
-            <marker date="1466855596077" expanded="true" signature="179:1098" placeholder="..." />
-            <marker date="1466855596077" expanded="true" signature="277:871" placeholder="..." />
-            <marker date="1466855596077" expanded="false" signature="2318:2354" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="6078" max-vertical-offset="7735">
+          <caret line="373" column="13" selection-start-line="373" selection-start-column="13" selection-end-line="373" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/models/post.js">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/app/views/post.views.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22929381" vertical-offset="6078" max-vertical-offset="7735">
-          <caret line="373" column="13" selection-start-line="373" selection-start-column="13" selection-end-line="373" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="0.20930232" vertical-offset="2707" max-vertical-offset="4182">
+          <caret line="173" column="0" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+          <folding>
+            <marker date="1466855776049" expanded="true" signature="179:1098" placeholder="..." />
+            <marker date="1466855776049" expanded="true" signature="277:871" placeholder="..." />
+            <marker date="1466855776049" expanded="false" signature="2318:2354" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

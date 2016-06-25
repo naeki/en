@@ -164,7 +164,7 @@ App.Views.PostList = App.Views.BASE.extend({
 
 
             this.render(els).done(function(){
-                setTimeout(function(){
+                this.waiterRemoveTimeout = setTimeout(function(){
                     this.waiter.remove();
                 }.bind(this), 300);
 
@@ -182,7 +182,10 @@ App.Views.PostList = App.Views.BASE.extend({
     startFetch : function(){
         if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") {
 
-            if (this.waiter) this.waiter.remove();
+            if (this.waiter) {
+                this.waiter.remove();
+                clearTimeout(this.waiterRemoveTimeout);
+            }
 
             this.waiter = new App.Views.Waiter({renderTo: this.$el, size: 8})
         }
