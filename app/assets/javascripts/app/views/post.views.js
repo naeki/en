@@ -158,6 +158,7 @@ App.Views.PostList = App.Views.BASE.extend({
         if (this.options.page) this.$el.attr("placeholder", Lang["no_" + this.options.page]);
 
         this.listenTo(this.collection, "fetch search", this.startFetch.bind(this));
+        this.listenTo(this.collection, "reset", this.reset.bind(this));
         this.listenTo(this.collection, "before:reset", function(els){
 
             if (els.length > 5) this.$el.css('min-height', 1000);
@@ -190,7 +191,10 @@ App.Views.PostList = App.Views.BASE.extend({
             this.waiter = new App.Views.Waiter({renderTo: this.$el, size: 8})
         }
     },
-
+    reset : function(){
+        _.invoke(this.views, 'remove');
+        delete this.views;
+    },
     render : function(models){
 
         this.renderDfd = $.Deferred();

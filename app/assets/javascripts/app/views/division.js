@@ -121,7 +121,7 @@ App.Views.All = App.Views.Folder.extend({
 
         }
 
-//        this.collection.reset();
+        this.collection.reset();
         this.collection.fetch();
 
     },

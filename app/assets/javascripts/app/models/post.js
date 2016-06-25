@@ -301,6 +301,10 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     initialize : function(models, options){
         options && (this.parent = options.parent);
         options && (this.user = options.user);
+
+        this.on("reset", function(){
+            delete this.end;
+        }.bind(this))
     },
     by_tag : function(id){
 
