@@ -182,7 +182,7 @@ class PostsController < ApplicationController
           }
         },
         size: params[:limit].to_i,
-        from: params[:offset].to_i
+        from: params[:offset].to_i+1
     )
 
     sql = "SELECT * FROM tags WHERE name LIKE '" + params[:string] + "%'"
