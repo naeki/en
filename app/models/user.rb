@@ -115,11 +115,16 @@ class User < ActiveRecord::Base
 
   # Own posts
   def own_posts(options)
-    options = {"deleted" => 0}.merge(options)
+    opts = {:deleted => 0}.merge(options[:opts])
     query = ''
-    options.each {|key, value| query += " AND #{key}=#{value}" }
+    opts.each {|key, value| query += " AND #{key}=#{value}" }
 
-    sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query
+
+    limit = (options[:params].key?('limit') ?  ' LIMIT ' + options[:params][:limit] : '') +
+            (options[:params].key?('offset') ?  ' OFFSET ' + options[:params][:offset] : '')
+
+
+    sql = 'SELECT * FROM posts WHERE user_id=' + self.id.to_s + query + limit
     @posts = Post.find_by_sql(sql)
   end
 

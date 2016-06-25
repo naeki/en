@@ -53,20 +53,20 @@ class Post < ActiveRecord::Base
 
   def self.all_public(options)
 
-    limit = (options.key?('limit') ?  ' LIMIT ' + options['limit'] : '') +
-            (options.key?('offset') ?  ' OFFSET ' + options['offset'] : '') +
-
-    if (limit == nil)
-      limit = ''
-    end
+    limit = (options.key?('limit') ?  ' LIMIT ' + options[:limit] : '') +
+            (options.key?('offset') ?  ' OFFSET ' + options[:offset] : '')
 
     sql = 'SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY published_at DESC' + limit
 
     @posts = Post.find_by_sql(sql)
   end
 
-  def self.all_public_pop
-    sql = "SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY likes_count DESC"
+  def self.all_public_pop(options)
+
+    limit = (options.key?('limit') ?  ' LIMIT ' + options[:limit] : '') +
+            (options.key?('offset') ?  ' OFFSET ' + options[:offset] : '')
+
+    sql = 'SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY likes_count DESC' + limit
     @posts = Post.find_by_sql(sql)
   end
 

@@ -34,11 +34,14 @@ class UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    options = params[:options] || {}
+    options = {:params => params, :opts => {}}
+
     if (!current_user?(@user))
-      options["access"] = 1
+      options.opts[:access] = 1
     end
+
     @posts = @user.own_posts(options)
+
     respond_to do |format|
       format.json { render json: Post.build_posts_lite(@posts), location: root_path }
     end

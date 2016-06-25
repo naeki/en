@@ -341,24 +341,28 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
             this.reset();
 
 
-            this.fetchDfd = PostsCollection.get("/posts/find", {data: {string: str}}).done(function (result) {
+            this.fetchDfd = PostsCollection.get("/posts/find", {data: {
+                string : str,
+                offset : this.length,
+                limit  : this.limit
+            }})
+                .done(function (result) {
 
 
-                if (this.results != result.posts) {
+                    if (result.posts.length < this.limit)
+                        this.end = true;
 
-                    this.trigger("before:reset", result.posts);
+                    var models = result.posts.map(Post.builder);
 
-                    this.reset((this.results = result.posts).map(Post.builder));
-
-                }
-
+                    this.add(models);
+                    this.trigger("before:reset", models);
 
 
-                delete this.fetchDfd;
+                    delete this.fetchDfd;
 
-                this.tags.reset(result.tags);
+                    this.tags.reset(result.tags);
 
-            }.bind(this));
+                }.bind(this));
 
 
 
@@ -376,24 +380,29 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
 
     limit: 10,
-    fetch : function(){
+    fetch : function(url, data){
 
         if (this.fetchDfd || this.end) return;
 
 
 
-        var url = "/posts/" + this.parent.type;
+        if (!url) {
 
-        if (this.parent.subType)
-            url += "/" + this.parent.subType;
+            var url = ("/posts/" + this.parent.type);
 
+            if (this.parent.subType)
+                url += "/" + this.parent.subType;
+        }
 
 
         this.fetchDfd = PostsCollection.get(url, {
-            data : {
-                offset: this.length,
-                limit: this.limit
-            }
+            data : _.extend(
+                {
+                    offset: this.length,
+                    limit: this.limit
+                },
+                data || {}
+            )
         })
             .done(function(result){
 
@@ -430,9 +439,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 // Posts of user
 App.Collections.UserPosts = App.Collections.Posts.extend({
     fetch : function(){
-        return App.loader.sync("/users/posts", {data : {id: this.user.id}, type: "GET"}).done(function(result){
-            this.reset((result.posts || result).map(Post.builder));
-        }.bind(this));
+        return App.Collections.Posts.prototype.fetch.call(this, "/users/posts", {id: this.user.id});
     }
 });
 
