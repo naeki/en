@@ -51,8 +51,17 @@ class Post < ActiveRecord::Base
     self.tags.delete(tag)
   end
 
-  def self.all_public
-    sql = "SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY published_at DESC"
+  def self.all_public(options)
+
+    limit = (options.key?('limit') ?  ' LIMIT ' + options['limit'] : '') +
+            (options.key?('offset') ?  ' OFFSET ' + options['offset'] : '') +
+
+    if (limit == nil)
+      limit = ''
+    end
+
+    sql = 'SELECT * FROM posts WHERE (deleted=0 AND access=1) ORDER BY published_at DESC' + limit
+
     @posts = Post.find_by_sql(sql)
   end
 

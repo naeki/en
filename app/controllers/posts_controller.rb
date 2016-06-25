@@ -159,7 +159,7 @@ class PostsController < ApplicationController
   end
 
   def all_new
-    @posts = Post.build_posts_lite(Post.all_public)
+    @posts = Post.build_posts_lite(Post.all_public(params || {}))
 
     respond_to do |format|
       format.json { render json: @posts, location: root_path }

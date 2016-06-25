@@ -1967,8 +1967,10 @@ input.flickr-open{
   }
   .waiter{
     display: inline-block;
-    position: relative;
-    margin: 100px auto 0;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    z-index: 3;
   }
 }
 

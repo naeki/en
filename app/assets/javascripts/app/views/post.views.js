@@ -133,9 +133,13 @@ App.Views.Post_small = App.Views.BASE.extend({
 
         this.$el.addClass("last " + rc).css("top", sum);
 
-        if (this == _.last(this.parent.collection)){
+        if (this.model == this.parent.collection.last()){
             setTimeout(function(){
+
                 this.parent.colDfd && this.parent.colDfd.resolve();
+
+                App.windowHeight = $('body')[0].scrollHeight;
+
             }.bind(this),200)
         }
     }
@@ -155,57 +159,46 @@ App.Views.PostList = App.Views.BASE.extend({
 
         this.listenTo(this.collection, "fetch search", this.startFetch.bind(this));
         this.listenTo(this.collection, "before:reset", function(els){
+
             if (els.length > 5) this.$el.css('min-height', 1000);
+
+
+            this.render(els).done(function(){
+                setTimeout(function(){
+                    this.waiter.remove();
+                }.bind(this), 800);
+
+            }.bind(this));
+
         }.bind(this));
 
+
         this.startFetch();
-//        this.render();
-//        this.listenTo(this.collection, "reset", this.render);
+        this.initLazyload();
 
         $(window).on("resize", _.debounce(this.columnateAll.bind(this)));    //TODO: Только через requestAnimationFrame
     },
 
     startFetch : function(){
-        if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") {
-//            this.renderDfd = $.Deferred();
-            this.$el.addClass("rendering");
+        if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending")
             this.waiter = new App.Views.Waiter({renderTo: this.$el, size: 8})
-        }
-
-
-        this.collection.fetchDfd.then(
-            function(){
-
-                this.render().done(function(){
-                    setTimeout(function(){
-                        this.$el.removeClass("rendering");
-                        this.waiter.remove();
-                    }.bind(this), 800);
-
-                }.bind(this));
-
-            }.bind(this)
-        )
-
     },
 
-    render : function(){
-        _.invoke(this.views, "remove");
+    render : function(models){
 
-        this.views = [];
-
-        _.each(this.collection.models, function(m, i){
-            this.views.push(new App.Views.Post_small({
-                model    : m,
-                parent   : this,
-                renderTo : this.$el,
-                prev     : this.views[i-1]
-            }));
-        }, this);
+        _.each(models, this.addView, this);
 
         if (!this.renderDfd) this.renderDfd = $.Deferred().resolve();
         return this.renderDfd;
 
+    },
+    addView : function(model){
+        this.views.push(new App.Views.Post_small({
+            model    : model,
+            parent   : this,
+            renderTo : this.$el,
+            prev     : _.last(this.views)
+        }));
     },
     columnateAll : function(){
 
@@ -219,6 +212,14 @@ App.Views.PostList = App.Views.BASE.extend({
                 this.views[i].columnate();
             }
             this.busy = false;
+        }.bind(this))
+    },
+
+    initLazyload : function(){
+        $(window).on('scroll', function(){
+            requestAnimationFrame(function(){
+                if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
+            }.bind(this))
         }.bind(this))
     }
 });

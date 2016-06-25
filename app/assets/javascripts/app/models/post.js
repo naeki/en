@@ -371,10 +371,11 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
 
 
-
+    limit: 3,
     fetch : function(){
 
-        if (this.fetchDfd) return;
+        if (this.fetchDfd || this.end) return;
+
 
 
         var url = "/posts/" + this.parent.type;
@@ -383,17 +384,29 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
             url += "/" + this.parent.subType;
 
 
-        this.fetchDfd = PostsCollection.get(url).done(function(result){
+
+        this.fetchDfd = PostsCollection.get(url, {
+            data : {
+                offset: this.length,
+                limit: this.limit
+            }
+        })
+            .done(function(result){
+
+                if (result.length < this.limit)
+                    this.end = true;
+
+                var models = result.map(Post.builder);
+
+                this.add(models);
+                this.trigger("before:reset", models);
+
+                delete this.fetchDfd;
 
 
-            this.trigger("before:reset", result);
-
-            this.reset(result.map(Post.builder));
-
-            delete this.fetchDfd;
+            }.bind(this));
 
 
-        }.bind(this));
 
 
         this.trigger("fetch");
