@@ -402,14 +402,11 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
                 this.trigger("before:reset", models);
 
                 delete this.fetchDfd;
-                console.log("fetchDfd deleted")
 
 
             }.bind(this));
 
 
-
-        console.log(this.fetchDfd)
         this.trigger("fetch");
 
         return this.fetchDfd;

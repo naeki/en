@@ -166,8 +166,7 @@ App.Views.PostList = App.Views.BASE.extend({
             this.render(els).done(function(){
                 setTimeout(function(){
                     this.waiter.remove();
-                    console.log("removeWaiter")
-                }.bind(this), 800);
+                }.bind(this), 300);
 
             }.bind(this));
 
@@ -186,7 +185,6 @@ App.Views.PostList = App.Views.BASE.extend({
             if (this.waiter) this.waiter.remove();
 
             this.waiter = new App.Views.Waiter({renderTo: this.$el, size: 8})
-            console.log("createWaiter")
         }
     },
 
@@ -229,13 +227,7 @@ App.Views.PostList = App.Views.BASE.extend({
                 if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") return;
                 if (this.renderDfd && this.renderDfd.state() == "pending") return;
 
-                function fetch() {
-                    if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
-                }
-
-                console.log("scroll", this.collection.fetchDfd, this.renderDfd)
-
-                fetch.call(this);
+                if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
 
             }.bind(this))
 
