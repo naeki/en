@@ -216,10 +216,20 @@ App.Views.PostList = App.Views.BASE.extend({
     },
 
     initLazyload : function(){
-        $(window).on('scroll', function(){
-            requestAnimationFrame(function(){
-                if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
-            }.bind(this))
+        $(window).on('scroll', function() {
+
+            function fetch() {
+                requestAnimationFrame(function () {
+                    if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
+                }.bind(this))
+            }
+
+            if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending")
+                this.collection.fetchDfd.done(fetch.bind(this))
+
+            else
+                fetch.call(this);
+
         }.bind(this))
     }
 });
