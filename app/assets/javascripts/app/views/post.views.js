@@ -43,7 +43,7 @@ App.Views.Post_small = App.Views.BASE.extend({
 
         }.bind(this));
 
-        this.parent.renderDfd = this.parent.renderDfd ?  this.dfd.then(this.parent.renderDfd) : this.dfd;
+//        this.parent.renderDfd = this.parent.renderDfd ?  this.dfd.then(this.parent.renderDfd) : this.dfd;
 
 
 
@@ -136,7 +136,7 @@ App.Views.Post_small = App.Views.BASE.extend({
         if (this.model == this.parent.collection.last()){
             setTimeout(function(){
 
-                this.parent.colDfd && this.parent.colDfd.resolve();
+                this.parent.renderDfd && this.parent.renderDfd.resolve();
 
                 App.windowHeight = $('body')[0].scrollHeight;
 
@@ -166,6 +166,7 @@ App.Views.PostList = App.Views.BASE.extend({
             this.render(els).done(function(){
                 setTimeout(function(){
                     this.waiter.remove();
+                    console.log("removeWaiter")
                 }.bind(this), 800);
 
             }.bind(this));
@@ -180,17 +181,22 @@ App.Views.PostList = App.Views.BASE.extend({
     },
 
     startFetch : function(){
-        if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending")
+        if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") {
+
+            if (this.waiter) this.waiter.remove();
+
             this.waiter = new App.Views.Waiter({renderTo: this.$el, size: 8})
+            console.log("createWaiter")
+        }
     },
 
     render : function(models){
 
+        this.renderDfd = $.Deferred();
+
         _.each(models, this.addView, this);
 
-        if (!this.renderDfd) this.renderDfd = $.Deferred().resolve();
         return this.renderDfd;
-
     },
     addView : function(model){
         this.views.push(new App.Views.Post_small({
@@ -218,17 +224,20 @@ App.Views.PostList = App.Views.BASE.extend({
     initLazyload : function(){
         $(window).on('scroll', function() {
 
-            function fetch() {
-                requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+
+                if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") return;
+                if (this.renderDfd && this.renderDfd.state() == "pending") return;
+
+                function fetch() {
                     if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
-                }.bind(this))
-            }
+                }
 
-            if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending")
-                this.collection.fetchDfd.done(fetch.bind(this))
+                console.log("scroll", this.collection.fetchDfd, this.renderDfd)
 
-            else
                 fetch.call(this);
+
+            }.bind(this))
 
         }.bind(this))
     }
