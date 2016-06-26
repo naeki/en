@@ -145,6 +145,18 @@ App.Views.All = App.Views.Folder.extend({
 
         this.$controls[val ? "hide" : "show"]();
 
+        this.collection.reset();
+
+
+        if (!val.length) {
+
+            this.collection.reset();
+            this.collection.fetch();
+
+            return;
+        }
+
+
         dfd.done(function(val){
 
             this.collection.tags.reset();

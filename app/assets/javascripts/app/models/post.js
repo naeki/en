@@ -323,6 +323,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
     find : function(str){
 
+        if (this.fetchDfd || this.end) return;
 
         if (str.length<3 && this.results) {
 
@@ -338,14 +339,16 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
         if (str.length>2) {
 
-            this.reset();
+//            this.reset();
 
 
-            this.fetchDfd = PostsCollection.get("/posts/find", {data: {
-                string : str,
-                offset : this.length,
-                limit  : this.limit
-            }})
+            this.fetchDfd = PostsCollection.get("/posts/find", {
+                data: {
+                    string : str,
+                    offset : this.length,
+                    limit  : this.limit
+                }
+            })
                 .done(function (result) {
 
 
@@ -368,11 +371,20 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
             this.trigger("search");
 
+
+            this.state = {
+                method : "find",
+                args   : arguments
+            };
+
+
             return this.fetchDfd;
         }
 
 
         return $.Deferred().resolve();
+
+
 
     },
 
@@ -422,7 +434,20 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
         this.trigger("fetch");
 
+        this.state = {
+                method : "fetch",
+                args   : arguments
+            };
+
         return this.fetchDfd;
+    },
+
+
+
+
+
+    fetchPage : function(){
+        return this[this.state.method].apply(this, this.state["args"]);
     }
 
 

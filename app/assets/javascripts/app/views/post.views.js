@@ -201,6 +201,8 @@ App.Views.PostList = App.Views.BASE.extend({
 
         _.each(models, this.addView, this);
 
+        if (!models.length) this.renderDfd.resolve();
+
         return this.renderDfd;
     },
     addView : function(model){
@@ -227,6 +229,13 @@ App.Views.PostList = App.Views.BASE.extend({
     },
 
     initLazyload : function(){
+
+        /*
+        *
+        * Отписываться от этого события +
+        *
+        */
+
         $(window).on('scroll', function() {
 
             requestAnimationFrame(function () {
@@ -234,7 +243,7 @@ App.Views.PostList = App.Views.BASE.extend({
                 if (this.collection.fetchDfd && this.collection.fetchDfd.state() == "pending") return;
                 if (this.renderDfd && this.renderDfd.state() == "pending") return;
 
-                if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetch();
+                if (App.windowHeight < window.scrollY + window.innerHeight + 200) this.collection.fetchPage();
 
             }.bind(this))
 
