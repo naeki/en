@@ -193,6 +193,7 @@ App.Views.PostList = App.Views.BASE.extend({
     },
     reset : function(){
         _.invoke(this.views, 'remove');
+        (this.renderDfd.state() == "pending") && this.renderDfd.resolve();
         delete this.views;
     },
     render : function(models){
