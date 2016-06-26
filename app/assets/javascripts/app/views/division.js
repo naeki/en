@@ -161,7 +161,9 @@ App.Views.All = App.Views.Folder.extend({
 
             this.collection.tags.reset();
 
-            var dfd = this.collection.find(val).done(function(){
+            var dfd = this.collection.find(val) || $.Deferred().resolve();
+
+            dfd.done(function(){
 
                 setTimeout(function(){
                     if (this.waiter)
