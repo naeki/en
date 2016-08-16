@@ -290,19 +290,11 @@ $mint            : #00e4a5;
 }
 
 
-.main.loading{
-  &::after{
+.main.waiter::after{
     display: block;
-    content: "loading";
-    color: #fff;
-    font-size: 20px;
     position: absolute;
     left: 50%;
     top:50%;
-    background: red;
-    padding: 10px;
-    border-radius: 4px;
-  }
 }
 .main.fixed{
   position: fixed;
@@ -678,6 +670,14 @@ $mint            : #00e4a5;
     line-height: 25px;
   }
 }
+.deleted-control{
+  position: absolute;
+  bottom: 26px;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 .post-meta{
   text-align: right;
@@ -863,15 +863,47 @@ button.save-button{
   padding: 40px 0px 20px;
   position: relative;
   .search-posts{
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 3px;
+  }
+  .search-input{
     padding: 2px 15px 3px;
     border: 2px solid #00ECAD;
     font-size: 16px;
-    vertical-align: top;
-    margin-bottom: 3px;
     transition: border-color 0.4s;
     &:focus{
       outline: none;
       border-color: #00FFBB;
+    }
+  }
+  .search-erase{
+    display: none;
+    width: 25px;
+    height: 25px;
+    position: relative;
+    transform: rotate(45deg);
+    cursor: pointer;
+    opacity: 0.7;
+    &:hover{
+      opacity: 1;
+    }
+
+    &::before{
+      content: "";
+      width: 1px;
+      height: 25px;
+      background: #000;
+      position: absolute;
+      left: 12px;
+    }
+    &::after{
+      content: "";
+      width: 25px;
+      height: 1px;
+      top: 12px;
+      background: #000;
+      position: absolute;
     }
   }
   .controls{
@@ -1994,6 +2026,42 @@ input.flickr-open{
       display: block;
     }
   }
+  .delete-photo{
+    color: #fff;
+    cursor: pointer;
+    font-weight: 300;
+    font-size: 14px;
+
+    .erase-icon{
+      width: 19px;
+      height: 19px;
+      display: inline-block;
+      position: relative;
+      transform: rotate(45deg);
+      border-radius: 19px;
+      position: relative;
+      left: -3px;
+      vertical-align: -3px;
+      margin-right: 4px;
+
+      &::before{
+        content: "";
+        width: 1px;
+        height: 100%;
+        background: #fff;
+        position: absolute;
+        left: 9px;
+      }
+      &::after{
+        content: "";
+        width: 100%;
+        height: 1px;
+        top: 9px;
+        background: #fff;
+        position: absolute;
+      }
+    }
+  }
 
 }
 input.flickr-search-input{
@@ -2005,6 +2073,7 @@ input.flickr-search-input{
   font-size: 16px;
   color: #111;
 }
+
 
 
 
@@ -2399,7 +2468,7 @@ input.flickr-search-input{
   .user-box .user-name {
     font-size: 14px;
   }
-  input.search-posts {
+  .search-input {
     padding: 4px 15px 6px;
   }
   .folder-header{
@@ -2539,7 +2608,7 @@ input.flickr-search-input{
   .folder-header{
     padding-top: 30px;
   }
-  input.search-posts {
+  .search-input {
     padding: 14px 15px 16px;
   }
   .page-user .edit-name {

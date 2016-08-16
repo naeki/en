@@ -95,7 +95,10 @@ App.Views.All = App.Views.Folder.extend({
     label     : Lang.all,
     _markup   :
         "<div class='folder-header'>\
-            <input class='search-posts' type='text' placeholder='"+ Lang.searchPosts +"'>\
+            <div class='search-posts'>\
+                <input class='search-input' type='text' placeholder='"+ Lang.searchPosts +"'>\
+                <div class='search-erase'></div>\
+            </div>\
             <div class='controls'>\
                 <input class='change-type news' type='button' value='"+ Lang.sort_new +"'>\
                 <input class='change-type pops' type='button' value='"+ Lang.sort_pop +"'>\
@@ -108,7 +111,8 @@ App.Views.All = App.Views.Folder.extend({
         <div class='folder-body'></div>",
     events : {
         'click .change-type'  : 'toggle',
-        'input .search-posts' : 'find'
+        'click .search-erase' : 'searchErase',
+        'input .search-input' : '_searchInput'
     },
     initCollection : function(){
 
@@ -138,23 +142,28 @@ App.Views.All = App.Views.Folder.extend({
         this.$(this.subType == "new" ? '.change-type.news' : '.change-type.pops').addClass("active");
 
     },
-    find : _.debounce(function(){
+    _searchInput : function(){
+        var value = $.trim(_.escape(this.$(".search-input").val()));
+
+        if (value.length)
+            this.find(value);
+        else {
+            this.collection.reset();
+            this.collection.fetch();
+        }
+
+        this.$controls[value ? "hide" : "show"]();
+
+
+        this.$(".search-erase")[0].style.display = value.length ? "inline-block" : "none";
+
+    },
+    find : _.debounce(function(val){
 
         var dfd = this.list.renderDfd || $.Deferred().resolve();
-        var val = _.escape($(".search-posts").val());
-
-        this.$controls[val ? "hide" : "show"]();
 
         this.collection.reset();
 
-
-        if (!val.length) {
-
-            this.collection.reset();
-            this.collection.fetch();
-
-            return;
-        }
 
 
         dfd.done(function(val){
@@ -180,6 +189,11 @@ App.Views.All = App.Views.Folder.extend({
         }.bind(this, val));
 
     }, 250),
+    searchErase : function(){
+        this.$(".search-input").val("");
+
+        this._searchInput();
+    },
     renderHeader : function(){
 
         this.$h1.html(this.label);
@@ -217,10 +231,8 @@ App.Views.Search = App.Views.Folder.extend({
     initCollection : function(){
         this.collection || (this.collection = new PostsCollection([], {parent : this}));
 
-        this.listenTo(this.collection, "reset", this.renderTag);
-
         this.collection.reset();
-        this.collection.by_tag(this.tag);
+        this.collection.by_tag(this.tag).then(this.renderTag.bind(this));
 
     },
     renderTag : function(){

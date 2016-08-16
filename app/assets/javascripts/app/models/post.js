@@ -55,6 +55,8 @@ window.Post = App.Models.Post = Backbone.Model.extend({
         else
             this.loading = this.fetch().then(function(){
 
+                this.getPermissions();
+
                 return this.get("permissions")&Post.OWNER ? view_form.call(this) : view_page.call(this)
 
             }.bind(this));
@@ -120,6 +122,20 @@ window.Post = App.Models.Post = Backbone.Model.extend({
     },
     getBigPhoto : function(){
         return this.get("photo_id") && (this.get("photo_id") + "_b.jpg") || "";
+    },
+
+    deletePicture : function(){
+
+        this.set("photo_id", null);
+        var data = {id : this.id};
+
+        return App.loader.sync("posts/picture", {data: data, type: "DELETE"})
+            .done(function(result){
+                this.trigger("delete", result);
+            }.bind(this));
+
+
+
     },
 
 
@@ -216,6 +232,12 @@ window.Post = App.Models.Post = Backbone.Model.extend({
     },
     getLikes : function(){
         return User.getMap();
+    },
+
+    setDeleted : function(){
+        this.set("deleted", this.get("deleted") ? 0 : 1);
+
+        return Post[this.get("deleted") ? "del" : "ret"](this);
     }
 }, {
     OWNER : 1,
@@ -277,13 +299,13 @@ window.Post = App.Models.Post = Backbone.Model.extend({
     },
     // Delete (deleted=true)
     del : function(model){
-        return App.loader.sync("/posts/" + model.get("id"), {type : "DELETE"}).done(function(result){
+        return App.loader.sync("/posts/setDeleted", {type : "POST", data: {id: model.get("id"), deleted: true}}).done(function(result){
             Post.builder(result);
         });
     },
     // return from deleted
     ret : function(model){
-        return App.loader.sync("/posts/" + model.get("id"), {type : "DELETE"}).done(function(result){
+        return App.loader.sync("/posts/setDeleted", {type : "POST", data: {id: model.get("id"), deleted: false}}).done(function(result){
             Post.builder(result);
         });
     },
@@ -308,14 +330,21 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
     },
     by_tag : function(id){
 
-        return this.fetchDfd = PostsCollection.get("/tags", {data: {tag_id: id}}).then(function(result){
+        this.fetchDfd = PostsCollection.get("/tags", {data: {tag_id: id}}).then(function(result){
 
             this.tag = new Tag(result.tag);
-            this.reset(result.posts.map(Post.builder));
-
-            return $.Deferred().resolve();
+            this.addModels(result.posts);
 
         }.bind(this));
+
+        this.trigger("fetch");
+
+        this.state = {
+            method : "by_tag",
+            args   : arguments
+        };
+
+        return this.fetchDfd;
 
     },
 
@@ -351,18 +380,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
             })
                 .done(function (result) {
 
-
-                    if (result.posts.length < this.limit)
-                        this.end = true;
-
-                    var models = result.posts.map(Post.builder);
-
-                    this.add(models);
-                    this.trigger("before:reset", models);
-
-
-                    delete this.fetchDfd;
-
+                    this.addModels(result.posts);
                     this.tags.reset(result.tags);
 
                 }.bind(this));
@@ -386,6 +404,19 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
 
 
+    },
+
+    addModels : function(posts){
+        if (posts.length < this.limit)
+            this.end = true;
+
+        var models = posts.map(Post.builder);
+
+        this.add(models);
+        this.trigger("before:reset", models);
+
+
+        delete this.fetchDfd;
     },
 
 
@@ -417,18 +448,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
             )
         })
             .done(function(result){
-
-                if (result.length < this.limit)
-                    this.end = true;
-
-                var models = result.map(Post.builder);
-
-                this.add(models);
-                this.trigger("before:reset", models);
-
-                delete this.fetchDfd;
-
-
+                this.addModels(result.posts);
             }.bind(this));
 
 

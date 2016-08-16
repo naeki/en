@@ -37,13 +37,13 @@ class UsersController < ApplicationController
     options = {:params => params, :opts => {}}
 
     if (!current_user?(@user))
-      options.opts[:access] = 1
+      options[:opts][:access] = 1
     end
 
     @posts = @user.own_posts(options)
 
     respond_to do |format|
-      format.json { render json: Post.build_posts_lite(@posts), location: root_path }
+      format.json { render json: {posts: Post.build_posts_lite(@posts)}, location: root_path }
     end
   end
 

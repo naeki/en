@@ -4,6 +4,8 @@ window.Tag = App.Models.Tag = Backbone.Model.extend({
             this.set(result);
             return $.Deferred().resolve();
         }.bind(this));
+
+
     }
 });
 

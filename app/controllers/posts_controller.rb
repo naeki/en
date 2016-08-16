@@ -46,7 +46,7 @@ class PostsController < ApplicationController
         end
 
         respond_to do |format|
-          format.json { render json: @post, location: root_path }
+          format.json { render json: {posts: @posts}, location: root_path }
         end
     end
   end
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: Post._build(@post), location: root_path }
+      format.json { render json: {posts: Post._build(@post)}, location: root_path }
     end
   end
 
@@ -71,7 +71,7 @@ class PostsController < ApplicationController
     @post.remove_tag(@tag)
 
     respond_to do |format|
-      format.json { render json: Post._build(@post), location: root_path }
+      format.json { render json: {posts: Post._build(@post)}, location: root_path }
     end
 
     if (!@tag.posts[0])
@@ -136,9 +136,9 @@ class PostsController < ApplicationController
 
 
 
-  def destroy
-    @post = Post.find(params[:data][:id])
-    @post.archive
+  def setDeleted
+    @post = Post.find(params[:id])
+    params[:deleted] == "true" ? @post.archive : @post.restore
 
     respond_to do |format|
       format.json { render json: @post || true, location: root_path }
@@ -153,7 +153,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @posts
-        format.json { render json: @posts, location: root_path }
+        format.json { render json: {posts: @posts}, location: root_path }
       end
     end
   end
@@ -162,7 +162,7 @@ class PostsController < ApplicationController
     @posts = Post.build_posts_lite(Post.all_public(params || {}))
 
     respond_to do |format|
-      format.json { render json: @posts, location: root_path }
+      format.json { render json: {posts: @posts}, location: root_path }
     end
   end
 

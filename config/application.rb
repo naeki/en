@@ -52,6 +52,10 @@ module En
     # config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
+    # config.active_record.whitelist_attributes = true
+
+    config.exceptions_app = self.routes
+
     config.assets.enabled = true
     config.assets.initialize_on_precompile = true
 

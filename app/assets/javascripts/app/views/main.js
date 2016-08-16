@@ -30,28 +30,16 @@ App.Views.Main = Backbone.View.extend({
 
     },
     open : function(options){
-        var dfd = $.Deferred().resolve();
         if (App.loader.dfd.current_user.state() == "pending") return App.loader.dfd.current_user.done(function(){
             this.open(options);
         }.bind(this));
 
         this.clearContext();
 
-        if (options.post) {
-            dfd = this.openPost(options);
-            this.$el.addClass("clear loading"); // Грубо, но правда (видимо надо определять, надо ли подгружать.. ну и вообще наверное не здесь делать, а во вьюшке поста)
-        }
-        if (options.user) this.openUser(options);
+        if (options.post)   this.openPost(options);
+        if (options.user)   this.openUser(options);
         if (options.folder) this.openFolder(options);
 
-
-        dfd.done(function(){
-            if (this.current_view){
-                this.current_view.model.loading.done(function(){
-                    this.$el.removeClass("loading");
-                }.bind(this));
-            }
-        }.bind(this));
     },
 
 

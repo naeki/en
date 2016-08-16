@@ -74,7 +74,7 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.view();
         this.openText();
 
-        this.listenTo(this.model, "change:title change:last_view change:access", this.renderHeader);
+//        this.listenTo(this.model, "change:title change:last_view change:access", this.renderHeader);
         this.listenTo(this.model, "change:text", this.openText);
         this.listenTo(this.model, "change:deleted", this.view);
         this.listenTo(this.model, "change:likes change:bookmarks", this.renderActions);
@@ -82,6 +82,20 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
         $(window).on("resize", this.pasteParts.bind(this));
         $(window).on("scroll", this.setPageNumber.bind(this));
+
+
+        App.main.$el.addClass("clear waiter");//waiter show
+        setTimeout(function(){App.main.$el.addClass("waiter-show");}.bind(this), 1);
+
+        App.main.$el.addClass("waiter-show");
+        this.model.loading.done(function(){
+
+            setTimeout(function(){App.main.$el.removeClass("waiter-show");}.bind(this), 2);
+           //waiter hide
+
+
+            this.openText();
+        }.bind(this));
 
         this.constructor.view = this;
     },
@@ -145,6 +159,8 @@ App.Views.Page_Post = App.Views.BASE.extend({
         this.$(".post-author").html(this.model.user.get("name")).data("user-id", this.model.user.id);
     },
     renderOmnibar : function(){
+//        if (!this.model.get("access"))
+//            this.$(".post-page-about").detach();
 
         this.renderAuthor();
 
@@ -157,6 +173,9 @@ App.Views.Page_Post = App.Views.BASE.extend({
     },
 
     renderActions : function(){
+//        if (!this.model.get("access"))
+//            this.$(".post-actions").detach();
+
         this.renderLikes();
 
         if (this.model.iAdded())
@@ -266,6 +285,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         <h3>"+ Lang.photo_change +"</h3>\
         <input class='flickr-search-input' type='text' placeholder='"+ Lang.search +"'>\
         <div class='submit-photo save-button'></div>\
+        <span class='delete-photo'><span class='erase-icon'></span>"+ Lang.photo_delete +"</span>\
         <!--<input type='button' class='delete-photo' value='"+ Lang.photo_delete +"'>-->\
     </div>",
     events : {
@@ -340,6 +360,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
         this.listenTo(this.model, "change:title", this.renderTitle.bind(this));
         this.listenTo(this.model, "change:likes change:bookmarks", this.renderActions);
         this.listenTo(this.model, "change:access", this.renderAccessIndication.bind(this));
+        this.listenTo(this.model, "change:photo_id", this.renderDeleteImageLink.bind(this));
 
         $(window).on("resize", this.pasteParts.bind(this));
         $(window).on("scroll", this.setPageNumber.bind(this));
@@ -372,6 +393,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.renderAccess();
         this.renderActions();
+        this.renderExistense();
     },
     renderTitle : function(){
         this.$header.children(".h1").addClass("edit").html(
@@ -392,6 +414,14 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
                 this.$picture.addClass("image").css("background-image", "url(" + url + ")");
                 shadow.remove();
             }.bind(this));
+        }
+
+        else {
+//            this.$picture.css("opacity", 0);
+
+            setTimeout(function(){
+                this.$picture.removeClass("image").css("background-image", "");
+            }.bind(this), 400)
         }
     },
     renderAccessIndication : function(){
@@ -428,7 +458,7 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 //            this.$text.focus();
 //        }.bind(this));
 
-        this.model.loading.done(this.pasteParts.bind(this));
+        this.pasteParts();
     },
     resizeText : function(){
         var st = $(document).scrollTop(), height; // Чтобы, если снизу что-то правим, то скролл после ресайза вернулся туда, куда надо
@@ -487,9 +517,27 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 
         this.listenTo(this.access, "change", setLabel.bind(this));
     },
+    renderExistense : function(){
+
+        this.$(".post-page-about").append("<div class='deleted-control'></div>");
+
+
+        function setLabel(){
+            this.$(".deleted-control").html(!this.model.get("deleted") ? "Удалить рассказ" : "Восстановить рассказ");
+        }
+        setLabel.call(this);
+        this.listenTo(this.model, "change:deleted", setLabel.bind(this));
+
+        this.$(".deleted-control").on("click", this.model.setDeleted.bind(this.model))
+
+    },
     renderImageControls : function(){
         this.$(".post-page-about").append(this._imageControlsMarkup);
         this.$input = this.$(".flickr-search-input");
+        this.renderDeleteImageLink();
+    },
+    renderDeleteImageLink : function(){
+        this.$(".delete-photo")[this.model.get("photo_id") ? "show" : "hide"]();
     },
     openImageSettings : function(){
 //        this.$(".image-settings").show();
@@ -558,6 +606,10 @@ App.Views.Post_Form = App.Views.Page_Post.extend({
 //        this.closeImageSettings();
         this.movePage(false);
         this.renderPicture(id);
+    },
+    deletePicture : function(){
+        this.model.deletePicture();
+        this.renderPicture();
     },
     save : function(){
         this.setData().save();

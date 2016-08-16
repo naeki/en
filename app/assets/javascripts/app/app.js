@@ -57,7 +57,7 @@ App.Lang.En = {
     post_deleted   : "Post was deleted",
     photo_change   : "Изменить фото",
     flickr_open    : "Open gallery",
-    photo_delete   : "Удалить",
+    photo_delete   : "Без фото",
     save_photo     : "Save photo",
     change_life    : "Change existing",
     post_isdeleted : "Post was deleted",

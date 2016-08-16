@@ -23,6 +23,7 @@ En::Application.routes.draw do
       get    :find      , to: 'posts#find'
       post   :picture   , to: 'posts#upload_picture'
       delete :picture   , to: 'posts#delete_picture'
+      post   '/setDeleted'  , to: 'posts#setDeleted'
 
       get    '/all/new' , to: 'posts#all_new'
       get    '/all/pop' , to: 'posts#all_pop'
@@ -143,13 +144,13 @@ En::Application.routes.draw do
   get "/:id",           to: "home#user", constraints: {id: /user\d*/}
   get "/:id/:path",     to: redirect("/%{id}"), constraints: {id: /user\d*/}
 
-  get "/:id",           to: "home#enter", constraints: {id: /tag\d*/}
+  get "/:id",           to: "home#enter", constraints: {id: /tag\d+/}
 
   get "/auth/:provider/callback", to: "sessions#create"
 
   #match "/:id/:page",     to: "home#nf"
-  #match "/:id",           to: "home#nf"
-  #match "/nf",            to: "home#nf"
+  match "/:id",           to: "home#nf",    via: 'get'
+  match "/nf",            to: "home#nf",      via: 'get'
 
   root to: "home#index"
 

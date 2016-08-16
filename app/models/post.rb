@@ -75,9 +75,16 @@ class Post < ActiveRecord::Base
 
     if (post.deleted == 1)
       result.delete("text")
+      result["deleted"] = 1
     else
       result["tags"] = post.tags
     end
+
+    if (post.access == 0)
+      result.delete("text")
+    end
+
+
     result["user_name"]     = post.user.name.blank? ? post.user.email : post.user.name
     result["user_photo_id"] = post.user.provider == "google_oauth2" ? post.user.photo_id : post.user.photo_s
     result["comments"]      = post.comments.count
@@ -162,6 +169,10 @@ class Post < ActiveRecord::Base
 
   def archive
     self.update_attributes deleted: true
+  end
+
+  def restore
+    self.update_attributes deleted: false
   end
 
 end
