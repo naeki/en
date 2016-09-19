@@ -422,7 +422,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
 
 
-    limit: 10,
+    limit: 3,
     fetch : function(url, data){
 
         if (this.fetchDfd || this.end) return;

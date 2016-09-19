@@ -183,7 +183,7 @@ App.Views.All = App.Views.Folder.extend({
 
 
             if (dfd.state() == "pending")
-                this.waiter = new App.Views.Waiter({renderTo: this.$('.folder-header'), cssclass: "search", size: 4})
+                this.waiter = new App.Views.Waiter({renderTo: this.$('.folder-header'), cssclass: "search", size: 6})
 
 
         }.bind(this, val));

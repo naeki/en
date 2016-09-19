@@ -940,6 +940,12 @@ button.save-button{
 //      }
     }
   }
+
+  .waiter.search{
+    position: absolute;
+    top: 56px;
+    left: 276px;
+  }
 }
 
 .change-type{
@@ -1836,7 +1842,7 @@ input.flickr-open{
 
 // Редактирование тегов
 .edit-tags-button{
-  top: 6px;
+  top: 9px;
   white-space: nowrap;
   cursor: pointer;
   font-weight: 200;
@@ -1844,22 +1850,22 @@ input.flickr-open{
   height: 17px;
   position: relative;
   font-family: _roboto;
-  left: -15px;
+  left: -13px;
   font-size: 33px;
-  color: #3D35B4;
+  color: #FFFFFF;
   line-height: 15px;
-  padding: 0px 3px 5px 3px;
-  margin-left: 0px;
+  padding: 0 3px 5px 3px;
+  margin-left: 0;
   width: 17px;
   &::after{
     position: relative;
     content: "";
     display: block;
-    background: #3d35b4;
-    width: 3px;
-    height: 3px;
+    background: #6A63D4;
+    width: 4px;
+    height: 4px;
     border-radius: 3px;
-    box-shadow: 7px 0 0 #3d35b4, 14px 0 0 #3d35b4;
+    box-shadow: 7px 0 0 #6A63D4 , 14px 0 0 #6A63D4;
     top: 9px;
   }
   svg.icon-settings{

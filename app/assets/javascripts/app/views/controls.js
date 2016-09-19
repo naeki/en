@@ -37,9 +37,9 @@ App.Views.ToggleControl = App.Views.BASE.extend({
 
 App.Views.Waiter = App.Views.BASE.extend({
     className: "waiter hide",
-    _markup : '<div class="dot1"></div><div class="dot2"></div><div class="dot3"></div>',
+//    _markup : '<div class="dot1"></div><div class="dot2"></div><div class="dot3"></div>',
     init : function(){
-        this.$el.html(this._markup).appendTo(this.options.renderTo);
+        this.$el.appendTo(this.options.renderTo);
 
         this.show();
 
