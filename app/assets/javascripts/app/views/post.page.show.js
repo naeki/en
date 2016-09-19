@@ -85,9 +85,9 @@ App.Views.Page_Post = App.Views.BASE.extend({
 
 
         App.main.$el.addClass("clear waiter");//waiter show
-        setTimeout(function(){App.main.$el.addClass("waiter-show");}.bind(this), 1);
+//        setTimeout(function(){App.main.$el.addClass("waiter-show");}.bind(this), 1);
 
-        App.main.$el.addClass("waiter-show");
+//        App.main.$el.addClass("waiter-show");
         this.model.loading.done(function(){
 
             setTimeout(function(){App.main.$el.removeClass("waiter-show");}.bind(this), 2);
