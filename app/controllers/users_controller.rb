@@ -34,7 +34,8 @@ class UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    options = {:params => params, :opts => {}}
+    parOptions = params[:options] || {}
+    options = {:params => params, :opts => parOptions}
 
     if (!current_user?(@user))
       options[:opts][:access] = 1

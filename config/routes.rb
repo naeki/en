@@ -37,6 +37,7 @@ En::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy] do
     collection do
       post '/auth' , to: 'sessions#auth'
+      post '/auth/android' , to: 'sessions#createAtAndroid'
       get :get_current_user
     end
   end
@@ -147,6 +148,7 @@ En::Application.routes.draw do
   get "/:id",           to: "home#enter", constraints: {id: /tag\d+/}
 
   get "/auth/:provider/callback", to: "sessions#create"
+
 
   #match "/:id/:page",     to: "home#nf"
   match "/:id",           to: "home#nf",    via: 'get'

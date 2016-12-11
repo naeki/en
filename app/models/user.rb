@@ -68,6 +68,21 @@ class User < ActiveRecord::Base
     @user
   end
 
+  def self.from_android_oauth(account)
+    @user = find_by(uid: account['id'], provider: account['provider'])
+
+    if (!@user)
+      @user = create(uid: account['id'], provider: account['provider'])
+      @user.name = account['name']
+      # user.location = account['info']['location']
+      @user.photo_id = account['image']
+      # user.url = account['info']['urls'][user.provider.capitalize]
+      @user.save!
+    end
+
+    @user
+  end
+
   def feed
     @posts = Post.from_users_followed_by(self)
   end
@@ -115,7 +130,8 @@ class User < ActiveRecord::Base
 
   # Own posts
   def own_posts(options)
-    opts = {:deleted => 0}.merge(options[:opts])
+    opts = {'deleted' => 0}.merge(options[:opts])
+
     query = ''
     opts.each {|key, value| query += " AND #{key}=#{value}" }
 

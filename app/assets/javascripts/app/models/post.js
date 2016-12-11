@@ -422,7 +422,7 @@ window.PostsCollection = App.Collections.Posts = Backbone.Collection.extend({
 
 
 
-    limit: 10,
+    limit: 3,
     fetch : function(url, data){
 
         if (this.fetchDfd || this.end) return;
@@ -490,9 +490,11 @@ App.Collections.UserPosts = App.Collections.Posts.extend({
 
 App.Collections.UserDel = App.Collections.Posts.extend({
     fetch : function(){
-        return App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : 1}}, type: "GET"}).done(function(result){
-            this.reset((result.posts || result).map(Post.builder));
-        }.bind(this));
+        return App.Collections.Posts.prototype.fetch.call(this, "/users/posts", {id: this.user.id, options : {deleted : 1}});
+
+//        return App.loader.sync("/users/posts", {data : {id: this.user.id, options: {deleted : true}}, type: "GET"}).done(function(result){
+//            this.reset((result.posts || result).map(Post.builder));
+//        }.bind(this));
     }
 });
 
